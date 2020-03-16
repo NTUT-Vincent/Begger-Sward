@@ -394,21 +394,21 @@ void CGameStateRun::OnShow()
 	//
 	//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 	//
-	background.ShowBitmap();			// 貼上背景圖
+	//ackground.ShowBitmap();			// 貼上背景圖
 	first_stage_map.OnShow();
-	help.ShowBitmap();					// 貼上說明圖
-	hits_left.ShowBitmap();
-	for (int i=0; i < NUMBALLS; i++)
-		ball[i].OnShow();				// 貼上第i號球
-	bball.OnShow();						// 貼上彈跳的球
-	eraser.OnShow();					// 貼上擦子
+	//help.ShowBitmap();					// 貼上說明圖
+	//hits_left.ShowBitmap();
+	//for (int i=0; i < NUMBALLS; i++)
+		//ball[i].OnShow();				// 貼上第i號球
+	//bball.OnShow();						// 貼上彈跳的球
+	//eraser.OnShow();					// 貼上擦子
 	//
 	//  貼上左上及右下角落的圖
 	//
 	corner.SetTopLeft(0,0);
-	corner.ShowBitmap();
+	//corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
-	corner.ShowBitmap();
+	//corner.ShowBitmap();
 	player1.OnShow();
 }
 
@@ -421,7 +421,7 @@ Player::Player()
 
 void Player::LoadBitmap()
 {
-	player.LoadBitmap(IDB_PLAYER, RGB(255, 255, 255));
+	player.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
 }
 
 void Player::OnMove() {

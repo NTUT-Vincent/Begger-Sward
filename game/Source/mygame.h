@@ -63,7 +63,7 @@ public:
 		hero_location_y = 480;
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
-				if (i < 3 || i >10) {
+				if (i < 3 || i >11 || j < 3 || j > 11) {
 					map[i][j] = 1;
 				}
 				else
@@ -87,19 +87,24 @@ public:
 
 	void OnMove() {
 		const int STEP_SIZE = 4;
-		if (isMovingLeft && isEmpty(hero_location_x, hero_location_y)) {
+		if (isMovingLeft && isEmpty(hero_location_x-4, hero_location_y)) {
 			sx += STEP_SIZE;
 			hero_location_x -= 4;
 		}
 
-		if (isMovingRight && isEmpty(hero_location_x, hero_location_y)) {
+		if (isMovingRight && isEmpty(hero_location_x+4, hero_location_y)) {
 			sx -= STEP_SIZE;
 			hero_location_x += 4;
 		}
-		if (isMovingUp && isEmpty(hero_location_x, hero_location_y) )
+		if (isMovingUp && isEmpty(hero_location_x, hero_location_y - 4)) {
 			sy += STEP_SIZE;
-		if (isMovingDown && isEmpty(hero_location_x, hero_location_y) )
+			hero_location_y -= 4;
+		}
+
+		if (isMovingDown && isEmpty(hero_location_x, hero_location_y + 4)) {
 			sy -= STEP_SIZE;
+			hero_location_y += 4;
+		}
 	}
 
 	void Initialize() {
@@ -136,7 +141,7 @@ public:
 private:
 	CMovingBitmap firstmap;
 	int hero_location_x, hero_location_y;
-	int map[16][16];
+	int map[18][16];
 	int sx , sy;
 	bool isMovingRight;
 	bool isMovingLeft;

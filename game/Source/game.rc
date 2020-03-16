@@ -108,6 +108,8 @@ IDB_MAP1                BITMAP                  "C:\\Users\\vince\\Desktop\\oopc
 
 IDB_PLAYER              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\PLAYER1.bmp"
 
+IDB_HERO1               BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\hero1.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
