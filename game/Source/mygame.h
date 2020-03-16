@@ -53,6 +53,109 @@ namespace game_framework {
 		AUDIO_NTUT				// 2
 	};
 
+class BattleMap
+{
+public:
+	BattleMap() {
+		sx = -200;
+		sy = -200;
+		hero_location_x = 480;
+		hero_location_y = 480;
+		for (int i = 0; i < 16; i++) {
+			for (int j = 0; j < 16; j++) {
+				if (i < 3 || i >10) {
+					map[i][j] = 1;
+				}
+				else
+				{
+					map[i][j] = 0;
+				}
+			}
+		}
+		
+		
+	}
+
+	bool isEmpty(int x, int y) {
+		int gx = x / 64;
+		int gy = y / 64;
+		if (map[gx][gy] == 0) {
+			return true;
+		}
+		return false;
+	}
+
+	void OnMove() {
+		const int STEP_SIZE = 4;
+		if (isMovingLeft && isEmpty(hero_location_x, hero_location_y)) {
+			sx += STEP_SIZE;
+			hero_location_x -= 4;
+		}
+
+		if (isMovingRight && isEmpty(hero_location_x, hero_location_y)) {
+			sx -= STEP_SIZE;
+			hero_location_x += 4;
+		}
+		if (isMovingUp && isEmpty(hero_location_x, hero_location_y) )
+			sy += STEP_SIZE;
+		if (isMovingDown && isEmpty(hero_location_x, hero_location_y) )
+			sy -= STEP_SIZE;
+	}
+
+	void Initialize() {
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
+	}
+
+	void LoadBitmap() {
+		firstmap.LoadBitmap(IDB_MAP1);
+	}
+
+	void OnShow() {
+		firstmap.SetTopLeft(sx, sy);
+		firstmap.ShowBitmap();
+	}
+
+	void SetMovingDown(bool b) {
+		hero_location_y += 4;
+		isMovingDown = b;
+	}
+
+	void SetMovingUp(bool b) {
+		hero_location_y -= 4;
+		isMovingUp = b;
+	}
+
+	void SetMovingLeft(bool b) {
+		isMovingLeft = b;
+	}
+
+	void SetMovingRight(bool b) {
+		isMovingRight = b;
+	}
+
+private:
+	CMovingBitmap firstmap;
+	int hero_location_x, hero_location_y;
+	int map[16][16];
+	int sx , sy;
+	bool isMovingRight;
+	bool isMovingLeft;
+	bool isMovingUp;
+	bool isMovingDown;
+};
+
+class Player {
+public:
+	Player();
+	void LoadBitmap();
+	void OnShow();
+	void OnMove();
+
+private:
+	CMovingBitmap player;
+	int x, y;
+};
+
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	// 每個Member function的Implementation都要弄懂
@@ -94,6 +197,8 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
+		BattleMap		first_stage_map;
+		Player			player1;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CBall			*ball;		// 球的陣列

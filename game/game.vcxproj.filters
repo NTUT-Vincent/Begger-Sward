@@ -174,4 +174,12 @@
       <Filter>MFC</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="RES\S__4784130.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\PLAYER1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
