@@ -96,12 +96,12 @@ public:
 			sx -= STEP_SIZE;
 			hero_location_x += 4;
 		}
-		if (isMovingUp && isEmpty(hero_location_x, hero_location_y - 4)) {
+		if (isMovingUp && isEmpty(hero_location_x, hero_location_y - 5)) {
 			sy += STEP_SIZE;
 			hero_location_y -= 4;
 		}
 
-		if (isMovingDown && isEmpty(hero_location_x, hero_location_y + 4)) {
+		if (isMovingDown && isEmpty(hero_location_x, hero_location_y + 5)) {
 			sy -= STEP_SIZE;
 			hero_location_y += 4;
 		}
