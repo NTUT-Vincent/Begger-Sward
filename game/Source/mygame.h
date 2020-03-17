@@ -67,9 +67,12 @@ public:
 	BattleMap() {
 		sx = -200;
 		sy = -200;
-		for (int i = 0; i < 16; i++) {
-			for (int j = 0; j < 16; j++) {
-				if (i < 3 || i >11 || j < 5 || j > 10) {
+		for (int i = 0; i < 12; i++) {
+			for (int j = 0; j < 12; j++) {
+				if ((i>0&&i<11)&&((j>=0&&j<=3)||j==10)) {
+					map[i][j] = 1;
+				}
+				else if ((i==0||i==10) && (j > 0 && j < 11)) {
 					map[i][j] = 1;
 				}
 				else
@@ -78,14 +81,14 @@ public:
 				}
 			}
 		}
-		map[3][5] = map[3][6] = map[4][5] = map[5][4] = 1;
-		map[4][10] = map[3][10] = map[3][9] = 1;
-		map[11][5] = map[10][5] = map[11][6] = map[11][10] = map[10][10] = map[11][9] = 1;
+		map[5][3] = 0;
+		map[1][4] = map[2][4] = map[8][4] = map[9][4] = map[1][5] = map[9][5] = 1;
+		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
 	}
 
 	bool isEmpty(int x, int y) const
 	{
-		int gx = x / 61;
+		int gx = x / 64;
 		int gy = y / 64;
 		if (map[gx][gy] == 0) {
 			return true;
@@ -98,7 +101,7 @@ public:
 	}
 
 	void LoadBitmap() {
-		firstmap.LoadBitmap(IDB_MAP1);
+		firstmap.LoadBitmap(IDB_MAP1_1);
 	}
 
 	void OnShow() {
@@ -119,7 +122,7 @@ public:
 
 private:
 	CMovingBitmap firstmap;
-	int map[18][16];
+	int map[12][12];
 	int sx , sy;							//地圖最左上角的座標
 	int stage_left, stage_top;			
 };
