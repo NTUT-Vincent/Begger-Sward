@@ -224,12 +224,14 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 	first_stage_map.Initialize();
+	player1.Initialize();
 
 }
 
 void CGameStateRun::OnMove()							// 移動遊戲元素
 {
 	first_stage_map.OnMove();
+	player1.OnMove(&first_stage_map);
 	//
 	// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 	//
@@ -320,18 +322,22 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_LEFT) {
 		//eraser.SetMovingLeft(true);
 		first_stage_map.SetMovingLeft(true);
+		player1.SetMovingLeft(true);
 	}
 	if (nChar == KEY_RIGHT) {
 		first_stage_map.SetMovingRight(true);
 		//eraser.SetMovingRight(true);
+		player1.SetMovingRight(true);
 	}
 	if (nChar == KEY_UP) {
 		first_stage_map.SetMovingUp(true);
 		//eraser.SetMovingUp(true);
+		player1.SetMovingUp(true);
 	}
 	if (nChar == KEY_DOWN) {
 		first_stage_map.SetMovingDown(true);
 		//eraser.SetMovingDown(true);
+		player1.SetMovingDown(true);
 	}
 }
 
@@ -344,18 +350,22 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == KEY_LEFT) {
 		first_stage_map.SetMovingLeft(false);
 		//eraser.SetMovingLeft(false);
+		player1.SetMovingLeft(false);
 	}
 	if (nChar == KEY_RIGHT) {
 		first_stage_map.SetMovingRight(false);
 		//eraser.SetMovingRight(false);
+		player1.SetMovingRight(false);
 	}
 	if (nChar == KEY_UP) {
 		first_stage_map.SetMovingUp(false);
 		//eraser.SetMovingUp(false);
+		player1.SetMovingUp(false);
 	}
 	if (nChar == KEY_DOWN) {
 		first_stage_map.SetMovingDown(false);
 		//eraser.SetMovingDown(false);
+		player1.SetMovingDown(false);
 	}
 }
 
@@ -415,8 +425,8 @@ void CGameStateRun::OnShow()
 //////////////////////////////player
 Player::Player()
 {
-	x = 280;
-	y = 280;
+	x = 480;
+	y = 480;
 }
 
 void Player::LoadBitmap()
@@ -424,13 +434,59 @@ void Player::LoadBitmap()
 	player.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
 }
 
-void Player::OnMove() {
+void Player::OnMove(BattleMap *m) {
+	const int STEP_SIZE = 4;
+	if (isMovingLeft && m->isEmpty(x - 4, y)) {
+		m->addSX(STEP_SIZE);
+		x -= STEP_SIZE;
+	}
 
+	if (isMovingRight && m->isEmpty(x + 4, y)) {
+		m->addSX(-4);
+		x += STEP_SIZE;
+	}
+	if (isMovingUp && m->isEmpty(x, y - 4)) {
+		m->addSY(4);
+		y -= STEP_SIZE;
+	}
+
+	if (isMovingDown && m->isEmpty(x, y + 4)) {
+		m->addSY(-4);
+		y += STEP_SIZE;
+	}
 }
 
 void Player::OnShow()
 {
-	player.SetTopLeft(x, y);
+	player.SetTopLeft(280, 280);
 	player.ShowBitmap();
+}
+
+int Player::getX() {
+	return x;
+}
+
+int Player::getY() {
+	return y;
+}
+
+void Player::Initialize() {
+	isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
+}
+
+void Player::SetMovingDown(bool b) {
+	isMovingDown = b;
+}
+
+void Player::SetMovingUp(bool b) {
+	isMovingUp = b;
+}
+
+void Player::SetMovingLeft(bool b) {
+	isMovingLeft = b;
+}
+
+void Player::SetMovingRight(bool b) {
+	isMovingRight = b;
 }
 }

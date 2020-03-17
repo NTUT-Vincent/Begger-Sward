@@ -63,7 +63,7 @@ public:
 		hero_location_y = 480;
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
-				if (i < 3 || i >11 || j < 3 || j > 11) {
+				if (i < 3 || i >11 || j < 4 || j > 10) {
 					map[i][j] = 1;
 				}
 				else
@@ -86,25 +86,7 @@ public:
 	}
 
 	void OnMove() {
-		const int STEP_SIZE = 4;
-		if (isMovingLeft && isEmpty(hero_location_x-4, hero_location_y)) {
-			sx += STEP_SIZE;
-			hero_location_x -= 4;
-		}
-
-		if (isMovingRight && isEmpty(hero_location_x+4, hero_location_y)) {
-			sx -= STEP_SIZE;
-			hero_location_x += 4;
-		}
-		if (isMovingUp && isEmpty(hero_location_x, hero_location_y - 5)) {
-			sy += STEP_SIZE;
-			hero_location_y -= 4;
-		}
-
-		if (isMovingDown && isEmpty(hero_location_x, hero_location_y + 5)) {
-			sy -= STEP_SIZE;
-			hero_location_y += 4;
-		}
+		
 	}
 
 	void Initialize() {
@@ -121,12 +103,10 @@ public:
 	}
 
 	void SetMovingDown(bool b) {
-		hero_location_y += 4;
 		isMovingDown = b;
 	}
 
 	void SetMovingUp(bool b) {
-		hero_location_y -= 4;
 		isMovingUp = b;
 	}
 
@@ -138,27 +118,48 @@ public:
 		isMovingRight = b;
 	}
 
+	void addSX(int n) {
+		sx += n;
+	}
+
+	void addSY(int n) {
+		sy += n;
+	}
+
 private:
 	CMovingBitmap firstmap;
 	int hero_location_x, hero_location_y;
 	int map[18][16];
-	int sx , sy;
+	int sx , sy;							//地圖最左上角的座標
+	int stage_left, stage_top;			
 	bool isMovingRight;
 	bool isMovingLeft;
 	bool isMovingUp;
 	bool isMovingDown;
 };
 
-class Player {
+class Player
+{
 public:
 	Player();
 	void LoadBitmap();
 	void OnShow();
-	void OnMove();
-
+	void OnMove(BattleMap *m);
+	int getX();
+	int getY();
+	void Initialize();
+	void SetMovingDown(bool b);
+	void SetMovingUp(bool b);
+	void SetMovingLeft(bool b);
+	void SetMovingRight(bool b);
 private:
 	CMovingBitmap player;
 	int x, y;
+	bool isMovingRight;
+	bool isMovingLeft;
+	bool isMovingUp;
+	bool isMovingDown;
+
 };
 
 	/////////////////////////////////////////////////////////////////////////////
