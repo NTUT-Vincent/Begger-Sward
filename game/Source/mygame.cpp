@@ -425,7 +425,7 @@ void Player::LoadBitmap()
 	player.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
 }
 
-void Player::OnMove(BattleMap *m) {
+void Player::OnMove(Map *m) {
 	const int STEP_SIZE = 4;
 	if (isMovingLeft && m->isEmpty(x - 4, y)) {
 		m->addSX(STEP_SIZE);

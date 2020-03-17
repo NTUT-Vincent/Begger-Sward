@@ -53,7 +53,15 @@ namespace game_framework {
 		AUDIO_NTUT				// 2
 	};
 
-class BattleMap
+class Map
+{
+public:
+	virtual bool isEmpty(int x, int y) const = 0;
+	virtual void addSX(int n) {};
+	virtual void addSY(int n) {};
+};
+
+class BattleMap: public Map
 {
 public:
 	BattleMap() {
@@ -75,7 +83,8 @@ public:
 		map[11][5] = map[10][5] = map[11][6] = map[11][10] = map[10][10] = map[11][9] = 1;
 	}
 
-	bool isEmpty(int x, int y) {
+	bool isEmpty(int x, int y) const
+	{
 		int gx = x / 61;
 		int gy = y / 64;
 		if (map[gx][gy] == 0) {
@@ -98,11 +107,13 @@ public:
 	}
 
 
-	void addSX(int n) {
+	void addSX(int n) override
+	{
 		sx += n;
 	}
 
-	void addSY(int n) {
+	void addSY(int n) override
+	{
 		sy += n;
 	}
 
@@ -119,7 +130,7 @@ public:
 	Player();
 	void LoadBitmap();
 	void OnShow();
-	void OnMove(BattleMap *m);
+	void OnMove(Map *m);
 	int getX();
 	int getY();
 	void Initialize();
