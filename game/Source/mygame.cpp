@@ -223,7 +223,6 @@ void CGameStateRun::OnBeginState()
 	CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 	CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
-	first_stage_map.Initialize();
 	player1.Initialize();
 
 }
@@ -321,21 +320,17 @@ void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	if (nChar == KEY_LEFT) {
 		//eraser.SetMovingLeft(true);
-		first_stage_map.SetMovingLeft(true);
 		player1.SetMovingLeft(true);
 	}
 	if (nChar == KEY_RIGHT) {
-		first_stage_map.SetMovingRight(true);
 		//eraser.SetMovingRight(true);
 		player1.SetMovingRight(true);
 	}
 	if (nChar == KEY_UP) {
-		first_stage_map.SetMovingUp(true);
 		//eraser.SetMovingUp(true);
 		player1.SetMovingUp(true);
 	}
 	if (nChar == KEY_DOWN) {
-		first_stage_map.SetMovingDown(true);
 		//eraser.SetMovingDown(true);
 		player1.SetMovingDown(true);
 	}
@@ -348,22 +343,18 @@ void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	const char KEY_RIGHT = 0x27; // keyboard右箭頭
 	const char KEY_DOWN  = 0x28; // keyboard下箭頭
 	if (nChar == KEY_LEFT) {
-		first_stage_map.SetMovingLeft(false);
 		//eraser.SetMovingLeft(false);
 		player1.SetMovingLeft(false);
 	}
 	if (nChar == KEY_RIGHT) {
-		first_stage_map.SetMovingRight(false);
 		//eraser.SetMovingRight(false);
 		player1.SetMovingRight(false);
 	}
 	if (nChar == KEY_UP) {
-		first_stage_map.SetMovingUp(false);
 		//eraser.SetMovingUp(false);
 		player1.SetMovingUp(false);
 	}
 	if (nChar == KEY_DOWN) {
-		first_stage_map.SetMovingDown(false);
 		//eraser.SetMovingDown(false);
 		player1.SetMovingDown(false);
 	}

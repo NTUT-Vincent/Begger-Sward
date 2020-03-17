@@ -59,11 +59,9 @@ public:
 	BattleMap() {
 		sx = -200;
 		sy = -200;
-		hero_location_x = 480;
-		hero_location_y = 480;
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
-				if (i < 3 || i >11 || j < 4 || j > 10) {
+				if (i < 3 || i >11 || j < 5 || j > 10) {
 					map[i][j] = 1;
 				}
 				else
@@ -72,12 +70,13 @@ public:
 				}
 			}
 		}
-		
-		
+		map[3][5] = map[3][6] = map[4][5] = map[5][4] = 1;
+		map[4][10] = map[3][10] = map[3][9] = 1;
+		map[11][5] = map[10][5] = map[11][6] = map[11][10] = map[10][10] = map[11][9] = 1;
 	}
 
 	bool isEmpty(int x, int y) {
-		int gx = x / 64;
+		int gx = x / 61;
 		int gy = y / 64;
 		if (map[gx][gy] == 0) {
 			return true;
@@ -89,10 +88,6 @@ public:
 		
 	}
 
-	void Initialize() {
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
-	}
-
 	void LoadBitmap() {
 		firstmap.LoadBitmap(IDB_MAP1);
 	}
@@ -102,21 +97,6 @@ public:
 		firstmap.ShowBitmap();
 	}
 
-	void SetMovingDown(bool b) {
-		isMovingDown = b;
-	}
-
-	void SetMovingUp(bool b) {
-		isMovingUp = b;
-	}
-
-	void SetMovingLeft(bool b) {
-		isMovingLeft = b;
-	}
-
-	void SetMovingRight(bool b) {
-		isMovingRight = b;
-	}
 
 	void addSX(int n) {
 		sx += n;
@@ -128,14 +108,9 @@ public:
 
 private:
 	CMovingBitmap firstmap;
-	int hero_location_x, hero_location_y;
 	int map[18][16];
 	int sx , sy;							//地圖最左上角的座標
 	int stage_left, stage_top;			
-	bool isMovingRight;
-	bool isMovingLeft;
-	bool isMovingUp;
-	bool isMovingDown;
 };
 
 class Player
