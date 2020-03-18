@@ -56,29 +56,29 @@ namespace game_framework {
 		AUDIO_NTUT				// 2
 	};
 
-/*lass Hero
-{
-public:
-	Hero();
-	void LoadBitmap();
-	void OnShow();
-	void OnMove(Map *m);
-	int getX();
-	int getY();
-	void Initialize();
-	void SetMovingDown(bool b);
-	void SetMovingUp(bool b);
-	void SetMovingLeft(bool b);
-	void SetMovingRight(bool b);
-private:
-	CMovingBitmap player;
-	int x, y;
-	bool isMovingRight;
-	bool isMovingLeft;
-	bool isMovingUp;
-	bool isMovingDown;
-
-}*/;
+//class Hero
+//{
+//public:
+//	Hero();
+//	void LoadBitmap();
+//	void OnShow();
+//	void OnMove(Map *m);
+//	int getX();
+//	int getY();
+//	void Initialize();
+//	void SetMovingDown(bool b);
+//	void SetMovingUp(bool b);
+//	void SetMovingLeft(bool b);
+//	void SetMovingRight(bool b);
+//private:
+//	CMovingBitmap player;
+//	int x, y;
+//	bool isMovingRight;
+//	bool isMovingLeft;
+//	bool isMovingUp;
+//	bool isMovingDown;
+//
+//};
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件

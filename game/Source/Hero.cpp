@@ -25,7 +25,7 @@ namespace game_framework {
 		player.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
 	}
 
-	void Hero::OnMove(Map *m) {
+	void Hero::OnMove(Map * m) {
 		const int STEP_SIZE = 4;
 		if (isMovingLeft && m->isEmpty(x - 4, y)) {
 			m->addSX(STEP_SIZE);
