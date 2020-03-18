@@ -4,7 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "Map.h"
+#include "Maps.h"
 #include "Map1_1.h"
 
 namespace game_framework {

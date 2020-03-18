@@ -1,6 +1,6 @@
 namespace game_framework {
 
-	class Map1_1 : public Map
+	class Map1_1 : public Maps
 	{
 	public:
 		Map1_1();

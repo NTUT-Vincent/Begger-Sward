@@ -309,7 +309,7 @@
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\Hero.h" />
     <ClInclude Include="Source\Map1_1.h" />
-    <ClInclude Include="Source\Map.h" />
+    <ClInclude Include="Source\Maps.h" />
     <ClInclude Include="Source\CBall.h" />
     <ClInclude Include="Source\CBouncingBall.h" />
     <ClInclude Include="Source\CEraser.h" />

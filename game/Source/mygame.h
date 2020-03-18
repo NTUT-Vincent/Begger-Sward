@@ -41,7 +41,7 @@
 #include "CEraser.h"
 #include "CBall.h"
 #include "CBouncingBall.h"
-#include "Map.h"
+#include "Maps.h"
 #include "Map1_1.h"
 #include "Hero.h"
 

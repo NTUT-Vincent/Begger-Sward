@@ -1,10 +1,12 @@
+#ifndef __MAPS_H__
+#define __MAPS_H__
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class Map
+	class Maps
 	{
 	public:
 		virtual bool isEmpty(int x, int y) const = 0;
@@ -12,3 +14,4 @@ namespace game_framework {
 		virtual void addSY(int n) {};
 	};
 }
+#endif

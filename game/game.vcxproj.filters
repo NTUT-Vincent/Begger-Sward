@@ -174,13 +174,13 @@
     <ClInclude Include="Source\CBouncingBall.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Map.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Map1_1.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Hero.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Maps.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

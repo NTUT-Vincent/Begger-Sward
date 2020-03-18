@@ -1,4 +1,4 @@
-#include "Map.h"
+#include "Maps.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -11,11 +11,9 @@ namespace game_framework {
 		Hero();
 		void LoadBitmap();
 		void OnShow();
-		void OnMove(Map *m);
+		void OnMove(Maps *m);
 		int getX();
 		int getY();
-		void setX(int n);
-		void setY(int n);
 		void Initialize();
 		void SetMovingDown(bool b);
 		void SetMovingUp(bool b);
