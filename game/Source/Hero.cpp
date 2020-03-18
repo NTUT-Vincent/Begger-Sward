@@ -14,7 +14,7 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Hero::Hero()
+	/*Hero::Hero()
 	{
 		x = 480;
 		y = 480;
@@ -83,5 +83,5 @@ namespace game_framework {
 
 	void Hero::SetMovingRight(bool b) {
 		isMovingRight = b;
-	}
+	}*/
 }
