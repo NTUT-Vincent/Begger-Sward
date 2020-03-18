@@ -43,6 +43,7 @@
 #include "CBouncingBall.h"
 #include "Map.h"
 #include "Map1_1.h"
+#include "Hero.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -55,7 +56,7 @@ namespace game_framework {
 		AUDIO_NTUT				// 2
 	};
 
-class Hero
+/*lass Hero
 {
 public:
 	Hero();
@@ -77,7 +78,7 @@ private:
 	bool isMovingUp;
 	bool isMovingDown;
 
-};
+}*/;
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件

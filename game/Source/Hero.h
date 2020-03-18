@@ -13,6 +13,8 @@ namespace game_framework {
 		void OnMove(Map *m);
 		int getX();
 		int getY();
+		void setX(int n);
+		void setY(int n);
 		void Initialize();
 		void SetMovingDown(bool b);
 		void SetMovingUp(bool b);

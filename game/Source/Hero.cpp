@@ -65,6 +65,10 @@ namespace game_framework {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 	}
 
+	void Hero::setX(int n) {
+	
+	}
+
 	void Hero::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
