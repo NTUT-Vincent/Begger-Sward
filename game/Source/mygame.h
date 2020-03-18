@@ -41,6 +41,8 @@
 #include "CEraser.h"
 #include "CBall.h"
 #include "CBouncingBall.h"
+#include "Map.h"
+#include "Map1_1.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -53,84 +55,10 @@ namespace game_framework {
 		AUDIO_NTUT				// 2
 	};
 
-class Map
+class Hero
 {
 public:
-	virtual bool isEmpty(int x, int y) const = 0;
-	virtual void addSX(int n) {};
-	virtual void addSY(int n) {};
-};
-
-class BattleMap: public Map
-{
-public:
-	BattleMap() {
-		sx = -200;
-		sy = -200;
-		for (int i = 0; i < 12; i++) {
-			for (int j = 0; j < 12; j++) {
-				if ((i>0&&i<11)&&((j>=0&&j<=3)||j==10)) {
-					map[i][j] = 1;
-				}
-				else if ((i==0||i==10) && (j > 0 && j < 11)) {
-					map[i][j] = 1;
-				}
-				else
-				{
-					map[i][j] = 0;
-				}
-			}
-		}
-		map[5][3] = 0;
-		map[1][4] = map[2][4] = map[8][4] = map[9][4] = map[1][5] = map[9][5] = 1;
-		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
-	}
-
-	bool isEmpty(int x, int y) const
-	{
-		int gx = x / 64;
-		int gy = y / 64;
-		if (map[gx][gy] == 0) {
-			return true;
-		}
-		return false;
-	}
-
-	void OnMove() {
-		
-	}
-
-	void LoadBitmap() {
-		firstmap.LoadBitmap(IDB_MAP1_1);
-	}
-
-	void OnShow() {
-		firstmap.SetTopLeft(sx, sy);
-		firstmap.ShowBitmap();
-	}
-
-
-	void addSX(int n) override
-	{
-		sx += n;
-	}
-
-	void addSY(int n) override
-	{
-		sy += n;
-	}
-
-private:
-	CMovingBitmap firstmap;
-	int map[12][12];
-	int sx , sy;							//地圖最左上角的座標
-	int stage_left, stage_top;			
-};
-
-class Player
-{
-public:
-	Player();
+	Hero();
 	void LoadBitmap();
 	void OnShow();
 	void OnMove(Map *m);
@@ -192,8 +120,8 @@ private:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
-		BattleMap		first_stage_map;
-		Player			player1;
+		Map1_1		first_stage_map;
+		Hero			player1;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CBall			*ball;		// 球的陣列
