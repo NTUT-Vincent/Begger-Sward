@@ -14,7 +14,7 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Hero::Hero()
+	Hero::Hero(): Character(100)
 	{
 		x = 480;
 		y = 480;
@@ -27,22 +27,22 @@ namespace game_framework {
 
 	void Hero::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
-		if (isMovingLeft && m->isEmpty(x - 4, y)) {
+		if (isMovingLeft && m->isEmpty(x - STEP_SIZE, y)) {
 			m->addSX(STEP_SIZE);
 			x -= STEP_SIZE;
 		}
 
-		if (isMovingRight && m->isEmpty(x + 4, y)) {
-			m->addSX(-4);
+		if (isMovingRight && m->isEmpty(x + STEP_SIZE, y)) {
+			m->addSX(-STEP_SIZE);
 			x += STEP_SIZE;
 		}
-		if (isMovingUp && m->isEmpty(x, y - 4)) {
-			m->addSY(4);
+		if (isMovingUp && m->isEmpty(x, y - STEP_SIZE)) {
+			m->addSY(STEP_SIZE);
 			y -= STEP_SIZE;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + 4)) {
-			m->addSY(-4);
+		if (isMovingDown && m->isEmpty(x, y + STEP_SIZE)) {
+			m->addSY(-STEP_SIZE);
 			y += STEP_SIZE;
 		}
 	}

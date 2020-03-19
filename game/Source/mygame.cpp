@@ -224,6 +224,8 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 		player1.Initialize();
+		enemy1.Initialize();
+
 
 	}
 
@@ -231,6 +233,7 @@ namespace game_framework {
 	{
 		first_stage_map.OnMove();
 		player1.OnMove(&first_stage_map);
+		enemy1.OnMove(&first_stage_map);
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		//
@@ -285,6 +288,7 @@ namespace game_framework {
 		// 開始載入資料
 		//
 		player1.LoadBitmap();
+		enemy1.LoadBitmap();
 		first_stage_map.LoadBitmap();
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
@@ -321,18 +325,22 @@ namespace game_framework {
 		if (nChar == KEY_LEFT) {
 			//eraser.SetMovingLeft(true);
 			player1.SetMovingLeft(true);
+			enemy1.SetMovingLeft(true);
 		}
 		if (nChar == KEY_RIGHT) {
 			//eraser.SetMovingRight(true);
 			player1.SetMovingRight(true);
+			enemy1.SetMovingRight(true);
 		}
 		if (nChar == KEY_UP) {
 			//eraser.SetMovingUp(true);
 			player1.SetMovingUp(true);
+			enemy1.SetMovingUp(true);
 		}
 		if (nChar == KEY_DOWN) {
 			//eraser.SetMovingDown(true);
 			player1.SetMovingDown(true);
+			enemy1.SetMovingDown(true);
 		}
 	}
 
@@ -345,18 +353,22 @@ namespace game_framework {
 		if (nChar == KEY_LEFT) {
 			//eraser.SetMovingLeft(false);
 			player1.SetMovingLeft(false);
+			enemy1.SetMovingLeft(false);
 		}
 		if (nChar == KEY_RIGHT) {
 			//eraser.SetMovingRight(false);
 			player1.SetMovingRight(false);
+			enemy1.SetMovingRight(false);
 		}
 		if (nChar == KEY_UP) {
 			//eraser.SetMovingUp(false);
 			player1.SetMovingUp(false);
+			enemy1.SetMovingUp(false);
 		}
 		if (nChar == KEY_DOWN) {
 			//eraser.SetMovingDown(false);
 			player1.SetMovingDown(false);
+			enemy1.SetMovingDown(false);
 		}
 	}
 
@@ -411,6 +423,7 @@ namespace game_framework {
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
 		//corner.ShowBitmap();
 		player1.OnShow();
+		enemy1.OnShow(&first_stage_map);
 	}
 	//////////////////////////////hero
 	/*Hero::Hero()

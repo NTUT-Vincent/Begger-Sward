@@ -1,3 +1,7 @@
+#ifndef ENEMY_H
+#define ENEMY_H
+
+
 #include "Maps.h"
 #include "Character.h"
 namespace game_framework {
@@ -6,12 +10,12 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class Hero:public Character
+	class Enemy:public Character
 	{
 	public:
-		Hero();
+		Enemy();
 		void LoadBitmap();
-		void OnShow();
+		void OnShow(Maps *m);
 		void OnMove(Maps *m);
 		int getX();
 		int getY();
@@ -30,3 +34,5 @@ namespace game_framework {
 
 	};
 }
+
+#endif // !ENEMY_H
