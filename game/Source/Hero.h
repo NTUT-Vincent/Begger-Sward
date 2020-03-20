@@ -21,7 +21,7 @@ namespace game_framework {
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
 	private:
-		CMovingBitmap player;
+		CMovingBitmap hero;
 		int x, y;
 		bool isMovingRight;
 		bool isMovingLeft;

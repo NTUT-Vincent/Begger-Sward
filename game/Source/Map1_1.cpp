@@ -68,23 +68,13 @@ namespace game_framework {
 		sy += n;
 	}
 
-	int Map1_1::getSY() 
-	{
-		return sy;
-	}
-
-	int Map1_1::getSX()
-	{
-		return sx;
-	}
-
 	int Map1_1::screenX(int x) 
 	{
-		return x - sx;
+		return x + sx;
 	}
 
 	int Map1_1::screenY(int y)
 	{
-		return y - sy;
+		return y + sy;
 	}
 }

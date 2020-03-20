@@ -17,13 +17,13 @@ namespace game_framework {
 
 	Enemy::Enemy(): Character(100)
 	{
-		x = 200;
-		y = 200;
+		x = 400;
+		y = 400;
 	}
 
 	void Enemy::LoadBitmap()
 	{
-		player.LoadBitmap(IDB_PLAYER, RGB(255, 255, 255));
+		enemy.LoadBitmap(IDB_PLAYER, RGB(255, 255, 255));
 	}
 
 	void Enemy::OnMove(Maps * m) {
@@ -32,7 +32,7 @@ namespace game_framework {
 		///我應該要把x, y變成怪物在地圖上的座標，但現在是在螢幕上顯示的座標
 		///目前是只要感應到玩家按上下左右，就會移動，但是等玩家撞到牆後，他還會繼續動。
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
-		if (isMovingLeft) {
+		/*if (isMovingLeft) {
 			x += STEP_SIZE;
 		}
 
@@ -45,14 +45,14 @@ namespace game_framework {
 
 		if (isMovingDown) {
 			y -= STEP_SIZE;
-		}
+		}*/
 	}
 
 	void Enemy::OnShow(Maps *m)
 	{
-		//player.SetTopLeft(m->screenX(x), m->screenY(y));
-		player.SetTopLeft(x, y);
-		player.ShowBitmap();
+		enemy.SetTopLeft(m->screenX(x), m->screenY(y));
+		//enemy.SetTopLeft(x, y);
+		enemy.ShowBitmap();
 	}
 
 	int Enemy::getX() {

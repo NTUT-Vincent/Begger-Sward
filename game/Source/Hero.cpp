@@ -22,7 +22,7 @@ namespace game_framework {
 
 	void Hero::LoadBitmap()
 	{
-		player.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
+		hero.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
 	}
 
 	void Hero::OnMove(Maps * m) {
@@ -49,8 +49,8 @@ namespace game_framework {
 
 	void Hero::OnShow()
 	{
-		player.SetTopLeft(280, 280);
-		player.ShowBitmap();
+		hero.SetTopLeft(280, 280);
+		hero.ShowBitmap();
 	}
 
 	int Hero::getX() {

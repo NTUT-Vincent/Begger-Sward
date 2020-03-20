@@ -10,8 +10,6 @@ namespace game_framework {
 		void OnShow();
 		void addSX(int n) override;
 		void addSY(int n) override;
-		int getSY();
-		int getSX();
 		int screenX(int x) override;
 		int screenY(int y) override;
 
