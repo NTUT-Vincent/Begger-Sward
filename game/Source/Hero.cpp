@@ -18,6 +18,8 @@ namespace game_framework {
 	{
 		x = 480;
 		y = 480;
+		hp = 400;
+		attack = 20;
 	}
 
 	void Hero::LoadBitmap()
@@ -45,6 +47,8 @@ namespace game_framework {
 			m->addSY(-STEP_SIZE);
 			y += STEP_SIZE;
 		}
+		m->getHeroX(x);
+		m->getHeroY(y);
 	}
 
 	void Hero::OnShow()

@@ -19,6 +19,8 @@ namespace game_framework {
 	{
 		x = 400;
 		y = 400;
+		hp = 1200;
+		attack = 0;
 	}
 
 	void Enemy::LoadBitmap()
@@ -32,20 +34,8 @@ namespace game_framework {
 		///我應該要把x, y變成怪物在地圖上的座標，但現在是在螢幕上顯示的座標
 		///目前是只要感應到玩家按上下左右，就會移動，但是等玩家撞到牆後，他還會繼續動。
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
-		/*if (isMovingLeft) {
-			x += STEP_SIZE;
-		}
 
-		if (isMovingRight) {
-			x -= STEP_SIZE;
-		}
-		if (isMovingUp) {
-			y += STEP_SIZE;
-		}
-
-		if (isMovingDown) {
-			y -= STEP_SIZE;
-		}*/
+		m->setPos(x, y);
 	}
 
 	void Enemy::OnShow(Maps *m)

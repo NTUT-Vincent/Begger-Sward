@@ -4,12 +4,15 @@ namespace game_framework {
 	{
 	public:
 		Map1_1();
+		void setPos(int x, int y);
 		bool isEmpty(int x, int y) const;
 		void OnMove();
 		void LoadBitmap();
 		void OnShow();
 		void addSX(int n) override;
 		void addSY(int n) override;
+		void getHeroX(int x) override;
+		void getHeroY(int y) override;
 		int screenX(int x) override;
 		int screenY(int y) override;
 
@@ -17,6 +20,7 @@ namespace game_framework {
 		CMovingBitmap firstmap;
 		int map[12][12];
 		int sx, sy;							//地圖最左上角的座標
+		int hx, hy;
 		int stage_left, stage_top;
 	};
 }

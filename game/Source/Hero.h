@@ -23,6 +23,8 @@ namespace game_framework {
 	private:
 		CMovingBitmap hero;
 		int x, y;
+		int hp;
+		int attack;
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;

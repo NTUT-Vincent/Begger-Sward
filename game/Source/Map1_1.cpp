@@ -34,6 +34,12 @@ namespace game_framework {
 		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
 	}
 
+	void Map1_1::setPos(int x, int y) {
+		int gx = x / 64;
+		int gy = y / 64;
+		map[gx][gy] = 1;
+	}
+
 	bool Map1_1::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;
@@ -66,6 +72,16 @@ namespace game_framework {
 	void Map1_1::addSY(int n)
 	{
 		sy += n;
+	}
+
+	void Map1_1::getHeroX(int x)
+	{
+		hx = x;
+	}
+
+	void Map1_1::getHeroY(int y)
+	{
+		hy = y;
 	}
 
 	int Map1_1::screenX(int x) 

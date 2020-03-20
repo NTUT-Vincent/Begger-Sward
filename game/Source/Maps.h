@@ -14,7 +14,9 @@ namespace game_framework {
 		virtual void addSY(int n) {};
 		virtual int screenX(int x) { return 0; };
 		virtual int screenY(int y) { return 0; };
-
+		virtual void getHeroX(int x) {};
+		virtual void getHeroY(int y) {};
+		virtual void setPos(int x, int y) {};
 	};
 }
 #endif
