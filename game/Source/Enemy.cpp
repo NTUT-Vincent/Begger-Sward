@@ -4,7 +4,7 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CEraser.h"
+#include "Enemy.h"
 #include "CBall.h"
 #include "Hero.h"
 #include "Maps.h"
@@ -17,8 +17,8 @@ namespace game_framework {
 
 	Enemy::Enemy(): Character(100)
 	{
-		x = 400;
-		y = 400;
+		x = 384;
+		y = 384;
 		hp = 1200;
 		attack = 0;
 	}
@@ -45,12 +45,24 @@ namespace game_framework {
 		enemy.ShowBitmap();
 	}
 
-	int Enemy::getX() {
+	int Enemy::GetX1()
+	{
 		return x;
 	}
 
-	int Enemy::getY() {
+	int Enemy::GetY1()
+	{
 		return y;
+	}
+
+	int Enemy::GetX2()
+	{
+		return x + enemy.Width();
+	}
+
+	int Enemy::GetY2()
+	{
+		return y + enemy.Height();
 	}
 
 	void Enemy::Initialize() {

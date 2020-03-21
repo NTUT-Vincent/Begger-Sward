@@ -226,7 +226,6 @@ namespace game_framework {
 		player1.Initialize();
 		enemy1.Initialize();
 
-
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -374,12 +373,14 @@ namespace game_framework {
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		eraser.SetMovingLeft(true);
+		//eraser.SetMovingLeft(true);
+		player1.SetAttack(true);
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		eraser.SetMovingLeft(false);
+		//eraser.SetMovingLeft(false);
+		player1.SetAttack(true);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -424,6 +425,7 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		player1.OnShow();
 		enemy1.OnShow(&first_stage_map);
+		
 	}
 	//////////////////////////////hero
 	/*Hero::Hero()

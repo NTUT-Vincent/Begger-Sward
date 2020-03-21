@@ -1,15 +1,13 @@
-#ifndef __CERASER_H__
-#define __CERASER_H__
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供可以用鍵盤或滑鼠控制的擦子
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class CEraser
+	class Collision
 	{
 	public:
-		CEraser();
+		Collision();
 		int  GetX1();					// 擦子左上角 x 座標
 		int  GetY1();					// 擦子左上角 y 座標
 		int  GetX2();					// 擦子右下角 x 座標
@@ -32,4 +30,3 @@ namespace game_framework {
 		bool isMovingUp;			// 是否正在往上移動
 	};
 }
-#endif

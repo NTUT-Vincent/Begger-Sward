@@ -1,5 +1,6 @@
 #include "Maps.h"
 #include "Character.h"
+#include "Attack.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -20,6 +21,7 @@ namespace game_framework {
 		void SetMovingUp(bool b);
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
+		void SetAttack(bool b);
 	private:
 		CMovingBitmap hero;
 		int x, y;
@@ -29,6 +31,7 @@ namespace game_framework {
 		bool isMovingLeft;
 		bool isMovingUp;
 		bool isMovingDown;
+		bool isAttack;
 
 	};
 }
