@@ -214,5 +214,8 @@
     <Image Include="res\bitmap4.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\scarecrow.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

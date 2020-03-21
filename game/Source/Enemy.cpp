@@ -25,7 +25,7 @@ namespace game_framework {
 
 	void Enemy::LoadBitmap()
 	{
-		enemy.LoadBitmap(IDB_PLAYER, RGB(255, 255, 255));
+		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
 	}
 
 	void Enemy::OnMove(Maps * m) {

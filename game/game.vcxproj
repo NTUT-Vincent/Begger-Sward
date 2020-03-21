@@ -337,6 +337,7 @@
     <Image Include="res\bitmap4.bmp" />
     <Image Include="RES\hero1.bmp" />
     <Image Include="RES\PLAYER1.bmp" />
+    <Image Include="RES\scarecrow.bmp" />
     <Image Include="RES\S__4784130.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
