@@ -112,7 +112,7 @@ IDB_MAP1                BITMAP                  "..\\res\\S__4784130.bmp"
 
 IDB_MAP1_1              BITMAP                  "..\\res\\S__4784130.bmp"
 
-IDB_SCARECROW           BITMAP                  "C:\\Users\\GameToGo\\Desktop\\oopcourse851\\game\\RES\\scarecrow.bmp"
+IDB_SCARECROW           BITMAP                  "..\\RES\\scarecrow.bmp"
 
 IDB_ATTACK1             BITMAP                  "C:\\Users\\GameToGo\\Desktop\\oopcourse851\\game\\RES\\attack1.bmp"
 
