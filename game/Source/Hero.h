@@ -22,8 +22,10 @@ namespace game_framework {
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
 		void SetAttack(bool b);
+		~Hero();
 	private:
 		CMovingBitmap hero;
+		Attack * attacks;
 		int x, y;
 		int hp;
 		int attack;

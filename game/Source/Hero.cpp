@@ -93,4 +93,8 @@ namespace game_framework {
 			Attack * a = new Attack(x, y);
 		}
 	}
+	Hero::~Hero()
+	{
+		delete [] attacks;
+	}
 }
