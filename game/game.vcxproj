@@ -260,6 +260,7 @@
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\Attack.cpp" />
+    <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\Hero.cpp" />
@@ -311,6 +312,7 @@
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\Attack.h" />
+    <ClInclude Include="Source\BloodBar.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Enemy.h" />
@@ -340,6 +342,12 @@
     <Image Include="RES\attack1.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap4.bmp" />
+    <Image Include="RES\blood12.bmp" />
+    <Image Include="RES\blood14.bmp" />
+    <Image Include="RES\blood34.bmp" />
+    <Image Include="RES\blood_almost_die.bmp" />
+    <Image Include="RES\blood_full.bmp" />
+    <Image Include="RES\blood_little_damaged.bmp" />
     <Image Include="RES\hero1.bmp" />
     <Image Include="RES\PLAYER1.bmp" />
     <Image Include="RES\scarecrow.bmp" />
