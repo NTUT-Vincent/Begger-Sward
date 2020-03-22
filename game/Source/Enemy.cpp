@@ -26,6 +26,7 @@ namespace game_framework {
 	void Enemy::LoadBitmap()
 	{
 		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
+		blood_bar.loadBloodBar();
 	}
 
 	void Enemy::OnMove(Maps * m) {
@@ -34,7 +35,7 @@ namespace game_framework {
 		///我應該要把x, y變成怪物在地圖上的座標，但現在是在螢幕上顯示的座標
 		///目前是只要感應到玩家按上下左右，就會移動，但是等玩家撞到牆後，他還會繼續動。
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
-
+		hp -= 10;
 		m->setPos(x, y);
 	}
 
@@ -43,6 +44,7 @@ namespace game_framework {
 		enemy.SetTopLeft(m->screenX(x), m->screenY(y));
 		//enemy.SetTopLeft(x, y);
 		enemy.ShowBitmap();
+		blood_bar.showBloodBar(m , hp);
 	}
 
 	int Enemy::GetX1()
@@ -67,6 +69,8 @@ namespace game_framework {
 
 	void Enemy::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
+		blood_bar.setFullHP(hp);
+		blood_bar.setXY(x, y);
 	}
 
 	void Enemy::SetMovingDown(bool b) {
@@ -84,4 +88,5 @@ namespace game_framework {
 	void Enemy::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
+
 }
