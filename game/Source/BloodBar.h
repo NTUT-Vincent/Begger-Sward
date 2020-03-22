@@ -20,8 +20,8 @@ namespace game_framework {
 		void setXY(int x, int y);
 
 	private:
-		CMovingBitmap blood_bar[5];
-		int full_hp;
+		CMovingBitmap blood_bar[6];
+		double full_hp;
 		int _x, _y;
 
 	};

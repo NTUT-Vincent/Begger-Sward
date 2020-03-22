@@ -26,8 +26,7 @@ namespace game_framework {
 	void Enemy::LoadBitmap()
 	{
 		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
-		//blood_bar.loadBloodBar();
-		loadBloodBar();
+		blood_bar.loadBloodBar();
 	}
 
 	void Enemy::OnMove(Maps * m) {
@@ -45,8 +44,7 @@ namespace game_framework {
 		enemy.SetTopLeft(m->screenX(x), m->screenY(y));
 		//enemy.SetTopLeft(x, y);
 		enemy.ShowBitmap();
-		//blood_bar.showBloodBar(m , hp);
-		showBloodBar(m);
+		blood_bar.showBloodBar(m , hp);
 	}
 
 	int Enemy::GetX1()
@@ -71,6 +69,8 @@ namespace game_framework {
 
 	void Enemy::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
+		blood_bar.setFullHP(hp);
+		blood_bar.setXY(x, y);
 	}
 
 	void Enemy::SetMovingDown(bool b) {
@@ -89,41 +89,4 @@ namespace game_framework {
 		isMovingRight = b;
 	}
 
-	void Enemy::loadBloodBar() {
-		blood_bar[3].LoadBitmap(IDB_BLOOD3OF4, RGB(0, 0, 0));
-		blood_bar[2].LoadBitmap(IDB_BLOOD2OF4, RGB(0, 0, 0));
-		blood_bar[1].LoadBitmap(IDB_BLOOD1OF4, RGB(0, 0, 0));
-		blood_bar[0].LoadBitmap(IDB_BLOODALMOSTDIE, RGB(0, 0, 0));
-		blood_bar[5].LoadBitmap(IDB_BLOODFULL, RGB(0, 0, 0));
-		blood_bar[4].LoadBitmap(IDB_BLOODLITTLEDAMAGED, RGB(0, 0, 0));
-	}
-
-	void Enemy::showBloodBar(Maps *m1) {
-		double proportion = hp / 1200.0;
-		if (proportion < 1.0 / 9) {
-			blood_bar[0].SetTopLeft(m1->screenX(x), m1->screenY(y - 20));
-			blood_bar[0].ShowBitmap();
-		}
-		else if (proportion < 1.0 / 4) {
-			blood_bar[1].SetTopLeft(m1->screenX(x), m1->screenY(y - 20));
-			blood_bar[1].ShowBitmap();
-		}
-		else if (proportion < 2.0 / 4) {
-			blood_bar[2].SetTopLeft(m1->screenX(x), m1->screenY(y - 20));
-			blood_bar[2].ShowBitmap();
-		}
-		else if (proportion < 3.0 / 4)
-		{
-			blood_bar[3].SetTopLeft(m1->screenX(x), m1->screenY(y - 20));
-			blood_bar[3].ShowBitmap();
-		}
-		else if (hp < 1100) {
-			blood_bar[4].SetTopLeft(m1->screenX(x), m1->screenY(y - 20));
-			blood_bar[4].ShowBitmap();
-		}
-		else {
-			blood_bar[5].SetTopLeft(m1->screenX(x), m1->screenY(y - 20));
-			blood_bar[5].ShowBitmap();
-		}
-	}
 }

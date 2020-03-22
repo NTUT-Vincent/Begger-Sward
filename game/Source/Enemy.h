@@ -4,6 +4,7 @@
 
 #include "Maps.h"
 #include "Character.h"
+#include "BloodBar.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -26,12 +27,9 @@ namespace game_framework {
 		void SetMovingUp(bool b);
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
-		void showBloodBar(Maps *m);
-		void loadBloodBar();
 	private:
 		CMovingBitmap enemy;
-		//BloodBar blood_bar;
-		CMovingBitmap blood_bar[6];
+		BloodBar blood_bar;
 		int x, y;
 		int hp;
 		int attack;

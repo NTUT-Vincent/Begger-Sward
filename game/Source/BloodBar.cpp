@@ -9,7 +9,6 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "BloodBar.h"
-#include "BloodBar.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -38,7 +37,8 @@ namespace game_framework {
 		blood_bar[2].LoadBitmap(IDB_BLOOD2OF4, RGB(0, 0, 0));
 		blood_bar[1].LoadBitmap(IDB_BLOOD1OF4, RGB(0, 0, 0));
 		blood_bar[0].LoadBitmap(IDB_BLOODALMOSTDIE, RGB(0, 0, 0));
-		blood_bar[4].LoadBitmap(IDB_BLOODFULL, RGB(0, 0, 0));
+		blood_bar[4].LoadBitmap(IDB_BLOODLITTLEDAMAGED, RGB(0, 0, 0));
+		blood_bar[5].LoadBitmap(IDB_BLOODFULL, RGB(0, 0, 0));
 	}
 
 	void BloodBar::showBloodBar(Maps *m1, int hp) {
@@ -60,9 +60,13 @@ namespace game_framework {
 			blood_bar[3].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
 			blood_bar[3].ShowBitmap();
 		}
-		else {
+		else if (proportion < full_hp) {
 			blood_bar[4].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
 			blood_bar[4].ShowBitmap();
+		}
+		else {
+			blood_bar[5].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
+			blood_bar[5].ShowBitmap();
 		}
 	}
 }
