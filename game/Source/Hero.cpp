@@ -67,7 +67,7 @@ namespace game_framework {
 	}
 
 	void Hero::Initialize() {
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = false;
 	}
 
 	void Hero::SetMovingDown(bool b) {

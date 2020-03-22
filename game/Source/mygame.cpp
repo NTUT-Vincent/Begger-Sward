@@ -387,7 +387,7 @@ namespace game_framework {
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
 		//eraser.SetMovingLeft(false);
-		player1.SetAttack(true);
+		player1.SetAttack(false);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
