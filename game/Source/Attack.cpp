@@ -90,7 +90,7 @@ namespace game_framework {
 		}
 	}
 
-	void Attack::SetExist(bool flag)
+	void Attack::SetIsExist(bool flag)
 	{
 		is_exist = flag;
 	}

@@ -270,6 +270,13 @@ namespace game_framework {
 					GotoGameState(GAME_STATE_OVER);
 				}
 			}
+
+		if (attack1.isExist()==1)
+		{
+			attack1.OnMove();
+			if (attack1.isExist() && attack1.HitEnemy(&enemy1))
+				attack1.SetIsExist(false);
+		}
 		//
 		// ²¾°Ê¼u¸õªº²y
 		//
@@ -425,6 +432,8 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		player1.OnShow();
 		enemy1.OnShow(&first_stage_map);
+		if (attack1.isExist() == 1)
+			attack1.OnShow();
 		
 	}
 	//////////////////////////////hero

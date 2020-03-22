@@ -23,7 +23,7 @@ namespace game_framework {
 		bool isExist();
 		void OnMove();					// 移動擦子
 		void OnShow();					// 將擦子圖形貼到畫面
-		void SetExist(bool flag);	// 設定是否正在往下移動
+		void SetIsExist(bool flag);	// 設定是否正在往下移動
 		void SetXY(int nx, int ny);		// 設定擦子左上角座標
 	protected:
 		CMovingBitmap animation;		// 擦子的動畫
