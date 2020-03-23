@@ -259,7 +259,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp" />
-    <ClCompile Include="Source\Attack.cpp" />
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
@@ -311,7 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h" />
-    <ClInclude Include="Source\Attack.h" />
     <ClInclude Include="Source\BloodBar.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Character.h" />
