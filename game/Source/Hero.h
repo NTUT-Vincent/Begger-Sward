@@ -14,8 +14,10 @@ namespace game_framework {
 		void LoadBitmap();
 		void OnShow();
 		void OnMove(Maps *m);
-		int getX();
-		int getY();
+		int GetX1();
+		int GetY1();
+		int GetX2();
+		int GetY2();
 		void Initialize();
 		void SetMovingDown(bool b);
 		void SetMovingUp(bool b);

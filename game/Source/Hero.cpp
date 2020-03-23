@@ -58,12 +58,22 @@ namespace game_framework {
 		hero.ShowBitmap();
 	}
 
-	int Hero::getX() {
+	int Hero::GetX1() {
 		return x;
 	}
 
-	int Hero::getY() {
+	int Hero::GetY1() {
 		return y;
+	}
+
+	int Hero::GetX2()
+	{
+		return x + hero.Width();
+	}
+
+	int Hero::GetY2()
+	{
+		return y + hero.Height();
 	}
 
 	void Hero::Initialize() {
