@@ -271,12 +271,6 @@ namespace game_framework {
 				}
 			}
 
-		if (attack1.isExist()==1)
-		{
-			attack1.OnMove();
-			if (attack1.isExist() && attack1.HitEnemy(&enemy1))
-				attack1.SetIsExist(false);
-		}
 		//
 		// 移動彈跳的球
 		//
@@ -382,13 +376,11 @@ namespace game_framework {
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
 		//eraser.SetMovingLeft(true);
-		player1.SetAttack(true);
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
 		//eraser.SetMovingLeft(false);
-		player1.SetAttack(false);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -433,77 +425,9 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		player1.OnShow();
 		enemy1.OnShow(&first_stage_map);
-		if (attack1.isExist() == 1)
-			attack1.OnShow();
 		
 	}
-	//////////////////////////////hero
-	/*Hero::Hero()
-	{
-		x = 480;
-		y = 480;
-	}
 
-	void Hero::LoadBitmap()
-	{
-		player.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
-	}
-
-	void Hero::OnMove(Map * m) {
-		const int STEP_SIZE = 4;
-		if (isMovingLeft && m->isEmpty(x - 4, y)) {
-			m->addSX(STEP_SIZE);
-			x -= STEP_SIZE;
-		}
-
-		if (isMovingRight && m->isEmpty(x + 4, y)) {
-			m->addSX(-4);
-			x += STEP_SIZE;
-		}
-		if (isMovingUp && m->isEmpty(x, y - 4)) {
-			m->addSY(4);
-			y -= STEP_SIZE;
-		}
-
-		if (isMovingDown && m->isEmpty(x, y + 4)) {
-			m->addSY(-4);
-			y += STEP_SIZE;
-		}
-	}
-
-	void Hero::OnShow()
-	{
-		player.SetTopLeft(280, 280);
-		player.ShowBitmap();
-	}
-
-	int Hero::getX() {
-		return x;
-	}
-
-	int Hero::getY() {
-		return y;
-	}
-
-	void Hero::Initialize() {
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
-	}
-
-	void Hero::SetMovingDown(bool b) {
-		isMovingDown = b;
-	}
-
-	void Hero::SetMovingUp(bool b) {
-		isMovingUp = b;
-	}
-
-	void Hero::SetMovingLeft(bool b) {
-		isMovingLeft = b;
-	}
-
-	void Hero::SetMovingRight(bool b) {
-		isMovingRight = b;
-	}*/
 };
 
 

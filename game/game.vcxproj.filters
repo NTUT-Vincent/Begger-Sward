@@ -142,9 +142,6 @@
     <ClCompile Include="Source\Collision.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Attack.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
     <ClCompile Include="Source\BloodBar.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
@@ -202,9 +199,6 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Collision.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Attack.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\BloodBar.h">

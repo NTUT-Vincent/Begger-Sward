@@ -45,7 +45,6 @@
 #include "Map1_1.h"
 #include "Hero.h"
 #include "Enemy.h"
-#include "Attack.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -126,7 +125,6 @@ namespace game_framework {
 		Map1_1		first_stage_map;
 		Hero			player1;
 		Enemy			enemy1;
-		Attack			attack1;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CBall			*ball;		// 球的陣列

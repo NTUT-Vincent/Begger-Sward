@@ -8,7 +8,6 @@
 #include "CBall.h"
 #include "Hero.h"
 #include "Maps.h"
-#include "Attack.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -85,16 +84,7 @@ namespace game_framework {
 	void Hero::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
-	void Hero::SetAttack(bool b)
-	{
-		isAttack = b;
-		if (b)
-		{
-			Attack * a = new Attack(x, y);
-		}
-	}
 	Hero::~Hero()
 	{
-		delete [] attacks;
 	}
 }
