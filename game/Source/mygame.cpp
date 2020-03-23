@@ -340,19 +340,19 @@ namespace game_framework {
 			player1.SetMovingDown(true);
 		}
 		if (nChar == KEY_A) {
-			//player1.SetMovingDown(true);
+			player1.SetUsingA(true);
 		}
 		if (nChar == KEY_Q) {
-			//player1.SetMovingDown(true);
+			player1.SetUsingQ(true);
 		}
 		if (nChar == KEY_W) {
-			//player1.SetMovingDown(true);
+			player1.SetUsingW(true);
 		}
 		if (nChar == KEY_E) {
-			//player1.SetMovingDown(true);
+			player1.SetUsingE(true);
 		}
 		if (nChar == KEY_R) {
-			//player1.SetMovingDown(true);
+			player1.SetUsingR(true);
 		}
 	}
 
@@ -365,22 +365,18 @@ namespace game_framework {
 		if (nChar == KEY_LEFT) {
 			//eraser.SetMovingLeft(false);
 			player1.SetMovingLeft(false);
-			enemy1.SetMovingLeft(false);
 		}
 		if (nChar == KEY_RIGHT) {
 			//eraser.SetMovingRight(false);
 			player1.SetMovingRight(false);
-			enemy1.SetMovingRight(false);
 		}
 		if (nChar == KEY_UP) {
 			//eraser.SetMovingUp(false);
 			player1.SetMovingUp(false);
-			enemy1.SetMovingUp(false);
 		}
 		if (nChar == KEY_DOWN) {
 			//eraser.SetMovingDown(false);
 			player1.SetMovingDown(false);
-			enemy1.SetMovingDown(false);
 		}
 	}
 

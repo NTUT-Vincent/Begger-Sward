@@ -1,6 +1,5 @@
-#ifndef BLOODBAR_H
-#define BLOODBAR_H
-
+#ifndef __WEAPON_H
+#define __WEAPON_H
 
 #include "Maps.h"
 #include "Character.h"
@@ -10,21 +9,24 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class BloodBar
+	class Weapon
 	{
 	public:
-		BloodBar();
-		void loadBloodBar();
-		void showBloodBar(Maps *m, int hp);
-		void setFullHP(int n);
+		Weapon();
+		~Weapon();
+		void LoadBitap();
+		void ShowBitmap();
 		void setXY(int x, int y);
+		void skillQ();
+		void skillW();
+		void skillE();
+		void skillR();
+		void NAttack();
 
 	private:
-		CMovingBitmap blood_bar[6];
-		double full_hp;
 		int _x, _y;
-
 	};
-}
 
-#endif // !BloodBar_H
+	
+}
+#endif

@@ -15,29 +15,43 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
-	class Weapon
-	{
-	public:
-		Weapon();
-		~Weapon();
-		void LoadBitap();
-		void ShowBitmap();
-		void setXY(int x, int y);
-		void skillQ();
-		void skillW();
-		void skillE();
-		void skillR();
-		void NAttack();
-
-	private:
-		int _x, _y;
-	};
-
 	Weapon::Weapon()
 	{
 	}
 
 	Weapon::~Weapon()
+	{
+	}
+
+	void Weapon::LoadBitap()
+	{
+	}
+
+	void Weapon::ShowBitmap()
+	{
+	}
+
+	void Weapon::setXY(int x, int y)
+	{
+	}
+
+	void Weapon::skillQ()
+	{
+	}
+
+	void Weapon::skillW()
+	{
+	}
+
+	void Weapon::skillE()
+	{
+	}
+
+	void Weapon::skillR()
+	{
+	}
+
+	void Weapon::NAttack()
 	{
 	}
 	
