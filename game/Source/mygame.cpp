@@ -290,7 +290,6 @@ namespace game_framework {
 		player1.LoadBitmap();
 		enemy1.LoadBitmap();
 		first_stage_map.LoadBitmap();
-		attack1.LoadBitmap();
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形
@@ -323,25 +322,37 @@ namespace game_framework {
 		const char KEY_UP = 0x26; // keyboard上箭頭
 		const char KEY_RIGHT = 0x27; // keyboard右箭頭
 		const char KEY_DOWN = 0x28; // keyboard下箭頭
+		const char KEY_A = 0x41;
+		const char KEY_Q = 0x51;
+		const char KEY_W = 0x57;
+		const char KEY_E = 0x45;
+		const char KEY_R = 0x52;
 		if (nChar == KEY_LEFT) {
-			//eraser.SetMovingLeft(true);
 			player1.SetMovingLeft(true);
-			enemy1.SetMovingLeft(true);
 		}
 		if (nChar == KEY_RIGHT) {
-			//eraser.SetMovingRight(true);
 			player1.SetMovingRight(true);
-			enemy1.SetMovingRight(true);
 		}
 		if (nChar == KEY_UP) {
-			//eraser.SetMovingUp(true);
 			player1.SetMovingUp(true);
-			enemy1.SetMovingUp(true);
 		}
 		if (nChar == KEY_DOWN) {
-			//eraser.SetMovingDown(true);
 			player1.SetMovingDown(true);
-			enemy1.SetMovingDown(true);
+		}
+		if (nChar == KEY_A) {
+			//player1.SetMovingDown(true);
+		}
+		if (nChar == KEY_Q) {
+			//player1.SetMovingDown(true);
+		}
+		if (nChar == KEY_W) {
+			//player1.SetMovingDown(true);
+		}
+		if (nChar == KEY_E) {
+			//player1.SetMovingDown(true);
+		}
+		if (nChar == KEY_R) {
+			//player1.SetMovingDown(true);
 		}
 	}
 
