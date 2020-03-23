@@ -296,6 +296,7 @@ namespace game_framework {
 		player1.LoadBitmap();
 		enemy1.LoadBitmap();
 		first_stage_map.LoadBitmap();
+		attack1.LoadBitmap();
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形

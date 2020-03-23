@@ -37,6 +37,7 @@ namespace game_framework {
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
 		hp -= 10;
 		m->setPos(x, y);
+		blood_bar.setXY(x, y);
 	}
 
 	void Enemy::OnShow(Maps *m)
@@ -70,7 +71,7 @@ namespace game_framework {
 	void Enemy::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
-		blood_bar.setXY(x, y);
+		
 	}
 
 	void Enemy::SetMovingDown(bool b) {
