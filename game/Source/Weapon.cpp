@@ -15,5 +15,47 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
+=======
+	Weapon::Weapon()
+	{
+	}
+
+	Weapon::~Weapon()
+	{
+	}
+
+	void Weapon::LoadBitap()
+	{
+	}
+
+	void Weapon::ShowBitmap()
+	{
+	}
+
+	void Weapon::setXY(int x, int y)
+	{
+	}
+
+	void Weapon::skillQ()
+	{
+	}
+
+	void Weapon::skillW()
+	{
+	}
+
+	void Weapon::skillE()
+	{
+	}
+
+	void Weapon::skillR()
+	{
+	}
+
+	void Weapon::NAttack()
+	{
+	}
+>>>>>>> 4995f6caefc1072dbbade996236175c69e4b9d5e
 	
 }

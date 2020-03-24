@@ -1,5 +1,5 @@
-#ifndef BLOODBAR_H
-#define BLOODBAR_H
+#ifndef __BLOODBAR_H
+#define __BLOODBAR_H
 
 
 #include "Maps.h"

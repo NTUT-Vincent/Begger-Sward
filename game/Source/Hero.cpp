@@ -8,6 +8,7 @@
 #include "CBall.h"
 #include "Hero.h"
 #include "Maps.h"
+#include "Weapon.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -57,32 +58,67 @@ namespace game_framework {
 		hero.ShowBitmap();
 	}
 
-	int Hero::getX() {
+	int Hero::GetX1() {
 		return x;
 	}
 
-	int Hero::getY() {
+	int Hero::GetY1() {
 		return y;
+	}
+
+	int Hero::GetX2()
+	{
+		return x + hero.Width();
+	}
+
+	int Hero::GetY2()
+	{
+		return y + hero.Height();
 	}
 
 	void Hero::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = false;
+		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
 	}
 
 	void Hero::SetMovingDown(bool b) {
 		isMovingDown = b;
+		direction = 2;
 	}
 
 	void Hero::SetMovingUp(bool b) {
 		isMovingUp = b;
+		direction = 1;
 	}
 
 	void Hero::SetMovingLeft(bool b) {
 		isMovingLeft = b;
+		direction = 3;
 	}
 
 	void Hero::SetMovingRight(bool b) {
 		isMovingRight = b;
+		direction = 4;
+	}
+	void Hero::SetUsingA(bool b)
+	{
+		isUsingA = b;
+	}
+	void Hero::SetUsingQ(bool b)
+	{
+		isUsingQ = b;
+	}
+	void Hero::SetUsingW(bool b)
+	{
+		isUsingW = b;
+	}
+	void Hero::SetUsingE(bool b)
+	{
+		isUsingE = b;
+	}
+	void Hero::SetUsingR(bool b)
+	{
+		isUsingR = b;
 	}
 	Hero::~Hero()
 	{
