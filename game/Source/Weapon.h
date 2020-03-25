@@ -26,19 +26,6 @@ namespace game_framework {
 	private:
 		int _x, _y;
 	};
-<<<<<<< HEAD
-
-	Weapon::Weapon()
-	{
-	}
-
-	Weapon::~Weapon()
-	{
-	}
-
-}
-=======
->>>>>>> 4995f6caefc1072dbbade996236175c69e4b9d5e
 
 	
 }

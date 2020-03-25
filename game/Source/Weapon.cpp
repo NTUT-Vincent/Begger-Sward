@@ -15,8 +15,6 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
-=======
 	Weapon::Weapon()
 	{
 	}
@@ -56,6 +54,5 @@ namespace game_framework {
 	void Weapon::NAttack()
 	{
 	}
->>>>>>> 4995f6caefc1072dbbade996236175c69e4b9d5e
 	
 }

@@ -225,7 +225,8 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 		player1.Initialize();
 		enemy1.Initialize();
-
+		Enemy* e[1]  = { &enemy1};
+		first_stage_map.setEnemys(e);
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素

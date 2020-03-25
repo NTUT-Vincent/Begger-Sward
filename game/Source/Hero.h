@@ -1,6 +1,7 @@
 #include "Maps.h"
 #include "Character.h"
 #include "Weapon.h"
+#include "BloodBar.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -28,10 +29,11 @@ namespace game_framework {
 		void SetUsingW(bool b);
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
+		bool cantPass(Maps *m);
 		~Hero();
 	private:
 		CMovingBitmap hero;
-		
+		BloodBar b;
 		int x, y;
 		int hp;
 		int attack;

@@ -1,5 +1,7 @@
 #ifndef __MAPS_H__
 #define __MAPS_H__
+
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -17,6 +19,7 @@ namespace game_framework {
 		virtual void getHeroX(int x) {};
 		virtual void getHeroY(int y) {};
 		virtual void setPos(int x, int y) {};
+		//virtual Enemy * returnEnemys(int n) {  };
 	};
 }
 #endif

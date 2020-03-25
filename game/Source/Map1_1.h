@@ -1,3 +1,4 @@
+#include "Enemy.h"
 namespace game_framework {
 
 	class Map1_1 : public Maps
@@ -15,9 +16,12 @@ namespace game_framework {
 		void getHeroY(int y) override;
 		int screenX(int x) override;
 		int screenY(int y) override;
+		void setEnemys(Enemy **e);
+		Enemy * returnEnemys(int n) ;
 
 	private:
 		CMovingBitmap firstmap;
+		Enemy **enemys;
 		int map[12][12];
 		int sx, sy;							//地圖最左上角的座標
 		int hx, hy;

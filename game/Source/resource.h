@@ -39,6 +39,7 @@
 #define IDB_PLAYER                      158
 #define IDB_BITMAP3                     161
 #define IDB_HERO1                       161
+#define IDB_HERO_R                      161
 #define IDB_BITMAP4                     164
 #define IDB_MAP1_1                      164
 #define IDB_SCARECROW                   166
@@ -51,6 +52,24 @@
 #define IDB_BLOOD1OF4                   172
 #define IDB_BITMAP11                    173
 #define IDB_BLOOD3OF4                   173
+#define IDB_COUNTER1                    174
+#define IDB_COUNTER2                    175
+#define IDB_COUNTER3                    176
+#define IDB_COUNTER4                    177
+#define IDB_COUNTER5                    178
+#define IDB_COUNTER6                    179
+#define IDB_COUNTER7                    180
+#define IDB_COUNTER8                    181
+#define IDB_CLOCK1                      183
+#define IDB_CLOCK2                      184
+#define IDB_CLOCK3                      185
+#define IDB_CLOCK4                      186
+#define IDB_CLOCK5                      187
+#define IDB_BITMAP12                    188
+#define IDB_CLOCK6                      188
+#define IDB_CLOCK7                      189
+#define IDB_CLOCK8                      190
+#define IDB_HERO_L                      191
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -63,7 +82,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        174
+#define _APS_NEXT_RESOURCE_VALUE        192
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

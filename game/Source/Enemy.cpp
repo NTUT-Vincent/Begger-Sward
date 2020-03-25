@@ -74,12 +74,12 @@ namespace game_framework {
 		
 	}
 
-	bool Enemy::cannotPass(Hero * hero)
-	{
-		// 檢測擦子所構成的矩形是否碰到球
-		return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
-	}
-	//其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
+	//bool Enemy::cannotPass(Hero * hero)
+	//{
+	//	// 檢測擦子所構成的矩形是否碰到球
+	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
+	//}
+	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
 	void Enemy::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}

@@ -6,6 +6,7 @@
 #include "gamelib.h"
 #include "Maps.h"
 #include "Map1_1.h"
+#include "Enemy.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -92,5 +93,13 @@ namespace game_framework {
 	int Map1_1::screenY(int y)
 	{
 		return y + sy;
+	}
+
+	void Map1_1::setEnemys(Enemy **e) {
+		enemys = e;
+	}
+	Enemy * Map1_1::returnEnemys(int n)
+	{
+		return enemys[n];
 	}
 }

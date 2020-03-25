@@ -256,5 +256,29 @@
     <Image Include="RES\blood34.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Counter1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Counter8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Weapon.h"
+#include "BloodBar.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -120,6 +121,13 @@ namespace game_framework {
 	{
 		isUsingR = b;
 	}
+
+	bool Hero::cantPass(Maps * m)
+	{
+		return false;
+	}
+
+
 	Hero::~Hero()
 	{
 	}
