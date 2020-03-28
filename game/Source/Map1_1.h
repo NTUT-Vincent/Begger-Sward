@@ -1,4 +1,5 @@
 #include "Enemy.h"
+
 namespace game_framework {
 
 	class Map1_1 : public Maps

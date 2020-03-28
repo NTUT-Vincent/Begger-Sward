@@ -128,39 +128,39 @@ IDB_BLOOD1OF4           BITMAP                  "..\\res\\blood14.bmp"
 
 IDB_BLOOD3OF4           BITMAP                  "..\\res\\blood34.bmp"
 
-IDB_COUNTER1            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter1.bmp"
+IDB_COUNTER1            BITMAP                  "..\\res\\Counter1.bmp"
 
-IDB_COUNTER2            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter2.bmp"
+IDB_COUNTER2            BITMAP                  "..\\res\\Counter2.bmp"
 
-IDB_COUNTER3            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter3.bmp"
+IDB_COUNTER3            BITMAP                  "..\\res\\Counter3.bmp"
 
-IDB_COUNTER4            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter4.bmp"
+IDB_COUNTER4            BITMAP                  "..\\res\\Counter4.bmp"
 
-IDB_COUNTER5            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter5.bmp"
+IDB_COUNTER5            BITMAP                  "..\\res\\Counter5.bmp"
 
-IDB_COUNTER6            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter6.bmp"
+IDB_COUNTER6            BITMAP                  "..\\res\\Counter6.bmp"
 
-IDB_COUNTER7            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter7.bmp"
+IDB_COUNTER7            BITMAP                  "..\\res\\Counter7.bmp"
 
-IDB_COUNTER8            BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Counter8.bmp"
+IDB_COUNTER8            BITMAP                  "..\\res\\Counter8.bmp"
 
-IDB_CLOCK1              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock1.bmp"
+IDB_CLOCK1              BITMAP                  "..\\res\\Clock1.bmp"
 
-IDB_CLOCK2              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock2.bmp"
+IDB_CLOCK2              BITMAP                  "..\\res\\Clock2.bmp"
 
-IDB_CLOCK3              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock3.bmp"
+IDB_CLOCK3              BITMAP                  "..\\res\\Clock3.bmp"
 
-IDB_CLOCK4              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock4.bmp"
+IDB_CLOCK4              BITMAP                  "..\\res\\Clock4.bmp"
 
-IDB_CLOCK5              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock5.bmp"
+IDB_CLOCK5              BITMAP                  "..\\res\\Clock5.bmp"
 
-IDB_CLOCK6              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock6.bmp"
+IDB_CLOCK6              BITMAP                  "..\\res\\Clock6.bmp"
 
-IDB_CLOCK7              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock7.bmp"
+IDB_CLOCK7              BITMAP                  "..\\res\\Clock7.bmp"
 
-IDB_CLOCK8              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\Clock8.bmp"
+IDB_CLOCK8              BITMAP                  "..\\res\\Clock8.bmp"
 
-IDB_HERO_L              BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\hero2.bmp"
+IDB_HERO_L              BITMAP                  "..\\res\\hero2.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

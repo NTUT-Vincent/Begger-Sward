@@ -1,7 +1,6 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"
