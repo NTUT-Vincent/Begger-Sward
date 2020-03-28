@@ -130,4 +130,13 @@ namespace game_framework {
 			enemys[i].OnShow(this);
 		}
 	}
+	bool Map1_1::bumpIntoEnemy(int x1, int x2, int y1, int y2)
+	{
+		for (int i = 0; i < 2; i++) {
+			if (enemys[i].cannotPass(x1, x2, y1, y2)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

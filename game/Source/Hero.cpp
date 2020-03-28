@@ -30,21 +30,21 @@ namespace game_framework {
 
 	void Hero::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
-		if (isMovingLeft && m->isEmpty(x - STEP_SIZE, y)) {
+		if (isMovingLeft && m->isEmpty(x - STEP_SIZE, y) && !m->bumpIntoEnemy(GetX1() - STEP_SIZE, GetX2() - STEP_SIZE, GetY1(), GetY2())) {
 			m->addSX(STEP_SIZE);
 			x -= STEP_SIZE;
 		}
 
-		if (isMovingRight && m->isEmpty(x + STEP_SIZE, y)) {
+		if (isMovingRight && m->isEmpty(x + STEP_SIZE, y) && !m->bumpIntoEnemy(GetX1() + STEP_SIZE, GetX2() + STEP_SIZE, GetY1(), GetY2())) {
 			m->addSX(-STEP_SIZE);
 			x += STEP_SIZE;
 		}
-		if (isMovingUp && m->isEmpty(x, y - STEP_SIZE)) {
+		if (isMovingUp && m->isEmpty(x, y - STEP_SIZE) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() - STEP_SIZE, GetY2() - STEP_SIZE)) {
 			m->addSY(STEP_SIZE);
 			y -= STEP_SIZE;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + STEP_SIZE)) {
+		if (isMovingDown && m->isEmpty(x, y + STEP_SIZE) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() + STEP_SIZE, GetY2() + STEP_SIZE)) {
 			m->addSY(-STEP_SIZE);
 			y += STEP_SIZE;
 		}

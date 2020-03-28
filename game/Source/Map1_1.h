@@ -22,6 +22,7 @@ namespace game_framework {
 		void enemysLoadBitmap();
 		void enemysOnMove();
 		void enemysOnShow();
+		bool bumpIntoEnemy(int x1, int x2, int y1, int y2) override;
 
 	private:
 		CMovingBitmap firstmap;

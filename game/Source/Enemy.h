@@ -24,7 +24,7 @@ namespace game_framework {
 		int GetX2();
 		int GetY2();
 		void Initialize();
-		//bool cannotPass(Hero * hero);
+		bool cannotPass(int x1, int x2, int y1, int y2);
 		void SetMovingDown(bool b);
 		void SetMovingUp(bool b);
 		void SetMovingLeft(bool b);

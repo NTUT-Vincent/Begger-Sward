@@ -19,6 +19,7 @@ namespace game_framework {
 		virtual void getHeroX(int x) {};
 		virtual void getHeroY(int y) {};
 		virtual void setPos(int x, int y) {};
+		virtual bool bumpIntoEnemy(int x1, int x2, int y1, int y2) = 0;
 		//virtual Enemy * returnEnemys(int n) {  };
 	};
 }

@@ -82,6 +82,12 @@ namespace game_framework {
 
 	}
 
+	bool Enemy::cannotPass(int x1, int x2, int y1, int y2)
+	{
+		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
+		return (x2 >= _x+20 && x1 <= _x+enemy.Width()-20 && y2 >= _y+60 && y1 <= _y + enemy.Height()-15);
+	}
+
 	//bool Enemy::cannotPass(Hero * hero)
 	//{
 	//	// 檢測擦子所構成的矩形是否碰到球
