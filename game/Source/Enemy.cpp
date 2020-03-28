@@ -15,10 +15,18 @@ namespace game_framework {
 	// Enemy: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Enemy::Enemy(): Character(100)
+	Enemy::Enemy() : Character(100)
 	{
-		x = 384;
-		y = 384;
+		_x = 384;
+		_y = 384;
+		hp = 1200;
+		attack = 0;
+	}
+
+	Enemy::Enemy(int x, int y) : Character(100)
+	{
+		_x = x;
+		_y = y;
 		hp = 1200;
 		attack = 0;
 	}
@@ -36,42 +44,42 @@ namespace game_framework {
 		///目前是只要感應到玩家按上下左右，就會移動，但是等玩家撞到牆後，他還會繼續動。
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
 		hp -= 10;
-		m->setPos(x, y);
-		blood_bar.setXY(x, y);
+		m->setPos(_x, _y);
+		blood_bar.setXY(_x, _y);
 	}
 
 	void Enemy::OnShow(Maps *m)
 	{
-		enemy.SetTopLeft(m->screenX(x), m->screenY(y));
+		enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
 		//enemy.SetTopLeft(x, y);
 		enemy.ShowBitmap();
-		blood_bar.showBloodBar(m , hp);
+		blood_bar.showBloodBar(m, hp);
 	}
 
 	int Enemy::GetX1()
 	{
-		return x;
+		return _x;
 	}
 
 	int Enemy::GetY1()
 	{
-		return y;
+		return _y;
 	}
 
 	int Enemy::GetX2()
 	{
-		return x + enemy.Width();
+		return _x + enemy.Width();
 	}
 
 	int Enemy::GetY2()
 	{
-		return y + enemy.Height();
+		return _y + enemy.Height();
 	}
 
 	void Enemy::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
-		
+
 	}
 
 	//bool Enemy::cannotPass(Hero * hero)
@@ -94,6 +102,12 @@ namespace game_framework {
 
 	void Enemy::SetMovingRight(bool b) {
 		isMovingRight = b;
+	}
+
+	void Enemy::SetXY(int x, int y)
+	{
+		_x = x;
+		_y = y;
 	}
 
 }

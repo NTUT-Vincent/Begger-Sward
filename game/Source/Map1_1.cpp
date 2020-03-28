@@ -33,6 +33,15 @@ namespace game_framework {
 		map[5][3] = 0;
 		map[1][4] = map[2][4] = map[8][4] = map[9][4] = map[1][5] = map[9][5] = 1;
 		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
+		enemys[0] = Enemy();
+		enemys[1] = Enemy(400, 450);
+		enemys[0].Initialize();
+		enemys[1].Initialize();
+	}
+
+	Map1_1::~Map1_1()
+	{
+
 	}
 
 	void Map1_1::setPos(int x, int y) {
@@ -85,7 +94,7 @@ namespace game_framework {
 		hy = y;
 	}
 
-	int Map1_1::screenX(int x) 
+	int Map1_1::screenX(int x)
 	{
 		return x + sx;
 	}
@@ -95,11 +104,30 @@ namespace game_framework {
 		return y + sy;
 	}
 
-	void Map1_1::setEnemys(Enemy **e) {
+	/*void Map1_1::setEnemys(Enemy **e) {
 		enemys = e;
-	}
+	}*/
 	Enemy * Map1_1::returnEnemys(int n)
 	{
-		return enemys[n];
+		return &enemys[n];
+	}
+	void Map1_1::enemysLoadBitmap()
+	{
+		for (int i = 0; i < 2; i++) {
+			enemys[i].LoadBitmap();
+		}
+
+	}
+	void Map1_1::enemysOnMove()
+	{
+		for (int i = 0; i < 2; i++) {
+			enemys[i].OnMove(this);
+		}
+	}
+	void Map1_1::enemysOnShow()
+	{
+		for (int i = 0; i < 2; i++) {
+			enemys[i].OnShow(this);
+		}
 	}
 }

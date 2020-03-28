@@ -1,6 +1,8 @@
+#ifndef HERO_H
+#define HERO_H
+
 #include "Maps.h"
 #include "Character.h"
-#include "Weapon.h"
 #include "BloodBar.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -50,3 +52,5 @@ namespace game_framework {
 		int direction; //1為上 2為下 3為左 4為右
 	};
 }
+
+#endif // !HERO_H

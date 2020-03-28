@@ -145,9 +145,6 @@
     <ClCompile Include="Source\BloodBar.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Weapon.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -205,9 +202,6 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\BloodBar.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Weapon.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

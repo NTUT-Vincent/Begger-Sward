@@ -11,10 +11,11 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class Enemy:public Character
+	class Enemy :public Character
 	{
 	public:
 		Enemy();
+		Enemy(int x, int y);
 		void LoadBitmap();
 		void OnShow(Maps *m);
 		void OnMove(Maps *m);
@@ -28,10 +29,11 @@ namespace game_framework {
 		void SetMovingUp(bool b);
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
+		void SetXY(int x, int y);
 	private:
 		CMovingBitmap enemy;
 		BloodBar blood_bar;
-		int x, y;
+		int _x, _y;
 		int hp;
 		int attack;
 		bool isMovingRight;

@@ -5,6 +5,7 @@ namespace game_framework {
 	{
 	public:
 		Map1_1();
+		~Map1_1();
 		void setPos(int x, int y);
 		bool isEmpty(int x, int y) const;
 		void OnMove();
@@ -16,12 +17,15 @@ namespace game_framework {
 		void getHeroY(int y) override;
 		int screenX(int x) override;
 		int screenY(int y) override;
-		void setEnemys(Enemy **e);
-		Enemy * returnEnemys(int n) ;
+		//void setEnemys(Enemy **e);
+		Enemy * returnEnemys(int n);
+		void enemysLoadBitmap();
+		void enemysOnMove();
+		void enemysOnShow();
 
 	private:
 		CMovingBitmap firstmap;
-		Enemy **enemys;
+		Enemy enemys[2];
 		int map[12][12];
 		int sx, sy;							//地圖最左上角的座標
 		int hx, hy;

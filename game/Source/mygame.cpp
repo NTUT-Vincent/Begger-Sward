@@ -225,15 +225,14 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 		player1.Initialize();
 		enemy1.Initialize();
-		Enemy* e[1]  = { &enemy1};
-		first_stage_map.setEnemys(e);
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
 		first_stage_map.OnMove();
 		player1.OnMove(&first_stage_map);
-		enemy1.OnMove(&first_stage_map);
+		//enemy1.OnMove(&first_stage_map);
+		first_stage_map.enemysOnMove();
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		//
@@ -289,7 +288,8 @@ namespace game_framework {
 		// 開始載入資料
 		//
 		player1.LoadBitmap();
-		enemy1.LoadBitmap();
+		//enemy1.LoadBitmap();
+		first_stage_map.enemysLoadBitmap();
 		first_stage_map.LoadBitmap();
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
@@ -432,8 +432,8 @@ namespace game_framework {
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
 		//corner.ShowBitmap();
 		player1.OnShow();
-		enemy1.OnShow(&first_stage_map);
-		
+		//enemy1.OnShow(&first_stage_map);
+		first_stage_map.enemysOnShow();
 	}
 
 };

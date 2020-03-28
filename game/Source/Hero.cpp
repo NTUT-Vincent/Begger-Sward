@@ -8,7 +8,6 @@
 #include "CBall.h"
 #include "Hero.h"
 #include "Maps.h"
-#include "Weapon.h"
 #include "BloodBar.h"
 
 namespace game_framework {
