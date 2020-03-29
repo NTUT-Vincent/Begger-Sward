@@ -9,6 +9,9 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "BloodBar.h"
+#include "Util.h"
+#define HMS HERO_MOVE_SPEED
+
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -36,24 +39,24 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m) {
-		const int STEP_SIZE = 4;
-		if (isMovingLeft && m->isEmpty(x - STEP_SIZE, y) && !m->bumpIntoEnemy(GetX1() - STEP_SIZE, GetX2() - STEP_SIZE, GetY1(), GetY2())) {
-			m->addSX(STEP_SIZE);
-			x -= STEP_SIZE;
+		const int HMS = 4;
+		if (isMovingLeft && m->isEmpty(x - HMS, y) && !m->bumpIntoEnemy(GetX1() - HMS, GetX2() - HMS, GetY1(), GetY2())) {
+			m->addSX(HMS);
+			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(x + STEP_SIZE, y) && !m->bumpIntoEnemy(GetX1() + STEP_SIZE, GetX2() + STEP_SIZE, GetY1(), GetY2())) {
-			m->addSX(-STEP_SIZE);
-			x += STEP_SIZE;
+		if (isMovingRight && m->isEmpty(x + HMS, y) && !m->bumpIntoEnemy(GetX1() + HMS, GetX2() + HMS, GetY1(), GetY2())) {
+			m->addSX(-HMS);
+			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - STEP_SIZE) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() - STEP_SIZE, GetY2() - STEP_SIZE)) {
-			m->addSY(STEP_SIZE);
-			y -= STEP_SIZE;
+		if (isMovingUp && m->isEmpty(x, y - HMS) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() - HMS, GetY2() - HMS)) {
+			m->addSY(HMS);
+			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + STEP_SIZE) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() + STEP_SIZE, GetY2() + STEP_SIZE)) {
-			m->addSY(-STEP_SIZE);
-			y += STEP_SIZE;
+		if (isMovingDown && m->isEmpty(x, y + HMS) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() + HMS, GetY2() + HMS)) {
+			m->addSY(-HMS);
+			y += HMS;
 		}
 		m->getHeroX(x);
 		m->getHeroY(y);

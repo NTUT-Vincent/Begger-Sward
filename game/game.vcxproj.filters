@@ -204,6 +204,12 @@
     <ClInclude Include="Source\BloodBar.h">
       <Filter>MyGame</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Util.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objs.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Source\game.rc">

@@ -1,0 +1,26 @@
+#ifndef OBJS_H
+#define OBJS_H
+
+
+namespace game_framework {
+	/////////////////////////////////////////////////////////////////////////////
+	// 這個class定義了物件的共同介面										   //
+	/////////////////////////////////////////////////////////////////////////////
+	class Objs
+	{
+	protected:
+		Objs(int hp) {
+			_hp = hp;
+		}
+
+
+	private:
+		int _hp;
+
+	};
+	
+
+	
+}
+
+#endif // !OBJS_H

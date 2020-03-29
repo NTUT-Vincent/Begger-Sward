@@ -1,6 +1,7 @@
 #ifndef HERO_H
 #define HERO_H
 
+#include "Util.h"
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"

@@ -319,65 +319,32 @@ namespace game_framework {
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		const char KEY_LEFT = 0x25; // keyboard左箭頭
-		const char KEY_UP = 0x26; // keyboard上箭頭
-		const char KEY_RIGHT = 0x27; // keyboard右箭頭
-		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		const char KEY_A = 0x41;
-		const char KEY_Q = 0x51;
-		const char KEY_W = 0x57;
-		const char KEY_E = 0x45;
-		const char KEY_R = 0x52;
-		if (nChar == KEY_LEFT) {
-			player1.SetMovingLeft(true);
+		switch (nChar)
+		{
+		case KEY_LEFT: player1.SetMovingLeft(true); break;
+		case KEY_RIGHT: player1.SetMovingRight(true); break;
+		case KEY_UP: player1.SetMovingUp(true); break;
+		case KEY_DOWN: player1.SetMovingDown(true); break;
+		case KEY_A: player1.SetUsingA(true); break;
+		case KEY_Q: player1.SetUsingQ(true); break;
+		case KEY_W: player1.SetUsingW(true); break;
+		case KEY_E: player1.SetUsingE(true); break;
+		case KEY_R: player1.SetUsingR(true); break;
+		default: return;
 		}
-		if (nChar == KEY_RIGHT) {
-			player1.SetMovingRight(true);
-		}
-		if (nChar == KEY_UP) {
-			player1.SetMovingUp(true);
-		}
-		if (nChar == KEY_DOWN) {
-			player1.SetMovingDown(true);
-		}
-		if (nChar == KEY_A) {
-			player1.SetUsingA(true);
-		}
-		if (nChar == KEY_Q) {
-			player1.SetUsingQ(true);
-		}
-		if (nChar == KEY_W) {
-			player1.SetUsingW(true);
-		}
-		if (nChar == KEY_E) {
-			player1.SetUsingE(true);
-		}
-		if (nChar == KEY_R) {
-			player1.SetUsingR(true);
-		}
+
+		
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		const char KEY_LEFT = 0x25; // keyboard左箭頭
-		const char KEY_UP = 0x26; // keyboard上箭頭
-		const char KEY_RIGHT = 0x27; // keyboard右箭頭
-		const char KEY_DOWN = 0x28; // keyboard下箭頭
-		if (nChar == KEY_LEFT) {
-			//eraser.SetMovingLeft(false);
-			player1.SetMovingLeft(false);
-		}
-		if (nChar == KEY_RIGHT) {
-			//eraser.SetMovingRight(false);
-			player1.SetMovingRight(false);
-		}
-		if (nChar == KEY_UP) {
-			//eraser.SetMovingUp(false);
-			player1.SetMovingUp(false);
-		}
-		if (nChar == KEY_DOWN) {
-			//eraser.SetMovingDown(false);
-			player1.SetMovingDown(false);
+		switch (nChar)
+		{
+		case KEY_LEFT: player1.SetMovingLeft(false); break;
+		case KEY_RIGHT: player1.SetMovingRight(false); break;
+		case KEY_UP: player1.SetMovingUp(false); break;
+		case KEY_DOWN: player1.SetMovingDown(false); break;
+		default: return;
 		}
 	}
 
