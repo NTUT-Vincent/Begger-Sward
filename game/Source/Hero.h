@@ -32,9 +32,12 @@ namespace game_framework {
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
 		bool cantPass(Maps *m);
+		bool isMoving();
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
+		CAnimation walkingLeft;
+		CAnimation walkingRight;
 		BloodBar b;
 		int x, y;
 		int hp;

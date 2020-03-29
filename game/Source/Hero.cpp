@@ -27,6 +27,12 @@ namespace game_framework {
 	{
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
 		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));
+		char *filename1[6] = { ".\\bitmaps\\walkingL1.bmp",".\\bitmaps\\walkingL2.bmp",".\\bitmaps\\walkingL3.bmp",".\\bitmaps\\walkingL4.bmp", ".\\bitmaps\\walkingL3.bmp", ".\\bitmaps\\walkingL2.bmp" };
+		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+			walkingLeft.AddBitmap(filename1[i], RGB(0, 0, 0));
+		char *filename2[6] = { ".\\bitmaps\\walkingR1.bmp",".\\bitmaps\\walkingR2.bmp",".\\bitmaps\\walkingR3.bmp",".\\bitmaps\\walkingR4.bmp", ".\\bitmaps\\walkingR3.bmp", ".\\bitmaps\\walkingR2.bmp" };
+		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+			walkingRight.AddBitmap(filename2[i], RGB(0, 0, 0));
 	}
 
 	void Hero::OnMove(Maps * m) {
@@ -51,19 +57,35 @@ namespace game_framework {
 		}
 		m->getHeroX(x);
 		m->getHeroY(y);
+		walkingLeft.OnMove();
+		walkingRight.OnMove();
 	}
 
 	void Hero::OnShow()
 	{
 		if (directionLR == 0)
 		{
-			heroL.SetTopLeft(280, 280);
-			heroL.ShowBitmap();
+			if (isMoving()) {
+				walkingLeft.SetTopLeft(280, 280);
+				walkingLeft.OnShow();
+			}
+			else {
+				heroL.SetTopLeft(280, 280);
+				heroL.ShowBitmap();
+			}
+			
 		}
 		else
 		{
-			heroR.SetTopLeft(280, 280);
-			heroR.ShowBitmap();
+			if (isMoving()) {
+				walkingRight.SetTopLeft(280, 280);
+				walkingRight.OnShow();
+			}
+			else {
+				heroR.SetTopLeft(280, 280);
+				heroR.ShowBitmap();
+			}
+			
 		}
 	}
 
@@ -133,6 +155,16 @@ namespace game_framework {
 	bool Hero::cantPass(Maps * m)
 	{
 		return false;
+	}
+
+	bool Hero::isMoving()
+	{
+		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 

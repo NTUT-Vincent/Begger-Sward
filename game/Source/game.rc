@@ -162,6 +162,22 @@ IDB_CLOCK8              BITMAP                  "..\\res\\Clock8.bmp"
 
 IDB_HERO_L              BITMAP                  "..\\res\\hero2.bmp"
 
+IDB_WALKINGL1           BITMAP                  "..\\RES\\walkingL1 .bmp"
+
+IDB_WALKINGL2           BITMAP                  "..\\RES\\walkingL2.bmp"
+
+IDB_WALKINGL3           BITMAP                  "..\\RES\\walkingL3.bmp"
+
+IDB_WALKINGL4           BITMAP                  "..\\RES\\walkingL4.bmp"
+
+IDB_WALKINGR1           BITMAP                  "..\\RES\\walkingR1.bmp"
+
+IDB_WALKINGR2           BITMAP                  "..\\RES\\walkingR2.bmp"
+
+IDB_WALKINGR3           BITMAP                  "..\\RES\\walkingR3.bmp"
+
+IDB_WALKINGR4           BITMAP                  "..\\RES\\walkingR4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

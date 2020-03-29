@@ -274,5 +274,56 @@
     <Image Include="RES\Counter8.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\walkingL1 .bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingL2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingL3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingL4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingR1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingR2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingR3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\walkingR4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Clock8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\hero2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
