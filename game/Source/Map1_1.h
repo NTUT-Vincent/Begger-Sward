@@ -19,7 +19,7 @@ namespace game_framework {
 		int screenX(int x) override;
 		int screenY(int y) override;
 		//void setEnemys(Enemy **e);
-		Enemy * returnEnemys(int n);
+		Enemy * returnEnemys(int n) ;
 		void enemysLoadBitmap();
 		void enemysOnMove();
 		void enemysOnShow();

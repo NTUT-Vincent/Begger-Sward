@@ -25,7 +25,8 @@ namespace game_framework {
 
 	void Hero::LoadBitmap()
 	{
-		hero.LoadBitmap(IDB_HERO1, RGB(0, 0, 0));
+		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
+		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));
 	}
 
 	void Hero::OnMove(Maps * m) {
@@ -54,8 +55,16 @@ namespace game_framework {
 
 	void Hero::OnShow()
 	{
-		hero.SetTopLeft(280, 280);
-		hero.ShowBitmap();
+		if (directionLR == 0)
+		{
+			heroL.SetTopLeft(280, 280);
+			heroL.ShowBitmap();
+		}
+		else
+		{
+			heroR.SetTopLeft(280, 280);
+			heroR.ShowBitmap();
+		}
 	}
 
 	int Hero::GetX1() {
@@ -68,12 +77,12 @@ namespace game_framework {
 
 	int Hero::GetX2()
 	{
-		return x + hero.Width();
+		return x + heroR.Width();
 	}
 
 	int Hero::GetY2()
 	{
-		return y + hero.Height();
+		return y + heroR.Height();
 	}
 
 	void Hero::Initialize() {
@@ -83,22 +92,22 @@ namespace game_framework {
 
 	void Hero::SetMovingDown(bool b) {
 		isMovingDown = b;
-		direction = 2;
+		directionUD = 1;
 	}
 
 	void Hero::SetMovingUp(bool b) {
 		isMovingUp = b;
-		direction = 1;
+		directionUD = 0;
 	}
 
 	void Hero::SetMovingLeft(bool b) {
 		isMovingLeft = b;
-		direction = 3;
+		directionLR = 0;
 	}
 
 	void Hero::SetMovingRight(bool b) {
 		isMovingRight = b;
-		direction = 4;
+		directionLR = 1;
 	}
 	void Hero::SetUsingA(bool b)
 	{

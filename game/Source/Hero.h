@@ -34,7 +34,7 @@ namespace game_framework {
 		bool cantPass(Maps *m);
 		~Hero();
 	private:
-		CMovingBitmap hero;
+		CMovingBitmap heroL, heroR;
 		BloodBar b;
 		int x, y;
 		int hp;
@@ -49,7 +49,9 @@ namespace game_framework {
 		bool isUsingW;
 		bool isUsingE;
 		bool isUsingR;
-		int direction; //1為上 2為下 3為左 4為右
+		int status;
+		bool directionLR; //0為左 1為右
+		bool directionUD; //0為上 1為下
 	};
 }
 
