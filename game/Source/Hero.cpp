@@ -37,10 +37,14 @@ namespace game_framework {
 		char *filename2[6] = { ".\\bitmaps\\walkingR1.bmp",".\\bitmaps\\walkingR2.bmp",".\\bitmaps\\walkingR3.bmp",".\\bitmaps\\walkingR4.bmp", ".\\bitmaps\\walkingR3.bmp", ".\\bitmaps\\walkingR2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename2[i], RGB(0, 0, 0));
+		RectHero = heroL.ReturnCRect();
+		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp"   };
+		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+			skillE.AddBitmap(filenameW[i], RGB(0, 0, 0));
+		skillE.SetDelayCount(2);
 	}
 
 	void Hero::OnMove(Maps * m) {
-		const int HMS = 4;
 		if (isMovingLeft && m->isEmpty(x - HMS, y) && !m->bumpIntoEnemy(GetX1() - HMS, GetX2() - HMS, GetY1(), GetY2())) {
 			m->addSX(HMS);
 			x -= HMS;
@@ -63,6 +67,7 @@ namespace game_framework {
 		m->getHeroY(y);
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
+		skillE.OnMove();
 	}
 
 	void Hero::OnShow(Maps *m)
@@ -92,6 +97,17 @@ namespace game_framework {
 				heroR.ShowBitmap();
 			}
 			
+		}
+		if (isUsingE) {
+			skillE.SetTopLeft(280, 280);
+			skillE.OnShow();
+			int time = 2;
+			if (skillE.IsFinalBitmap()) {
+				time--;
+				if (time == 0) {
+					isUsingE = false;
+				}
+			}
 		}
 	}
 

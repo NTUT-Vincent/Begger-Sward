@@ -39,7 +39,9 @@ namespace game_framework {
 		CMovingBitmap heroL, heroR;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
+		CAnimation skillE;
 		BloodBar blood_bar;
+		CRect RectHero;
 		int x, y;
 		int hp;
 		int attack;
