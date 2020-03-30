@@ -7,6 +7,7 @@
 #include "Maps.h"
 #include "Map1_1.h"
 #include "Enemy.h"
+#include <vector>
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -35,8 +36,10 @@ namespace game_framework {
 		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
 		enemys[0] = Enemy();
 		enemys[1] = Enemy(400, 450);
-		enemys[0].Initialize();
-		enemys[1].Initialize();
+		enemysV.push_back(&enemys[0]);
+		enemysV.push_back(&enemys[1]);
+		enemysV[0]->Initialize();
+		enemysV[1]->Initialize();
 	}
 
 	Map1_1::~Map1_1()
@@ -107,33 +110,36 @@ namespace game_framework {
 	/*void Map1_1::setEnemys(Enemy **e) {
 		enemys = e;
 	}*/
-	Enemy * Map1_1::returnEnemys(int n)
+	vector<Enemy*> Map1_1::returnEnemys()
 	{
-		return &enemys[n];
+		return enemysV;
 	}
 	void Map1_1::enemysLoadBitmap()
 	{
 		for (int i = 0; i < 2; i++) {
-			enemys[i].LoadBitmap();
+			//enemys[i].LoadBitmap();
+			enemysV[i]->LoadBitmap();
 		}
 
 	}
 	void Map1_1::enemysOnMove()
 	{
 		for (int i = 0; i < 2; i++) {
-			enemys[i].OnMove(this);
+			//enemys[i].OnMove(this);
+			enemysV[i]->OnMove(this);
 		}
 	}
 	void Map1_1::enemysOnShow()
 	{
 		for (int i = 0; i < 2; i++) {
-			enemys[i].OnShow(this);
+			//enemys[i].OnShow(this);
+			enemysV[i]->OnShow(this);
 		}
 	}
 	bool Map1_1::bumpIntoEnemy(int x1, int x2, int y1, int y2)
 	{
 		for (int i = 0; i < 2; i++) {
-			if (enemys[i].cannotPass(x1, x2, y1, y2)) {
+			if (enemysV[i]->cannotPass(x1, x2, y1, y2)) {
 				return true;
 			}
 		}

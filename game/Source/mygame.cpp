@@ -398,7 +398,7 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
 		//corner.ShowBitmap();
-		player1.OnShow();
+		player1.OnShow(&first_stage_map);
 		//enemy1.OnShow(&first_stage_map);
 		first_stage_map.enemysOnShow();
 	}

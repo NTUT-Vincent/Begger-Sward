@@ -30,6 +30,7 @@ namespace game_framework {
 	{
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
 		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));
+		blood_bar.loadBloodBar();
 		char *filename1[6] = { ".\\bitmaps\\walkingL1.bmp",".\\bitmaps\\walkingL2.bmp",".\\bitmaps\\walkingL3.bmp",".\\bitmaps\\walkingL4.bmp", ".\\bitmaps\\walkingL3.bmp", ".\\bitmaps\\walkingL2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingLeft.AddBitmap(filename1[i], RGB(0, 0, 0));
@@ -64,8 +65,10 @@ namespace game_framework {
 		walkingRight.OnMove();
 	}
 
-	void Hero::OnShow()
+	void Hero::OnShow(Maps *m)
 	{
+		blood_bar.setXY(x-10, y-10);
+		blood_bar.showBloodBar(m, hp);
 		if (directionLR == 0)
 		{
 			if (isMoving()) {
@@ -113,6 +116,9 @@ namespace game_framework {
 	void Hero::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = false;
 		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
+		blood_bar.setFullHP(hp);
+		walkingLeft.SetDelayCount(5);
+		walkingRight.SetDelayCount(5);
 	}
 
 	void Hero::SetMovingDown(bool b) {

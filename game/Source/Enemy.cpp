@@ -45,7 +45,6 @@ namespace game_framework {
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
 		//hp -= 10;
 		m->setPos(_x, _y);
-		blood_bar.setXY(_x, _y);
 	}
 
 	void Enemy::OnShow(Maps *m)
@@ -53,6 +52,7 @@ namespace game_framework {
 		enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
 		//enemy.SetTopLeft(x, y);
 		enemy.ShowBitmap();
+		blood_bar.setXY(_x, _y);
 		blood_bar.showBloodBar(m, hp);
 	}
 

@@ -19,7 +19,7 @@ namespace game_framework {
 		int screenX(int x) override;
 		int screenY(int y) override;
 		//void setEnemys(Enemy **e);
-		Enemy * returnEnemys(int n) ;
+		vector<Enemy*> returnEnemys() ;
 		void enemysLoadBitmap();
 		void enemysOnMove();
 		void enemysOnShow();
@@ -28,6 +28,7 @@ namespace game_framework {
 	private:
 		CMovingBitmap firstmap;
 		Enemy enemys[2];
+		vector<Enemy*> enemysV;
 		int map[12][12];
 		int sx, sy;							//地圖最左上角的座標
 		int hx, hy;

@@ -16,7 +16,7 @@ namespace game_framework {
 	public:
 		Hero();
 		void LoadBitmap();
-		void OnShow();
+		void OnShow(Maps *m);
 		void OnMove(Maps *m);
 		int GetX1();
 		int GetY1();
@@ -39,7 +39,7 @@ namespace game_framework {
 		CMovingBitmap heroL, heroR;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
-		BloodBar b;
+		BloodBar blood_bar;
 		int x, y;
 		int hp;
 		int attack;
