@@ -60,7 +60,7 @@ namespace game_framework {
 			blood_bar[3].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
 			blood_bar[3].ShowBitmap();
 		}
-		else if (proportion < full_hp) {
+		else if (proportion < 1.0) {
 			blood_bar[4].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
 			blood_bar[4].ShowBitmap();
 		}
