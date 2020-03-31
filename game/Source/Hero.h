@@ -34,12 +34,19 @@ namespace game_framework {
 		void SetUsingR(bool b);
 		bool cantPass(Maps *m);
 		bool isMoving();
+		bool isUsingSkill();			//如果在用技能，return true	
+		void skillEMove();
+		void skillEShow();						
+		void normalAttackMove();		//普功的Show, Move
+		void normalAttackShow();
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation skillE;
+		CAnimation normalAttackL; //向左普功動畫
+		CAnimation normalAttackR; //向右普功動畫
 		BloodBar blood_bar;
 		CRect RectHero;
 		int x, y;
@@ -58,6 +65,7 @@ namespace game_framework {
 		int status;
 		bool directionLR; //0為左 1為右
 		bool directionUD; //0為上 1為下
+		int skillTimes;   //用來數跑了幾次CAnimation。
 	};
 }
 

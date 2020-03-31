@@ -24,6 +24,7 @@ namespace game_framework {
 		y = 480;
 		hp = 400;
 		attack = 20;
+		skillTimes = 0;
 	}
 
 	void Hero::LoadBitmap()
@@ -31,17 +32,30 @@ namespace game_framework {
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
 		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));
 		blood_bar.loadBloodBar();
+		//向左走動畫
 		char *filename1[6] = { ".\\bitmaps\\walkingL1.bmp",".\\bitmaps\\walkingL2.bmp",".\\bitmaps\\walkingL3.bmp",".\\bitmaps\\walkingL4.bmp", ".\\bitmaps\\walkingL3.bmp", ".\\bitmaps\\walkingL2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingLeft.AddBitmap(filename1[i], RGB(0, 0, 0));
+		//向右走動畫
 		char *filename2[6] = { ".\\bitmaps\\walkingR1.bmp",".\\bitmaps\\walkingR2.bmp",".\\bitmaps\\walkingR3.bmp",".\\bitmaps\\walkingR4.bmp", ".\\bitmaps\\walkingR3.bmp", ".\\bitmaps\\walkingR2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename2[i], RGB(0, 0, 0));
 		RectHero = heroL.ReturnCRect();
+		//E動畫
 		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp"   };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			skillE.AddBitmap(filenameW[i], RGB(0, 0, 0));
 		skillE.SetDelayCount(2);
+		//普功動畫(左)
+		normalAttackL.AddBitmap(IDB_COUNTER1, RGB(0, 0, 0));
+		normalAttackL.AddBitmap(IDB_COUNTER2, RGB(0, 0, 0));
+		normalAttackL.AddBitmap(IDB_COUNTER3, RGB(0, 0, 0));
+		normalAttackL.SetDelayCount(5);
+		//普功動畫(右)
+		normalAttackR.AddBitmap(IDB_CLOCK1, RGB(0, 0, 0));
+		normalAttackR.AddBitmap(IDB_CLOCK2, RGB(0, 0, 0));
+		normalAttackR.AddBitmap(IDB_CLOCK3, RGB(0, 0, 0));
+		normalAttackR.SetDelayCount(5);
 	}
 
 	void Hero::OnMove(Maps * m) {
@@ -67,48 +81,45 @@ namespace game_framework {
 		m->getHeroY(y);
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
-		skillE.OnMove();
+		skillEMove();
+		normalAttackMove();
 	}
 
 	void Hero::OnShow(Maps *m)
 	{
 		blood_bar.setXY(x-10, y-10);
 		blood_bar.showBloodBar(m, hp);
-		if (directionLR == 0)
-		{
-			if (isMoving()) {
-				walkingLeft.SetTopLeft(280, 280);
-				walkingLeft.OnShow();
-			}
-			else {
-				heroL.SetTopLeft(280, 280);
-				heroL.ShowBitmap();
-			}
-			
+		if (isUsingSkill()) {
+			normalAttackShow();
+			skillEShow();
 		}
-		else
-		{
-			if (isMoving()) {
-				walkingRight.SetTopLeft(280, 280);
-				walkingRight.OnShow();
-			}
-			else {
-				heroR.SetTopLeft(280, 280);
-				heroR.ShowBitmap();
-			}
-			
-		}
-		if (isUsingE) {
-			skillE.SetTopLeft(280, 280);
-			skillE.OnShow();
-			int time = 2;
-			if (skillE.IsFinalBitmap()) {
-				time--;
-				if (time == 0) {
-					isUsingE = false;
+		else {
+			if (directionLR == 0)
+			{
+				if (isMoving()) {
+					walkingLeft.SetTopLeft(280, 280);
+					walkingLeft.OnShow();
 				}
+				else {
+					heroL.SetTopLeft(280, 280);
+					heroL.ShowBitmap();
+				}
+
+			}
+			else
+			{
+				if (isMoving()) {
+					walkingRight.SetTopLeft(280, 280);
+					walkingRight.OnShow();
+				}
+				else {
+					heroR.SetTopLeft(280, 280);
+					heroR.ShowBitmap();
+				}
+
 			}
 		}
+		
 	}
 
 	int Hero::GetX1() {
@@ -189,6 +200,64 @@ namespace game_framework {
 		}
 		else {
 			return false;
+		}
+	}
+
+	bool Hero::isUsingSkill()
+	{
+		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
+			return true;
+		}
+		return false;
+	}
+
+	void Hero::skillEMove()
+	{
+		skillE.OnMove();
+		if (!isUsingE)
+			skillE.Reset();
+	}
+
+	void Hero::skillEShow()
+	{
+		if (isUsingE) {
+			skillE.SetTopLeft(280-25, 280-15);
+			skillE.OnShow();
+			if (skillE.IsFinalBitmap()) {
+				skillTimes += 1;			//+1代表跑了一回CAnimation
+				if (skillTimes == 3) {		
+					skillTimes = 0;			//跑完整個技能把skillTime設回為0
+					isUsingE = false;
+				}
+			}
+		}
+	}
+
+	void Hero::normalAttackMove()
+	{
+		normalAttackL.OnMove();
+		normalAttackR.OnMove();
+		if (!isUsingA) {
+			normalAttackL.Reset();			//沒有用技能的時候 要Reset CAnimation，下次才會從第一張圖跑
+			normalAttackR.Reset();
+		}
+	}
+
+	void Hero::normalAttackShow()
+	{
+		if (directionLR==0 && isUsingA) {
+			normalAttackL.SetTopLeft(280-20, 280-10);
+			normalAttackL.OnShow();
+			if (normalAttackL.IsFinalBitmap()) {
+				isUsingA = false;
+			}
+		}
+		if (directionLR == 1 && isUsingA) {
+			normalAttackR.SetTopLeft(280-20, 280-10);
+			normalAttackR.OnShow();
+			if (normalAttackR.IsFinalBitmap()) {
+				isUsingA = false;
+			}
 		}
 	}
 
