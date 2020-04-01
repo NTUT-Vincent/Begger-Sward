@@ -191,11 +191,16 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		ball = new CBall[NUMBALLS];
+		enemys1_1.push_back(new Enemy(384, 384));
+		enemys1_1.push_back(new Enemy(400, 450));
 	}
 
 	CGameStateRun::~CGameStateRun()
 	{
 		delete[] ball;
+		for (vector<Enemy*>::iterator it_i = enemys1_1.begin(); it_i != enemys1_1.end(); ++it_i) {
+			delete *it_i;
+		}
 	}
 
 	void CGameStateRun::OnBeginState()
@@ -225,14 +230,20 @@ namespace game_framework {
 		CAudio::Instance()->Play(AUDIO_NTUT, true);			// 撥放 MIDI
 		player1.Initialize();
 		enemy1.Initialize();
+		for (unsigned i = 0; i < enemys1_1.size(); i++) {
+			enemys1_1[i]->Initialize();
+		}
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
 		first_stage_map.OnMove();
-		player1.OnMove(&first_stage_map);
+		player1.OnMove(&first_stage_map, &enemys1_1);
 		//enemy1.OnMove(&first_stage_map);
-		first_stage_map.enemysOnMove();
+		//first_stage_map.enemysOnMove();
+		for (unsigned i = 0; i < enemys1_1.size(); i++) {
+			enemys1_1[i]->OnMove(&first_stage_map);
+		}
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		//
@@ -289,7 +300,10 @@ namespace game_framework {
 		//
 		player1.LoadBitmap();
 		//enemy1.LoadBitmap();
-		first_stage_map.enemysLoadBitmap();
+		for (unsigned i = 0; i < enemys1_1.size(); i++) {
+			enemys1_1[i]->LoadBitmap();
+		}
+		//first_stage_map.enemysLoadBitmap();
 		first_stage_map.LoadBitmap();
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
@@ -400,7 +414,10 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		player1.OnShow(&first_stage_map);
 		//enemy1.OnShow(&first_stage_map);
-		first_stage_map.enemysOnShow();
+		//first_stage_map.enemysOnShow();
+		for (unsigned i = 0; i < enemys1_1.size(); i++) {
+			enemys1_1[i]->OnShow(&first_stage_map);
+		}
 	}
 
 };

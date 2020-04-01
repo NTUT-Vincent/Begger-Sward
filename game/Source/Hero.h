@@ -5,6 +5,7 @@
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"
+#include "Enemy.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -17,7 +18,7 @@ namespace game_framework {
 		Hero();
 		void LoadBitmap();
 		void OnShow(Maps *m);
-		void OnMove(Maps *m);
+		void OnMove(Maps *m, vector<Enemy*> * enemys);
 		int GetX1();
 		int GetY1();
 		int GetX2();
@@ -32,7 +33,7 @@ namespace game_framework {
 		void SetUsingW(bool b);
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
-		bool cantPass(Maps *m);
+		bool cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		bool isMoving();
 		bool isUsingSkill();			//如果在用技能，return true	
 		void skillEMove();

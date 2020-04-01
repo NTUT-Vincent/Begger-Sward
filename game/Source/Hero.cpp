@@ -58,22 +58,22 @@ namespace game_framework {
 		normalAttackR.SetDelayCount(5);
 	}
 
-	void Hero::OnMove(Maps * m) {
-		if (isMovingLeft && m->isEmpty(x - HMS, y) && !m->bumpIntoEnemy(GetX1() - HMS, GetX2() - HMS, GetY1(), GetY2())) {
+	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
+		if (isMovingLeft && m->isEmpty(x - HMS, y) && !cantPass(enemys, GetX1()- HMS, GetX2()-HMS, GetY1(), GetY2())) {
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(x + HMS, y) && !m->bumpIntoEnemy(GetX1() + HMS, GetX2() + HMS, GetY1(), GetY2())) {
+		if (isMovingRight && m->isEmpty(x + HMS, y) && !cantPass(enemys, GetX1() + HMS, GetX2() + HMS, GetY1(), GetY2())) {
 			m->addSX(-HMS);
 			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - HMS) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() - HMS, GetY2() - HMS)) {
+		if (isMovingUp && m->isEmpty(x, y - HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() - HMS, GetY2() - HMS)) {
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + HMS) && !m->bumpIntoEnemy(GetX1(), GetX2(), GetY1() + HMS, GetY2() + HMS)) {
+		if (isMovingDown && m->isEmpty(x, y + HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() + HMS, GetY2() + HMS)) {
 			m->addSY(-HMS);
 			y += HMS;
 		}
@@ -188,8 +188,13 @@ namespace game_framework {
 		isUsingR = b;
 	}
 
-	bool Hero::cantPass(Maps * m)
+	bool Hero::cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
+		for (unsigned i = 0; i < enemys->size(); i++) {
+			if (enemys->at(i)->cannotPass(x1, x2, y1, y2)) {
+				return true;
+			}
+		}
 		return false;
 	}
 
