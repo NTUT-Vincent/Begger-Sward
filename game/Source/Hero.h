@@ -6,6 +6,7 @@
 #include "Character.h"
 #include "BloodBar.h"
 #include "Enemy.h"
+#include "Attack.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -40,6 +41,9 @@ namespace game_framework {
 		void skillEShow();						
 		void normalAttackMove();		//普功的Show, Move
 		void normalAttackShow();
+		/*void skillQ();
+		void skillQMove(Maps *m);
+		void skillQShow(Maps *m);*/
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
@@ -67,6 +71,7 @@ namespace game_framework {
 		bool directionLR; //0為左 1為右
 		bool directionUD; //0為上 1為下
 		int skillTimes;   //用來數跑了幾次CAnimation。
+		Attack fire_attack;
 	};
 }
 

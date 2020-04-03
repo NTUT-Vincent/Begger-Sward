@@ -10,6 +10,7 @@
 #include "Maps.h"
 #include "BloodBar.h"
 #include "Util.h"
+#include "Attack.h"
 #define HMS HERO_MOVE_SPEED
 
 
@@ -56,6 +57,8 @@ namespace game_framework {
 		normalAttackR.AddBitmap(IDB_CLOCK2, RGB(0, 0, 0));
 		normalAttackR.AddBitmap(IDB_CLOCK3, RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(5);
+		//Q
+		fire_attack.loadBitmap();
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
@@ -82,6 +85,7 @@ namespace game_framework {
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
 		skillEMove();
+		//skillQMove(m);
 		normalAttackMove();
 	}
 
@@ -92,6 +96,7 @@ namespace game_framework {
 		if (isUsingSkill()) {
 			normalAttackShow();
 			skillEShow();
+			//skillQShow(m);
 		}
 		else {
 			if (directionLR == 0)
@@ -266,6 +271,30 @@ namespace game_framework {
 		}
 	}
 
+	/*void Hero::skillQ()
+	{
+		fire_attack.setXY(280, 280);
+	}
+
+	void Hero::skillQMove(Maps *m)
+	{
+		if (isUsingQ) {
+			fire_attack.OnMove(m);
+		}
+	}
+
+	void Hero::skillQShow(Maps * m)
+	{
+		if (isUsingQ) {
+			fire_attack.OnShow(m);
+			skillTimes += 1;
+			if (skillTimes >= 1000) {
+				skillTimes = 0;
+				isUsingQ = false;
+			}
+		}
+	}
+*/
 
 	Hero::~Hero()
 	{
