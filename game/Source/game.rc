@@ -180,8 +180,6 @@ IDB_WALKINGR4           BITMAP                  "..\\RES\\walkingR4.bmp"
 
 IDB_FIREATTACK          BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\FireAttack.bmp"
 
-IDB_BITMAP7             BITMAP                  "C:\\Users\\vince\\Desktop\\oopcourse851\\game\\RES\\FireAttackBoom.bmp"
-
 
 /////////////////////////////////////////////////////////////////////////////
 //

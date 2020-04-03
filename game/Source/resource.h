@@ -78,9 +78,7 @@
 #define IDB_WALKINGR2                   197
 #define IDB_WALKINGR3                   198
 #define IDB_WALKINGR4                   199
-#define IDB_BITMAP6                     200
 #define IDB_FIREATTACK                  200
-#define IDB_BITMAP7                     201
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772

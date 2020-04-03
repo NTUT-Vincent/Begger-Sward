@@ -15,19 +15,23 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	
+
 	Attack::Attack(int x, int y)
 	{
 		_x = x;
 		_y = y;
 		_attribute = 0;
+		_direction = 0;
+		_fireIsFlying = false;
 	}
 
 	Attack::Attack()
 	{
-		_x = 0;
-		_y = 0;
+		_x = 280;
+		_y = 280;
 		_attribute = 0;
+		_direction = 0;
+		_fireIsFlying = false;
 	}
 
 	void Attack::loadBitmap()
@@ -37,15 +41,23 @@ namespace game_framework {
 
 	void Attack::OnMove(Maps * m)
 	{
-		if (m->isEmpty(_x, _y)) {
-			_x -= 4;
+		if (_direction == 0) {
+			if (m->isEmpty(_x, _y)) {
+				_x -= 10;
+			}
 		}
+		if (_direction == 1) {
+			if (m->isEmpty(_x, _y)) {
+				_x += 10;
+			}
+		}
+
 	}
 
 	void Attack::OnShow(Maps * m)
 	{
 		if (m->isEmpty(_x, _y)) {
-			fire_attack.SetTopLeft(_x, _y);
+			fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			fire_attack.ShowBitmap();
 		}
 	}
@@ -57,8 +69,21 @@ namespace game_framework {
 
 	void Attack::setXY(int x, int y)
 	{
-		_x = x;
-		_y = y;
+		if (!_fireIsFlying) {
+			_x = x;
+			_y = y;
+		}
+		
+	}
+
+	void Attack::setDirection(int direction)
+	{
+		_direction = direction;
+	}
+
+	void Attack::setFireIsFlying(bool b)
+	{
+		_fireIsFlying = b;
 	}
 
 }

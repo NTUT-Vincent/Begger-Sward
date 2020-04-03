@@ -85,7 +85,7 @@ namespace game_framework {
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
 		skillEMove();
-		//skillQMove(m);
+		skillQMove(m);
 		normalAttackMove();
 	}
 
@@ -93,12 +93,12 @@ namespace game_framework {
 	{
 		blood_bar.setXY(x-10, y-10);
 		blood_bar.showBloodBar(m, hp);
-		if (isUsingSkill()) {
+		if (UsingSkillBitmap()) {
 			normalAttackShow();
 			skillEShow();
-			//skillQShow(m);
 		}
 		else {
+			skillQShow(m);
 			if (directionLR == 0)
 			{
 				if (isMoving()) {
@@ -213,9 +213,9 @@ namespace game_framework {
 		}
 	}
 
-	bool Hero::isUsingSkill()
+	bool Hero::UsingSkillBitmap()
 	{
-		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
+		if (isUsingA || isUsingW || isUsingE || isUsingR) {
 			return true;
 		}
 		return false;
@@ -271,9 +271,16 @@ namespace game_framework {
 		}
 	}
 
-	/*void Hero::skillQ()
+	void Hero::skillQ()
 	{
-		fire_attack.setXY(280, 280);
+		fire_attack.setXY(x, y);
+		fire_attack.setFireIsFlying(true);
+		if (directionLR == 0) {
+			fire_attack.setDirection(0);
+		}
+		if (directionLR == 1) {
+			fire_attack.setDirection(1);
+		}
 	}
 
 	void Hero::skillQMove(Maps *m)
@@ -288,13 +295,13 @@ namespace game_framework {
 		if (isUsingQ) {
 			fire_attack.OnShow(m);
 			skillTimes += 1;
-			if (skillTimes >= 1000) {
-				skillTimes = 0;
+			if (skillTimes > 20) {
 				isUsingQ = false;
+				fire_attack.setFireIsFlying(false);
+				skillTimes = 0;
 			}
 		}
 	}
-*/
 
 	Hero::~Hero()
 	{

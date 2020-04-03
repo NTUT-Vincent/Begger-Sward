@@ -36,14 +36,14 @@ namespace game_framework {
 		void SetUsingR(bool b);
 		bool cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		bool isMoving();
-		bool isUsingSkill();			//如果在用技能，return true	
+		bool UsingSkillBitmap();			//如果在用技能，return true	
 		void skillEMove();
 		void skillEShow();						
 		void normalAttackMove();		//普功的Show, Move
 		void normalAttackShow();
-		/*void skillQ();
+		void skillQ();
 		void skillQMove(Maps *m);
-		void skillQShow(Maps *m);*/
+		void skillQShow(Maps *m);
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
