@@ -19,7 +19,7 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Hero::Hero(): Character(100)
+	Hero::Hero() : Character("Hero")
 	{
 		x = 480;
 		y = 480;
@@ -43,7 +43,7 @@ namespace game_framework {
 			walkingRight.AddBitmap(filename2[i], RGB(0, 0, 0));
 		RectHero = heroL.ReturnCRect();
 		//E動畫
-		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp"   };
+		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			skillE.AddBitmap(filenameW[i], RGB(0, 0, 0));
 		skillE.SetDelayCount(2);
@@ -62,24 +62,45 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		if (isMovingLeft && m->isEmpty(x - HMS, y) && !cantPass(enemys, GetX1()- HMS, GetX2()-HMS, GetY1(), GetY2())) {
+		if (isMovingLeft && m->isEmpty(x - HMS, y))
+		{
+			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(x + HMS, y) && !cantPass(enemys, GetX1() + HMS, GetX2() + HMS, GetY1(), GetY2())) {
+		if (isMovingRight && m->isEmpty(x + HMS, y))
+		{
+			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSX(-HMS);
 			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() - HMS, GetY2() - HMS)) {
+		if (isMovingUp && m->isEmpty(x, y - HMS))
+		{
+			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() + HMS, GetY2() + HMS)) {
+		if (isMovingDown && m->isEmpty(x, y + HMS))
+		{
+			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSY(-HMS);
 			y += HMS;
 		}
+
 		m->getHeroX(x);
 		m->getHeroY(y);
 		walkingLeft.OnMove();
@@ -87,11 +108,12 @@ namespace game_framework {
 		skillEMove();
 		skillQMove(m);
 		normalAttackMove();
+
 	}
 
 	void Hero::OnShow(Maps *m)
 	{
-		blood_bar.setXY(x-10, y-10);
+		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
 		if (UsingSkillBitmap()) {
 			normalAttackShow();
@@ -124,7 +146,7 @@ namespace game_framework {
 
 			}
 		}
-		
+
 	}
 
 	int Hero::GetX1() {
@@ -193,11 +215,29 @@ namespace game_framework {
 		isUsingR = b;
 	}
 
-	bool Hero::cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
+	bool Hero::gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
-		for (unsigned i = 0; i < enemys->size(); i++) {
-			if (enemys->at(i)->cannotPass(x1, x2, y1, y2)) {
+		for (unsigned i = 0; i < enemys->size(); i++)
+		{
+			if (enemys->at(i)->heroExistingArea(x1, x2, y1, y2))
+			{
 				return true;
+			}
+			if (enemys->at(i)->heroExistingArea(x1 - 64, x2 - 64, y1, y2) && directionLR == 0 && isUsingA == 1)
+			{
+				enemys->at(i)->offsetHP(-200);
+			}
+			if (enemys->at(i)->heroExistingArea(x1 + 64, x2 + 64, y1, y2) && directionLR == 1 && isUsingA == 1)
+			{
+				enemys->at(i)->offsetHP(-200);
+			}
+			if (enemys->at(i)->heroExistingArea(x1 - 64, x2 + 64, y1 - 64, y2 + 64) && directionLR == 0 && isUsingE == 1)
+			{
+				enemys->at(i)->offsetHP(-200);
+			}
+			if (enemys->at(i)->heroExistingArea(x1 - 64, x2 + 64, y1 - 64, y2 + 64) && directionLR == 1 && isUsingE == 1)
+			{
+				enemys->at(i)->offsetHP(-200);
 			}
 		}
 		return false;
@@ -231,11 +271,11 @@ namespace game_framework {
 	void Hero::skillEShow()
 	{
 		if (isUsingE) {
-			skillE.SetTopLeft(280-25, 280-15);
+			skillE.SetTopLeft(280 - 25, 280 - 15);
 			skillE.OnShow();
 			if (skillE.IsFinalBitmap()) {
 				skillTimes += 1;			//+1代表跑了一回CAnimation
-				if (skillTimes == 3) {		
+				if (skillTimes == 3) {
 					skillTimes = 0;			//跑完整個技能把skillTime設回為0
 					isUsingE = false;
 				}
@@ -255,15 +295,15 @@ namespace game_framework {
 
 	void Hero::normalAttackShow()
 	{
-		if (directionLR==0 && isUsingA) {
-			normalAttackL.SetTopLeft(280-20, 280-10);
+		if (directionLR == 0 && isUsingA) {
+			normalAttackL.SetTopLeft(280 - 20, 280 - 10);
 			normalAttackL.OnShow();
 			if (normalAttackL.IsFinalBitmap()) {
 				isUsingA = false;
 			}
 		}
 		if (directionLR == 1 && isUsingA) {
-			normalAttackR.SetTopLeft(280-20, 280-10);
+			normalAttackR.SetTopLeft(280 - 20, 280 - 10);
 			normalAttackR.OnShow();
 			if (normalAttackR.IsFinalBitmap()) {
 				isUsingA = false;

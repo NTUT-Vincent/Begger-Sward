@@ -42,12 +42,6 @@ namespace game_framework {
 
 	void Enemy::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
-		///下面這些是想讓enemy跟著地圖一起動 但是我的邏輯好像不太對
-		///我應該要把x, y變成怪物在地圖上的座標，但現在是在螢幕上顯示的座標
-		///目前是只要感應到玩家按上下左右，就會移動，但是等玩家撞到牆後，他還會繼續動。
-		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
-		//hp -= 10;
-		//m->setPos(_x, _y);
 	}
 
 	void Enemy::OnShow(Maps *m)
@@ -84,10 +78,10 @@ namespace game_framework {
 		blood_bar.setFullHP(hp);
 	}
 
-	bool Enemy::cannotPass(int x1, int x2, int y1, int y2)
+	bool Enemy::heroExistingArea(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
-		return (x2 >= _x+20 && x1 <= _x+enemy.Width()-20 && y2 >= _y+60 && y1 <= _y + enemy.Height()-15);
+		return (x2 >= _x + 20 && x1 <= _x + enemy.Width() - 20 && y2 >= _y + 60 && y1 <= _y + enemy.Height() - 15);
 	}
 
 	//bool Enemy::cannotPass(Hero * hero)
@@ -120,7 +114,7 @@ namespace game_framework {
 
 	void Enemy::offsetHP(int offset)
 	{
-		hp -= offset;
+		hp += offset;
 	}
 
 	CRect * Enemy::GetRect()

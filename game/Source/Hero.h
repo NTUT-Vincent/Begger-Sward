@@ -20,38 +20,65 @@ namespace game_framework {
 		void LoadBitmap();
 		void OnShow(Maps *m);
 		void OnMove(Maps *m, vector<Enemy*> * enemys);
-		int GetX1();
-		int GetY1();
-		int GetX2();
-		int GetY2();
+		
+		int GetX1();					//回傳最左側X值
+		int GetY1();					//回傳最上側Y值
+		int GetX2();					//回傳最右側X值
+		int GetY2();					//回傳最下側Y值
+		
 		void Initialize();
+		/////////////////////////////////////////////////////////////////////////////
+		// 設定Hero的座標的函式們													   //
+		/////////////////////////////////////////////////////////////////////////////
 		void SetMovingDown(bool b);
 		void SetMovingUp(bool b);
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
+		/////////////////////////////////////////////////////////////////////////////
+		// 設定Hero使用技能的函式們												   //
+		/////////////////////////////////////////////////////////////////////////////
 		void SetUsingA(bool b);
 		void SetUsingQ(bool b);
 		void SetUsingW(bool b);
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
-		bool cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
-		bool isMoving();
-		bool UsingSkillBitmap();			//如果在用技能，return true	
-		void skillEMove();
-		void skillEShow();						
-		void normalAttackMove();		//普功的Show, Move
-		void normalAttackShow();
+		/////////////////////////////////////////////////////////////////////////////
+		// 前身是cantPass，應該是本程式最重要的函式之一
+		// 1. 角色碰到敵人會扣血
+		// 2. 如果敵人在攻擊範圍內，且在攻擊狀態下，敵人會被扣血
+		/////////////////////////////////////////////////////////////////////////////
+		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2); 
+		
+		bool isMoving();					// 在動
+		bool UsingSkillBitmap();			// 如果在用技能，return true	
+		
 		void skillQ();
 		void skillQMove(Maps *m);
 		void skillQShow(Maps *m);
+
+		//void skillW();
+		//void skillWMove();
+		//void skillWShow();
+
+		/*void skillE();*/
+		void skillEMove();
+		void skillEShow();
+
+		/*void skillR();
+		void skillRMove();
+		void skillRShow();*/						
+		
+		void normalAttackMove();		// 普功的Move
+		void normalAttackShow();		// 普功的Show
+		
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation skillE;
-		CAnimation normalAttackL; //向左普功動畫
-		CAnimation normalAttackR; //向右普功動畫
+		CAnimation normalAttackL; // 向左普功動畫
+		CAnimation normalAttackR; // 向右普功動畫
 		BloodBar blood_bar;
 		CRect RectHero;
 		int x, y;
@@ -68,9 +95,9 @@ namespace game_framework {
 		bool isUsingE;
 		bool isUsingR;
 		int status;
-		bool directionLR; //0為左 1為右
-		bool directionUD; //0為上 1為下
-		int skillTimes;   //用來數跑了幾次CAnimation。
+		bool directionLR; // 0為左 1為右
+		bool directionUD; // 0為上 1為下
+		int skillTimes;   // 用來數跑了幾次CAnimation。
 		Attack fire_attack;
 	};
 }
