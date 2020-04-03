@@ -34,18 +34,16 @@ namespace game_framework {
 		void SetUsingW(bool b);
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
-		bool isBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
+		bool cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		bool isMoving();
-		bool isUsingSkill();			//如果在用技能，return true	
-		//bool isBleeding(vector<Enemy*> * enemys);
+		bool UsingSkillBitmap();			//如果在用技能，return true	
 		void skillEMove();
 		void skillEShow();						
 		void normalAttackMove();		//普功的Show, Move
 		void normalAttackShow();
-		CRect * GetRect();
-		/*void skillQ();
+		void skillQ();
 		void skillQMove(Maps *m);
-		void skillQShow(Maps *m);*/
+		void skillQShow(Maps *m);
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
@@ -55,7 +53,7 @@ namespace game_framework {
 		CAnimation normalAttackL; //向左普功動畫
 		CAnimation normalAttackR; //向右普功動畫
 		BloodBar blood_bar;
-		CRect HeroRect;
+		CRect RectHero;
 		int x, y;
 		int hp;
 		int attack;

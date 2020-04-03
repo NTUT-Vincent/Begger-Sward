@@ -19,7 +19,7 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Hero::Hero(): Character("Hero")
+	Hero::Hero(): Character(100)
 	{
 		x = 480;
 		y = 480;
@@ -41,7 +41,7 @@ namespace game_framework {
 		char *filename2[6] = { ".\\bitmaps\\walkingR1.bmp",".\\bitmaps\\walkingR2.bmp",".\\bitmaps\\walkingR3.bmp",".\\bitmaps\\walkingR4.bmp", ".\\bitmaps\\walkingR3.bmp", ".\\bitmaps\\walkingR2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename2[i], RGB(0, 0, 0));
-		HeroRect = heroL.ReturnCRect();
+		RectHero = heroL.ReturnCRect();
 		//E動畫
 		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp"   };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
@@ -62,40 +62,21 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		if (isMovingLeft && m->isEmpty(x - HMS, y)) {
-			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
+		if (isMovingLeft && m->isEmpty(x - HMS, y) && !cantPass(enemys, GetX1()- HMS, GetX2()-HMS, GetY1(), GetY2())) {
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(x + HMS, y)) 
-		{
-			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
+		if (isMovingRight && m->isEmpty(x + HMS, y) && !cantPass(enemys, GetX1() + HMS, GetX2() + HMS, GetY1(), GetY2())) {
 			m->addSX(-HMS);
 			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - HMS)) 
-		{
-			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
+		if (isMovingUp && m->isEmpty(x, y - HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() - HMS, GetY2() - HMS)) {
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + HMS))
-		{
-			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
+		if (isMovingDown && m->isEmpty(x, y + HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() + HMS, GetY2() + HMS)) {
 			m->addSY(-HMS);
 			y += HMS;
 		}
@@ -104,7 +85,7 @@ namespace game_framework {
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
 		skillEMove();
-		//skillQMove(m);
+		skillQMove(m);
 		normalAttackMove();
 	}
 
@@ -112,12 +93,12 @@ namespace game_framework {
 	{
 		blood_bar.setXY(x-10, y-10);
 		blood_bar.showBloodBar(m, hp);
-		if (isUsingSkill()) {
+		if (UsingSkillBitmap()) {
 			normalAttackShow();
 			skillEShow();
-			//skillQShow(m);
 		}
 		else {
+			skillQShow(m);
 			if (directionLR == 0)
 			{
 				if (isMoving()) {
@@ -212,7 +193,7 @@ namespace game_framework {
 		isUsingR = b;
 	}
 
-	bool Hero::isBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
+	bool Hero::cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
 		for (unsigned i = 0; i < enemys->size(); i++) {
 			if (enemys->at(i)->cannotPass(x1, x2, y1, y2)) {
@@ -232,9 +213,9 @@ namespace game_framework {
 		}
 	}
 
-	bool Hero::isUsingSkill()
+	bool Hero::UsingSkillBitmap()
 	{
-		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
+		if (isUsingA || isUsingW || isUsingE || isUsingR) {
 			return true;
 		}
 		return false;
@@ -290,14 +271,16 @@ namespace game_framework {
 		}
 	}
 
-	CRect * Hero::GetRect()
+	void Hero::skillQ()
 	{
-		return &HeroRect;
-	}
-
-	/*void Hero::skillQ()
-	{
-		fire_attack.setXY(280, 280);
+		fire_attack.setXY(x, y);
+		fire_attack.setFireIsFlying(true);
+		if (directionLR == 0) {
+			fire_attack.setDirection(0);
+		}
+		if (directionLR == 1) {
+			fire_attack.setDirection(1);
+		}
 	}
 
 	void Hero::skillQMove(Maps *m)
@@ -312,13 +295,13 @@ namespace game_framework {
 		if (isUsingQ) {
 			fire_attack.OnShow(m);
 			skillTimes += 1;
-			if (skillTimes >= 1000) {
-				skillTimes = 0;
+			if (skillTimes > 20) {
 				isUsingQ = false;
+				fire_attack.setFireIsFlying(false);
+				skillTimes = 0;
 			}
 		}
 	}
-*/
 
 	Hero::~Hero()
 	{
