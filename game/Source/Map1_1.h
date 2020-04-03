@@ -7,7 +7,7 @@ namespace game_framework {
 	public:
 		Map1_1();
 		~Map1_1();
-		void setPos(int x, int y);
+		//void setPos(int x, int y);			//不再使用setPos為不可穿透區域
 		bool isEmpty(int x, int y) const;
 		void OnMove();
 		void LoadBitmap();

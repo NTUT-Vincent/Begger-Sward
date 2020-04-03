@@ -19,7 +19,7 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Hero::Hero(): Character(100)
+	Hero::Hero(): Character("Hero")
 	{
 		x = 480;
 		y = 480;
@@ -41,7 +41,7 @@ namespace game_framework {
 		char *filename2[6] = { ".\\bitmaps\\walkingR1.bmp",".\\bitmaps\\walkingR2.bmp",".\\bitmaps\\walkingR3.bmp",".\\bitmaps\\walkingR4.bmp", ".\\bitmaps\\walkingR3.bmp", ".\\bitmaps\\walkingR2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename2[i], RGB(0, 0, 0));
-		RectHero = heroL.ReturnCRect();
+		HeroRect = heroL.ReturnCRect();
 		//E動畫
 		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp"   };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
@@ -62,21 +62,40 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		if (isMovingLeft && m->isEmpty(x - HMS, y) && !cantPass(enemys, GetX1()- HMS, GetX2()-HMS, GetY1(), GetY2())) {
+		if (isMovingLeft && m->isEmpty(x - HMS, y)) {
+			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(x + HMS, y) && !cantPass(enemys, GetX1() + HMS, GetX2() + HMS, GetY1(), GetY2())) {
+		if (isMovingRight && m->isEmpty(x + HMS, y)) 
+		{
+			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSX(-HMS);
 			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() - HMS, GetY2() - HMS)) {
+		if (isMovingUp && m->isEmpty(x, y - HMS)) 
+		{
+			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + HMS) && !cantPass(enemys, GetX1(), GetX2(), GetY1() + HMS, GetY2() + HMS)) {
+		if (isMovingDown && m->isEmpty(x, y + HMS))
+		{
+			if (isBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+			{
+				hp -= 10;
+			}
 			m->addSY(-HMS);
 			y += HMS;
 		}
@@ -193,7 +212,7 @@ namespace game_framework {
 		isUsingR = b;
 	}
 
-	bool Hero::cantPass(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
+	bool Hero::isBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
 		for (unsigned i = 0; i < enemys->size(); i++) {
 			if (enemys->at(i)->cannotPass(x1, x2, y1, y2)) {
@@ -269,6 +288,11 @@ namespace game_framework {
 				isUsingA = false;
 			}
 		}
+	}
+
+	CRect * Hero::GetRect()
+	{
+		return &HeroRect;
 	}
 
 	/*void Hero::skillQ()

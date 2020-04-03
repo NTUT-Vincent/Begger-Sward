@@ -47,11 +47,11 @@ namespace game_framework {
 
 	}
 
-	void Map1_1::setPos(int x, int y) {
+	/*void Map1_1::setPos(int x, int y) {
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] = 1;
-	}
+	}*/
 
 	bool Map1_1::isEmpty(int x, int y) const
 	{

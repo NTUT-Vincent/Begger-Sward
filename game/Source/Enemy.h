@@ -29,9 +29,12 @@ namespace game_framework {
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
 		void SetXY(int x, int y);
+		void offsetHP(int offset);
+		CRect * GetRect();
 	private:
 		CMovingBitmap enemy;
 		BloodBar blood_bar;
+		CRect EnemyRect;
 		int _x, _y;
 		int hp;
 		int attack;

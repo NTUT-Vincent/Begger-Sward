@@ -225,7 +225,7 @@ namespace game_framework {
 		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		CAudio::Instance()->Play(AUDIO_LAKE, true);			// 撥放 WAVE
+		CAudio::Instance()->Play(AUDIO_LAKE, false);			// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_SUMMONSRIFT, true);			// 撥放 MIDI
 		player1.Initialize();

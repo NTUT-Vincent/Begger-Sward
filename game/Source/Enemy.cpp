@@ -15,7 +15,9 @@ namespace game_framework {
 	// Enemy: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Enemy::Enemy() : Character(100)
+	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
+
+	Enemy::Enemy() : Character("scarecrow")
 	{
 		_x = 384;
 		_y = 384;
@@ -23,7 +25,7 @@ namespace game_framework {
 		attack = 0;
 	}
 
-	Enemy::Enemy(int x, int y) : Character(100)
+	Enemy::Enemy(int x, int y) : Character("scarecrow")
 	{
 		_x = x;
 		_y = y;
@@ -35,6 +37,7 @@ namespace game_framework {
 	{
 		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
 		blood_bar.loadBloodBar();
+		EnemyRect = enemy.ReturnCRect();
 	}
 
 	void Enemy::OnMove(Maps * m) {
@@ -44,7 +47,7 @@ namespace game_framework {
 		///目前是只要感應到玩家按上下左右，就會移動，但是等玩家撞到牆後，他還會繼續動。
 		///目前在研究跟老師地圖教學一樣的方法，有些註解掉的地方是跟著老師那個照做的
 		//hp -= 10;
-		m->setPos(_x, _y);
+		//m->setPos(_x, _y);
 	}
 
 	void Enemy::OnShow(Maps *m)
@@ -79,7 +82,6 @@ namespace game_framework {
 	void Enemy::Initialize() {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
-
 	}
 
 	bool Enemy::cannotPass(int x1, int x2, int y1, int y2)
@@ -114,6 +116,16 @@ namespace game_framework {
 	{
 		_x = x;
 		_y = y;
+	}
+
+	void Enemy::offsetHP(int offset)
+	{
+		hp -= offset;
+	}
+
+	CRect * Enemy::GetRect()
+	{
+		return &EnemyRect;
 	}
 
 }

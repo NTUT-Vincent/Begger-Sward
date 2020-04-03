@@ -10,13 +10,17 @@ namespace game_framework {
 	class Character
 	{
 	protected:
-		Character(int hp) {
-			_hp = hp;
+		Character(string name) {
+			_name = name;
+		}
+
+		Character() {
+
 		}
 
 
 	private:
-		int _hp;
+		string _name;
 
 	};
 	
