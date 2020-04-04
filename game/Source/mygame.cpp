@@ -54,10 +54,12 @@
 #include "stdafx.h"
 #include "Resource.h"
 #include <mmsystem.h>
+#include <algorithm>
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
+#include "Character.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -191,8 +193,9 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		ball = new CBall[NUMBALLS];
-		enemys1_1.push_back(new Enemy(384, 384));
 		enemys1_1.push_back(new Enemy(400, 450));
+		enemys1_1.push_back(new Enemy(384, 384));
+		enemys1_1.push_back(new Enemy(500, 550));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -286,6 +289,8 @@ namespace game_framework {
 		// 移動彈跳的球
 		//
 		bball.OnMove();
+		//排序場上的Enemy依照y座標
+		sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); }); 
 	}
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -415,12 +420,25 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
 		//corner.ShowBitmap();
-		player1.OnShow(&first_stage_map);
 		//enemy1.OnShow(&first_stage_map);
 		//first_stage_map.enemysOnShow();
+		int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+		for (unsigned i = 0; i < enemys1_1.size(); i++) {
+			if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+				hero_position = i;
+			}
+		}
+		if (hero_position == -1) {
+			player1.OnShow(&first_stage_map);
+		}
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->OnShow(&first_stage_map);
+			if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+				player1.OnShow(&first_stage_map);
+			}
+
 		}
+
 	}
 
 };

@@ -46,6 +46,7 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "Util.h"
+#include "Character.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////

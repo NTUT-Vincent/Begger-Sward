@@ -86,4 +86,24 @@ namespace game_framework {
 		_fireIsFlying = b;
 	}
 
+	int Attack::getX1()
+	{
+		return _x;
+	}
+
+	int Attack::getX2()
+	{
+		return _x + fire_attack.Width();
+	}
+
+	int Attack::getY1()
+	{
+		return _y;
+	}
+
+	int Attack::getY2()
+	{
+		return _y + fire_attack.Height();
+	}
+
 }

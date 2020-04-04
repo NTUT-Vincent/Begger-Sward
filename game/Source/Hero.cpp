@@ -207,21 +207,26 @@ namespace game_framework {
 	{
 		for (unsigned i = 0; i < enemys->size(); i++)
 		{
-			if (enemys->at(i)->heroExistingArea(x1, x2, y1, y2))
+			if (enemys->at(i)->intersect(x1, x2, y1, y2))
 			{
 				return true;
 			}
 			//普功
-			if (enemys->at(i)->heroExistingArea(x1 - 30, x2 - 30, y1, y2) && directionLR == 0 && isUsingA)
+			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1, y2) && directionLR == 0 && isUsingA)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
-			if (enemys->at(i)->heroExistingArea(x1 + 40, x2 + 40, y1, y2) && directionLR == 1 && isUsingA)
+			if (enemys->at(i)->intersect(x1 + 40, x2 + 40, y1, y2) && directionLR == 1 && isUsingA)
+			{
+				enemys->at(i)->offsetHP(-20);
+			}
+			//Q技能
+			if (enemys->at(i)->intersect(fire_attack.getX1(), fire_attack.getX2(), fire_attack.getY1(), fire_attack.getY2()) && isUsingQ)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
 			//E技能
-			if (enemys->at(i)->heroExistingArea(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
+			if (enemys->at(i)->intersect(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
