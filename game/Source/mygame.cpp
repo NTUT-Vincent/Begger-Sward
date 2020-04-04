@@ -123,11 +123,13 @@ namespace game_framework {
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));
-		pDC->TextOut(120, 220, "Please click mouse or press SPACE to begin.");
-		pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
-		if (ENABLE_GAME_PAUSE)
-			pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
-		pDC->TextOut(5, 455, "Press Alt-F4 or ESC to Quit.");
+		pDC->TextOut(195, 180, "中文名:乞丐大劍");
+		pDC->TextOut(155, 220, "This game is namely a crap.");
+		//pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
+		//if (ENABLE_GAME_PAUSE)
+		//	pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
+		pDC->TextOut(170, 260, "Press Space to continue.");
+		pDC->TextOut(60, 420, "107820005 廖子濬 107820012 鍾思賢");
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}

@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "gameSetup.vdproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "..\UnitTest\UnitTest.vcxproj", "{0C7B2C1F-BB4C-45B8-889E-6EBAC38E463F}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "beggersword", "beggersword\beggersword.vdproj", "{1C442456-AA21-41EC-B996-989B000CDE2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -38,6 +40,10 @@ Global
 		{0C7B2C1F-BB4C-45B8-889E-6EBAC38E463F}.Release|Win32.Build.0 = Release|Win32
 		{0C7B2C1F-BB4C-45B8-889E-6EBAC38E463F}.Release|x64.ActiveCfg = Release|x64
 		{0C7B2C1F-BB4C-45B8-889E-6EBAC38E463F}.Release|x64.Build.0 = Release|x64
+		{1C442456-AA21-41EC-B996-989B000CDE2D}.Debug|Win32.ActiveCfg = Debug
+		{1C442456-AA21-41EC-B996-989B000CDE2D}.Debug|x64.ActiveCfg = Debug
+		{1C442456-AA21-41EC-B996-989B000CDE2D}.Release|Win32.ActiveCfg = Release
+		{1C442456-AA21-41EC-B996-989B000CDE2D}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
