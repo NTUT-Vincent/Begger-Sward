@@ -39,6 +39,7 @@ namespace game_framework {
 		void SetXY(int x, int y);		//
 
 		void offsetHP(int offset);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
+		bool isAlive();
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 	private:
 		CMovingBitmap enemy;

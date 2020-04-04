@@ -23,7 +23,7 @@ namespace game_framework {
 	{
 		x = 480;
 		y = 480;
-		hp = 400;
+		hp = 1200;
 		attack = 20;
 		skillTimes = 0;
 	}
@@ -64,41 +64,29 @@ namespace game_framework {
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
 		if (isMovingLeft && m->isEmpty(x - HMS, y))
 		{
-			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
 		if (isMovingRight && m->isEmpty(x + HMS, y))
 		{
-			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
 			m->addSX(-HMS);
 			x += HMS;
 		}
 		if (isMovingUp && m->isEmpty(x, y - HMS))
 		{
-			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
 		if (isMovingDown && m->isEmpty(x, y + HMS))
 		{
-			if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
-			{
-				hp -= 10;
-			}
 			m->addSY(-HMS);
 			y += HMS;
+		}
+		if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
+		{
+			hp -= 10;
 		}
 
 		m->getHeroX(x);
@@ -115,12 +103,12 @@ namespace game_framework {
 	{
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
+		skillQShow(m);
 		if (UsingSkillBitmap()) {
 			normalAttackShow();
 			skillEShow();
 		}
 		else {
-			skillQShow(m);
 			if (directionLR == 0)
 			{
 				if (isMoving()) {
@@ -223,21 +211,19 @@ namespace game_framework {
 			{
 				return true;
 			}
-			if (enemys->at(i)->heroExistingArea(x1 - 64, x2 - 64, y1, y2) && directionLR == 0 && isUsingA == 1)
+			//´¶¥\
+			if (enemys->at(i)->heroExistingArea(x1 - 30, x2 - 30, y1, y2) && directionLR == 0 && isUsingA)
 			{
-				enemys->at(i)->offsetHP(-200);
+				enemys->at(i)->offsetHP(-20);
 			}
-			if (enemys->at(i)->heroExistingArea(x1 + 64, x2 + 64, y1, y2) && directionLR == 1 && isUsingA == 1)
+			if (enemys->at(i)->heroExistingArea(x1 + 40, x2 + 40, y1, y2) && directionLR == 1 && isUsingA)
 			{
-				enemys->at(i)->offsetHP(-200);
+				enemys->at(i)->offsetHP(-20);
 			}
-			if (enemys->at(i)->heroExistingArea(x1 - 64, x2 + 64, y1 - 64, y2 + 64) && directionLR == 0 && isUsingE == 1)
+			//E§Þ¯à
+			if (enemys->at(i)->heroExistingArea(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
 			{
-				enemys->at(i)->offsetHP(-200);
-			}
-			if (enemys->at(i)->heroExistingArea(x1 - 64, x2 + 64, y1 - 64, y2 + 64) && directionLR == 1 && isUsingE == 1)
-			{
-				enemys->at(i)->offsetHP(-200);
+				enemys->at(i)->offsetHP(-20);
 			}
 		}
 		return false;

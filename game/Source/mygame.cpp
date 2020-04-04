@@ -79,7 +79,7 @@ namespace game_framework {
 		//
 		// 開始載入資料
 		//
-		logo.LoadBitmap(IDB_BACKGROUND);
+		logo.LoadBitmap(IDB_BEGGERSWORD);
 		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -225,8 +225,8 @@ namespace game_framework {
 		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		CAudio::Instance()->Play(AUDIO_LAKE, false);			// 撥放 WAVE
-		CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
+		//CAudio::Instance()->Play(AUDIO_LAKE, false);			// 撥放 WAVE
+		//CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_SUMMONSRIFT, true);			// 撥放 MIDI
 		player1.Initialize();
 		enemy1.Initialize();

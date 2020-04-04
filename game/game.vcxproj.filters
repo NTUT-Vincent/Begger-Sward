@@ -343,5 +343,8 @@
     <Image Include="RES\FireAttackBoom.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\beggersword.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

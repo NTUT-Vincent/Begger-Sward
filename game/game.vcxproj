@@ -342,6 +342,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="RES\attack1.bmp" />
+    <Image Include="RES\beggersword.bmp" />
     <Image Include="res\bitmap3.bmp" />
     <Image Include="res\bitmap4.bmp" />
     <Image Include="RES\blood12.bmp" />

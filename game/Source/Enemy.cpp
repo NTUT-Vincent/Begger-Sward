@@ -46,11 +46,14 @@ namespace game_framework {
 
 	void Enemy::OnShow(Maps *m)
 	{
-		enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
-		//enemy.SetTopLeft(x, y);
-		enemy.ShowBitmap();
-		blood_bar.setXY(_x, _y);
-		blood_bar.showBloodBar(m, hp);
+		if (isAlive()) {
+			enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			//enemy.SetTopLeft(x, y);
+			enemy.ShowBitmap();
+			blood_bar.setXY(_x, _y);
+			blood_bar.showBloodBar(m, hp);
+		}
+		
 	}
 
 	int Enemy::GetX1()
@@ -81,7 +84,16 @@ namespace game_framework {
 	bool Enemy::heroExistingArea(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
-		return (x2 >= _x + 20 && x1 <= _x + enemy.Width() - 20 && y2 >= _y + 60 && y1 <= _y + enemy.Height() - 15);
+		if (isAlive()) {
+			if (x2 >= _x + 20 && x1 <= _x + enemy.Width() - 20 && y2 >= _y + 60 && y1 <= _y + enemy.Height() - 15) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		return false;
+		
 	}
 
 	//bool Enemy::cannotPass(Hero * hero)
@@ -115,6 +127,14 @@ namespace game_framework {
 	void Enemy::offsetHP(int offset)
 	{
 		hp += offset;
+	}
+
+	bool Enemy::isAlive()
+	{
+		if (hp <= 0) {
+			return false;
+		}
+		return true;
 	}
 
 	CRect * Enemy::GetRect()
