@@ -50,7 +50,7 @@ namespace game_framework {
 			enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			//enemy.SetTopLeft(x, y);
 			enemy.ShowBitmap();
-			blood_bar.setXY(_x, _y);
+			blood_bar.setXY(_x, _y+50);
 			blood_bar.showBloodBar(m, hp);
 		}
 		
@@ -81,7 +81,7 @@ namespace game_framework {
 		blood_bar.setFullHP(hp);
 	}
 
-	bool Enemy::heroExistingArea(int x1, int x2, int y1, int y2)
+	bool Enemy::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {

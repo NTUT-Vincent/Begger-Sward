@@ -1,6 +1,6 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
-
+#include "Maps.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -17,6 +17,8 @@ namespace game_framework {
 		Character() {
 
 		}
+
+		virtual void OnShow(Maps *m) {};
 
 
 	private:

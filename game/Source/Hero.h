@@ -18,7 +18,7 @@ namespace game_framework {
 	public:
 		Hero();
 		void LoadBitmap();
-		void OnShow(Maps *m);
+		void OnShow(Maps *m) override;
 		void OnMove(Maps *m, vector<Enemy*> * enemys);
 		
 		int GetX1();					//¦^¶Ç³Ì¥ª°¼X­È

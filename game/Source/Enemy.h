@@ -16,7 +16,7 @@ namespace game_framework {
 		Enemy();						//建構子，傳給Character角色名稱
 		Enemy(int x, int y);			//建構子，設定角色初始位置給Character()，方便vector一次建立
 		void LoadBitmap();				//加載敵人Bitmap
-		void OnShow(Maps *m);			//顯示敵人於畫面上
+		void OnShow(Maps *m) override;	//顯示敵人於畫面上
 		void OnMove(Maps *m);			//敵人移動
 
 		int GetX1();					//回傳最左側X值
@@ -26,7 +26,7 @@ namespace game_framework {
 
 		void Initialize();				//初始化
 										//英雄是否和此敵人所在同一位置，前身是cannotPass
-		bool heroExistingArea(int x1, int x2, int y1, int y2);
+		bool intersect(int x1, int x2, int y1, int y2);
 
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Enemy的座標的函式們												   //

@@ -22,6 +22,10 @@ namespace game_framework {
 		void setXY(int x, int y);
 		void setDirection(int direction);
 		void setFireIsFlying(bool b);
+		int getX1();
+		int getX2();
+		int getY1();
+		int getY2();
 	private:
 		CMovingBitmap fire_attack;
 		CMovingBitmap fire_attack_boom;
