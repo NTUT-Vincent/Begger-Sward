@@ -24,4 +24,14 @@
 	const char KEY_E = 0x45;
 	const char KEY_R = 0x52;
 
+	///音效
+	enum AUDIO_ID {				// 定義各種音效的編號
+		AUDIO_DING,				// 0
+		AUDIO_LAKE,				// 1
+		AUDIO_NTUT,				// 2
+		AUDIO_GOLDENWIND,		// 3
+		AUDIO_SWORD,			// 4
+		AUDIO_FIRE,				// 5
+		AUDIO_SKILLE,			// 6
+	};
 #endif // !UTIL_H

@@ -60,6 +60,7 @@
 #include "gamelib.h"
 #include "mygame.h"
 #include "Character.h"
+#include "Util.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -333,6 +334,9 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
 		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 		CAudio::Instance()->Load(AUDIO_GOLDENWIND, "sounds\\goldenwind.mp3");	// 載入編號2的聲音ntut.mid
+		CAudio::Instance()->Load(AUDIO_SWORD, "sounds\\swing2.mp3");
+		CAudio::Instance()->Load(AUDIO_FIRE, "sounds\\fireball.mp3");
+		CAudio::Instance()->Load(AUDIO_SKILLE, "sounds\\swing4.mp3");
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//

@@ -184,10 +184,17 @@ namespace game_framework {
 	}
 	void Hero::SetUsingA(bool b)
 	{
+		if (b) {
+			CAudio::Instance()->Play(AUDIO_SWORD);
+		}
+
 		isUsingA = b;
 	}
 	void Hero::SetUsingQ(bool b)
 	{
+		if (b) {
+			CAudio::Instance()->Play(AUDIO_FIRE);
+		}
 		isUsingQ = b;
 	}
 	void Hero::SetUsingW(bool b)
@@ -196,6 +203,9 @@ namespace game_framework {
 	}
 	void Hero::SetUsingE(bool b)
 	{
+		if (b) {
+			CAudio::Instance()->Play(AUDIO_SKILLE);
+		}
 		isUsingE = b;
 	}
 	void Hero::SetUsingR(bool b)
