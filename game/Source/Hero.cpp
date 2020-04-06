@@ -222,11 +222,11 @@ namespace game_framework {
 				return true;
 			}
 			//´¶¥\
-			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1, y2) && directionLR == 0 && isUsingA)
+			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1+10, y2) && directionLR == 0 && isUsingA)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
-			if (enemys->at(i)->intersect(x1 + 40, x2 + 40, y1, y2) && directionLR == 1 && isUsingA)
+			if (enemys->at(i)->intersect(x1 + 30, x2 + 30, y1+10, y2) && directionLR == 1 && isUsingA)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
