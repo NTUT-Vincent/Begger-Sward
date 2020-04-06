@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2C264D8148584156904F3F288EA215BC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2FB14A9D27A34406ACBD675470875484"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -231,12 +237,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4C4BC70BECE743D182AE9391BFC6F5CC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4DDFED5957B0484B9819FE63AF77A90E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -327,6 +327,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_75694420E3584DFCB780BDA458AB4BBF"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8204C67A77DB4BC2BBB6A6245633047E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -405,6 +411,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_95BF74D4A6F748A9BFF6389F4DFBCB8F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9AE7AB84740745E08D453666023712D2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -453,12 +465,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_ABB87718D53349EAA94C896D6829F196"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AD3AA6A5646F48558811599AC7F7DB65"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -501,12 +507,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B9BC1F189EE744BF91429CEE0D7341EA"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B9EFE32C1F414EB1B9566830D7743AB1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -544,12 +544,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C953B93FFED7409DB75CB638AC19182A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CCD0FD158DA44E879FAA5BF33F1EBE77"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -598,6 +592,12 @@
         "Entry"
         {
         "MsmKey" = "8:_DF32AD96661141B59407C120D8C19003"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E3B4C6018A034B86BEE0CE85BE68AC3D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -656,6 +656,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -996,6 +1004,26 @@
             "TargetName" = "8:Counter7.bmp"
             "Tag" = "8:"
             "Folder" = "8:_75589F39EECC4F78BB3F27F5FAC67E04"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2C264D8148584156904F3F288EA215BC"
+            {
+            "SourcePath" = "8:..\\Sounds\\swing2.mp3"
+            "TargetName" = "8:swing2.mp3"
+            "Tag" = "8:"
+            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1410,26 +1438,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4C4BC70BECE743D182AE9391BFC6F5CC"
-            {
-            "SourcePath" = "8:..\\Sounds\\lake.mp3"
-            "TargetName" = "8:lake.mp3"
-            "Tag" = "8:"
-            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4DDFED5957B0484B9819FE63AF77A90E"
             {
             "SourcePath" = "8:..\\RES\\Toolbar.bmp"
@@ -1730,6 +1738,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75694420E3584DFCB780BDA458AB4BBF"
+            {
+            "SourcePath" = "8:..\\Sounds\\goldenwind.mp3"
+            "TargetName" = "8:goldenwind.mp3"
+            "Tag" = "8:"
+            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8204C67A77DB4BC2BBB6A6245633047E"
             {
             "SourcePath" = "8:..\\RES\\gameDoc.ico"
@@ -1990,6 +2018,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95BF74D4A6F748A9BFF6389F4DFBCB8F"
+            {
+            "SourcePath" = "8:..\\Sounds\\fireball.mp3"
+            "TargetName" = "8:fireball.mp3"
+            "Tag" = "8:"
+            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9AE7AB84740745E08D453666023712D2"
             {
             "SourcePath" = "8:..\\RES\\Counter1.bmp"
@@ -2150,26 +2198,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ABB87718D53349EAA94C896D6829F196"
-            {
-            "SourcePath" = "8:..\\Sounds\\ntut.mid"
-            "TargetName" = "8:ntut.mid"
-            "Tag" = "8:"
-            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD3AA6A5646F48558811599AC7F7DB65"
             {
             "SourcePath" = "8:..\\RES\\Counter8.bmp"
@@ -2310,26 +2338,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B9BC1F189EE744BF91429CEE0D7341EA"
-            {
-            "SourcePath" = "8:..\\Sounds\\ding.wav"
-            "TargetName" = "8:ding.wav"
-            "Tag" = "8:"
-            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B9EFE32C1F414EB1B9566830D7743AB1"
             {
             "SourcePath" = "8:..\\RES\\scarecrow.bmp"
@@ -2456,26 +2464,6 @@
             "TargetName" = "8:bitmap6.bmp"
             "Tag" = "8:"
             "Folder" = "8:_75589F39EECC4F78BB3F27F5FAC67E04"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CCD0FD158DA44E879FAA5BF33F1EBE77"
-            {
-            "SourcePath" = "8:..\\Sounds\\goldenwind.mp3"
-            "TargetName" = "8:goldenwind.mp3"
-            "Tag" = "8:"
-            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2636,6 +2624,26 @@
             "TargetName" = "8:Counter3.bmp"
             "Tag" = "8:"
             "Folder" = "8:_C9CBBA461E4B4EC9B459B0B80327D14D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E3B4C6018A034B86BEE0CE85BE68AC3D"
+            {
+            "SourcePath" = "8:..\\Sounds\\swing4.mp3"
+            "TargetName" = "8:swing4.mp3"
+            "Tag" = "8:"
+            "Folder" = "8:_490B3FD2602E41BE86AA3F0A39A6ABCD"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2851,7 +2859,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:beggersword1.0"
         "ProductCode" = "8:{B34764BC-E189-455F-9D47-11FB20F6A496}"
-        "PackageCode" = "8:{02F79710-C8AB-4A2E-B68F-1AF3AC8C8AC9}"
+        "PackageCode" = "8:{790BC3A8-FF50-4BCD-A733-290C11BB83EF}"
         "UpgradeCode" = "8:{F3728275-65AA-4A35-84D8-90B72A44BCFA}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
