@@ -196,9 +196,9 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		ball = new CBall[NUMBALLS];
-		enemys1_1.push_back(new Enemy(400, 450));
-		enemys1_1.push_back(new Enemy(384, 384));
-		enemys1_1.push_back(new Enemy(500, 550));
+		enemys1_1.push_back(new Scarecrow(400, 450));
+		enemys1_1.push_back(new Scarecrow(384, 384));
+		enemys1_1.push_back(new Scarecrow(500, 550));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -233,7 +233,6 @@ namespace game_framework {
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
 		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
-		enemy1.Initialize();
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->Initialize();
 		}
