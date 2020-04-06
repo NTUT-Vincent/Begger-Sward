@@ -27,7 +27,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_42CC148A02994DCE8694A1A545BF6785"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4CD5A65C339E4FFC9F16D447758FCED0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6D2BA7082AF249C78C72454B5580C4D8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,12 +52,6 @@
         "Entry"
         {
         "MsmKey" = "8:_CFD11DE76FEC4D1B81E2A9C788698708"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D1523CD4F8E842569C61B77C28FC3B92"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -202,12 +208,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42CC148A02994DCE8694A1A545BF6785"
+            {
+            "SourcePath" = "8:Sounds\\swing2.mp3"
+            "TargetName" = "8:swing2.mp3"
+            "Tag" = "8:"
+            "Folder" = "8:_2D4D0FE8FDA34E8AB4A55CF78E6C8A47"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4CD5A65C339E4FFC9F16D447758FCED0"
             {
             "SourcePath" = "8:Bitmaps\\ball3.bmp"
             "TargetName" = "8:ball3.bmp"
             "Tag" = "8:"
             "Folder" = "8:_EA4AD5C33B81477D82013D9D4380FE5B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6D2BA7082AF249C78C72454B5580C4D8"
+            {
+            "SourcePath" = "8:Sounds\\swing4.mp3"
+            "TargetName" = "8:swing4.mp3"
+            "Tag" = "8:"
+            "Folder" = "8:_2D4D0FE8FDA34E8AB4A55CF78E6C8A47"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -248,26 +294,6 @@
             "TargetName" = "8:ball1.bmp"
             "Tag" = "8:"
             "Folder" = "8:_EA4AD5C33B81477D82013D9D4380FE5B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1523CD4F8E842569C61B77C28FC3B92"
-            {
-            "SourcePath" = "8:Sounds\\summonsrift.wav"
-            "TargetName" = "8:summonsrift.wav"
-            "Tag" = "8:"
-            "Folder" = "8:_2D4D0FE8FDA34E8AB4A55CF78E6C8A47"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1049,7 +1075,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FEB1C521B758467A98F7B43033E60D12"
             {
-            "SourcePath" = "8:Debug\\game.exe"
+            "SourcePath" = "8:Release\\game.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A62E3FBC3C2C4A6D9157A8D6CE468FB2"

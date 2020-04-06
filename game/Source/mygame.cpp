@@ -231,8 +231,6 @@ namespace game_framework {
 		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		//CAudio::Instance()->Play(AUDIO_LAKE, false);			// 撥放 WAVE
-		//CAudio::Instance()->Play(AUDIO_DING, false);		// 撥放 WAVE
 		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
 		enemy1.Initialize();
@@ -276,13 +274,11 @@ namespace game_framework {
 		for (i = 0; i < NUMBALLS; i++)
 			if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
 				ball[i].SetIsAlive(false);
-				CAudio::Instance()->Play(AUDIO_DING);
 				hits_left.Add(-1);
 				//
 				// 若剩餘碰撞次數為0，則跳到Game Over狀態
 				//
 				if (hits_left.GetInteger() <= 0) {
-					CAudio::Instance()->Stop(AUDIO_LAKE);	// 停止 WAVE
 					CAudio::Instance()->Stop(AUDIO_GOLDENWIND);	// 停止 MIDI
 					GotoGameState(GAME_STATE_OVER);
 				}
@@ -331,8 +327,6 @@ namespace game_framework {
 		corner.ShowBitmap(background);							// 將corner貼到background
 		bball.LoadBitmap();										// 載入圖形
 		hits_left.LoadBitmap();
-		CAudio::Instance()->Load(AUDIO_DING, "sounds\\ding.wav");	// 載入編號0的聲音ding.wav
-		CAudio::Instance()->Load(AUDIO_LAKE, "sounds\\lake.mp3");	// 載入編號1的聲音lake.mp3
 		CAudio::Instance()->Load(AUDIO_GOLDENWIND, "sounds\\goldenwind.mp3");	// 載入編號2的聲音ntut.mid
 		CAudio::Instance()->Load(AUDIO_SWORD, "sounds\\swing2.mp3");
 		CAudio::Instance()->Load(AUDIO_FIRE, "sounds\\fireball.mp3");
