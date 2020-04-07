@@ -103,36 +103,13 @@ namespace game_framework {
 	{
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
-		skillQShow(m);
-		if (UsingSkillBitmap()) {
+		if (isUsingSkill()) {
 			normalAttackShow();
 			skillEShow();
+			skillQShow(m);
 		}
 		else {
-			if (directionLR == 0)
-			{
-				if (isMoving()) {
-					walkingLeft.SetTopLeft(280, 280);
-					walkingLeft.OnShow();
-				}
-				else {
-					heroL.SetTopLeft(280, 280);
-					heroL.ShowBitmap();
-				}
-
-			}
-			else
-			{
-				if (isMoving()) {
-					walkingRight.SetTopLeft(280, 280);
-					walkingRight.OnShow();
-				}
-				else {
-					heroR.SetTopLeft(280, 280);
-					heroR.ShowBitmap();
-				}
-
-			}
+			heroShow();
 		}
 
 	}
@@ -184,33 +161,43 @@ namespace game_framework {
 	}
 	void Hero::SetUsingA(bool b)
 	{
-		if (b) {
-			CAudio::Instance()->Play(AUDIO_SWORD);
-		}
+		if (!isUsingSkill()) {
+			if (b) {
+				CAudio::Instance()->Play(AUDIO_SWORD);
+			}
 
-		isUsingA = b;
+			isUsingA = b;
+		}
 	}
 	void Hero::SetUsingQ(bool b)
 	{
-		if (b) {
-			CAudio::Instance()->Play(AUDIO_FIRE);
+		if (!isUsingSkill()) {
+			if (b) {
+				CAudio::Instance()->Play(AUDIO_FIRE);
+			}
+			isUsingQ = b;
 		}
-		isUsingQ = b;
 	}
 	void Hero::SetUsingW(bool b)
 	{
-		isUsingW = b;
+		if (!isUsingSkill()) {
+			isUsingW = b;
+		}
 	}
 	void Hero::SetUsingE(bool b)
 	{
-		if (b) {
-			CAudio::Instance()->Play(AUDIO_SKILLE);
+		if (!isUsingSkill()) {
+			if (b) {
+				CAudio::Instance()->Play(AUDIO_SKILLE);
+			}
+			isUsingE = b;
 		}
-		isUsingE = b;
 	}
 	void Hero::SetUsingR(bool b)
 	{
-		isUsingR = b;
+		if (!isUsingSkill()) {
+			isUsingR = b;
+		}
 	}
 
 	bool Hero::gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
@@ -254,12 +241,40 @@ namespace game_framework {
 		}
 	}
 
-	bool Hero::UsingSkillBitmap()
+	bool Hero::isUsingSkill()
 	{
-		if (isUsingA || isUsingW || isUsingE || isUsingR) {
+		if (isUsingA || isUsingQ ||isUsingW || isUsingE || isUsingR) {
 			return true;
 		}
 		return false;
+	}
+
+	void Hero::heroShow()
+	{
+		if (directionLR == 0)
+		{
+			if (isMoving()) {
+				walkingLeft.SetTopLeft(280, 280);
+				walkingLeft.OnShow();
+			}
+			else {
+				heroL.SetTopLeft(280, 280);
+				heroL.ShowBitmap();
+			}
+
+		}
+		else
+		{
+			if (isMoving()) {
+				walkingRight.SetTopLeft(280, 280);
+				walkingRight.OnShow();
+			}
+			else {
+				heroR.SetTopLeft(280, 280);
+				heroR.ShowBitmap();
+			}
+
+		}
 	}
 
 	void Hero::skillEMove()
@@ -314,14 +329,17 @@ namespace game_framework {
 
 	void Hero::skillQ()
 	{
-		fire_attack.setXY(x, y);
-		fire_attack.setFireIsFlying(true);
-		if (directionLR == 0) {
-			fire_attack.setDirection(0);
+		if (!isUsingSkill()) {
+			fire_attack.setXY(x, y);
+			fire_attack.setFireIsFlying(true);
+			if (directionLR == 0) {
+				fire_attack.setDirection(0);
+			}
+			if (directionLR == 1) {
+				fire_attack.setDirection(1);
+			}
 		}
-		if (directionLR == 1) {
-			fire_attack.setDirection(1);
-		}
+		
 	}
 
 	void Hero::skillQMove(Maps *m)
@@ -334,6 +352,7 @@ namespace game_framework {
 	void Hero::skillQShow(Maps * m)
 	{
 		if (isUsingQ) {
+			heroShow();
 			fire_attack.OnShow(m);
 			skillTimes += 1;
 			if (skillTimes > 20) {

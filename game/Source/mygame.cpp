@@ -345,8 +345,8 @@ namespace game_framework {
 		case KEY_DOWN: player1.SetMovingDown(true); break;
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: 
-			player1.SetUsingQ(true); 
 			player1.skillQ();
+			player1.SetUsingQ(true); 
 			break;
 		case KEY_W: player1.SetUsingW(true); break;
 		case KEY_E: player1.SetUsingE(true); break;

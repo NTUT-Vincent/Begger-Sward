@@ -26,11 +26,8 @@ namespace game_framework {
 		attack = 0;
 	}
 
-	Scarecrow::Scarecrow(int x, int y) 
+	Scarecrow::Scarecrow(int x, int y) : Enemy(x, y, 1200, "scarecrow")
 	{
-		_x = x;
-		_y = y;
-		hp = 1200;
 		attack = 0;
 	}
 
@@ -48,10 +45,10 @@ namespace game_framework {
 	void Scarecrow::OnShow(Maps *m)
 	{
 		if (isAlive()) {
-			enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			enemy.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 			//enemy.SetTopLeft(x, y);
 			enemy.ShowBitmap();
-			blood_bar.setXY(_x, _y+50);
+			blood_bar.setXY(GetX1(), GetY1()+50);
 			blood_bar.showBloodBar(m, hp);
 		}
 		
@@ -125,18 +122,11 @@ namespace game_framework {
 		_y = y;
 	}
 
-	void Scarecrow::offsetHP(int offset)
+	/*void Scarecrow::offsetHP(int offset)
 	{
 		hp += offset;
-	}
+	}*/
 
-	bool Scarecrow::isAlive()
-	{
-		if (hp <= 0) {
-			return false;
-		}
-		return true;
-	}
 
 	CRect * Scarecrow::GetRect()
 	{

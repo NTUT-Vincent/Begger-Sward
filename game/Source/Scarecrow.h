@@ -39,15 +39,10 @@ namespace game_framework {
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
 
-		void offsetHP(int offset) override;		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
-		bool isAlive();
+		//void offsetHP(int offset) override;		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 	private:
 		CMovingBitmap enemy;
-		BloodBar blood_bar;
-		CRect EnemyRect;
-		int _x, _y;
-		int hp;
 		int attack;
 		bool isMovingRight;
 		bool isMovingLeft;

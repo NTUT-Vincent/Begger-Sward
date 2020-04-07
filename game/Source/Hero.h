@@ -50,8 +50,8 @@ namespace game_framework {
 		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2); 
 		
 		bool isMoving();					// 在動
-		bool UsingSkillBitmap();			// 如果在用技能，return true	
-		
+		bool isUsingSkill();			// 如果在用技能，return true	
+		void heroShow();
 		void skillQ();
 		void skillQMove(Maps *m);
 		void skillQShow(Maps *m);

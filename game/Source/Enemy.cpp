@@ -25,7 +25,7 @@ namespace game_framework {
 		attack = 0;
 	}
 
-	Enemy::Enemy(int x, int y, int monsterHp) : Character("scarecrow")
+	Enemy::Enemy(int x, int y, int monsterHp, string name) : Character(name)
 	{
 		_x = x;
 		_y = y;
@@ -40,21 +40,21 @@ namespace game_framework {
 		EnemyRect = enemy.ReturnCRect();
 	}*/
 
-	void Enemy::OnMove(Maps * m) {
-		const int STEP_SIZE = 4;
-	}
+	//void Enemy::OnMove(Maps * m) {
+	//	const int STEP_SIZE = 4;
+	//}
 
-	void Enemy::OnShow(Maps *m)
-	{
-		if (isAlive()) {
-			enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
-			//enemy.SetTopLeft(x, y);
-			enemy.ShowBitmap();
-			blood_bar.setXY(_x, _y+50);
-			blood_bar.showBloodBar(m, hp);
-		}
-		
-	}
+	//void Enemy::OnShow(Maps *m)
+	//{
+	//	if (isAlive()) {
+	//		enemy.SetTopLeft(m->screenX(_x), m->screenY(_y));
+	//		//enemy.SetTopLeft(x, y);
+	//		enemy.ShowBitmap();
+	//		blood_bar.setXY(_x, _y+50);
+	//		blood_bar.showBloodBar(m, hp);
+	//	}
+	//	
+	//}
 
 	//int Enemy::GetX1()
 	//{

@@ -14,10 +14,10 @@ namespace game_framework {
 	{
 	public:
 		Enemy();						//建構子，傳給Character角色名稱
-		Enemy(int x, int y, int hp);			//建構子，設定角色初始位置給Character()，方便vector一次建立
-		virtual void LoadBitmap() = 0;				//加載敵人Bitmap
-		void OnShow(Maps *m) override;	//顯示敵人於畫面上
-		void OnMove(Maps *m);			//敵人移動
+		Enemy(int x, int y, int hp, string name);			//建構子，設定角色初始位置給Character()，方便vector一次建立
+		virtual void LoadBitmap() = 0 ;				//加載敵人Bitmap
+		virtual void OnShow(Maps *m)  = 0;	//顯示敵人於畫面上
+		virtual void OnMove(Maps *m) = 0;			//敵人移動
 
 		virtual int GetX1() = 0;					//回傳最左側X值
 		virtual int GetY1() = 0;					//回傳最上側Y值
@@ -38,11 +38,10 @@ namespace game_framework {
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
 
-		virtual void offsetHP(int offset) = 0;		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
+		virtual void offsetHP(int offset);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		bool isAlive();
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
-	private:
-		CMovingBitmap enemy;
+	protected:
 		BloodBar blood_bar;
 		CRect EnemyRect;
 		int _x, _y;
