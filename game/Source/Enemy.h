@@ -9,14 +9,15 @@ namespace game_framework {
 	// 這個class提供一個敵人													   //
 	// 他超廢，他還不會自己攻擊												   //
 	/////////////////////////////////////////////////////////////////////////////
-
+	class Hero;
 	class Enemy :public Character
 	{
 	public:
 		Enemy();						//建構子，傳給Character角色名稱
-		Enemy(int x, int y, int hp, string name);			//建構子，設定角色初始位置給Character()，方便vector一次建立
-		virtual void LoadBitmap() = 0 ;				//加載敵人Bitmap
-		virtual void OnShow(Maps *m)  = 0;	//顯示敵人於畫面上
+		Enemy(int x, int y, int hp, string name, Hero *h);			//建構子，設定角色初始位置給Character()，方便vector一次建立
+		virtual ~Enemy();
+		virtual void LoadBitmap() = 0;				//加載敵人Bitmap
+		virtual void OnShow(Maps *m) = 0;	//顯示敵人於畫面上
 		virtual void OnMove(Maps *m) = 0;			//敵人移動
 
 		virtual int GetX1() = 0;					//回傳最左側X值
@@ -41,7 +42,9 @@ namespace game_framework {
 		virtual void offsetHP(int offset);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		bool isAlive();
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
+		bool isAttack();
 	protected:
+		Hero * hero_on_map;
 		BloodBar blood_bar;
 		CRect EnemyRect;
 		int _x, _y;
@@ -51,6 +54,7 @@ namespace game_framework {
 		bool isMovingLeft;
 		bool isMovingUp;
 		bool isMovingDown;
+		bool isAttacking;
 
 	};
 }

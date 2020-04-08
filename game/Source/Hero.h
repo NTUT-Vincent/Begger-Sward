@@ -13,19 +13,19 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class Hero:public Character
+	class Hero :public Character
 	{
 	public:
 		Hero();
 		void LoadBitmap();
 		void OnShow(Maps *m) override;
 		void OnMove(Maps *m, vector<Enemy*> * enemys);
-		
+
 		int GetX1();					//回傳最左側X值
 		int GetY1();					//回傳最上側Y值
 		int GetX2();					//回傳最右側X值
 		int GetY2();					//回傳最下側Y值
-		
+
 		void Initialize();
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Hero的座標的函式們													   //
@@ -47,8 +47,9 @@ namespace game_framework {
 		// 1. 角色碰到敵人會扣血
 		// 2. 如果敵人在攻擊範圍內，且在攻擊狀態下，敵人會被扣血
 		/////////////////////////////////////////////////////////////////////////////
-		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2); 
-		
+		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
+		void offsetHp(int n);
+
 		bool isMoving();					// 在動
 		bool isUsingSkill();			// 如果在用技能，return true	
 		void heroShow();
@@ -66,11 +67,11 @@ namespace game_framework {
 
 		/*void skillR();
 		void skillRMove();
-		void skillRShow();*/						
-		
+		void skillRShow();*/
+
 		void normalAttackMove();		// 普功的Move
 		void normalAttackShow();		// 普功的Show
-		
+
 		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;

@@ -86,7 +86,7 @@ namespace game_framework {
 		}
 		if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
 		{
-			hp -= 10;
+			//hp -= 10;
 		}
 
 		m->getHeroX(x);
@@ -209,11 +209,11 @@ namespace game_framework {
 				return true;
 			}
 			//´¶¥\
-			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1+10, y2) && directionLR == 0 && isUsingA)
+			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1 + 10, y2) && directionLR == 0 && isUsingA)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
-			if (enemys->at(i)->intersect(x1 + 30, x2 + 30, y1+10, y2) && directionLR == 1 && isUsingA)
+			if (enemys->at(i)->intersect(x1 + 30, x2 + 30, y1 + 10, y2) && directionLR == 1 && isUsingA)
 			{
 				enemys->at(i)->offsetHP(-20);
 			}
@@ -231,6 +231,11 @@ namespace game_framework {
 		return false;
 	}
 
+	void Hero::offsetHp(int n)
+	{
+		hp -= n;
+	}
+
 	bool Hero::isMoving()
 	{
 		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp) {
@@ -243,7 +248,7 @@ namespace game_framework {
 
 	bool Hero::isUsingSkill()
 	{
-		if (isUsingA || isUsingQ ||isUsingW || isUsingE || isUsingR) {
+		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
 			return true;
 		}
 		return false;
@@ -339,7 +344,7 @@ namespace game_framework {
 				fire_attack.setDirection(1);
 			}
 		}
-		
+
 	}
 
 	void Hero::skillQMove(Maps *m)

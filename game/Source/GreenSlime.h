@@ -1,5 +1,5 @@
-#ifndef SCARECROW_H
-#define SCARECROW_H
+#ifndef GREENSLIME_H
+#define GREENSLIME_H
 
 #include "Maps.h"
 #include "Character.h"
@@ -11,12 +11,12 @@ namespace game_framework {
 	// 他超廢，他還不會自己攻擊												   //
 	/////////////////////////////////////////////////////////////////////////////
 
-	class Scarecrow :public Enemy
+	class GreenSlime :public Enemy
 	{
 	public:
-		Scarecrow();						//建構子，傳給Character角色名稱
-		Scarecrow(int x, int y, Hero *h);			//建構子，設定角色初始位置給Character()，方便vector一次建立
-		~Scarecrow();
+		GreenSlime();						//建構子，傳給Character角色名稱
+		GreenSlime(int x, int y, Hero *h);			//建構子，設定角色初始位置給Character()，方便vector一次建立
+		~GreenSlime();
 		void LoadBitmap();				//加載敵人Bitmap
 		void OnShow(Maps *m) override;	//顯示敵人於畫面上
 		void OnMove(Maps *m);			//敵人移動
@@ -39,6 +39,7 @@ namespace game_framework {
 		void SetMovingLeft(bool b);		//
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
+		void movement(Maps *m);
 
 		//void offsetHP(int offset) override;		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
@@ -47,6 +48,7 @@ namespace game_framework {
 		void attackShow(Maps *m);
 	private:
 		CMovingBitmap enemy;
+		CAnimation slime;
 		CAnimation attack_animation;
 		int attack_damage;
 		bool isMovingRight;

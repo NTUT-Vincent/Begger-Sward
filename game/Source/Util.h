@@ -33,5 +33,6 @@
 		AUDIO_SWORD,			// 4
 		AUDIO_FIRE,				// 5
 		AUDIO_SKILLE,			// 6
+		Audio_KNIFE,			//7
 	};
 #endif // !UTIL_H

@@ -25,12 +25,18 @@ namespace game_framework {
 		attack = 0;
 	}
 
-	Enemy::Enemy(int x, int y, int monsterHp, string name) : Character(name)
+	Enemy::Enemy(int x, int y, int monsterHp, string name, Hero *h) : Character(name)
 	{
 		_x = x;
 		_y = y;
 		hp = monsterHp;
 		attack = 0;
+		isAttacking = false;
+		hero_on_map = h;
+	}
+
+	Enemy::~Enemy()
+	{
 	}
 
 	/*void Enemy::LoadBitmap()
@@ -140,6 +146,11 @@ namespace game_framework {
 	CRect * Enemy::GetRect()
 	{
 		return &EnemyRect;
+	}
+
+	bool Enemy::isAttack()
+	{
+		return isAttacking;
 	}
 
 }

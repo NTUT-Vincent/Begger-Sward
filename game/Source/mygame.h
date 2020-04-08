@@ -48,6 +48,7 @@
 #include "Util.h"
 #include "Character.h"
 #include "Scarecrow.h"
+#include "GreenSlime.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////

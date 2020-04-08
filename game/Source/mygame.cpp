@@ -196,9 +196,10 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		ball = new CBall[NUMBALLS];
-		enemys1_1.push_back(new Scarecrow(400, 450));
-		enemys1_1.push_back(new Scarecrow(384, 384));
-		enemys1_1.push_back(new Scarecrow(500, 550));
+		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
+		enemys1_1.push_back(new Scarecrow(384, 384, &player1));
+		enemys1_1.push_back(new Scarecrow(500, 550, &player1));
+		enemys1_1.push_back(new GreenSlime(200, 400, &player1));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -231,7 +232,7 @@ namespace game_framework {
 		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
+		//CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->Initialize();
@@ -330,6 +331,7 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_SWORD, "sounds\\swing2.mp3");
 		CAudio::Instance()->Load(AUDIO_FIRE, "sounds\\fireball.mp3");
 		CAudio::Instance()->Load(AUDIO_SKILLE, "sounds\\swing4.mp3");
+		CAudio::Instance()->Load(Audio_KNIFE,  "sounds\\knife.mp3");
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//

@@ -23,12 +23,17 @@ namespace game_framework {
 		_x = 384;
 		_y = 384;
 		hp = 1200;
-		attack = 0;
+		attack_damage = 0;
 	}
 
-	Scarecrow::Scarecrow(int x, int y) : Enemy(x, y, 1200, "scarecrow")
+	Scarecrow::Scarecrow(int x, int y, Hero *h) : Enemy(x, y, 1200, "scarecrow", h)
 	{
-		attack = 0;
+		attack_damage = 20;
+		attack_cool_down = 0;
+	}
+
+	Scarecrow::~Scarecrow()
+	{
 	}
 
 	void Scarecrow::LoadBitmap()
@@ -36,22 +41,34 @@ namespace game_framework {
 		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
 		blood_bar.loadBloodBar();
 		EnemyRect = enemy.ReturnCRect();
+		/////攻擊的動畫
+		char *filename[12] = { ".\\bitmaps\\Scarecrow_attack1.bmp",".\\bitmaps\\Scarecrow_attack2.bmp",".\\bitmaps\\Scarecrow_attack3.bmp",".\\bitmaps\\Scarecrow_attack4.bmp", ".\\bitmaps\\Scarecrow_attack5.bmp", ".\\bitmaps\\Scarecrow_attack6.bmp", ".\\bitmaps\\Scarecrow_attack7.bmp", ".\\bitmaps\\Scarecrow_attack8.bmp", ".\\bitmaps\\Scarecrow_attack9.bmp", ".\\bitmaps\\Scarecrow_attack10.bmp", ".\\bitmaps\\Scarecrow_attack11.bmp", ".\\bitmaps\\Scarecrow_attack12.bmp" };
+		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+			attack_animation.AddBitmap(filename[i], RGB(0, 0, 0));
+		attack_animation.SetDelayCount(1);
 	}
 
 	void Scarecrow::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
+		attack();
+		attack_cool_down -= 1;
 	}
 
 	void Scarecrow::OnShow(Maps *m)
 	{
 		if (isAlive()) {
-			enemy.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-			//enemy.SetTopLeft(x, y);
-			enemy.ShowBitmap();
-			blood_bar.setXY(GetX1(), GetY1()+50);
-			blood_bar.showBloodBar(m, hp);
+			if (isAttacking) {
+				attackShow(m);
+			}
+			else {
+				enemy.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+				//enemy.SetTopLeft(x, y);
+				enemy.ShowBitmap();
+				blood_bar.setXY(GetX1(), GetY1() + 50);
+				blood_bar.showBloodBar(m, hp);
+			}
 		}
-		
+
 	}
 
 	int Scarecrow::GetX1()
@@ -91,7 +108,7 @@ namespace game_framework {
 			}
 		}
 		return false;
-		
+
 	}
 
 	//bool Enemy::cannotPass(Hero * hero)
@@ -122,15 +139,35 @@ namespace game_framework {
 		_y = y;
 	}
 
-	/*void Scarecrow::offsetHP(int offset)
-	{
-		hp += offset;
-	}*/
 
 
 	CRect * Scarecrow::GetRect()
 	{
 		return &EnemyRect;
+	}
+
+	void Scarecrow::attack()
+	{
+		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
+			isAttacking = true;
+			hero_on_map->offsetHp(attack_damage);
+		}
+		attack_animation.OnMove();
+		if (!isAttacking) {
+			attack_animation.Reset();
+		}
+	}
+
+	void Scarecrow::attackShow(Maps * m)
+	{
+		if (isAttacking) {
+			attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			attack_animation.OnShow();
+			if (attack_animation.IsFinalBitmap()) {
+				isAttacking = false;
+				attack_cool_down = 90; //每次攻擊間隔3秒
+			}
+		}
 	}
 
 }
