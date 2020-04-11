@@ -140,7 +140,9 @@ namespace game_framework {
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
 	}
-
+	
+	/////////////////////////////////////////////////////////////////////////////
+	
 	void Hero::SetMovingDown(bool b) {
 		isMovingDown = b;
 		directionUD = 1;
@@ -160,6 +162,9 @@ namespace game_framework {
 		isMovingRight = b;
 		directionLR = 1;
 	}
+	
+	/////////////////////////////////////////////////////////////////////////////
+	
 	void Hero::SetUsingA(bool b)
 	{
 		if (!isUsingSkill()) {
@@ -170,6 +175,7 @@ namespace game_framework {
 			isUsingA = b;
 		}
 	}
+	
 	void Hero::SetUsingQ(bool b)
 	{
 		if (!isUsingSkill() && skill_q_cool_down == 0) {
@@ -180,12 +186,14 @@ namespace game_framework {
 			isUsingQ = b;
 		}
 	}
+	
 	void Hero::SetUsingW(bool b)
 	{
 		if (!isUsingSkill()) {
 			isUsingW = b;
 		}
 	}
+	
 	void Hero::SetUsingE(bool b)
 	{
 		if (!isUsingSkill() && skill_e_cool_down <= 0) {
@@ -196,13 +204,16 @@ namespace game_framework {
 			isUsingE = b;
 		}
 	}
+	
 	void Hero::SetUsingR(bool b)
 	{
 		if (!isUsingSkill()) {
 			isUsingR = b;
 		}
 	}
-
+	
+	/////////////////////////////////////////////////////////////////////////////
+	
 	bool Hero::gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
 		for (unsigned i = 0; i < enemys->size(); i++)
@@ -238,6 +249,8 @@ namespace game_framework {
 	{
 		hp -= n;
 	}
+
+	/////////////////////////////////////////////////////////////////////////////
 
 	bool Hero::isMoving()
 	{
@@ -295,30 +308,7 @@ namespace game_framework {
 		}
 	}
 
-	void Hero::skillEMove()
-	{
-		if (skill_e_cool_down > 0) {
-			skill_e_cool_down -= 1;
-		}
-		skillE.OnMove();
-		if (!isUsingE)
-			skillE.Reset();
-	}
-
-	void Hero::skillEShow()
-	{
-		if (isUsingE) {
-			skillE.SetTopLeft(280 - 25, 280 - 15);
-			skillE.OnShow();
-			if (skillE.IsFinalBitmap()) {
-				skillTimes += 1;			//+1代表跑了一回CAnimation
-				if (skillTimes == 3) {
-					skillTimes = 0;			//跑完整個技能把skillTime設回為0
-					isUsingE = false;
-				}
-			}
-		}
-	}
+	/////////////////////////////////////////////////////////////////////////////
 
 	void Hero::normalAttackMove()
 	{
@@ -403,6 +393,33 @@ namespace game_framework {
 			}
 		}
 	}
+
+	void Hero::skillEMove()
+	{
+		if (skill_e_cool_down > 0) {
+			skill_e_cool_down -= 1;
+		}
+		skillE.OnMove();
+		if (!isUsingE)
+			skillE.Reset();
+	}
+
+	void Hero::skillEShow()
+	{
+		if (isUsingE) {
+			skillE.SetTopLeft(280 - 25, 280 - 15);
+			skillE.OnShow();
+			if (skillE.IsFinalBitmap()) {
+				skillTimes += 1;			//+1代表跑了一回CAnimation
+				if (skillTimes == 3) {
+					skillTimes = 0;			//跑完整個技能把skillTime設回為0
+					isUsingE = false;
+				}
+			}
+		}
+	}
+
+	/////////////////////////////////////////////////////////////////////////////
 
 	Hero::~Hero()
 	{

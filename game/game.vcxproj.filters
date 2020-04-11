@@ -358,5 +358,17 @@
     <Image Include="RES\beggersword.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map1-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map1-6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Source\RES\map1-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

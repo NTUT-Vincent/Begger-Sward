@@ -50,11 +50,16 @@ namespace game_framework {
 		/////////////////////////////////////////////////////////////////////////////
 		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		void offsetHp(int n);
-
+		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();
 		bool isUsingSkill();			// 如果在用技能，return true	
 		void heroShow();
+		/////////////////////////////////////////////////////////////////////////////
+		void normalAttackMove();		// 普功的Move
+		void normalAttackShow();		// 普功的Show
+		void showHeroStatus();			//顯示hp 技能冷卻時間
+		/////////////////////////////////////////////////////////////////////////////
 		void skillQ();
 		void skillQMove(Maps *m);
 		void skillQShow(Maps *m);
@@ -70,11 +75,8 @@ namespace game_framework {
 		/*void skillR();
 		void skillRMove();
 		void skillRShow();*/
-
-		void normalAttackMove();		// 普功的Move
-		void normalAttackShow();		// 普功的Show
-
-		void showHeroStatus();			//顯示hp 技能冷卻時間
+		/////////////////////////////////////////////////////////////////////////////
+		
 
 		~Hero();
 	private:

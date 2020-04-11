@@ -184,6 +184,10 @@ IDB_BITMAP7             BITMAP                  "..\\RES\\FireAttackBoom.bmp"
 
 IDB_BEGGERSWORD         BITMAP                  "..\\RES\\beggersword.bmp"
 
+IDB_MAP1_2              BITMAP                  "..\\res\\map1-2.bmp"
+
+IDB_MAP1_6              BITMAP                  "..\\res\\map1-6.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
