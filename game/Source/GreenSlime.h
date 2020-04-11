@@ -55,7 +55,9 @@ namespace game_framework {
 		bool isMovingLeft;
 		bool isMovingUp;
 		bool isMovingDown;
+		bool isAttacking;
 		int attack_cool_down;
+		int move_or_not;
 
 	};
 }

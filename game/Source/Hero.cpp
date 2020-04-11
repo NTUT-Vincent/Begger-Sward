@@ -111,7 +111,7 @@ namespace game_framework {
 		else {
 			heroShow();
 		}
-
+		showHeroStatus();
 	}
 
 	int Hero::GetX1() {
@@ -138,6 +138,7 @@ namespace game_framework {
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
+		skill_e_cool_down = skill_q_cool_down = 0;
 	}
 
 	void Hero::SetMovingDown(bool b) {
@@ -171,8 +172,9 @@ namespace game_framework {
 	}
 	void Hero::SetUsingQ(bool b)
 	{
-		if (!isUsingSkill()) {
+		if (!isUsingSkill() && skill_q_cool_down == 0) {
 			if (b) {
+				skillQ();
 				CAudio::Instance()->Play(AUDIO_FIRE);
 			}
 			isUsingQ = b;
@@ -186,7 +188,8 @@ namespace game_framework {
 	}
 	void Hero::SetUsingE(bool b)
 	{
-		if (!isUsingSkill()) {
+		if (!isUsingSkill() && skill_e_cool_down <= 0) {
+			skill_e_cool_down = 150;
 			if (b) {
 				CAudio::Instance()->Play(AUDIO_SKILLE);
 			}
@@ -246,6 +249,16 @@ namespace game_framework {
 		}
 	}
 
+	bool Hero::isAlive()
+	{
+		if (hp > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	bool Hero::isUsingSkill()
 	{
 		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
@@ -284,6 +297,9 @@ namespace game_framework {
 
 	void Hero::skillEMove()
 	{
+		if (skill_e_cool_down > 0) {
+			skill_e_cool_down -= 1;
+		}
 		skillE.OnMove();
 		if (!isUsingE)
 			skillE.Reset();
@@ -332,6 +348,22 @@ namespace game_framework {
 		}
 	}
 
+	void Hero::showHeroStatus()
+	{
+		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, *fp;
+		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 0));
+		char str[80];								// Demo 數字對字串的轉換
+		sprintf(str,"Cool Down: Q:%d E:%d   HP: %d", skill_q_cool_down / 30,skill_e_cool_down / 30, hp);
+		pDC->TextOut(0, 0, str);
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+
+	}
+
 	void Hero::skillQ()
 	{
 		if (!isUsingSkill()) {
@@ -352,6 +384,9 @@ namespace game_framework {
 		if (isUsingQ) {
 			fire_attack.OnMove(m);
 		}
+		if (skill_q_cool_down > 0) {
+			skill_q_cool_down -= 1;
+		}
 	}
 
 	void Hero::skillQShow(Maps * m)
@@ -363,6 +398,7 @@ namespace game_framework {
 			if (skillTimes > 20) {
 				isUsingQ = false;
 				fire_attack.setFireIsFlying(false);
+				skill_q_cool_down = 60;
 				skillTimes = 0;
 			}
 		}

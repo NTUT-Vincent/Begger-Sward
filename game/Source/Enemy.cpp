@@ -135,6 +135,21 @@ namespace game_framework {
 		hp += offset;
 	}
 
+	//void Enemy::showHp(Maps *m, int x, int y)
+	//{
+	//	CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+	//	CFont f, *fp;
+	//	f.CreatePointFont(80, "Times New Roman");	// 產生 font f; 160表示16 point的字
+	//	fp = pDC->SelectObject(&f);					// 選用 font f
+	//	pDC->SetBkColor(RGB(0, 0, 0));
+	//	pDC->SetTextColor(RGB(255, 255, 0));
+	//	char str[80];								// Demo 數字對字串的轉換
+	//	sprintf(str, "%d", hp);
+	//	pDC->TextOut(m->screenX(x), m->screenY(y), str);
+	//	pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+	//	CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+	//}
+
 	bool Enemy::isAlive()
 	{
 		if (hp <= 0) {

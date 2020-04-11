@@ -42,10 +42,15 @@ namespace game_framework {
 	void GreenSlime::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
-		/////攻擊的動畫
+		/////怪物的動畫
 		char *filename[3] = { ".\\bitmaps\\greenslime1.bmp",".\\bitmaps\\greenslime2.bmp",".\\bitmaps\\greenslime3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
 			slime.AddBitmap(filename[i], RGB(0, 0, 0));
+		/////攻擊的動畫
+		char *filename2[5] = { ".\\bitmaps\\greenslime_attack1.bmp",".\\bitmaps\\greenslime_attack2.bmp",".\\bitmaps\\greenslime_attack3.bmp", ".\\bitmaps\\greenslime_attack4.bmp", ".\\bitmaps\\greenslime_attack5.bmp" };
+		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
+			attack_animation.AddBitmap(filename2[i], RGB(0, 0, 0));
+		attack_animation.SetDelayCount(3);
 	}
 
 	void GreenSlime::OnMove(Maps * m) {
@@ -61,6 +66,8 @@ namespace game_framework {
 		if (isAlive()) {
 			if (isAttacking) {
 				attackShow(m);
+				blood_bar.setXY(GetX1(), GetY1() + 50);
+				blood_bar.showBloodBar(m, hp);
 			}
 			else {
 				slime.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
@@ -94,7 +101,7 @@ namespace game_framework {
 	}
 
 	void GreenSlime::Initialize() {
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		blood_bar.setFullHP(hp);
 	}
 
@@ -145,18 +152,20 @@ namespace game_framework {
 	{
 		int x = (GetX1() + GetX2()) / 2;
 		int y = (GetY1() + GetY2()) / 2;
+		int step_size = rand() % 3;
 		if (hero_on_map->GetX1() > x && m->isEmpty(x + 1, y)) {
-			_x += 1;
+			_x += step_size;
 		}
 		if (hero_on_map->GetX1() < x && m->isEmpty(x - 1, y)) {
-			_x -= 1;
+			_x -= step_size;
 		}
 		if (hero_on_map->GetY1() > y && m->isEmpty(x, y + 1)) {
-			_y += 1;
+			_y += step_size;
 		}
 		if (hero_on_map->GetY1() < y && m->isEmpty(x, y - 1)) {
-			_y -= 1;
+			_y -= step_size;
 		}
+		
 	}
 
 
@@ -168,26 +177,26 @@ namespace game_framework {
 
 	void GreenSlime::attack()
 	{
-		/*if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
+		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);
 		}
 		attack_animation.OnMove();
 		if (!isAttacking) {
 			attack_animation.Reset();
-		}*/
+		}
 	}
 
 	void GreenSlime::attackShow(Maps * m)
 	{
-		//if (isAttacking) {
-		//	attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));
-		//	attack_animation.OnShow();
-		//	if (attack_animation.IsFinalBitmap()) {
-		//		isAttacking = false;
-		//		attack_cool_down = 90; //每次攻擊間隔3秒
-		//	}
-		//}
+		if (isAttacking) {
+			attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			attack_animation.OnShow();
+			if (attack_animation.IsFinalBitmap()) {
+				isAttacking = false;
+				attack_cool_down = 90; //每次攻擊間隔3秒
+			}
+		}
 	}
 
 }

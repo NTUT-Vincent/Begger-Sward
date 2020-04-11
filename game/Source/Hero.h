@@ -25,6 +25,7 @@ namespace game_framework {
 		int GetY1();					//回傳最上側Y值
 		int GetX2();					//回傳最右側X值
 		int GetY2();					//回傳最下側Y值
+		
 
 		void Initialize();
 		/////////////////////////////////////////////////////////////////////////////
@@ -51,6 +52,7 @@ namespace game_framework {
 		void offsetHp(int n);
 
 		bool isMoving();					// 在動
+		bool isAlive();
 		bool isUsingSkill();			// 如果在用技能，return true	
 		void heroShow();
 		void skillQ();
@@ -71,6 +73,8 @@ namespace game_framework {
 
 		void normalAttackMove();		// 普功的Move
 		void normalAttackShow();		// 普功的Show
+
+		void showHeroStatus();			//顯示hp 技能冷卻時間
 
 		~Hero();
 	private:
@@ -100,6 +104,9 @@ namespace game_framework {
 		bool directionUD; // 0為上 1為下
 		int skillTimes;   // 用來數跑了幾次CAnimation。
 		Attack fire_attack;
+		///冷卻時間
+		int skill_q_cool_down; //cool down在每個skill的move function裡每秒-30
+		int skill_e_cool_down;
 	};
 }
 

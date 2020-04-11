@@ -198,8 +198,13 @@ namespace game_framework {
 		ball = new CBall[NUMBALLS];
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
 		enemys1_1.push_back(new Scarecrow(384, 384, &player1));
+		enemys1_1.push_back(new Scarecrow(400, 200, &player1));
+		enemys1_1.push_back(new Scarecrow(400, 600, &player1));
+		enemys1_1.push_back(new Scarecrow(400, 500, &player1));
 		enemys1_1.push_back(new Scarecrow(500, 550, &player1));
-		enemys1_1.push_back(new GreenSlime(200, 400, &player1));
+		enemys1_1.push_back(new GreenSlime(150, 300, &player1));
+		enemys1_1.push_back(new GreenSlime(200, 500, &player1));
+		enemys1_1.push_back(new GreenSlime(500, 500, &player1));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -232,7 +237,7 @@ namespace game_framework {
 		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
-		//CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
+		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->Initialize();
@@ -243,6 +248,9 @@ namespace game_framework {
 	{
 		first_stage_map.OnMove();
 		player1.OnMove(&first_stage_map, &enemys1_1);
+		if (!player1.isAlive()) {
+			GotoGameState(GAME_STATE_OVER);
+		}
 		//enemy1.OnMove(&first_stage_map);
 		//first_stage_map.enemysOnMove();
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
@@ -347,7 +355,6 @@ namespace game_framework {
 		case KEY_DOWN: player1.SetMovingDown(true); break;
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: 
-			player1.skillQ();
 			player1.SetUsingQ(true); 
 			break;
 		case KEY_W: player1.SetUsingW(true); break;
