@@ -43,6 +43,7 @@
 #include "CBouncingBall.h"
 #include "Maps.h"
 #include "Map1_1.h"
+#include "Map1_6.h"
 #include "Hero.h"
 #include "Enemy.h"
 #include "Util.h"
@@ -122,6 +123,7 @@ namespace game_framework {
 	private:
 		const int		NUMBALLS;	// 球的總數
 		Map1_1		first_stage_map;
+		Map1_6		second_stage_map;
 		Hero			player1;
 		vector<Enemy*>  enemys1_1;
 		CMovingBitmap	background;	// 背景圖

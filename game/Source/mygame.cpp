@@ -246,16 +246,30 @@ namespace game_framework {
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
-		first_stage_map.OnMove();
+		//////////////////////////////////////////////////第一關
+		
+		/*first_stage_map.OnMove();
 		player1.OnMove(&first_stage_map, &enemys1_1);
 		if (!player1.isAlive()) {
 			GotoGameState(GAME_STATE_OVER);
 		}
-		//enemy1.OnMove(&first_stage_map);
-		//first_stage_map.enemysOnMove();
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->OnMove(&first_stage_map);
 		}
+		sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });*/
+
+		///////////////////////////////////////////////////第二關
+
+		second_stage_map.OnMove();
+		player1.OnMove(&second_stage_map, &enemys1_1);
+		if (!player1.isAlive()) {
+			GotoGameState(GAME_STATE_OVER);
+		}
+		for (unsigned i = 0; i < enemys1_1.size(); i++) {
+			enemys1_1[i]->OnMove(&second_stage_map);
+		}
+		sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
+
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		//
@@ -288,7 +302,7 @@ namespace game_framework {
 				//
 				if (hits_left.GetInteger() <= 0) {
 					CAudio::Instance()->Stop(AUDIO_GOLDENWIND);	// 停止 MIDI
-					GotoGameState(GAME_STATE_OVER);
+					//GotoGameState(GAME_STATE_OVER);
 				}
 			}
 
@@ -297,7 +311,6 @@ namespace game_framework {
 		//
 		bball.OnMove();
 		//排序場上的Enemy依照y座標
-		sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); }); 
 	}
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -311,17 +324,16 @@ namespace game_framework {
 		// 開始載入資料
 		//
 		player1.LoadBitmap();
-		//enemy1.LoadBitmap();
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->LoadBitmap();
 		}
-		//first_stage_map.enemysLoadBitmap();
 		first_stage_map.LoadBitmap();
 		int i;
 		for (i = 0; i < NUMBALLS; i++)
 			ball[i].LoadBitmap();								// 載入第i個球的圖形
 		eraser.LoadBitmap();
 		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
+		second_stage_map.LoadBitmap();
 		//
 		// 完成部分Loading動作，提高進度
 		//
@@ -414,7 +426,6 @@ namespace game_framework {
 		//  貼上背景圖、撞擊數、球、擦子、彈跳的球
 		//
 		//ackground.ShowBitmap();			// 貼上背景圖
-		first_stage_map.OnShow();
 		//help.ShowBitmap();					// 貼上說明圖
 		//hits_left.ShowBitmap();
 		//for (int i=0; i < NUMBALLS; i++)
@@ -430,6 +441,30 @@ namespace game_framework {
 		//corner.ShowBitmap();
 		//enemy1.OnShow(&first_stage_map);
 		//first_stage_map.enemysOnShow();
+
+
+		/////////////////////////////第一關
+		//first_stage_map.OnShow();
+		//int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+		//for (unsigned i = 0; i < enemys1_1.size(); i++) {
+		//	if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+		//		hero_position = i;
+		//	}
+		//}
+		//if (hero_position == -1) {
+		//	player1.OnShow(&first_stage_map);
+		//}
+		//for (unsigned i = 0; i < enemys1_1.size(); i++) {
+		//	enemys1_1[i]->OnShow(&first_stage_map);
+		//	if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+		//		player1.OnShow(&first_stage_map);
+		//	}
+
+		//}
+
+		/////////////////////////////////////////////第二關
+
+		second_stage_map.OnShow();
 		int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
@@ -437,16 +472,15 @@ namespace game_framework {
 			}
 		}
 		if (hero_position == -1) {
-			player1.OnShow(&first_stage_map);
+			player1.OnShow(&second_stage_map);
 		}
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
-			enemys1_1[i]->OnShow(&first_stage_map);
+			enemys1_1[i]->OnShow(&second_stage_map);
 			if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-				player1.OnShow(&first_stage_map);
+				player1.OnShow(&second_stage_map);
 			}
 
 		}
-
 	}
 
 };

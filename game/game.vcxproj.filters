@@ -154,6 +154,9 @@
     <ClCompile Include="Source\GreenSlime.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Map1_6.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -226,6 +229,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\GreenSlime.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map1_6.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

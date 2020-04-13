@@ -103,13 +103,13 @@ namespace game_framework {
 	{
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
-		if (isUsingSkill()) {
+		if (isUsingSkill()) { 
 			normalAttackShow();
 			skillEShow();
 			skillQShow(m);
 		}
 		else {
-			heroShow();
+			heroShow(m);
 		}
 		showHeroStatus();
 	}
@@ -161,6 +161,12 @@ namespace game_framework {
 	void Hero::SetMovingRight(bool b) {
 		isMovingRight = b;
 		directionLR = 1;
+	}
+
+	void Hero::SetXY(int num_x, int num_y)
+	{
+		x = num_x;
+		y = num_y;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -280,16 +286,16 @@ namespace game_framework {
 		return false;
 	}
 
-	void Hero::heroShow()
+	void Hero::heroShow(Maps *m)
 	{
 		if (directionLR == 0)
 		{
 			if (isMoving()) {
-				walkingLeft.SetTopLeft(280, 280);
+				walkingLeft.SetTopLeft(m->screenX(x), m->screenY(y));
 				walkingLeft.OnShow();
 			}
 			else {
-				heroL.SetTopLeft(280, 280);
+				heroL.SetTopLeft(m->screenX(x), m->screenY(y));
 				heroL.ShowBitmap();
 			}
 
@@ -297,11 +303,11 @@ namespace game_framework {
 		else
 		{
 			if (isMoving()) {
-				walkingRight.SetTopLeft(280, 280);
+				walkingRight.SetTopLeft(m->screenX(x), m->screenY(y));
 				walkingRight.OnShow();
 			}
 			else {
-				heroR.SetTopLeft(280, 280);
+				heroR.SetTopLeft(m->screenX(x), m->screenY(y));
 				heroR.ShowBitmap();
 			}
 
@@ -382,7 +388,7 @@ namespace game_framework {
 	void Hero::skillQShow(Maps * m)
 	{
 		if (isUsingQ) {
-			heroShow();
+			heroShow(m);
 			fire_attack.OnShow(m);
 			skillTimes += 1;
 			if (skillTimes > 20) {

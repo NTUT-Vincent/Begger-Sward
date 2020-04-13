@@ -35,6 +35,7 @@ namespace game_framework {
 		void SetMovingUp(bool b);
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
+		void SetXY(int num_x, int num_y);
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Hero使用技能的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
@@ -54,7 +55,7 @@ namespace game_framework {
 		bool isMoving();					// 在動
 		bool isAlive();
 		bool isUsingSkill();			// 如果在用技能，return true	
-		void heroShow();
+		void heroShow(Maps *m);
 		/////////////////////////////////////////////////////////////////////////////
 		void normalAttackMove();		// 普功的Move
 		void normalAttackShow();		// 普功的Show
