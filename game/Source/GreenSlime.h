@@ -58,6 +58,7 @@ namespace game_framework {
 		bool isAttacking;
 		int attack_cool_down;
 		int move_or_not;
+		int time_bump_into_sth;
 
 	};
 }
