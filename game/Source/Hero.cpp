@@ -21,11 +21,11 @@ namespace game_framework {
 
 	Hero::Hero() : Character("Hero")
 	{
-		x = 480;
+		/*x = 480;
 		y = 480;
 		hp = 1200;
 		attack = 20;
-		skillTimes = 0;
+		skillTimes = 0;*/
 	}
 
 	void Hero::LoadBitmap()
@@ -133,6 +133,11 @@ namespace game_framework {
 	}
 
 	void Hero::Initialize() {
+		x = 480;
+		y = 480;
+		hp = 1200;
+		attack = 20;
+		skillTimes = 0;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = false;
 		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
 		blood_bar.setFullHP(hp);

@@ -82,7 +82,7 @@ namespace game_framework {
 		//
 		// 開始載入資料
 		//
-		logo.LoadBitmap(IDB_BEGGERSWORD);
+		logo.LoadBitmap(IDB_STARTBACKGROUND);
 		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -113,7 +113,8 @@ namespace game_framework {
 		//
 		// 貼上logo
 		//
-		logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
+		//logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
+		logo.SetTopLeft(0, 0);
 		logo.ShowBitmap();
 		//
 		// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
@@ -124,13 +125,13 @@ namespace game_framework {
 		fp = pDC->SelectObject(&f);					// 選用 font f
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));
-		pDC->TextOut(195, 180, "中文名:乞丐大劍");
-		pDC->TextOut(155, 220, "This game is namely a crap.");
+		/*pDC->TextOut(195, 180, "中文名:乞丐大劍");
+		pDC->TextOut(155, 220, "This game is namely a crap.");*/
 		//pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
 		//if (ENABLE_GAME_PAUSE)
 		//	pDC->TextOut(5, 425, "Press Ctrl-Q to pause the Game.");
-		pDC->TextOut(170, 260, "Press Space to continue.");
-		pDC->TextOut(60, 420, "107820005 廖子濬 107820012 鍾思賢");
+		//pDC->TextOut(170, 260, "Press Space to continue.");
+		//pDC->TextOut(60, 420, "107820005 廖子濬 107820012 鍾思賢");
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
@@ -195,22 +196,30 @@ namespace game_framework {
 	CGameStateRun::CGameStateRun(CGame *g)
 		: CGameState(g), NUMBALLS(28)
 	{
+		current_stage = STAGE_1_1;
 		ball = new CBall[NUMBALLS];
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
-		enemys1_1.push_back(new Scarecrow(384, 384, &player1));
+		/*enemys1_1.push_back(new Scarecrow(384, 384, &player1));
 		enemys1_1.push_back(new Scarecrow(400, 200, &player1));
 		enemys1_1.push_back(new Scarecrow(400, 600, &player1));
 		enemys1_1.push_back(new Scarecrow(400, 500, &player1));
-		enemys1_1.push_back(new Scarecrow(500, 550, &player1));
-		enemys1_1.push_back(new GreenSlime(150, 300, &player1));
-		enemys1_1.push_back(new GreenSlime(200, 500, &player1));
-		enemys1_1.push_back(new GreenSlime(500, 500, &player1));
+		enemys1_1.push_back(new Scarecrow(500, 550, &player1));*/
+		for (int i = 0; i < 5; i++) {
+			enemys1_2.push_back(new GreenSlime(200, (300 + 64*i), &player1));
+			enemys1_2.push_back(new GreenSlime(900, (300 + 64 * i), &player1));
+			enemys1_2.push_back(new GreenSlime( (200 + 64*i), 900, &player1));
+			enemys1_2.push_back(new GreenSlime((200 + 64 * i), 200, &player1));
+			enemys1_2.push_back(new Scarecrow(500, (200 + 64*i), &player1));
+		}
 	}
 
 	CGameStateRun::~CGameStateRun()
 	{
 		delete[] ball;
 		for (vector<Enemy*>::iterator it_i = enemys1_1.begin(); it_i != enemys1_1.end(); ++it_i) {
+			delete *it_i;
+		}
+		for (vector<Enemy*>::iterator it_i = enemys1_2.begin(); it_i != enemys1_2.end(); ++it_i) {
 			delete *it_i;
 		}
 	}
@@ -239,8 +248,13 @@ namespace game_framework {
 		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
 		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
+		//第一關怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->Initialize();
+		}
+		//第二關怪物
+		for (unsigned i = 0; i < enemys1_2.size(); i++) {
+			enemys1_2[i]->Initialize();
 		}
 	}
 
@@ -248,27 +262,38 @@ namespace game_framework {
 	{
 		//////////////////////////////////////////////////第一關
 		
-		/*first_stage_map.OnMove();
-		player1.OnMove(&first_stage_map, &enemys1_1);
-		if (!player1.isAlive()) {
-			GotoGameState(GAME_STATE_OVER);
+		if (current_stage == STAGE_1_1) {
+			first_stage_map.OnMove();
+			player1.OnMove(&first_stage_map, &enemys1_1);
+			if (!player1.isAlive()) {
+				GotoGameState(GAME_STATE_OVER);
+			}
+			for (unsigned i = 0; i < enemys1_1.size(); i++) {
+				enemys1_1[i]->OnMove(&first_stage_map);
+			}
+			sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
+			if (allEnemyDie(enemys1_1)) {
+				current_stage = STAGE_1_2;
+				player1.Initialize();
+			}
 		}
-		for (unsigned i = 0; i < enemys1_1.size(); i++) {
-			enemys1_1[i]->OnMove(&first_stage_map);
-		}
-		sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });*/
+		
+		
 
 		///////////////////////////////////////////////////第二關
 
-		second_stage_map.OnMove();
-		player1.OnMove(&second_stage_map, &enemys1_1);
-		if (!player1.isAlive()) {
-			GotoGameState(GAME_STATE_OVER);
+		if (current_stage == STAGE_1_2) {
+			second_stage_map.OnMove();
+			player1.OnMove(&second_stage_map, &enemys1_2);
+			if (!player1.isAlive()) {
+				GotoGameState(GAME_STATE_OVER);
+			}
+			for (unsigned i = 0; i < enemys1_2.size(); i++) {
+				enemys1_2[i]->OnMove(&second_stage_map);
+			}
+			sort(enemys1_2.begin(), enemys1_2.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
 		}
-		for (unsigned i = 0; i < enemys1_1.size(); i++) {
-			enemys1_1[i]->OnMove(&second_stage_map);
-		}
-		sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
+		
 
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
@@ -324,8 +349,15 @@ namespace game_framework {
 		// 開始載入資料
 		//
 		player1.LoadBitmap();
+
+		//第一關怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->LoadBitmap();
+		}
+
+		//第二關怪物
+		for (unsigned i = 0; i < enemys1_2.size(); i++) {
+			enemys1_2[i]->LoadBitmap();
 		}
 		first_stage_map.LoadBitmap();
 		int i;
@@ -415,6 +447,16 @@ namespace game_framework {
 		eraser.SetMovingRight(false);
 	}
 
+	bool CGameStateRun::allEnemyDie(vector<Enemy*> enemys)
+	{
+		for (unsigned i = 0; i < enemys.size(); i++) {
+			if (enemys.at(i)->isAlive()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	void CGameStateRun::OnShow()
 	{
 		//
@@ -444,43 +486,50 @@ namespace game_framework {
 
 
 		/////////////////////////////第一關
-		//first_stage_map.OnShow();
-		//int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
-		//for (unsigned i = 0; i < enemys1_1.size(); i++) {
-		//	if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
-		//		hero_position = i;
-		//	}
-		//}
-		//if (hero_position == -1) {
-		//	player1.OnShow(&first_stage_map);
-		//}
-		//for (unsigned i = 0; i < enemys1_1.size(); i++) {
-		//	enemys1_1[i]->OnShow(&first_stage_map);
-		//	if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-		//		player1.OnShow(&first_stage_map);
-		//	}
 
-		//}
+		if (current_stage == STAGE_1_1) {
+			first_stage_map.OnShow();
+			int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+			for (unsigned i = 0; i < enemys1_1.size(); i++) {
+				if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+					hero_position = i;
+				}
+			}
+			if (hero_position == -1) {
+				player1.OnShow(&first_stage_map);
+			}
+			for (unsigned i = 0; i < enemys1_1.size(); i++) {
+				enemys1_1[i]->OnShow(&first_stage_map);
+				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+					player1.OnShow(&first_stage_map);
+				}
+
+			}
+		}
+		
 
 		/////////////////////////////////////////////第二關
 
-		second_stage_map.OnShow();
-		int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
-		for (unsigned i = 0; i < enemys1_1.size(); i++) {
-			if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
-				hero_position = i;
+		if (current_stage == STAGE_1_2) {
+			second_stage_map.OnShow();
+			int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+			for (unsigned i = 0; i < enemys1_2.size(); i++) {
+				if (player1.GetY2() > enemys1_2[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+					hero_position = i;
+				}
 			}
-		}
-		if (hero_position == -1) {
-			player1.OnShow(&second_stage_map);
-		}
-		for (unsigned i = 0; i < enemys1_1.size(); i++) {
-			enemys1_1[i]->OnShow(&second_stage_map);
-			if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+			if (hero_position == -1) {
 				player1.OnShow(&second_stage_map);
 			}
+			for (unsigned i = 0; i < enemys1_2.size(); i++) {
+				enemys1_2[i]->OnShow(&second_stage_map);
+				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+					player1.OnShow(&second_stage_map);
+				}
 
+			}
 		}
+		
 	}
 
 };

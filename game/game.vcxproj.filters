@@ -376,5 +376,11 @@
     <Image Include="Source\RES\map1-2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\startbackgrond.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\startpicture.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

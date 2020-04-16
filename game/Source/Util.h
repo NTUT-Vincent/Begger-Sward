@@ -35,4 +35,9 @@
 		AUDIO_SKILLE,			// 6
 		Audio_KNIFE,			//7
 	};
+
+	enum STAGE {				// 定義各種音效的編號
+		STAGE_1_1,				
+		STAGE_1_2,
+	};
 #endif // !UTIL_H

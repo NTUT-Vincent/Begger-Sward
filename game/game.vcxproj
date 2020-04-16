@@ -382,6 +382,8 @@
     <Image Include="RES\map1-6.bmp" />
     <Image Include="RES\PLAYER1.bmp" />
     <Image Include="RES\scarecrow.bmp" />
+    <Image Include="RES\startbackgrond.bmp" />
+    <Image Include="RES\startpicture.bmp" />
     <Image Include="RES\S__4784130.bmp" />
     <Image Include="RES\walkingL1 .bmp" />
     <Image Include="RES\walkingL2.bmp" />

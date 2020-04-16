@@ -117,6 +117,7 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		bool allEnemyDie(vector<Enemy*> enemys);
 	protected:
 		void OnMove();									// 移動遊戲元素
 		void OnShow();									// 顯示這個狀態的遊戲畫面
@@ -126,6 +127,8 @@ namespace game_framework {
 		Map1_6		second_stage_map;
 		Hero			player1;
 		vector<Enemy*>  enemys1_1;
+		vector<Enemy*>  enemys1_2;
+		STAGE			current_stage;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CBall			*ball;		// 球的陣列
