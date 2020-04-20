@@ -29,6 +29,8 @@ namespace game_framework {
 	{
 		_x = x;
 		_y = y;
+		ini_x = x;
+		ini_y = y;
 		hp = monsterHp;
 		attack = 0;
 		isAttacking = false;

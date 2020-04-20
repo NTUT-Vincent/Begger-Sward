@@ -25,7 +25,6 @@ namespace game_framework {
 	{
 		_x = 384;
 		_y = 384;
-		hp = 1200;
 		attack_damage = 0;
 	}
 
@@ -101,8 +100,11 @@ namespace game_framework {
 	}
 
 	void GreenSlime::Initialize() {
+		_x = ini_x;
+		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		blood_bar.setFullHP(hp);
+		hp = 1200;
 	}
 
 	bool GreenSlime::intersect(int x1, int x2, int y1, int y2)

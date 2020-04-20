@@ -54,11 +54,12 @@ namespace game_framework {
 		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();
+		bool isInFinishArea(Maps *m);
 		bool isUsingSkill();			// 如果在用技能，return true	
 		void heroShow(Maps *m);
 		/////////////////////////////////////////////////////////////////////////////
 		void normalAttackMove();		// 普功的Move
-		void normalAttackShow();		// 普功的Show
+		void normalAttackShow(Maps *m);		// 普功的Show
 		void showHeroStatus();			//顯示hp 技能冷卻時間
 		/////////////////////////////////////////////////////////////////////////////
 		void skillQ();

@@ -104,7 +104,7 @@ namespace game_framework {
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
 		if (isUsingSkill()) { 
-			normalAttackShow();
+			normalAttackShow(m);
 			skillEShow();
 			skillQShow(m);
 		}
@@ -283,6 +283,16 @@ namespace game_framework {
 		}
 	}
 
+	bool Hero::isInFinishArea(Maps * m)
+	{
+		if (m->inFinishArea(x, y)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	bool Hero::isUsingSkill()
 	{
 		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
@@ -331,17 +341,17 @@ namespace game_framework {
 		}
 	}
 
-	void Hero::normalAttackShow()
+	void Hero::normalAttackShow(Maps *m)
 	{
 		if (directionLR == 0 && isUsingA) {
-			normalAttackL.SetTopLeft(280 - 20, 280 - 10);
+			normalAttackL.SetTopLeft(m->screenX(x) - 20, m->screenY(y) - 10);
 			normalAttackL.OnShow();
 			if (normalAttackL.IsFinalBitmap()) {
 				isUsingA = false;
 			}
 		}
 		if (directionLR == 1 && isUsingA) {
-			normalAttackR.SetTopLeft(280 - 20, 280 - 10);
+			normalAttackR.SetTopLeft(m->screenX(x) - 20, m->screenY(y) - 10);
 			normalAttackR.OnShow();
 			if (normalAttackR.IsFinalBitmap()) {
 				isUsingA = false;

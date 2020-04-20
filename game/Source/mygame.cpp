@@ -256,6 +256,9 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys1_2.size(); i++) {
 			enemys1_2[i]->Initialize();
 		}
+		current_stage = STAGE_1_1;
+		first_stage_map.Initialize();
+		second_stage_map.Initialize();
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -265,16 +268,18 @@ namespace game_framework {
 		if (current_stage == STAGE_1_1) {
 			first_stage_map.OnMove();
 			player1.OnMove(&first_stage_map, &enemys1_1);
-			if (!player1.isAlive()) {
-				GotoGameState(GAME_STATE_OVER);
-			}
 			for (unsigned i = 0; i < enemys1_1.size(); i++) {
 				enemys1_1[i]->OnMove(&first_stage_map);
 			}
 			sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
 			if (allEnemyDie(enemys1_1)) {
-				current_stage = STAGE_1_2;
-				player1.Initialize();
+				if (player1.isInFinishArea(&first_stage_map)) {
+					current_stage = STAGE_1_2;
+					player1.Initialize();
+					for (unsigned i = 0; i < enemys1_1.size(); i++) {
+						enemys1_1[i]->Initialize();
+					}
+				}
 			}
 		}
 		
@@ -285,16 +290,18 @@ namespace game_framework {
 		if (current_stage == STAGE_1_2) {
 			second_stage_map.OnMove();
 			player1.OnMove(&second_stage_map, &enemys1_2);
-			if (!player1.isAlive()) {
-				GotoGameState(GAME_STATE_OVER);
-			}
 			for (unsigned i = 0; i < enemys1_2.size(); i++) {
 				enemys1_2[i]->OnMove(&second_stage_map);
 			}
 			sort(enemys1_2.begin(), enemys1_2.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
 		}
 		
+		/////////////////////////
 
+		if (!player1.isAlive()) {
+			//itializeAllItems();
+			GotoGameState(GAME_STATE_OVER);
+		}
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
 		//

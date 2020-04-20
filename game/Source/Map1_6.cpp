@@ -56,6 +56,12 @@ namespace game_framework {
 
 	}
 
+	void Map1_6::Initialize()
+	{
+		sx = -200;
+		sy = -200;
+	}
+
 	/*void Map1_1::setPos(int x, int y) {
 		int gx = x / 64;
 		int gy = y / 64;
@@ -67,6 +73,16 @@ namespace game_framework {
 		int gx = x / 64;
 		int gy = y / 64;
 		if (map[gx][gy] == 0) {
+			return true;
+		}
+		return false;
+	}
+
+	bool Map1_6::inFinishArea(int x, int y)
+	{
+		int gx = x / 64;
+		int gy = y / 64;
+		if (map[gx][gy] == 3) {
 			return true;
 		}
 		return false;

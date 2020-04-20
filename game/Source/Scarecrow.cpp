@@ -92,6 +92,7 @@ namespace game_framework {
 	}
 
 	void Scarecrow::Initialize() {
+		hp = 1200;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
 	}

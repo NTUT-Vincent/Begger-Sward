@@ -49,6 +49,7 @@ namespace game_framework {
 		BloodBar blood_bar;
 		CRect EnemyRect;
 		int _x, _y;
+		int ini_x, ini_y;
 		int hp;
 		int attack;
 		bool isMovingRight;

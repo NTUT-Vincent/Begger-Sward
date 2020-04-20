@@ -117,6 +117,7 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
+		void InitializeAllItems();						// 如果腳色死亡，初始化英雄與地圖
 		bool allEnemyDie(vector<Enemy*> enemys);
 	protected:
 		void OnMove();									// 移動遊戲元素

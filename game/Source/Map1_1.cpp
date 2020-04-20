@@ -31,6 +31,7 @@ namespace game_framework {
 				}
 			}
 		}
+		map[5][2] = 3;
 		map[5][3] = 0;
 		map[1][4] = map[2][4] = map[8][4] = map[9][4] = map[1][5] = map[9][5] = 1;
 		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
@@ -47,6 +48,12 @@ namespace game_framework {
 
 	}
 
+	void Map1_1::Initialize()
+	{
+		sx = -200;
+		sy = -200;
+	}
+
 	/*void Map1_1::setPos(int x, int y) {
 		int gx = x / 64;
 		int gy = y / 64;
@@ -57,7 +64,17 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 0) {
+		if (map[gx][gy] != 1) {
+			return true;
+		}
+		return false;
+	}
+
+	bool Map1_1::inFinishArea(int x, int y)
+	{
+		int gx = x / 64;
+		int gy = y / 64;
+		if (map[gx][gy] == 3) {
 			return true;
 		}
 		return false;
