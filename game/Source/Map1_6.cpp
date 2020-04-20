@@ -16,8 +16,6 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	Map1_6::Map1_6() {
-		sx = -200;
-		sy = -200;
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
 				if (i > 2 && i < 21 && j >= 3 && j < 21) {
@@ -58,8 +56,8 @@ namespace game_framework {
 
 	void Map1_6::Initialize()
 	{
-		sx = -200;
-		sy = -200;
+		sx = -500;
+		sy = -1190;
 	}
 
 	/*void Map1_1::setPos(int x, int y) {
