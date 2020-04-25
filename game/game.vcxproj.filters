@@ -385,5 +385,23 @@
     <Image Include="RES\startpicture.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\blood2over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blood3over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blood4over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blood6over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blood7over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\blood8over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

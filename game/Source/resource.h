@@ -84,8 +84,14 @@
 #define IDB_MAP1_2                      204
 #define IDB_BITMAP8                     205
 #define IDB_MAP1_6                      205
-#define IDB_BITMAP7                     211
 #define IDB_STARTBACKGROUND             211
+#define IDB_BLOOD2OVER10                212
+#define IDB_BLOOD3OVER10                213
+#define IDB_BLOOD4OVER10                214
+#define IDB_BLOOD6OVER10                215
+#define IDB_BLOOD7OVER10                216
+#define IDB_BITMAP15                    217
+#define IDB_BLOOD8OVER10                217
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -98,7 +104,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        212
+#define _APS_NEXT_RESOURCE_VALUE        218
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

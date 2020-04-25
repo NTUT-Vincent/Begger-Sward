@@ -188,6 +188,18 @@ IDB_MAP1_6              BITMAP                  "..\\res\\map1-6.bmp"
 
 IDB_STARTBACKGROUND     BITMAP                  "..\\RES\\startpicture.bmp"
 
+IDB_BLOOD2OVER10        BITMAP                  "..\\RES\\blood2over10.bmp"
+
+IDB_BLOOD3OVER10        BITMAP                  "..\\RES\\blood3over10.bmp"
+
+IDB_BLOOD4OVER10        BITMAP                  "..\\RES\\blood4over10.bmp"
+
+IDB_BLOOD6OVER10        BITMAP                  "..\\RES\\blood6over10.bmp"
+
+IDB_BLOOD7OVER10        BITMAP                  "..\\RES\\blood7over10.bmp"
+
+IDB_BLOOD8OVER10        BITMAP                  "..\\RES\\blood8over10.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

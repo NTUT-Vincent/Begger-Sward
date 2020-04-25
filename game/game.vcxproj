@@ -355,7 +355,13 @@
     <Image Include="res\bitmap7.bmp" />
     <Image Include="RES\blood12.bmp" />
     <Image Include="RES\blood14.bmp" />
+    <Image Include="RES\blood2over10.bmp" />
     <Image Include="RES\blood34.bmp" />
+    <Image Include="RES\blood3over10.bmp" />
+    <Image Include="RES\blood4over10.bmp" />
+    <Image Include="RES\blood6over10.bmp" />
+    <Image Include="RES\blood7over10.bmp" />
+    <Image Include="RES\blood8over10.bmp" />
     <Image Include="RES\blood_almost_die.bmp" />
     <Image Include="RES\blood_full.bmp" />
     <Image Include="RES\blood_little_damaged.bmp" />
