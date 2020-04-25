@@ -290,6 +290,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Map1_6.cpp" />
+    <ClCompile Include="Source\Maps.cpp" />
     <ClCompile Include="Source\Scarecrow.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
