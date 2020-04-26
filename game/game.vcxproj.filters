@@ -160,6 +160,9 @@
     <ClCompile Include="Source\Maps.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayerStatus.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -235,6 +238,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Map1_6.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerStatus.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -401,6 +407,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\blood8over10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\StatusBar.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\skill_e_pic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\skill_q_fire_pic.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

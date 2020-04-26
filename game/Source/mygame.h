@@ -50,6 +50,7 @@
 #include "Character.h"
 #include "Scarecrow.h"
 #include "GreenSlime.h"
+#include "PlayerStatus.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -124,6 +125,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
+		PlauerStatus player_status;
 		Map1_1		first_stage_map;
 		Map1_6		second_stage_map;
 		Hero			player1;

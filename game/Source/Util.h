@@ -40,4 +40,11 @@
 		STAGE_1_1,				
 		STAGE_1_2,
 	};
+
+	enum ELEMENT_ATTRIBUTE {
+		FIEE,
+		WATER,
+
+	};
+
 #endif // !UTIL_H

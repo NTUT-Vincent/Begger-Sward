@@ -200,6 +200,12 @@ IDB_BLOOD7OVER10        BITMAP                  "..\\RES\\blood7over10.bmp"
 
 IDB_BLOOD8OVER10        BITMAP                  "..\\RES\\blood8over10.bmp"
 
+IDB_STATUSBAR           BITMAP                  "..\\RES\\StatusBar.bmp"
+
+IDB_SKILLEPIC           BITMAP                  "..\\RES\\skill_e_pic.bmp"
+
+IDB_SKILLQFIREPIC       BITMAP                  "..\\RES\\skill_q_fire_pic.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

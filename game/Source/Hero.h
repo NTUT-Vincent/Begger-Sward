@@ -25,7 +25,10 @@ namespace game_framework {
 		int GetY1();					//回傳最上側Y值
 		int GetX2();					//回傳最右側X值
 		int GetY2();					//回傳最下側Y值
-		
+		int GetQCoolDown();
+		int GetECoolDown();
+		int getHP();
+		ELEMENT_ATTRIBUTE getCurrentAttribute();
 
 		void Initialize();
 		/////////////////////////////////////////////////////////////////////////////
@@ -44,6 +47,7 @@ namespace game_framework {
 		void SetUsingW(bool b);
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
+		void SetElementAttribute(ELEMENT_ATTRIBUTE e);
 		/////////////////////////////////////////////////////////////////////////////
 		// 前身是cantPass，應該是本程式最重要的函式之一
 		// 1. 角色碰到敵人會扣血
@@ -93,6 +97,7 @@ namespace game_framework {
 		int x, y;
 		int hp;
 		int attack;
+		ELEMENT_ATTRIBUTE current_attribute;
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;

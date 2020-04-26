@@ -259,6 +259,7 @@ namespace game_framework {
 		current_stage = STAGE_1_1;
 		first_stage_map.Initialize();
 		second_stage_map.Initialize();
+		player_status.Initialize(&player1);
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
@@ -357,7 +358,7 @@ namespace game_framework {
 		// 開始載入資料
 		//
 		player1.LoadBitmap();
-
+		player_status.loadPlauerStatus();
 		//第一關怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->LoadBitmap();
@@ -537,6 +538,8 @@ namespace game_framework {
 
 			}
 		}
+
+		player_status.showPlauerStatus();
 		
 	}
 

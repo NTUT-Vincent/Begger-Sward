@@ -132,6 +132,26 @@ namespace game_framework {
 		return y + heroR.Height();
 	}
 
+	int Hero::GetQCoolDown()
+	{
+		return skill_q_cool_down/30;
+	}
+
+	int Hero::GetECoolDown()
+	{
+		return skill_e_cool_down/30;
+	}
+
+	int Hero::getHP()
+	{
+		return hp;
+	}
+
+	ELEMENT_ATTRIBUTE Hero::getCurrentAttribute()
+	{
+		return current_attribute;
+	}
+
 	void Hero::Initialize() {
 		x = 480;
 		y = 480;
@@ -221,6 +241,11 @@ namespace game_framework {
 		if (!isUsingSkill()) {
 			isUsingR = b;
 		}
+	}
+
+	void Hero::SetElementAttribute(ELEMENT_ATTRIBUTE e)
+	{
+		current_attribute = e;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
