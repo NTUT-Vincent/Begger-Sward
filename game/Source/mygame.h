@@ -38,9 +38,6 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
-#include "CEraser.h"
-#include "CBall.h"
-#include "CBouncingBall.h"
 #include "Maps.h"
 #include "Map1_1.h"
 #include "Map1_6.h"
@@ -134,11 +131,8 @@ namespace game_framework {
 		STAGE			current_stage;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
-		CBall			*ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖
-		CEraser			eraser;		// 拍子
 		CInteger		hits_left;	// 剩下的撞擊數
-		CBouncingBall   bball;		// 反覆彈跳的球
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
