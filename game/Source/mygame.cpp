@@ -197,7 +197,6 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		current_stage = STAGE_1_1;
-		ball = new CBall[NUMBALLS];
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
 		/*enemys1_1.push_back(new Scarecrow(384, 384, &player1));
 		enemys1_1.push_back(new Scarecrow(400, 200, &player1));
@@ -215,7 +214,6 @@ namespace game_framework {
 
 	CGameStateRun::~CGameStateRun()
 	{
-		delete[] ball;
 		for (vector<Enemy*>::iterator it_i = enemys1_1.begin(); it_i != enemys1_1.end(); ++it_i) {
 			delete *it_i;
 		}
@@ -234,18 +232,6 @@ namespace game_framework {
 		const int HITS_LEFT_Y = 0;
 		const int BACKGROUND_X = 60;
 		const int ANIMATION_SPEED = 15;
-		for (int i = 0; i < NUMBALLS; i++) {				// 設定球的起始座標
-			int x_pos = i % BALL_PER_ROW;
-			int y_pos = i / BALL_PER_ROW;
-			ball[i].SetXY(x_pos * BALL_GAP + BALL_XY_OFFSET, y_pos * BALL_GAP + BALL_XY_OFFSET);
-			ball[i].SetDelay(x_pos);
-			ball[i].SetIsAlive(true);
-		}
-		eraser.Initialize();
-		background.SetTopLeft(BACKGROUND_X, 0);				// 設定背景的起始座標
-		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
-		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
-		hits_left.SetTopLeft(HITS_LEFT_X, HITS_LEFT_Y);		// 指定剩下撞擊數的座標
 		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
 		//第一關怪物
@@ -314,37 +300,6 @@ namespace game_framework {
 		if (background.Top() > SIZE_Y)
 			background.SetTopLeft(60, -background.Height());
 		background.SetTopLeft(background.Left(), background.Top() + 1);
-		//
-		// 移動球
-		//
-		int i;
-		for (i = 0; i < NUMBALLS; i++)
-			ball[i].OnMove();
-		//
-		// 移動擦子
-		//
-		eraser.OnMove();
-		//
-		// 判斷擦子是否碰到球
-		//
-		for (i = 0; i < NUMBALLS; i++)
-			if (ball[i].IsAlive() && ball[i].HitEraser(&eraser)) {
-				ball[i].SetIsAlive(false);
-				hits_left.Add(-1);
-				//
-				// 若剩餘碰撞次數為0，則跳到Game Over狀態
-				//
-				if (hits_left.GetInteger() <= 0) {
-					CAudio::Instance()->Stop(AUDIO_GOLDENWIND);	// 停止 MIDI
-					//GotoGameState(GAME_STATE_OVER);
-				}
-			}
-
-		//
-		// 移動彈跳的球
-		//
-		bball.OnMove();
-		//排序場上的Enemy依照y座標
 	}
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -369,10 +324,6 @@ namespace game_framework {
 			enemys1_2[i]->LoadBitmap();
 		}
 		first_stage_map.LoadBitmap();
-		int i;
-		for (i = 0; i < NUMBALLS; i++)
-			ball[i].LoadBitmap();								// 載入第i個球的圖形
-		eraser.LoadBitmap();
 		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 		second_stage_map.LoadBitmap();
 		//
@@ -386,7 +337,6 @@ namespace game_framework {
 		help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
 		corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 		corner.ShowBitmap(background);							// 將corner貼到background
-		bball.LoadBitmap();										// 載入圖形
 		hits_left.LoadBitmap();
 		CAudio::Instance()->Load(AUDIO_GOLDENWIND, "sounds\\goldenwind.mp3");	// 載入編號2的聲音ntut.mid
 		CAudio::Instance()->Load(AUDIO_SWORD, "sounds\\swing2.mp3");
@@ -407,9 +357,7 @@ namespace game_framework {
 		case KEY_UP: player1.SetMovingUp(true); break;
 		case KEY_DOWN: player1.SetMovingDown(true); break;
 		case KEY_A: player1.SetUsingA(true); break;
-		case KEY_Q: 
-			player1.SetUsingQ(true); 
-			break;
+		case KEY_Q: player1.SetUsingQ(true); break;
 		case KEY_W: player1.SetUsingW(true); break;
 		case KEY_E: player1.SetUsingE(true); break;
 		case KEY_R: player1.SetUsingR(true); break;
@@ -448,12 +396,12 @@ namespace game_framework {
 
 	void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		eraser.SetMovingRight(true);
+
 	}
 
 	void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		eraser.SetMovingRight(false);
+
 	}
 
 	bool CGameStateRun::allEnemyDie(vector<Enemy*> enemys)
