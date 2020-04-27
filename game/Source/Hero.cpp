@@ -320,7 +320,7 @@ namespace game_framework {
 
 	bool Hero::isUsingSkill()
 	{
-		if (isUsingA || isUsingQ || isUsingW || isUsingE || isUsingR) {
+		if (isUsingA || isUsingQ || isUsingE ) {
 			return true;
 		}
 		return false;
