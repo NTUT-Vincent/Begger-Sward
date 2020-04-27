@@ -159,18 +159,21 @@ namespace game_framework {
 		int x = GetX1();
 		int y = GetY1() + 64;
 		int step_size = rand() % 3;
-		if (hero_on_map->GetX1() > x && m->isEmpty(x + step_size, y)) {
-			_x += step_size;
+		if (distanceToHero() < 500) {
+			if (hero_on_map->GetX1() > x && m->isEmpty(x + step_size, y)) {
+				_x += step_size;
+			}
+			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y)) {
+				_x -= step_size;
+			}
+			if (hero_on_map->GetY1() > y && m->isEmpty(x, y + step_size)) {
+				_y += step_size;
+			}
+			if (hero_on_map->GetY1() < y && m->isEmpty(x, y - step_size)) {
+				_y -= step_size;
+			}
 		}
-		if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y)) {
-			_x -= step_size;
-		}
-		if (hero_on_map->GetY1() > y && m->isEmpty(x, y + step_size)) {
-			_y += step_size;
-		}
-		if (hero_on_map->GetY1() < y && m->isEmpty(x, y - step_size)) {
-			_y -= step_size;
-		}
+		
 		
 	}
 

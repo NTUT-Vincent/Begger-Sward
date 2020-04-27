@@ -5,6 +5,8 @@
 
 #include "Maps.h"
 #include "Character.h"
+#include "Util.h"
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -18,10 +20,10 @@ namespace game_framework {
 		void loadBitmap();
 		void OnMove(Maps *m);
 		void OnShow(Maps *m);
-		void setAttribute(int n);
+		void setAttribute(ELEMENT_ATTRIBUTE attribute);
 		void setXY(int x, int y);
 		void setDirection(int direction);
-		void setFireIsFlying(bool b);
+		void setAttackIsFlying(bool b);
 		int getX1();
 		int getX2();
 		int getY1();
@@ -29,10 +31,11 @@ namespace game_framework {
 	private:
 		CMovingBitmap fire_attack;
 		CMovingBitmap fire_attack_boom;
+		CMovingBitmap ice_attack;
 		int _x, _y;
 		int _direction; //0=left, 1=right
-		int _attribute; //1=fire
-		bool _fireIsFlying;
+		ELEMENT_ATTRIBUTE _attribute;
+		bool _attackIsFlying;
 	};
 }
 

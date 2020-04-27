@@ -37,6 +37,13 @@ namespace game_framework {
 	{
 	}
 
+	int Enemy::distanceToHero()
+	{
+		int x_distance = _x - hero_on_map->GetX1();
+		int y_distance = _y - hero_on_map->GetY1();
+		return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
+	}
+
 	void Enemy::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
