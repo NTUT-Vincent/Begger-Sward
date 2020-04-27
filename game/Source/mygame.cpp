@@ -263,10 +263,8 @@ namespace game_framework {
 				if (player1.isInFinishArea(&first_stage_map)) {
 					current_stage = STAGE_1_2;
 					player1.Initialize();
-					player1.SetXY(780, 1470);
-					for (unsigned i = 0; i < enemys1_1.size(); i++) {
-						enemys1_1[i]->Initialize();
-					}
+					player1.SetXY(270-second_stage_map.getSX(), 270-second_stage_map.getSY());
+					
 				}
 			}
 		}
