@@ -23,8 +23,18 @@
 	const char KEY_W = 0x57;
 	const char KEY_E = 0x45;
 	const char KEY_R = 0x52;
-	const char Z_1 = 0x5A;
+	const char CTRL = 17;
+	const char NUM_0 = 0x30;	
 	const char NUM_1 = 0x31;
+	const char NUM_2 = 0x32;
+	const char NUM_3 = 0x33;
+	const char NUM_4 = 0x34;
+	const char NUM_5 = 0x35;
+	const char NUM_6 = 0x36;
+	const char NUM_7 = 0x37;
+	const char NUM_8 = 0x38;
+	const char NUM_9 = 0x39	;
+
 
 	///音效
 	enum AUDIO_ID {				// 定義各種音效的編號
