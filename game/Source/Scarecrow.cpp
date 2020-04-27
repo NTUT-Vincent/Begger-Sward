@@ -10,6 +10,7 @@
 #include "Maps.h"
 #include "Enemy.h"
 #include "Scarecrow.h"
+#include "Util.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -26,7 +27,7 @@ namespace game_framework {
 		attack_damage = 0;
 	}
 
-	Scarecrow::Scarecrow(int x, int y, Hero *h) : Enemy(x, y, 1200, "scarecrow", h)
+	Scarecrow::Scarecrow(int x, int y, Hero *h) : Enemy(x, y, 1200, "scarecrow", h, PLANT)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;

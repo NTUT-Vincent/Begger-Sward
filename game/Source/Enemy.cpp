@@ -25,7 +25,7 @@ namespace game_framework {
 		attack = 0;
 	}
 
-	Enemy::Enemy(int x, int y, int monsterHp, string name, Hero *h) : Character(name)
+	Enemy::Enemy(int x, int y, int monsterHp, string name, Hero *h, ELEMENT_ATTRIBUTE a) : Character(name)
 	{
 		_x = x;
 		_y = y;
@@ -35,6 +35,7 @@ namespace game_framework {
 		attack = 0;
 		isAttacking = false;
 		hero_on_map = h;
+		_attribute = a;
 	}
 
 	Enemy::~Enemy()
@@ -132,10 +133,20 @@ namespace game_framework {
 		_y = y;
 	}
 
-	void Enemy::offsetHP(int offset)
+	void Enemy::offsetHP(int offset, ELEMENT_ATTRIBUTE attribute)
 	{
-		hp += offset;
+		if (isCounterAttribute(_attribute, attribute)) {
+			hp += (offset * 2);
+		}
+		else if (isCounterAttribute(attribute, _attribute)) {
+			hp += (offset / 2);
+		}
+		else {
+			hp += offset;
+		}
 	}
+		
+	
 
 	//void Enemy::showHp(Maps *m, int x, int y)
 	//{
@@ -168,6 +179,26 @@ namespace game_framework {
 	bool Enemy::isAttack()
 	{
 		return isAttacking;
+	}
+
+	bool Enemy::isCounterAttribute(ELEMENT_ATTRIBUTE a, ELEMENT_ATTRIBUTE b)
+	{
+		if (a == FIRE) {
+			if (b == ICE) {
+				return true;
+			}
+		}
+		if (a == ICE) {
+			if (b == PLANT) {
+				return true;
+			}
+		}
+		if (a == PLANT) {
+			if (b == FIRE) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

@@ -41,7 +41,7 @@ namespace game_framework {
 		void SetXY(int x, int y);		//
 		void movement(Maps *m);
 
-		//void offsetHP(int offset) override;		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
+		//void attacked(int n, ELEMENT_ATTRIBUTE a);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		//用來攻擊的
 		void attack();

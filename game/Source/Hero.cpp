@@ -149,7 +149,7 @@ namespace game_framework {
 
 	ELEMENT_ATTRIBUTE Hero::getCurrentAttribute()
 	{
-		return current_attribute;
+		return _attribute;
 	}
 
 	void Hero::Initialize() {
@@ -164,6 +164,7 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
+		_attribute = FIRE;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -245,7 +246,7 @@ namespace game_framework {
 
 	void Hero::SetElementAttribute(ELEMENT_ATTRIBUTE e)
 	{
-		current_attribute = e;
+		_attribute = e;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -261,21 +262,21 @@ namespace game_framework {
 			//普功
 			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1 + 10, y2) && directionLR == 0 && isUsingA)
 			{
-				enemys->at(i)->offsetHP(-20);
+				enemys->at(i)->offsetHP(-20, _attribute);
 			}
 			if (enemys->at(i)->intersect(x1 + 30, x2 + 30, y1 + 10, y2) && directionLR == 1 && isUsingA)
 			{
-				enemys->at(i)->offsetHP(-20);
+				enemys->at(i)->offsetHP(-20, _attribute);
 			}
 			//Q技能
 			if (enemys->at(i)->intersect(fire_attack.getX1(), fire_attack.getX2(), fire_attack.getY1(), fire_attack.getY2()) && isUsingQ)
 			{
-				enemys->at(i)->offsetHP(-20);
+				enemys->at(i)->offsetHP(-20, _attribute);
 			}
 			//E技能
 			if (enemys->at(i)->intersect(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
 			{
-				enemys->at(i)->offsetHP(-20);
+				enemys->at(i)->offsetHP(-20, _attribute);
 			}
 		}
 		return false;

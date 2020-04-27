@@ -97,7 +97,8 @@ namespace game_framework {
 		int x, y;
 		int hp;
 		int attack;
-		ELEMENT_ATTRIBUTE current_attribute;
+		ELEMENT_ATTRIBUTE _attribute;
+		
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;

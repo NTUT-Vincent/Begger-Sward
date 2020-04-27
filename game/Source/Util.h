@@ -42,8 +42,9 @@
 	};
 
 	enum ELEMENT_ATTRIBUTE {
-		FIEE,
-		WATER,
+		FIRE,					//火屬性
+		ICE,					//冰屬性
+		PLANT,					//植物屬性
 
 	};
 

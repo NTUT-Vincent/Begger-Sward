@@ -13,6 +13,7 @@
 #include "Enemy.h"
 #include "Scarecrow.h"
 #include "GreenSlime.h"
+#include "Util.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -28,7 +29,7 @@ namespace game_framework {
 		attack_damage = 0;
 	}
 
-	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h)
+	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h, PLANT)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
@@ -54,10 +55,12 @@ namespace game_framework {
 
 	void GreenSlime::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
-		attack();
-		attack_cool_down -= 1;
-		slime.OnMove();
-		movement(m);
+		if (isAlive()) {
+			attack();
+			attack_cool_down -= 1;
+			slime.OnMove();
+			movement(m);
+		}
 	}
 
 	void GreenSlime::OnShow(Maps *m)
@@ -170,6 +173,7 @@ namespace game_framework {
 		}
 		
 	}
+
 
 
 

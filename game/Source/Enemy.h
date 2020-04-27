@@ -4,6 +4,7 @@
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"
+#include "Util.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
@@ -14,7 +15,7 @@ namespace game_framework {
 	{
 	public:
 		Enemy();						//建構子，傳給Character角色名稱
-		Enemy(int x, int y, int hp, string name, Hero *h);			//建構子，設定角色初始位置給Character()，方便vector一次建立
+		Enemy(int x, int y, int hp, string name, Hero *h, ELEMENT_ATTRIBUTE a);			//建構子，設定角色初始位置給Character()，方便vector一次建立
 		virtual ~Enemy();
 		virtual void LoadBitmap() = 0;				//加載敵人Bitmap
 		virtual void OnShow(Maps *m) = 0;	//顯示敵人於畫面上
@@ -39,11 +40,12 @@ namespace game_framework {
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
 
-		virtual void offsetHP(int offset);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
+		virtual void offsetHP(int offset, ELEMENT_ATTRIBUTE attribute);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		//void showHp(Maps *m, int x, int y);
 		bool isAlive();
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		bool isAttack();
+		bool isCounterAttribute(ELEMENT_ATTRIBUTE a, ELEMENT_ATTRIBUTE b);
 	protected:
 		Hero * hero_on_map;
 		BloodBar blood_bar;
@@ -57,7 +59,7 @@ namespace game_framework {
 		bool isMovingUp;
 		bool isMovingDown;
 		bool isAttacking;
-
+		ELEMENT_ATTRIBUTE _attribute;
 	};
 }
 
