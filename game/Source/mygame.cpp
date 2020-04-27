@@ -248,46 +248,58 @@ namespace game_framework {
 		player_status.Initialize(&player1);
 	}
 
+	void CGameStateRun::stage_process(Maps & stage_map, Hero & player, vector<Enemy*> & enemy_array, STAGE next_stage)
+	{
+		player.OnMove(&stage_map, &enemy_array);
+		for (unsigned i = 0; i < enemy_array.size(); i++) {
+			enemy_array[i]->OnMove(&stage_map);
+		}
+		sort(enemy_array.begin(), enemy_array.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
+		int next_x, next_y = 0;
+		switch (next_stage)
+		{
+		case STAGE_1_2: next_x = 780; next_y = 1470;
+			break;
+		}
+		if (allEnemyDie(enemy_array))
+		{
+			if (player.isInFinishArea(&stage_map))
+			{
+				current_stage = next_stage;
+				player.Initialize();
+				player.SetXY(next_x, next_y);
+			}
+		}
+	}
+
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
 		//////////////////////////////////////////////////第一關
 		
-		if (current_stage == STAGE_1_1) {
-			first_stage_map.OnMove();
-			player1.OnMove(&first_stage_map, &enemys1_1);
-			for (unsigned i = 0; i < enemys1_1.size(); i++) {
-				enemys1_1[i]->OnMove(&first_stage_map);
-			}
-			sort(enemys1_1.begin(), enemys1_1.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
-			if (allEnemyDie(enemys1_1)) {
-				if (player1.isInFinishArea(&first_stage_map)) {
-					current_stage = STAGE_1_2;
-					player1.Initialize();
-					player1.SetXY(780, 1470);
-					for (unsigned i = 0; i < enemys1_1.size(); i++) {
-						enemys1_1[i]->Initialize();
+		
+
+		switch (current_stage) {
+			case STAGE_1_1:
+				stage_process(first_stage_map, player1, enemys1_1, STAGE_1_2);
+				break;
+			case STAGE_1_2:
+				if (current_stage == STAGE_1_2) {
+					player1.OnMove(&second_stage_map, &enemys1_2);
+					for (unsigned i = 0; i < enemys1_2.size(); i++) {
+						enemys1_2[i]->OnMove(&second_stage_map);
 					}
+					sort(enemys1_2.begin(), enemys1_2.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
 				}
-			}
+				break;
 		}
-		
-		
 
 		///////////////////////////////////////////////////第二關
 
-		if (current_stage == STAGE_1_2) {
-			second_stage_map.OnMove();
-			player1.OnMove(&second_stage_map, &enemys1_2);
-			for (unsigned i = 0; i < enemys1_2.size(); i++) {
-				enemys1_2[i]->OnMove(&second_stage_map);
-			}
-			sort(enemys1_2.begin(), enemys1_2.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
-		}
+		
 		
 		/////////////////////////
 
 		if (!player1.isAlive()) {
-			//itializeAllItems();
 			GotoGameState(GAME_STATE_OVER);
 		}
 		//

@@ -50,39 +50,6 @@
 #include "PlayerStatus.h"
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// Constants
-	/////////////////////////////////////////////////////////////////////////////
-
-
-//class Hero
-//{
-//public:
-//	Hero();
-//	void LoadBitmap();
-//	void OnShow();
-//	void OnMove(Map *m);
-//	int getX();
-//	int getY();
-//	void Initialize();
-//	void SetMovingDown(bool b);
-//	void SetMovingUp(bool b);
-//	void SetMovingLeft(bool b);
-//	void SetMovingRight(bool b);
-//private:
-//	CMovingBitmap player;
-//	int x, y;
-//	bool isMovingRight;
-//	bool isMovingLeft;
-//	bool isMovingUp;
-//	bool isMovingDown;
-//
-//};
-
-	/////////////////////////////////////////////////////////////////////////////
-	// 這個class為遊戲的遊戲開頭畫面物件
-	// 每個Member function的Implementation都要弄懂
-	/////////////////////////////////////////////////////////////////////////////
 
 	class CGameStateInit : public CGameState {
 	public:
@@ -107,6 +74,7 @@ namespace game_framework {
 		CGameStateRun(CGame *g);
 		~CGameStateRun();
 		void OnBeginState();							// 設定每次重玩所需的變數
+		void stage_process(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage);
 		void OnInit();  								// 遊戲的初值及圖形設定
 		void OnKeyDown(UINT, UINT, UINT);
 		void OnKeyUp(UINT, UINT, UINT);
@@ -115,7 +83,6 @@ namespace game_framework {
 		void OnMouseMove(UINT nFlags, CPoint point);	// 處理滑鼠的動作 
 		void OnRButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 		void OnRButtonUp(UINT nFlags, CPoint point);	// 處理滑鼠的動作
-		void InitializeAllItems();						// 如果腳色死亡，初始化英雄與地圖
 		bool allEnemyDie(vector<Enemy*> enemys);
 	protected:
 		void OnMove();									// 移動遊戲元素
