@@ -18,23 +18,24 @@ namespace game_framework {
 	{
 		_x = x;
 		_y = y;
-		_attribute = 0;
+		_attribute = FIRE;
 		_direction = 0;
-		_fireIsFlying = false;
+		_attackIsFlying = false;
 	}
 
 	Attack::Attack()
 	{
 		_x = 280;
 		_y = 280;
-		_attribute = 0;
+		_attribute = FIRE;
 		_direction = 0;
-		_fireIsFlying = false;
+		_attackIsFlying = false;
 	}
 
 	void Attack::loadBitmap()
 	{
 		fire_attack.LoadBitmap(IDB_FIREATTACK, RGB(0, 0, 0));
+		ice_attack.LoadBitmap(IDB_ATTACK1, RGB(0, 0, 0));
 	}
 
 	void Attack::OnMove(Maps * m)
@@ -54,20 +55,29 @@ namespace game_framework {
 
 	void Attack::OnShow(Maps * m)
 	{
-		if (m->isEmpty(_x, _y)) {
-			fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-			fire_attack.ShowBitmap();
+		if (_attribute == FIRE) {
+			if (m->isEmpty(_x, _y)) {
+				fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				fire_attack.ShowBitmap();
+			}
 		}
+		if (_attribute == ICE) {
+			if (m->isEmpty(_x, _y)) {
+				ice_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				ice_attack.ShowBitmap();
+			}
+		}
+		
 	}
 
-	void Attack::setAttribute(int n)
+	void Attack::setAttribute(ELEMENT_ATTRIBUTE attribute)
 	{
-		_attribute = n;
+		_attribute = attribute;
 	}
 
 	void Attack::setXY(int x, int y)
 	{
-		if (!_fireIsFlying) {
+		if (!_attackIsFlying) {
 			_x = x;
 			_y = y;
 		}
@@ -79,9 +89,9 @@ namespace game_framework {
 		_direction = direction;
 	}
 
-	void Attack::setFireIsFlying(bool b)
+	void Attack::setAttackIsFlying(bool b)
 	{
-		_fireIsFlying = b;
+		_attackIsFlying = b;
 	}
 
 	int Attack::getX1()
@@ -91,7 +101,14 @@ namespace game_framework {
 
 	int Attack::getX2()
 	{
-		return _x + fire_attack.Width();
+		if (_attribute == FIRE) {
+			return _x + fire_attack.Width();
+		}
+		if (_attribute == ICE) {
+			return _x + ice_attack.Width();
+		}
+		return _x;
+		
 	}
 
 	int Attack::getY1()
@@ -101,7 +118,13 @@ namespace game_framework {
 
 	int Attack::getY2()
 	{
-		return _y + fire_attack.Height();
+		if (_attribute == FIRE) {
+			return _y + fire_attack.Height();
+		}
+		if (_attribute == ICE) {
+			return _y + ice_attack.Height();
+		}
+		return _y;
 	}
 
 }

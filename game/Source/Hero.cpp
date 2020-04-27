@@ -162,7 +162,7 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
-		_attribute = FIRE;
+		_attribute = ICE;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -403,7 +403,7 @@ namespace game_framework {
 	{
 		if (!isUsingSkill()) {
 			fire_attack.setXY(x, y);
-			fire_attack.setFireIsFlying(true);
+			fire_attack.setAttackIsFlying(true);
 			if (directionLR == 0) {
 				fire_attack.setDirection(0);
 			}
@@ -422,6 +422,7 @@ namespace game_framework {
 		if (skill_q_cool_down > 0) {
 			skill_q_cool_down -= 1;
 		}
+		fire_attack.setAttribute(_attribute);
 	}
 
 	void Hero::skillQShow(Maps * m)
@@ -432,7 +433,7 @@ namespace game_framework {
 			skillTimes += 1;
 			if (skillTimes > 20) {
 				isUsingQ = false;
-				fire_attack.setFireIsFlying(false);
+				fire_attack.setAttackIsFlying(false);
 				skill_q_cool_down = 60;
 				skillTimes = 0;
 			}

@@ -29,7 +29,7 @@ namespace game_framework {
 		virtual void Initialize() = 0;				//初始化
 										//英雄是否和此敵人所在同一位置，前身是cannotPass
 		virtual bool intersect(int x1, int x2, int y1, int y2) = 0;
-
+		int distanceToHero();
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Enemy的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@ namespace game_framework {
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
 
-		virtual void offsetHP(int offset, ELEMENT_ATTRIBUTE attribute);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
+		void offsetHP(int offset, ELEMENT_ATTRIBUTE attribute);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		//void showHp(Maps *m, int x, int y);
 		bool isAlive();
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
