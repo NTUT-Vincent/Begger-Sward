@@ -12,7 +12,7 @@ namespace game_framework {
 	// 這個class提供繞圈圈的球
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
-
+	class Enemy;
 	class Hero :public Character
 	{
 	public:
@@ -55,6 +55,7 @@ namespace game_framework {
 		/////////////////////////////////////////////////////////////////////////////
 		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		void offsetHp(int n);
+		void addHp(int n);
 		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();

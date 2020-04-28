@@ -40,6 +40,10 @@ namespace game_framework {
 	void Scarecrow::LoadBitmap()
 	{
 		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
+		////道具
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->load();
+		}
 		blood_bar.loadBloodBar();
 		EnemyRect = enemy.ReturnCRect();
 		/////攻擊的動畫
@@ -50,9 +54,15 @@ namespace game_framework {
 	}
 
 	void Scarecrow::OnMove(Maps * m) {
-		const int STEP_SIZE = 4;
-		attack();
-		attack_cool_down -= 1;
+		if (isAlive()) {
+			const int STEP_SIZE = 4;
+			attack();
+			attack_cool_down -= 1;
+		}
+		if (!isAlive()) {
+			items[0]->OnMove(m, hero_on_map);
+		}
+		
 	}
 
 	void Scarecrow::OnShow(Maps *m)
@@ -68,6 +78,10 @@ namespace game_framework {
 				blood_bar.setXY(GetX1(), GetY1() + 50);
 				blood_bar.showBloodBar(m, hp);
 			}
+		}
+		if (!isAlive()) {
+			items[0]->setXY(_x+32, _y+64);
+			items[0]->OnShow(m);
 		}
 
 	}
@@ -96,6 +110,10 @@ namespace game_framework {
 		hp = 1200;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
+		////道具
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->Initialize();
+		}
 	}
 
 	bool Scarecrow::intersect(int x1, int x2, int y1, int y2)

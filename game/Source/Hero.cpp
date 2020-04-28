@@ -162,7 +162,7 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
-		_attribute = ICE;
+		_attribute = FIRE;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -283,6 +283,11 @@ namespace game_framework {
 	void Hero::offsetHp(int n)
 	{
 		hp -= n;
+	}
+
+	void Hero::addHp(int n)
+	{
+		hp += n;
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

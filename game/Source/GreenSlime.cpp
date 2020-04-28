@@ -42,6 +42,10 @@ namespace game_framework {
 	void GreenSlime::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
+		/////掉落道具
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->load();
+		}
 		/////怪物的動畫
 		char *filename[3] = { ".\\bitmaps\\greenslime1.bmp",".\\bitmaps\\greenslime2.bmp",".\\bitmaps\\greenslime3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
@@ -61,6 +65,9 @@ namespace game_framework {
 			slime.OnMove();
 			movement(m);
 		}
+		if (!isAlive()) {
+			items[0]->OnMove(m, hero_on_map);
+		}
 	}
 
 	void GreenSlime::OnShow(Maps *m)
@@ -78,6 +85,10 @@ namespace game_framework {
 				blood_bar.setXY(GetX1(), GetY1() + 50);
 				blood_bar.showBloodBar(m, hp);
 			}
+		}
+		if (!isAlive()) {
+			items[0]->setXY(_x + 32, _y + 64);
+			items[0]->OnShow(m);
 		}
 
 	}
@@ -108,7 +119,10 @@ namespace game_framework {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		hp = 1200;
 		blood_bar.setFullHP(hp);
-		
+		///道具
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->Initialize();
+		}
 	}
 
 	bool GreenSlime::intersect(int x1, int x2, int y1, int y2)

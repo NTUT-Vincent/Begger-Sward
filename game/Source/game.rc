@@ -206,6 +206,8 @@ IDB_SKILLEPIC           BITMAP                  "..\\RES\\skill_e_pic.bmp"
 
 IDB_SKILLQFIREPIC       BITMAP                  "..\\RES\\skill_q_fire_pic.bmp"
 
+IDB_ITEMHEALTH          BITMAP                  "..\\RES\\Item_health.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

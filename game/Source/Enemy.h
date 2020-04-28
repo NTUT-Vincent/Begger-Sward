@@ -5,6 +5,8 @@
 #include "Character.h"
 #include "BloodBar.h"
 #include "Util.h"
+#include "Item.h"
+#include "Health.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
@@ -49,6 +51,7 @@ namespace game_framework {
 	protected:
 		Hero * hero_on_map;
 		BloodBar blood_bar;
+		vector<Item *> items;
 		CRect EnemyRect;
 		int _x, _y;
 		int ini_x, ini_y;
@@ -60,6 +63,7 @@ namespace game_framework {
 		bool isMovingDown;
 		bool isAttacking;
 		ELEMENT_ATTRIBUTE _attribute;
+		
 	};
 }
 

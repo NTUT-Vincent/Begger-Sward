@@ -31,10 +31,14 @@ namespace game_framework {
 		isAttacking = false;
 		hero_on_map = h;
 		_attribute = a;
+		items.push_back(new Health());
 	}
 
 	Enemy::~Enemy()
 	{
+		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
+			delete *it_i;
+		}
 	}
 
 	int Enemy::distanceToHero()

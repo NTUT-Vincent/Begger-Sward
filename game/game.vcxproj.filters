@@ -154,6 +154,12 @@
     <ClCompile Include="Source\PlayerStatus.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Health.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -223,6 +229,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerStatus.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Item.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Health.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -398,6 +410,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\skill_q_fire_pic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_health.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
