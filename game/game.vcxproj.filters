@@ -154,6 +154,15 @@
     <ClCompile Include="Source\PlayerStatus.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Item.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Health.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ItemAttribute.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -223,6 +232,15 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerStatus.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Item.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Health.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ItemAttribute.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -398,6 +416,27 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\skill_q_fire_pic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_health.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_fire_attribute.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_ice_attribute.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_plant_attribute.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\PlantAttack.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\skill_q_plant_pic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\skill_q_ice_pic.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

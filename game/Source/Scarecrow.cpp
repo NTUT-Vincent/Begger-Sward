@@ -11,6 +11,8 @@
 #include "Enemy.h"
 #include "Scarecrow.h"
 #include "Util.h"
+#include "Item.h"
+#include "ItemAttribute.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -31,6 +33,7 @@ namespace game_framework {
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
+		items.push_back(new ItemAttribute(PLANT));
 	}
 
 	Scarecrow::~Scarecrow()
@@ -40,6 +43,10 @@ namespace game_framework {
 	void Scarecrow::LoadBitmap()
 	{
 		enemy.LoadBitmap(IDB_SCARECROW, RGB(0, 0, 0));
+		////道具
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->load();
+		}
 		blood_bar.loadBloodBar();
 		EnemyRect = enemy.ReturnCRect();
 		/////攻擊的動畫
@@ -50,9 +57,15 @@ namespace game_framework {
 	}
 
 	void Scarecrow::OnMove(Maps * m) {
-		const int STEP_SIZE = 4;
-		attack();
-		attack_cool_down -= 1;
+		if (isAlive()) {
+			const int STEP_SIZE = 4;
+			attack();
+			attack_cool_down -= 1;
+		}
+		if (!isAlive()) {
+			itemsOnMove(m);
+		}
+		
 	}
 
 	void Scarecrow::OnShow(Maps *m)
@@ -68,6 +81,9 @@ namespace game_framework {
 				blood_bar.setXY(GetX1(), GetY1() + 50);
 				blood_bar.showBloodBar(m, hp);
 			}
+		}
+		if (!isAlive()) {
+			itemsOnShow(m);
 		}
 
 	}
@@ -96,6 +112,10 @@ namespace game_framework {
 		hp = 1200;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
+		////道具
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->Initialize();
+		}
 	}
 
 	bool Scarecrow::intersect(int x1, int x2, int y1, int y2)

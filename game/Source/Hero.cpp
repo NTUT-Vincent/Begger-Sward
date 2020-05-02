@@ -56,7 +56,7 @@ namespace game_framework {
 		normalAttackR.AddBitmap(IDB_CLOCK3, RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(5);
 		//Q
-		fire_attack.loadBitmap();
+		q_attack.loadBitmap();
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
@@ -132,17 +132,32 @@ namespace game_framework {
 
 	int Hero::GetQCoolDown()
 	{
-		return skill_q_cool_down/30;
+		return skill_q_cool_down;
 	}
 
 	int Hero::GetECoolDown()
 	{
-		return skill_e_cool_down/30;
+		return skill_e_cool_down;
 	}
 
 	int Hero::getHP()
 	{
 		return hp;
+	}
+
+	int Hero::get_attack_fire()
+	{
+		return attack_fire;
+	}
+
+	int Hero::get_attack_ice()
+	{
+		return attack_ice;
+	}
+
+	int Hero::get_attack_plant()
+	{
+		return attack_plant;
 	}
 
 	ELEMENT_ATTRIBUTE Hero::getCurrentAttribute()
@@ -154,7 +169,9 @@ namespace game_framework {
 		x = 480;
 		y = 480;
 		hp = 1200;
-		attack = 20;
+		attack_fire = 20;
+		attack_ice = 20;
+		attack_plant = 20;
 		skillTimes = 0;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = false;
 		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
@@ -162,7 +179,7 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
-		_attribute = ICE;
+		_attribute = FIRE;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -208,7 +225,8 @@ namespace game_framework {
 	
 	void Hero::SetUsingQ(bool b)
 	{
-		if (!isUsingSkill() && skill_q_cool_down == 0) {
+		if (!isUsingSkill() && skill_q_cool_down <= 0) {
+			skill_q_cool_down = 60;
 			if (b) {
 				skillQ();
 				CAudio::Instance()->Play(AUDIO_FIRE);
@@ -251,6 +269,16 @@ namespace game_framework {
 	
 	bool Hero::gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
+		int attack = 0;
+		if (_attribute == FIRE) {
+			attack = -1*attack_fire;
+		}
+		if (_attribute == ICE) {
+			attack = -1*attack_ice;
+		}
+		if (_attribute == PLANT) {
+			attack = -1*attack_plant;
+		}
 		for (unsigned i = 0; i < enemys->size(); i++)
 		{
 			if (enemys->at(i)->intersect(x1, x2, y1, y2))
@@ -260,21 +288,21 @@ namespace game_framework {
 			//普功
 			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1 + 10, y2) && directionLR == 0 && isUsingA)
 			{
-				enemys->at(i)->offsetHP(-20, _attribute);
+				enemys->at(i)->offsetHP(attack, _attribute);
 			}
 			if (enemys->at(i)->intersect(x1 + 30, x2 + 30, y1 + 10, y2) && directionLR == 1 && isUsingA)
 			{
-				enemys->at(i)->offsetHP(-20, _attribute);
+				enemys->at(i)->offsetHP(attack, _attribute);
 			}
 			//Q技能
-			if (enemys->at(i)->intersect(fire_attack.getX1(), fire_attack.getX2(), fire_attack.getY1(), fire_attack.getY2()) && isUsingQ)
+			if (enemys->at(i)->intersect(q_attack.getX1(), q_attack.getX2(), q_attack.getY1(), q_attack.getY2()) && isUsingQ)
 			{
-				enemys->at(i)->offsetHP(-20, _attribute);
+				enemys->at(i)->offsetHP(attack, _attribute);
 			}
 			//E技能
 			if (enemys->at(i)->intersect(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
 			{
-				enemys->at(i)->offsetHP(-20, _attribute);
+				enemys->at(i)->offsetHP(attack, _attribute);
 			}
 		}
 		return false;
@@ -283,6 +311,24 @@ namespace game_framework {
 	void Hero::offsetHp(int n)
 	{
 		hp -= n;
+	}
+
+	void Hero::addHp(int n)
+	{
+		hp += n;
+	}
+
+	void Hero::addAttack(int n, ELEMENT_ATTRIBUTE attribute)
+	{
+		if (attribute == FIRE) {
+			attack_fire += n;
+		}
+		if (attribute == ICE) {
+			attack_ice += n;
+		}
+		if (attribute == PLANT) {
+			attack_plant += n;
+		}
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -402,13 +448,13 @@ namespace game_framework {
 	void Hero::skillQ()
 	{
 		if (!isUsingSkill()) {
-			fire_attack.setXY(x, y);
-			fire_attack.setAttackIsFlying(true);
+			q_attack.setXY(x, y);
+			q_attack.setAttackIsFlying(true);
 			if (directionLR == 0) {
-				fire_attack.setDirection(0);
+				q_attack.setDirection(0);
 			}
 			if (directionLR == 1) {
-				fire_attack.setDirection(1);
+				q_attack.setDirection(1);
 			}
 		}
 
@@ -417,24 +463,23 @@ namespace game_framework {
 	void Hero::skillQMove(Maps *m)
 	{
 		if (isUsingQ) {
-			fire_attack.OnMove(m);
+			q_attack.OnMove(m);
 		}
 		if (skill_q_cool_down > 0) {
 			skill_q_cool_down -= 1;
 		}
-		fire_attack.setAttribute(_attribute);
+		q_attack.setAttribute(_attribute);
 	}
 
 	void Hero::skillQShow(Maps * m)
 	{
 		if (isUsingQ) {
 			heroShow(m);
-			fire_attack.OnShow(m);
+			q_attack.OnShow(m);
 			skillTimes += 1;
 			if (skillTimes > 20) {
 				isUsingQ = false;
-				fire_attack.setAttackIsFlying(false);
-				skill_q_cool_down = 60;
+				q_attack.setAttackIsFlying(false);
 				skillTimes = 0;
 			}
 		}

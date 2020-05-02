@@ -12,7 +12,7 @@ namespace game_framework {
 	// 這個class提供繞圈圈的球
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
-
+	class Enemy;
 	class Hero :public Character
 	{
 	public:
@@ -25,9 +25,13 @@ namespace game_framework {
 		int GetY1();					//回傳最上側Y值
 		int GetX2();					//回傳最右側X值
 		int GetY2();					//回傳最下側Y值
+		
 		int GetQCoolDown();
 		int GetECoolDown();
 		int getHP();
+		int get_attack_fire();
+		int get_attack_ice();
+		int get_attack_plant();
 		ELEMENT_ATTRIBUTE getCurrentAttribute();
 
 		void Initialize();
@@ -55,6 +59,8 @@ namespace game_framework {
 		/////////////////////////////////////////////////////////////////////////////
 		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		void offsetHp(int n);
+		void addHp(int n);
+		void addAttack(int n, ELEMENT_ATTRIBUTE attribute);
 		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();
@@ -96,7 +102,9 @@ namespace game_framework {
 		CRect RectHero;
 		int x, y;
 		int hp;
-		int attack;
+		int attack_fire;
+		int attack_ice;
+		int attack_plant;
 		ELEMENT_ATTRIBUTE _attribute;
 		
 		bool isMovingRight;
@@ -113,7 +121,7 @@ namespace game_framework {
 		bool directionLR; // 0為左 1為右
 		bool directionUD; // 0為上 1為下
 		int skillTimes;   // 用來數跑了幾次CAnimation。
-		Attack fire_attack;
+		Attack q_attack;
 		///冷卻時間
 		int skill_q_cool_down; //cool down在每個skill的move function裡每秒-30
 		int skill_e_cool_down;

@@ -5,6 +5,8 @@
 #include "Character.h"
 #include "BloodBar.h"
 #include "Util.h"
+#include "Item.h"
+#include "Health.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
@@ -42,6 +44,8 @@ namespace game_framework {
 
 		void offsetHP(int offset, ELEMENT_ATTRIBUTE attribute);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		//void showHp(Maps *m, int x, int y);
+		void itemsOnMove(Maps *m);
+		void itemsOnShow(Maps *m);
 		bool isAlive();
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		bool isAttack();
@@ -49,6 +53,7 @@ namespace game_framework {
 	protected:
 		Hero * hero_on_map;
 		BloodBar blood_bar;
+		vector<Item *> items;
 		CRect EnemyRect;
 		int _x, _y;
 		int ini_x, ini_y;
@@ -60,6 +65,7 @@ namespace game_framework {
 		bool isMovingDown;
 		bool isAttacking;
 		ELEMENT_ATTRIBUTE _attribute;
+		
 	};
 }
 

@@ -46,6 +46,9 @@ namespace game_framework {
 	}
 
 	void BloodBar::showBloodBar(Maps *m1, int hp) {
+		if (hp > full_hp) {
+			setFullHP(hp);
+		}
 		double proportion = hp / full_hp;
 		if (proportion < 1.0 / 9) {
 			blood_bar[0].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
@@ -88,7 +91,7 @@ namespace game_framework {
 			blood_bar[9].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
 			blood_bar[9].ShowBitmap();
 		}
-		else if (proportion < 1.0) {
+		else if (proportion < 9.0 / 10) {
 			blood_bar[10].SetTopLeft(m1->screenX(_x), m1->screenY(_y - 20));
 			blood_bar[10].ShowBitmap();
 		}

@@ -264,7 +264,10 @@
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\GreenSlime.cpp" />
+    <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\Hero.cpp" />
+    <ClCompile Include="Source\Item.cpp" />
+    <ClCompile Include="Source\ItemAttribute.cpp" />
     <ClCompile Include="Source\Map1_1.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -319,7 +322,10 @@
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\GreenSlime.h" />
+    <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\Hero.h" />
+    <ClInclude Include="Source\Item.h" />
+    <ClInclude Include="Source\ItemAttribute.h" />
     <ClInclude Include="Source\Map1_1.h" />
     <ClInclude Include="Source\Map1_6.h" />
     <ClInclude Include="Source\Maps.h" />
@@ -381,12 +387,19 @@
     <Image Include="RES\FireAttackBoom.bmp" />
     <Image Include="RES\hero1.bmp" />
     <Image Include="res\hero2.bmp" />
+    <Image Include="RES\Item_fire_attribute.bmp" />
+    <Image Include="RES\Item_health.bmp" />
+    <Image Include="RES\Item_ice_attribute.bmp" />
+    <Image Include="RES\Item_plant_attribute.bmp" />
     <Image Include="RES\map1-2.bmp" />
     <Image Include="RES\map1-6.bmp" />
+    <Image Include="RES\PlantAttack.bmp" />
     <Image Include="RES\PLAYER1.bmp" />
     <Image Include="RES\scarecrow.bmp" />
     <Image Include="RES\skill_e_pic.bmp" />
     <Image Include="RES\skill_q_fire_pic.bmp" />
+    <Image Include="RES\skill_q_ice_pic.bmp" />
+    <Image Include="RES\skill_q_plant_pic.bmp" />
     <Image Include="RES\startbackgrond.bmp" />
     <Image Include="RES\startpicture.bmp" />
     <Image Include="RES\StatusBar.bmp" />
