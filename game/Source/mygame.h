@@ -74,7 +74,8 @@ namespace game_framework {
 		CGameStateRun(CGame *g);
 		~CGameStateRun();
 		void OnBeginState();							// 設定每次重玩所需的變數
-		void stage_process(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage);
+		void stage_process_move(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage);
+		void stage_process_show(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage);
 		void OnInit();  								// 遊戲的初值及圖形設定
 		void OnKeyDown(UINT, UINT, UINT);
 		void OnKeyUp(UINT, UINT, UINT);

@@ -248,7 +248,7 @@ namespace game_framework {
 		player_status.Initialize(&player1);
 	}
 
-	void CGameStateRun::stage_process(Maps & stage_map, Hero & player, vector<Enemy*> & enemy_array, STAGE next_stage)
+	void CGameStateRun::stage_process_move(Maps & stage_map, Hero & player, vector<Enemy*> & enemy_array, STAGE next_stage)
 	{
 		player.OnMove(&stage_map, &enemy_array);
 		for (unsigned i = 0; i < enemy_array.size(); i++) {
@@ -261,43 +261,23 @@ namespace game_framework {
 		case STAGE_1_2: next_x = 780; next_y = 1470;
 			break;
 		}
-		if (allEnemyDie(enemy_array))
+		if (allEnemyDie(enemy_array) && player.isInFinishArea(&stage_map))
 		{
-			if (player.isInFinishArea(&stage_map))
-			{
 				current_stage = next_stage;
-				player.Initialize();
 				player.SetXY(next_x, next_y);
-			}
 		}
 	}
 
 	void CGameStateRun::OnMove()							// 移動遊戲元素
 	{
-		//////////////////////////////////////////////////第一關
-		
-		
-
 		switch (current_stage) {
 			case STAGE_1_1:
-				stage_process(first_stage_map, player1, enemys1_1, STAGE_1_2);
+				stage_process_move(first_stage_map, player1, enemys1_1, STAGE_1_2);
 				break;
 			case STAGE_1_2:
-				if (current_stage == STAGE_1_2) {
-					player1.OnMove(&second_stage_map, &enemys1_2);
-					for (unsigned i = 0; i < enemys1_2.size(); i++) {
-						enemys1_2[i]->OnMove(&second_stage_map);
-					}
-					sort(enemys1_2.begin(), enemys1_2.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
-				}
+				stage_process_move(second_stage_map, player1, enemys1_2, STAGE_1_3);
 				break;
 		}
-
-		///////////////////////////////////////////////////第二關
-
-		
-		
-		/////////////////////////
 
 		if (!player1.isAlive()) {
 			GotoGameState(GAME_STATE_OVER);
@@ -428,35 +408,30 @@ namespace game_framework {
 		return true;
 	}
 
+
+	void CGameStateRun::stage_process_show(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage)
+	{
+		
+	}
+
 	void CGameStateRun::OnShow()
 	{
 		//
 		//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
-		//
-		//
-		//  貼上背景圖、撞擊數、球、擦子、彈跳的球
-		//
-		//ackground.ShowBitmap();			// 貼上背景圖
-		//help.ShowBitmap();					// 貼上說明圖
-		//hits_left.ShowBitmap();
-		//for (int i=0; i < NUMBALLS; i++)
-			//ball[i].OnShow();				// 貼上第i號球
-		//bball.OnShow();						// 貼上彈跳的球
-		//eraser.OnShow();					// 貼上擦子
-		//
-		//  貼上左上及右下角落的圖
-		//
 		corner.SetTopLeft(0, 0);
-		//corner.ShowBitmap();
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
-		//corner.ShowBitmap();
-		//enemy1.OnShow(&first_stage_map);
-		//first_stage_map.enemysOnShow();
-
-
 		/////////////////////////////第一關
+
+		/*switch (current_stage) {
+		case STAGE_1_1:
+			stage_process_show(first_stage_map, player1, enemys1_1, STAGE_1_2);
+			break;
+		case STAGE_1_2:
+			stage_process_show(second_stage_map, player1, enemys1_2, STAGE_1_3);
+			break;
+		}*/
 
 		if (current_stage == STAGE_1_1) {
 			first_stage_map.OnShow();
@@ -474,7 +449,6 @@ namespace game_framework {
 				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
 					player1.OnShow(&first_stage_map);
 				}
-
 			}
 		}
 		
