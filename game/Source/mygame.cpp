@@ -266,7 +266,7 @@ namespace game_framework {
 			if (player.isInFinishArea(&stage_map))
 			{
 				current_stage = next_stage;
-				player.Initialize();
+				//player.Initialize();
 				player.SetXY(next_x, next_y);
 			}
 		}

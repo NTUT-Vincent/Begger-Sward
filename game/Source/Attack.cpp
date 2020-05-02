@@ -36,6 +36,7 @@ namespace game_framework {
 	{
 		fire_attack.LoadBitmap(IDB_FIREATTACK, RGB(0, 0, 0));
 		ice_attack.LoadBitmap(IDB_ATTACK1, RGB(0, 0, 0));
+		plant_attack.LoadBitmap(IDB_ATTACKPLANT, RGB(0, 0, 0));
 	}
 
 	void Attack::OnMove(Maps * m)
@@ -65,6 +66,12 @@ namespace game_framework {
 			if (m->isEmpty(_x, _y)) {
 				ice_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				ice_attack.ShowBitmap();
+			}
+		}
+		if (_attribute == PLANT) {
+			if (m->isEmpty(_x, _y)) {
+				plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				plant_attack.ShowBitmap();
 			}
 		}
 		
@@ -107,6 +114,9 @@ namespace game_framework {
 		if (_attribute == ICE) {
 			return _x + ice_attack.Width();
 		}
+		if (_attribute == PLANT) {
+			return _x + plant_attack.Width();
+		}
 		return _x;
 		
 	}
@@ -123,6 +133,9 @@ namespace game_framework {
 		}
 		if (_attribute == ICE) {
 			return _y + ice_attack.Height();
+		}
+		if (_attribute == PLANT) {
+			return _y + plant_attack.Height();
 		}
 		return _y;
 	}

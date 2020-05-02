@@ -1,5 +1,5 @@
-#ifndef __HEALTH_H
-#define __HEALTH_H
+#ifndef __ITEMATTRIBUTE_H
+#define __ITEMATTRIBUTE_H
 
 
 #include "Maps.h"
@@ -11,18 +11,21 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
-	class Health: public Item
+	class ItemAttribute: public Item
 	{
 	public:
-		Health();
+		ItemAttribute(ELEMENT_ATTRIBUTE attribute);
 		void load();
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
-		//bool intercect(Hero *h) ;
+		bool intercect(Hero *h) ;
 		
 	private:
-		CMovingBitmap health_pic;
-
+		CMovingBitmap fire_pic;
+		CMovingBitmap ice_pic;
+		CMovingBitmap plant_pic;
+		ELEMENT_ATTRIBUTE _attribute;
+		int _x, _y;
 	};
 }
 

@@ -41,5 +41,18 @@ namespace game_framework {
 		
 	}
 
+	/*bool Health::intercect(Hero * h)
+	{
+		if(isExist()) {
+			if (h->GetX2() >= _x + 10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		return false;
+	}
+*/
 
 }

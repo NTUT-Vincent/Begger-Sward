@@ -14,6 +14,8 @@
 #include "Scarecrow.h"
 #include "GreenSlime.h"
 #include "Util.h"
+#include "Item.h"
+#include "ItemAttribute.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -33,6 +35,7 @@ namespace game_framework {
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
+		items.push_back(new ItemAttribute(_attribute));
 	}
 
 	GreenSlime::~GreenSlime()
@@ -66,7 +69,7 @@ namespace game_framework {
 			movement(m);
 		}
 		if (!isAlive()) {
-			items[0]->OnMove(m, hero_on_map);
+			itemsOnMove(m);
 		}
 	}
 
@@ -87,8 +90,7 @@ namespace game_framework {
 			}
 		}
 		if (!isAlive()) {
-			items[0]->setXY(_x + 32, _y + 64);
-			items[0]->OnShow(m);
+			itemsOnShow(m);
 		}
 
 	}

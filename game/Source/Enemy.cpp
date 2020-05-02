@@ -85,6 +85,21 @@ namespace game_framework {
 		
 	
 
+	void Enemy::itemsOnMove(Maps * m)
+	{
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->OnMove(m, hero_on_map);
+		}
+	}
+
+	void Enemy::itemsOnShow(Maps *m)
+	{
+		for (unsigned i = 0; i < items.size(); i++) {
+			items.at(i)->setXY(_x + 32, _y + 64);
+			items.at(i)->OnShow(m);
+		}
+	}
+
 	bool Enemy::isAlive()
 	{
 		if (hp <= 0) {

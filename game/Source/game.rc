@@ -208,6 +208,18 @@ IDB_SKILLQFIREPIC       BITMAP                  "..\\RES\\skill_q_fire_pic.bmp"
 
 IDB_ITEMHEALTH          BITMAP                  "..\\RES\\Item_health.bmp"
 
+IDB_ATTRIBUTEFIRE       BITMAP                  "..\\RES\\Item_fire_attribute.bmp"
+
+IDB_ATTRIBUTEICE        BITMAP                  "..\\RES\\Item_ice_attribute.bmp"
+
+IDB_ATTRIBUTEPLANT      BITMAP                  "..\\RES\\Item_plant_attribute.bmp"
+
+IDB_ATTACKPLANT         BITMAP                  "..\\RES\\PlantAttack.bmp"
+
+IDB_SKILLQPLANTPIC      BITMAP                  "..\\RES\\skill_q_plant_pic.bmp"
+
+IDB_SKILLQICEPIC        BITMAP                  "..\\RES\\skill_q_ice_pic.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
