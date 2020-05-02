@@ -163,6 +163,12 @@
     <ClCompile Include="Source\ItemAttribute.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BlueSlime.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RedSlime.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -241,6 +247,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\ItemAttribute.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BlueSlime.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RedSlime.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

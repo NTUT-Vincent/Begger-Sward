@@ -47,6 +47,8 @@
 #include "Character.h"
 #include "Scarecrow.h"
 #include "GreenSlime.h"
+#include "RedSlime.h"
+#include "BlueSlime.h"
 #include "PlayerStatus.h"
 
 namespace game_framework {

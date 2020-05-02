@@ -10,7 +10,7 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Enemy.h"
-#include "GreenSlime.h"
+#include "BlueSlime.h"
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
@@ -19,25 +19,25 @@ namespace game_framework {
 
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
 
-	GreenSlime::GreenSlime()
+	BlueSlime::BlueSlime()
 	{
 		_x = 384;
 		_y = 384;
 		attack_damage = 0;
 	}
 
-	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h, PLANT)
+	BlueSlime::BlueSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "BlueSlime", h, ICE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
 
-	GreenSlime::~GreenSlime()
+	BlueSlime::~BlueSlime()
 	{
 	}
 
-	void GreenSlime::LoadBitmap()
+	void BlueSlime::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
 		/////掉落道具
@@ -45,17 +45,17 @@ namespace game_framework {
 			items.at(i)->load();
 		}
 		/////怪物的動畫
-		char *filename[3] = { ".\\bitmaps\\greenslime1.bmp",".\\bitmaps\\greenslime2.bmp",".\\bitmaps\\greenslime3.bmp"};
+		char *filename[3] = { ".\\bitmaps\\blueslime1.bmp",".\\bitmaps\\blueslime2.bmp",".\\bitmaps\\blueslime3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
 			slime.AddBitmap(filename[i], RGB(0, 0, 0));
 		/////攻擊的動畫
-		char *filename2[5] = { ".\\bitmaps\\greenslime_attack1.bmp",".\\bitmaps\\greenslime_attack2.bmp",".\\bitmaps\\greenslime_attack3.bmp", ".\\bitmaps\\greenslime_attack4.bmp", ".\\bitmaps\\greenslime_attack5.bmp" };
+		char *filename2[5] = { ".\\bitmaps\\blueslime_attack1.bmp",".\\bitmaps\\blueslime_attack2.bmp",".\\bitmaps\\blueslime_attack3.bmp", ".\\bitmaps\\blueslime_attack4.bmp", ".\\bitmaps\\blueslime_attack5.bmp" };
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
 			attack_animation.AddBitmap(filename2[i], RGB(0, 0, 0));
 		attack_animation.SetDelayCount(3);
 	}
 
-	void GreenSlime::OnMove(Maps * m) {
+	void BlueSlime::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
 			attack();
@@ -68,19 +68,19 @@ namespace game_framework {
 		}
 	}
 
-	void GreenSlime::OnShow(Maps *m)
+	void BlueSlime::OnShow(Maps *m)
 	{
 		if (isAlive()) {
 			if (isAttacking) {
 				attackShow(m);
-				blood_bar.setXY(GetX1(), GetY1() + 50);
+				blood_bar.setXY(GetX1(), GetY1());
 				blood_bar.showBloodBar(m, hp);
 			}
 			else {
 				slime.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 				//enemy.SetTopLeft(x, y);
 				slime.OnShow();
-				blood_bar.setXY(GetX1(), GetY1() + 50);
+				blood_bar.setXY(GetX1(), GetY1());
 				blood_bar.showBloodBar(m, hp);
 			}
 		}
@@ -90,27 +90,27 @@ namespace game_framework {
 
 	}
 
-	int GreenSlime::GetX1()
+	int BlueSlime::GetX1()
 	{
 		return _x;
 	}
 
-	int GreenSlime::GetY1()
+	int BlueSlime::GetY1()
 	{
 		return _y;
 	}
 
-	int GreenSlime::GetX2()
+	int BlueSlime::GetX2()
 	{
 		return _x + slime.Width();
 	}
 
-	int GreenSlime::GetY2()
+	int BlueSlime::GetY2()
 	{
 		return _y + slime.Height();
 	}
 
-	void GreenSlime::Initialize() {
+	void BlueSlime::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
@@ -122,7 +122,7 @@ namespace game_framework {
 		}
 	}
 
-	bool GreenSlime::intersect(int x1, int x2, int y1, int y2)
+	bool BlueSlime::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
@@ -143,29 +143,29 @@ namespace game_framework {
 	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
 	//}
 	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
-	void GreenSlime::SetMovingDown(bool b) {
+	void BlueSlime::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
 
-	void GreenSlime::SetMovingUp(bool b) {
+	void BlueSlime::SetMovingUp(bool b) {
 		isMovingUp = b;
 	}
 
-	void GreenSlime::SetMovingLeft(bool b) {
+	void BlueSlime::SetMovingLeft(bool b) {
 		isMovingLeft = b;
 	}
 
-	void GreenSlime::SetMovingRight(bool b) {
+	void BlueSlime::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
 
-	void GreenSlime::SetXY(int x, int y)
+	void BlueSlime::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
 
-	void GreenSlime::movement(Maps *m)
+	void BlueSlime::movement(Maps *m)
 	{
 		int x = GetX1();
 		int y = GetY1() + 64;
@@ -191,12 +191,12 @@ namespace game_framework {
 
 
 
-	CRect * GreenSlime::GetRect()
+	CRect * BlueSlime::GetRect()
 	{
 		return &EnemyRect;
 	}
 
-	void GreenSlime::attack()
+	void BlueSlime::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
 			isAttacking = true;
@@ -208,7 +208,7 @@ namespace game_framework {
 		}
 	}
 
-	void GreenSlime::attackShow(Maps * m)
+	void BlueSlime::attackShow(Maps * m)
 	{
 		if (isAttacking) {
 			attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));

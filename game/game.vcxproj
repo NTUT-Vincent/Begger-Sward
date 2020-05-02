@@ -261,6 +261,7 @@
     <ClCompile Include="Source\Attack.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\BloodBar.cpp" />
+    <ClCompile Include="Source\BlueSlime.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\GreenSlime.cpp" />
@@ -292,6 +293,7 @@
     <ClCompile Include="Source\Map1_6.cpp" />
     <ClCompile Include="Source\Maps.cpp" />
     <ClCompile Include="Source\PlayerStatus.cpp" />
+    <ClCompile Include="Source\RedSlime.cpp" />
     <ClCompile Include="Source\Scarecrow.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -318,6 +320,7 @@
     <ClInclude Include="Source\Attack.h" />
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\BloodBar.h" />
+    <ClInclude Include="Source\BlueSlime.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Enemy.h" />
@@ -335,6 +338,7 @@
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Objs.h" />
     <ClInclude Include="Source\PlayerStatus.h" />
+    <ClInclude Include="Source\RedSlime.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Scarecrow.h" />
     <ClInclude Include="Source\StdAfx.h" />

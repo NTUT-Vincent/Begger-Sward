@@ -1,5 +1,5 @@
-#ifndef GREENSLIME_H
-#define GREENSLIME_H
+#ifndef BLUESLIME_H
+#define BLUESLIME_H
 
 #include "Maps.h"
 #include "Character.h"
@@ -11,12 +11,12 @@ namespace game_framework {
 	// 他超廢，他還不會自己攻擊												   //
 	/////////////////////////////////////////////////////////////////////////////
 
-	class GreenSlime :public Enemy
+	class BlueSlime :public Enemy
 	{
 	public:
-		GreenSlime();						//建構子，傳給Character角色名稱
-		GreenSlime(int x, int y, Hero *h);	//建構子，設定角色初始位置給Character()，方便vector一次建立
-		~GreenSlime();
+		BlueSlime();						//建構子，傳給Character角色名稱
+		BlueSlime(int x, int y, Hero *h);	//建構子，設定角色初始位置給Character()，方便vector一次建立
+		~BlueSlime();
 		void LoadBitmap();					//加載敵人Bitmap
 		void OnShow(Maps *m) override;		//顯示敵人於畫面上
 		void OnMove(Maps *m);				//敵人移動

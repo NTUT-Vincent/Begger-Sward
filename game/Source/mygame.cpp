@@ -198,16 +198,11 @@ namespace game_framework {
 	{
 		current_stage = STAGE_1_1;
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
-		/*enemys1_1.push_back(new Scarecrow(384, 384, &player1));
-		enemys1_1.push_back(new Scarecrow(400, 200, &player1));
-		enemys1_1.push_back(new Scarecrow(400, 600, &player1));
-		enemys1_1.push_back(new Scarecrow(400, 500, &player1));
-		enemys1_1.push_back(new Scarecrow(500, 550, &player1));*/
 		for (int i = 0; i < 5; i++) {
 			enemys1_2.push_back(new GreenSlime(200, (300 + 64*i), &player1));
-			enemys1_2.push_back(new GreenSlime(900, (300 + 64 * i), &player1));
-			enemys1_2.push_back(new GreenSlime( (200 + 64*i), 900, &player1));
-			enemys1_2.push_back(new GreenSlime((200 + 64 * i), 200, &player1));
+			enemys1_2.push_back(new RedSlime(900, (300 + 64 * i), &player1));
+			enemys1_2.push_back(new BlueSlime( (200 + 64*i), 900, &player1));
+			/*enemys1_2.push_back(new GreenSlime((200 + 64 * i), 200, &player1));*/
 			enemys1_2.push_back(new Scarecrow(500, (200 + 64*i), &player1));
 		}
 	}
@@ -348,8 +343,8 @@ namespace game_framework {
 		case KEY_RIGHT: player1.SetMovingRight(true); break;
 		case KEY_UP: player1.SetMovingUp(true); break;
 		case KEY_DOWN: player1.SetMovingDown(true); break;
-		case NUM_1: current_stage = STAGE_1_1;break;
-		case NUM_2: current_stage = STAGE_1_2; break;
+		/*case NUM_1: current_stage = STAGE_1_1;break;
+		case NUM_2: current_stage = STAGE_1_2; break;*/
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: player1.SetUsingQ(true); break;
 		case KEY_W: player1.SetUsingW(true); break;
@@ -357,8 +352,10 @@ namespace game_framework {
 		case KEY_R: player1.SetUsingR(true); break;
 		default: return;
 		}
-
-		
+		if(nRepCnt==CTRL)
+			if (nChar == NUM_1) {
+				current_stage = STAGE_1_1;
+			}
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -408,11 +405,29 @@ namespace game_framework {
 		return true;
 	}
 
-
-	void CGameStateRun::stage_process_show(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage)
-	{
-		
-	}
+	//void CGameStateRun::stage_process_show(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage)
+	//{
+	//	switch (current_stage)
+	//	{
+	//	case STAGE_1_1: Maps current_map = first_stage_map;
+	//	}
+	//	stage_map.OnShow();
+	//	int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+	//	for (unsigned i = 0; i < enemys1_1.size(); i++) {
+	//		if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+	//			hero_position = i;
+	//		}
+	//	}
+	//	if (hero_position == -1) {
+	//		player1.OnShow(&first_stage_map);
+	//	}
+	//	for (unsigned i = 0; i < enemys1_1.size(); i++) {
+	//		enemys1_1[i]->OnShow(&first_stage_map);
+	//		if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+	//			player1.OnShow(&first_stage_map);
+	//		}
+	//	}
+	//}
 
 	void CGameStateRun::OnShow()
 	{
