@@ -126,7 +126,7 @@ namespace game_framework {
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
-			if (x2 >= _x + 20 && x1 <= _x + slime.Width() - 20 && y2 >= _y + 80 && y1 <= _y + slime.Height() - 15) {
+			if (x2 >= _x + 20 && x1 <= _x + slime.Width() - 20 && y2 >= _y + 30 && y1 <= _y + slime.Height() - 15) {
 				return true;
 			}
 			else {
@@ -168,7 +168,7 @@ namespace game_framework {
 	void BlueSlime::movement(Maps *m)
 	{
 		int x = GetX1();
-		int y = GetY1() + 64;
+		int y = GetY1() ;
 		int step_size = rand() % 3;
 		if (distanceToHero() < 500) {
 			if (hero_on_map->GetX1() > x && m->isEmpty(x + step_size, y)) {
