@@ -60,24 +60,24 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		if (isMovingLeft && m->isEmpty(x - HMS, y))
+		if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()))
 		{
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(x + HMS, y))
+		if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2()))
 		{
 			m->addSX(-HMS);
 			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - HMS))
+		if (isMovingUp && m->isEmpty(x, y - HMS) && m->isEmpty(GetX2(), y - HMS))
 		{
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, y + HMS))
+		if (isMovingDown && m->isEmpty(x, GetY2() + HMS) && m->isEmpty(GetX2(), GetY2() + HMS))
 		{
 			m->addSY(-HMS);
 			y += HMS;

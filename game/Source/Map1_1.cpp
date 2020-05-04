@@ -19,10 +19,10 @@ namespace game_framework {
 		//sy = -200;
 		for (int i = 0; i < 12; i++) {
 			for (int j = 0; j < 12; j++) {
-				if ((i > 0 && i < 11) && ((j >= 0 && j <= 3) || j == 10)) {
+				if ((i > 0 && i < 11) && ((j >= 0 && j <= 3) || j == 11)) {
 					map[i][j] = 1;
 				}
-				else if ((i == 0 || i == 10) && (j > 0 && j < 11)) {
+				else if ((i == 0 || i == 11) && (j > 0 && j < 12)) {
 					map[i][j] = 1;
 				}
 				else
@@ -31,10 +31,10 @@ namespace game_framework {
 				}
 			}
 		}
-		map[5][2] = 3;
-		map[5][3] = 0;
-		map[1][4] = map[2][4] = map[8][4] = map[9][4] = map[1][5] = map[9][5] = 1;
-		map[1][9] = map[2][9] = map[8][9] = map[8][9] = map[1][8] = map[9][8] = 1;
+		map[5][2] = map[6][2] = 3;
+		map[5][3] = map[6][3] = 0;
+		map[1][4] = map[2][4] =  map[9][4] = map[1][5] = map[10][5] = 1;
+		map[1][9] = map[1][10] = map[2][10] =  map[10][9] = map[9][10] = map[10][10] = 1;
 	}
 
 	Map1_1::~Map1_1()

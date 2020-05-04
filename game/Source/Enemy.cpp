@@ -95,7 +95,7 @@ namespace game_framework {
 	void Enemy::itemsOnShow(Maps *m)
 	{
 		for (unsigned i = 0; i < items.size(); i++) {
-			items.at(i)->setXY(_x + 32, _y + 64);
+			items.at(i)->setXY(_x + 32, _y + 32);
 			items.at(i)->OnShow(m);
 		}
 	}

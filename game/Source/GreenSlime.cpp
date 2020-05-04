@@ -168,19 +168,19 @@ namespace game_framework {
 	void GreenSlime::movement(Maps *m)
 	{
 		int x = GetX1();
-		int y = GetY1() + 64;
+		int y1 = GetY1() + 64;
 		int step_size = rand() % 3;
 		if (distanceToHero() < 500) {
-			if (hero_on_map->GetX1() > x && m->isEmpty(x + step_size, y)) {
+			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y1) && m->isEmpty(GetX2() + step_size, GetY2())) {
 				_x += step_size;
 			}
-			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y)) {
+			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y1) && m->isEmpty(x - step_size, GetY2())) {
 				_x -= step_size;
 			}
-			if (hero_on_map->GetY1() > y && m->isEmpty(x, y + step_size)) {
+			if (hero_on_map->GetY1() > y1 && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
 				_y += step_size;
 			}
-			if (hero_on_map->GetY1() < y && m->isEmpty(x, y - step_size)) {
+			if (hero_on_map->GetY1() < y1 && m->isEmpty(x, y1 - step_size) && m->isEmpty(GetX2(), y1 - step_size)) {
 				_y -= step_size;
 			}
 		}
