@@ -249,7 +249,7 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemy_array.size(); i++) {
 			enemy_array[i]->OnMove(&stage_map);
 		}
-		sort(enemy_array.begin(), enemy_array.end(), [](Enemy *a, Enemy *b) {return a->GetY1() < b->GetY1(); });
+		sort(enemy_array.begin(), enemy_array.end(), [](Enemy *a, Enemy *b) {return a->GetY2() < b->GetY2(); });
 		int next_x, next_y = 0;
 		switch (next_stage)
 		{

@@ -8,7 +8,7 @@ namespace game_framework {
 		Map1_1();
 		~Map1_1();
 		void Initialize();
-		//void setPos(int x, int y);			//不再使用setPos為不可穿透區域
+		//void setPos(int x, int y, int n);			//不再使用setPos為不可穿透區域
 		bool isEmpty(int x, int y) const;
 		bool inFinishArea(int x, int y) override;
 		void OnMove();

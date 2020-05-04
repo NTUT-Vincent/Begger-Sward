@@ -47,6 +47,13 @@ namespace game_framework {
 		setXY(-200, -200);
 	}
 
+	/*void Map1_1::setPos(int x, int y, int n)
+	{
+		int gx = x / 64;
+		int gy = y / 64;
+		map[gx][gy] = n;
+	}*/
+
 	bool Map1_1::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;
