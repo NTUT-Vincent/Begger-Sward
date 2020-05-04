@@ -41,6 +41,7 @@
 #include "Maps.h"
 #include "Map1_1.h"
 #include "Map1_6.h"
+#include "Map1_2.h"
 #include "Hero.h"
 #include "Enemy.h"
 #include "Util.h"
@@ -92,12 +93,14 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
-		PlauerStatus player_status;
-		Map1_1		first_stage_map;
-		Map1_6		second_stage_map;
+		PlauerStatus	player_status;
+		Map1_1			map_stg1_1;
+		Map1_2			map_stg1_2;
+		Map1_6			map_stg1_6;
 		Hero			player1;
 		vector<Enemy*>  enemys1_1;
 		vector<Enemy*>  enemys1_2;
+		vector<Enemy*>  enemys1_6;
 		STAGE			current_stage;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖

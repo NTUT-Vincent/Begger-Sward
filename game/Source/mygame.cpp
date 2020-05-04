@@ -198,12 +198,14 @@ namespace game_framework {
 	{
 		current_stage = STAGE_1_1;
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
+		enemys1_2.push_back(new GreenSlime(300, 300, &player1));
+		enemys1_2.push_back(new BlueSlime(700, 700, &player1));
 		for (int i = 0; i < 5; i++) {
-			enemys1_2.push_back(new GreenSlime(200, (300 + 64*i), &player1));
-			enemys1_2.push_back(new RedSlime(900, (300 + 64 * i), &player1));
-			enemys1_2.push_back(new BlueSlime( (200 + 64*i), 900, &player1));
+			enemys1_6.push_back(new GreenSlime(200, (300 + 64*i), &player1));
+			enemys1_6.push_back(new RedSlime(900, (300 + 64 * i), &player1));
+			enemys1_6.push_back(new BlueSlime( (200 + 64*i), 900, &player1));
 			/*enemys1_2.push_back(new GreenSlime((200 + 64 * i), 200, &player1));*/
-			enemys1_2.push_back(new Scarecrow(500, (200 + 64*i), &player1));
+			enemys1_6.push_back(new Scarecrow(500, (200 + 64*i), &player1));
 		}
 	}
 
@@ -213,6 +215,9 @@ namespace game_framework {
 			delete *it_i;
 		}
 		for (vector<Enemy*>::iterator it_i = enemys1_2.begin(); it_i != enemys1_2.end(); ++it_i) {
+			delete *it_i;
+		}
+		for (vector<Enemy*>::iterator it_i = enemys1_6.begin(); it_i != enemys1_6.end(); ++it_i) {
 			delete *it_i;
 		}
 	}
@@ -237,9 +242,14 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys1_2.size(); i++) {
 			enemys1_2[i]->Initialize();
 		}
+		//第六關怪物
+		for (unsigned i = 0; i < enemys1_6.size(); i++) {
+			enemys1_6[i]->Initialize();
+		}
 		current_stage = STAGE_1_1;
-		first_stage_map.Initialize();
-		second_stage_map.Initialize();
+		map_stg1_1.Initialize();
+		map_stg1_6.Initialize();
+		map_stg1_2.Initialize();
 		player_status.Initialize(&player1);
 	}
 
@@ -253,7 +263,9 @@ namespace game_framework {
 		int next_x, next_y = 0;
 		switch (next_stage)
 		{
-		case STAGE_1_2: next_x = 780; next_y = 1470;
+		case STAGE_1_2: next_x = 480; next_y = 480;
+			break;
+		case STAGE_1_6: next_x = 780; next_y = 1470;
 			break;
 		}
 		if (allEnemyDie(enemy_array) && player.isInFinishArea(&stage_map))
@@ -267,11 +279,13 @@ namespace game_framework {
 	{
 		switch (current_stage) {
 			case STAGE_1_1:
-				stage_process_move(first_stage_map, player1, enemys1_1, STAGE_1_2);
+				stage_process_move(map_stg1_1, player1, enemys1_1, STAGE_1_2);
 				break;
 			case STAGE_1_2:
-				stage_process_move(second_stage_map, player1, enemys1_2, STAGE_1_3);
+				stage_process_move(map_stg1_2, player1, enemys1_2, STAGE_1_6);
 				break;
+			case STAGE_1_6:
+				stage_process_move(map_stg1_6, player1, enemys1_6, STAGE_1_6);
 		}
 
 		if (!player1.isAlive()) {
@@ -310,9 +324,15 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys1_2.size(); i++) {
 			enemys1_2[i]->LoadBitmap();
 		}
-		first_stage_map.LoadBitmap();
+		//第六關怪物
+		for (unsigned i = 0; i < enemys1_6.size(); i++) {
+			enemys1_6[i]->LoadBitmap();
+		}
+
+		map_stg1_1.LoadBitmap();
+		map_stg1_2.LoadBitmap();
 		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
-		second_stage_map.LoadBitmap();
+		map_stg1_6.LoadBitmap();
 		//
 		// 完成部分Loading動作，提高進度
 		//
@@ -449,7 +469,7 @@ namespace game_framework {
 		}*/
 
 		if (current_stage == STAGE_1_1) {
-			first_stage_map.OnShow();
+			map_stg1_1.OnShow();
 			int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
 			for (unsigned i = 0; i < enemys1_1.size(); i++) {
 				if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
@@ -457,12 +477,12 @@ namespace game_framework {
 				}
 			}
 			if (hero_position == -1) {
-				player1.OnShow(&first_stage_map);
+				player1.OnShow(&map_stg1_1);
 			}
 			for (unsigned i = 0; i < enemys1_1.size(); i++) {
-				enemys1_1[i]->OnShow(&first_stage_map);
+				enemys1_1[i]->OnShow(&map_stg1_1);
 				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-					player1.OnShow(&first_stage_map);
+					player1.OnShow(&map_stg1_1);
 				}
 			}
 		}
@@ -471,7 +491,7 @@ namespace game_framework {
 		/////////////////////////////////////////////第二關
 
 		if (current_stage == STAGE_1_2) {
-			second_stage_map.OnShow();
+			map_stg1_2.OnShow();
 			int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
 			for (unsigned i = 0; i < enemys1_2.size(); i++) {
 				if (player1.GetY2() > enemys1_2[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
@@ -479,12 +499,34 @@ namespace game_framework {
 				}
 			}
 			if (hero_position == -1) {
-				player1.OnShow(&second_stage_map);
+				player1.OnShow(&map_stg1_2);
 			}
 			for (unsigned i = 0; i < enemys1_2.size(); i++) {
-				enemys1_2[i]->OnShow(&second_stage_map);
+				enemys1_2[i]->OnShow(&map_stg1_2);
 				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-					player1.OnShow(&second_stage_map);
+					player1.OnShow(&map_stg1_2);
+				}
+
+			}
+		}
+
+		////////////////////////////////////////////第六關
+
+		if (current_stage == STAGE_1_6) {
+			map_stg1_6.OnShow();
+			int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+			for (unsigned i = 0; i < enemys1_6.size(); i++) {
+				if (player1.GetY2() > enemys1_6[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+					hero_position = i;
+				}
+			}
+			if (hero_position == -1) {
+				player1.OnShow(&map_stg1_6);
+			}
+			for (unsigned i = 0; i < enemys1_6.size(); i++) {
+				enemys1_6[i]->OnShow(&map_stg1_6);
+				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+					player1.OnShow(&map_stg1_6);
 				}
 
 			}
