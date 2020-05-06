@@ -31,9 +31,8 @@ namespace game_framework {
 
 	Hero::~Hero() {
 		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
-			if (*it_i != nullptr) {
-				delete *it_i;
-			}
+			delete *it_i;
+			
 		}
 	}
 
@@ -156,6 +155,11 @@ namespace game_framework {
 		return hp;
 	}
 
+	int Hero::getFullHP()
+	{
+		return blood_bar.getFullHP();
+	}
+
 	int Hero::get_attack_fire()
 	{
 		return attack_fire;
@@ -174,6 +178,11 @@ namespace game_framework {
 	ELEMENT_ATTRIBUTE Hero::getCurrentAttribute()
 	{
 		return _attribute;
+	}
+
+	vector<Item*>* Hero::getItemsOfPlayer()
+	{
+		return &items;
 	}
 
 	void Hero::Initialize() {
@@ -293,6 +302,7 @@ namespace game_framework {
 		if (_attribute == PLANT) {
 			attack = -1*attack_plant;
 		}
+		attack = -10000;
 		for (unsigned i = 0; i < enemys->size(); i++)
 		{
 			if (enemys->at(i)->intersect(x1, x2, y1, y2))
@@ -343,6 +353,23 @@ namespace game_framework {
 		if (attribute == PLANT) {
 			attack_plant += n;
 		}
+	}
+
+	void Hero::addItem(Item * item)
+	{
+		int n = -1;
+		for (int i = 5; i >= 0; i--) {
+			if (items.at(i) == nullptr) {
+				n = i;
+			}
+		}
+		if (n != -1 && items.at(n) == nullptr) {
+			items.at(n) = item;
+		}
+		else {
+			delete item;
+		}
+
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -506,6 +533,19 @@ namespace game_framework {
 				skillTimes = 0;							//跑完整個技能把skillTime設回為0
 			}
 		}
+	}
+
+	void Hero::useItem(int n)
+	{
+		if (items.at(n - 1) != nullptr) {
+			items.at(n - 1)->effect(this);
+		}
+		vector<Item*>::iterator it_i = items.begin();
+		for (int i = 0; i < n - 1; i++) {
+			++it_i;
+		}
+		delete *it_i;
+		items.at(n - 1) = nullptr;
 	}
 
 	void Hero::skillEMove()

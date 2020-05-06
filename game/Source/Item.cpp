@@ -18,10 +18,23 @@ namespace game_framework {
 	{
 	}
 
+	void Item::showOnStatusBar(int n)
+	{
+		if (n < 3) {
+			item_on_status_bar.SetTopLeft(570, (n % 3) * 30);
+		}
+		if (n >= 3) {
+			item_on_status_bar.SetTopLeft(600, (n % 3) * 30);
+		}
+		
+		item_on_status_bar.ShowBitmap();
+	}
+
 	void Item::Initialize()
 	{
 		_isExist = true;
 		random_num = rand();
+		_isUsed = false;
 	}
 
 	bool Item::isExist()
@@ -60,6 +73,7 @@ namespace game_framework {
 		return random_num;
 	}
 
+
 	bool Item::intercect(Hero * h)
 	{
 		if (isExist()) {
@@ -71,6 +85,16 @@ namespace game_framework {
 			}
 		}
 		return false;
+	}
+
+	bool Item::getIsUsed()
+	{
+		return _isUsed;
+	}
+
+	void Item::setIsUsed(bool b)
+	{
+		_isUsed = b;
 	}
 
 }

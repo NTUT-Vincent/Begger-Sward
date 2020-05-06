@@ -30,6 +30,11 @@ namespace game_framework {
 		_y = y;
 	}
 
+	int BloodBar::getFullHP()
+	{
+		return (int)full_hp;
+	}
+
 	void BloodBar::loadBloodBar() {
 		blood_bar[0].LoadBitmap(IDB_BLOODALMOSTDIE, RGB(0, 0, 0));
 		blood_bar[1].LoadBitmap(IDB_BLOOD2OVER10, RGB(0, 0, 0));

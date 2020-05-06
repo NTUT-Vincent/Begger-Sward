@@ -72,5 +72,10 @@ namespace game_framework {
 		return false;
 	}
 
+	void ItemAttribute::effect(Hero *h)
+	{
+	}
+
+
 
 }

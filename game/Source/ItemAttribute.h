@@ -15,6 +15,7 @@ namespace game_framework {
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
 		bool intercect(Hero *h) ;
+		void effect(Hero *h);
 		
 	private:
 		CMovingBitmap fire_pic;

@@ -41,6 +41,12 @@ namespace game_framework {
 		
 	}
 
+	void Health::effect(Hero *h)
+	{
+	}
+
+
+
 	/*bool Health::intercect(Hero * h)
 	{
 		if(isExist()) {

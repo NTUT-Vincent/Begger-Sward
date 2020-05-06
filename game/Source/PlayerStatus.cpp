@@ -67,6 +67,7 @@ namespace game_framework {
 		showAttackFire();
 		showAttackIce();
 		showAttackPlant();
+		showItemsOfPlayer();
 	}
 
 	void PlauerStatus::setXY(int x, int y) {
@@ -223,6 +224,15 @@ namespace game_framework {
 			attack_plant_hundred[third].ShowBitmap();
 			attack_plant_thousand[forth].SetTopLeft(470, 60);
 			attack_plant_thousand[forth].ShowBitmap();
+		}
+	}
+
+	void PlauerStatus::showItemsOfPlayer()
+	{
+		for (int i = 0; i < 6; i++) {
+			if (_h->getItemsOfPlayer()->at(i) != nullptr) {
+				_h->getItemsOfPlayer()->at(i)->showOnStatusBar(i);
+			}
 		}
 	}
 

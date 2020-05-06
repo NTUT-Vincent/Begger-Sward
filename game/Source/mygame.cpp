@@ -363,8 +363,8 @@ namespace game_framework {
 		case KEY_RIGHT: player1.SetMovingRight(true); break;
 		case KEY_UP: player1.SetMovingUp(true); break;
 		case KEY_DOWN: player1.SetMovingDown(true); break;
-		/*case NUM_1: current_stage = STAGE_1_1;break;
-		case NUM_2: current_stage = STAGE_1_2; break;*/
+		case NUM_1: player1.useItem(1); /*current_stage = STAGE_1_1;*/ break;
+		case NUM_2: player1.useItem(2);/* current_stage = STAGE_1_2;*/ break;
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: player1.SetUsingQ(true); break;
 		case KEY_W: player1.SetUsingW(true); break;

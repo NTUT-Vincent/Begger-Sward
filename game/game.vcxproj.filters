@@ -172,6 +172,9 @@
     <ClCompile Include="Source\Map1_2.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Potion.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -259,6 +262,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Map1_2.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Potion.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -455,6 +461,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\skill_q_ice_pic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_potion.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

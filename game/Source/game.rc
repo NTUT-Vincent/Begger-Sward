@@ -220,6 +220,8 @@ IDB_SKILLQPLANTPIC      BITMAP                  "..\\RES\\skill_q_plant_pic.bmp"
 
 IDB_SKILLQICEPIC        BITMAP                  "..\\RES\\skill_q_ice_pic.bmp"
 
+IDB_ITEMPOTION          BITMAP                  "..\\RES\\Item_potion.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

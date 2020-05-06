@@ -26,6 +26,7 @@ namespace game_framework {
 		void showAttackFire();
 		void showAttackIce();
 		void showAttackPlant();
+		void showItemsOfPlayer();
 
 	private:
 		int _x, _y;

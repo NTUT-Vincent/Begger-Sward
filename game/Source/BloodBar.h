@@ -19,6 +19,8 @@ namespace game_framework {
 		void setFullHP(int n);
 		void setXY(int x, int y);
 
+		int getFullHP();
+
 	private:
 		CMovingBitmap blood_bar[12];
 		double full_hp;

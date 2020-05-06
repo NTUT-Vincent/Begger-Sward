@@ -15,6 +15,8 @@ namespace game_framework {
 		virtual void load() = 0;
 		virtual void OnMove(Maps *m, Hero *h) = 0;
 		virtual void OnShow(Maps *m) = 0;
+		virtual void effect(Hero *h) = 0;
+		void showOnStatusBar(int n);
 		void Initialize();
 		bool isExist();
 		void setExist(bool b);
@@ -24,11 +26,17 @@ namespace game_framework {
 		int getY();
 		int getRandomNum();
 		bool intercect(Hero *h);
+		bool getIsUsed();
+		void setIsUsed(bool b);
 	
 	private:
 		int _x, _y;
 		bool _isExist;
 		int random_num;
+		bool _isUsed;
+	
+	protected:
+		CMovingBitmap item_on_status_bar;
 	};
 }
 

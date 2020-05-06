@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "Attack.h"
 #include "Item.h"
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
@@ -32,10 +33,12 @@ namespace game_framework {
 		int GetQCoolDown();
 		int GetECoolDown();
 		int getHP();
+		int getFullHP();
 		int get_attack_fire();
 		int get_attack_ice();
 		int get_attack_plant();
 		ELEMENT_ATTRIBUTE getCurrentAttribute();
+		vector<Item *> * getItemsOfPlayer();
 
 		void Initialize();
 		/////////////////////////////////////////////////////////////////////////////
@@ -64,6 +67,7 @@ namespace game_framework {
 		void offsetHp(int n);
 		void addHp(int n);
 		void addAttack(int n, ELEMENT_ATTRIBUTE attribute);
+		void addItem(Item * item);
 		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();
@@ -78,6 +82,7 @@ namespace game_framework {
 		void skillQ();
 		void skillQMove(Maps *m);
 		void skillQShow(Maps *m);
+		void useItem(int n);
 
 		//void skillW();
 		//void skillWMove();

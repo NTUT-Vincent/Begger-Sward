@@ -294,6 +294,7 @@
     <ClCompile Include="Source\Map1_6.cpp" />
     <ClCompile Include="Source\Maps.cpp" />
     <ClCompile Include="Source\PlayerStatus.cpp" />
+    <ClCompile Include="Source\Potion.cpp" />
     <ClCompile Include="Source\RedSlime.cpp" />
     <ClCompile Include="Source\Scarecrow.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
@@ -340,6 +341,7 @@
     <ClInclude Include="Source\MainFrm.h" />
     <ClInclude Include="Source\Objs.h" />
     <ClInclude Include="Source\PlayerStatus.h" />
+    <ClInclude Include="Source\Potion.h" />
     <ClInclude Include="Source\RedSlime.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Scarecrow.h" />
@@ -397,6 +399,7 @@
     <Image Include="RES\Item_health.bmp" />
     <Image Include="RES\Item_ice_attribute.bmp" />
     <Image Include="RES\Item_plant_attribute.bmp" />
+    <Image Include="RES\Item_potion.bmp" />
     <Image Include="RES\map1-2.bmp" />
     <Image Include="RES\map1-6.bmp" />
     <Image Include="RES\PlantAttack.bmp" />

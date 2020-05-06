@@ -1,5 +1,5 @@
-#ifndef __HEALTH_H
-#define __HEALTH_H
+#ifndef __POTION_H
+#define __POTION_H
 
 
 #include "Maps.h"
@@ -11,19 +11,19 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
-	class Health: public Item
+	class Potion: public Item
 	{
 	public:
-		Health();
+		Potion();
 		void load();
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
 		void effect(Hero *h);
-		//bool intercect(Hero *h) ;
+		bool intercect(Hero *h) ;
 		
 	private:
-		CMovingBitmap health_pic;
-
+		int _x, _y;
+		CMovingBitmap potion_pic;
 	};
 }
 
