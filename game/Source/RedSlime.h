@@ -1,5 +1,5 @@
-#ifndef BLUESLIME_H
-#define BLUESLIME_H
+#ifndef REDSLIME_H
+#define REDSLIME_H
 
 #include "Maps.h"
 #include "Character.h"
