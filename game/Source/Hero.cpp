@@ -24,6 +24,18 @@ namespace game_framework {
 		hp = 1200;
 		attack = 20;
 		skillTimes = 0;*/
+		
+		for (int i = 0; i < 6; i++) {
+			items.push_back(NULL);
+		}
+	}
+
+	Hero::~Hero() {
+		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
+			if (*it_i != NULL) {
+				delete *it_i;
+			}
+		}
 	}
 
 	void Hero::LoadBitmap()
@@ -476,11 +488,11 @@ namespace game_framework {
 		if (isUsingQ) {
 			heroShow(m);
 			q_attack.OnShow(m);
-			skillTimes += 1;
-			if (skillTimes > 20) {
+			skillTimes += 1;							//+1代表跑了1/30秒
+			if (skillTimes > 20) {						//預計讓他飛2/3秒
 				isUsingQ = false;
 				q_attack.setAttackIsFlying(false);
-				skillTimes = 0;
+				skillTimes = 0;							//跑完整個技能把skillTime設回為0
 			}
 		}
 	}
@@ -512,7 +524,4 @@ namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
 
-	Hero::~Hero()
-	{
-	}
 }

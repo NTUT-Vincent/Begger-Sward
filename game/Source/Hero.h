@@ -7,16 +7,19 @@
 #include "BloodBar.h"
 #include "Enemy.h"
 #include "Attack.h"
+#include "Item.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供繞圈圈的球
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 	class Enemy;
+	class Item;
 	class Hero :public Character
 	{
 	public:
 		Hero();
+		~Hero();
 		void LoadBitmap();
 		void OnShow(Maps *m) override;
 		void OnMove(Maps *m, vector<Enemy*> * enemys);
@@ -90,7 +93,6 @@ namespace game_framework {
 		/////////////////////////////////////////////////////////////////////////////
 		
 
-		~Hero();
 	private:
 		CMovingBitmap heroL, heroR;
 		CAnimation walkingLeft;
@@ -98,6 +100,7 @@ namespace game_framework {
 		CAnimation skillE;
 		CAnimation normalAttackL; // 向左普功動畫
 		CAnimation normalAttackR; // 向右普功動畫
+		
 		BloodBar blood_bar;
 		CRect RectHero;
 		int x, y;
@@ -106,6 +109,7 @@ namespace game_framework {
 		int attack_ice;
 		int attack_plant;
 		ELEMENT_ATTRIBUTE _attribute;
+		vector<Item *> items;
 		
 		bool isMovingRight;
 		bool isMovingLeft;
