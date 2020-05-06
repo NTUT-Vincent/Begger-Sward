@@ -476,6 +476,7 @@ namespace game_framework {
 	{
 		if (isUsingQ) {
 			q_attack.OnMove(m);
+			q_attack.setXY(x, y);
 		}
 		if (skill_q_cool_down > 0) {
 			skill_q_cool_down -= 1;
