@@ -8,7 +8,7 @@
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
-	// 他超廢，他還不會自己攻擊												   //
+	//		 																	//
 	/////////////////////////////////////////////////////////////////////////////
 
 	class BlueSlime :public Enemy
@@ -47,8 +47,11 @@ namespace game_framework {
 		void attack();
 		void attackShow(Maps *m);
 	private:
-		CAnimation slime;
-		CAnimation attack_animation;
+		CAnimation walkingLeft;
+		CAnimation walkingRight;
+		CAnimation normalAttackL;
+		CAnimation normalAttackR;
+		bool _direction;
 		int attack_damage;
 		bool isMovingRight;
 		bool isMovingLeft;

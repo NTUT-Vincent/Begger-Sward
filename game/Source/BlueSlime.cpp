@@ -45,14 +45,21 @@ namespace game_framework {
 			items.at(i)->load();
 		}
 		/////怪物的動畫
-		char *filename[3] = { ".\\bitmaps\\blueslime1.bmp",".\\bitmaps\\blueslime2.bmp",".\\bitmaps\\blueslime3.bmp"};
+		char *filename1_1[3] = { ".\\bitmaps\\blueslimeL1.bmp",".\\bitmaps\\blueslimeL2.bmp",".\\bitmaps\\blueslimeL3.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
-			slime.AddBitmap(filename[i], RGB(0, 0, 0));
+			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
+		char *filename1_2[3] = { ".\\bitmaps\\blueslimeR1.bmp",".\\bitmaps\\blueslimeR2.bmp",".\\bitmaps\\blueslimeR3.bmp"};
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		/////攻擊的動畫
-		char *filename2[5] = { ".\\bitmaps\\blueslime_attack1.bmp",".\\bitmaps\\blueslime_attack2.bmp",".\\bitmaps\\blueslime_attack3.bmp", ".\\bitmaps\\blueslime_attack4.bmp", ".\\bitmaps\\blueslime_attack5.bmp" };
+		char *filename2_1[5] = { ".\\bitmaps\\blueslime_attackL1.bmp",".\\bitmaps\\blueslime_attackL2.bmp",".\\bitmaps\\blueslime_attackL3.bmp", ".\\bitmaps\\blueslime_attackL4.bmp", ".\\bitmaps\\blueslime_attackL5.bmp" };
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
-			attack_animation.AddBitmap(filename2[i], RGB(0, 0, 0));
-		attack_animation.SetDelayCount(3);
+			normalAttackL.AddBitmap(filename2_1[i], RGB(0, 0, 0));
+		normalAttackL.SetDelayCount(3);
+		char *filename2_2[5] = { ".\\bitmaps\\blueslime_attackR1.bmp",".\\bitmaps\\blueslime_attackR2.bmp",".\\bitmaps\\blueslime_attackR3.bmp", ".\\bitmaps\\blueslime_attackR4.bmp", ".\\bitmaps\\blueslime_attackR5.bmp" };
+		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
+			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
+		normalAttackR.SetDelayCount(3);
 	}
 
 	void BlueSlime::OnMove(Maps * m) {
@@ -60,7 +67,8 @@ namespace game_framework {
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
-			slime.OnMove();
+			walkingLeft.OnMove();
+			walkingRight.OnMove();
 			movement(m);
 		}
 		if (!isAlive()) {
@@ -71,18 +79,37 @@ namespace game_framework {
 	void BlueSlime::OnShow(Maps *m)
 	{
 		if (isAlive()) {
-			if (isAttacking) {
-				attackShow(m);
-				blood_bar.setXY(GetX1(), GetY1());
-				blood_bar.showBloodBar(m, hp);
+			if (_direction == 0)
+			{
+				if (isAttacking) {
+					attackShow(m);
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
+				else {
+					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					//enemy.SetTopLeft(x, y);
+					walkingLeft.OnShow();
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
 			}
-			else {
-				slime.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-				//enemy.SetTopLeft(x, y);
-				slime.OnShow();
-				blood_bar.setXY(GetX1(), GetY1());
-				blood_bar.showBloodBar(m, hp);
+			else
+			{
+				if (isAttacking) {
+					attackShow(m);
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
+				else {
+					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					//enemy.SetTopLeft(x, y);
+					walkingRight.OnShow();
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
 			}
+			
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
@@ -102,12 +129,12 @@ namespace game_framework {
 
 	int BlueSlime::GetX2()
 	{
-		return _x + slime.Width();
+		return _x + walkingRight.Width();
 	}
 
 	int BlueSlime::GetY2()
 	{
-		return _y + slime.Height();
+		return _y + walkingRight.Height();
 	}
 
 	void BlueSlime::Initialize() {
@@ -116,6 +143,8 @@ namespace game_framework {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		hp = 1200;
 		blood_bar.setFullHP(hp);
+		walkingLeft.SetDelayCount(5);
+		walkingRight.SetDelayCount(5);
 		///道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->Initialize();
@@ -126,7 +155,7 @@ namespace game_framework {
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
-			if (x2 >= _x + 20 && x1 <= _x + slime.Width() - 20 && y2 >= _y + 30 && y1 <= _y + slime.Height() - 15) {
+			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) {
 				return true;
 			}
 			else {
@@ -172,9 +201,11 @@ namespace game_framework {
 		int step_size = rand() % 3;
 		if (distanceToHero() < 500) {
 			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y1) && m->isEmpty(GetX2() + step_size, GetY2())) {
+				_direction = 1;
 				_x += step_size;
 			}
 			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y1) && m->isEmpty(x - step_size, GetY2())) {
+				_direction = 0;
 				_x -= step_size;
 			}
 			if (hero_on_map->GetY1() > y1 && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
@@ -202,18 +233,18 @@ namespace game_framework {
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);
 		}
-		attack_animation.OnMove();
+		normalAttackR.OnMove();
 		if (!isAttacking) {
-			attack_animation.Reset();
+			normalAttackR.Reset();
 		}
 	}
 
 	void BlueSlime::attackShow(Maps * m)
 	{
 		if (isAttacking) {
-			attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));
-			attack_animation.OnShow();
-			if (attack_animation.IsFinalBitmap()) {
+			normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			normalAttackR.OnShow();
+			if (normalAttackR.IsFinalBitmap()) {
 				isAttacking = false;
 				attack_cool_down = 90; //每次攻擊間隔3秒
 			}

@@ -47,12 +47,12 @@ namespace game_framework {
 		/////怪物的動畫
 		char *filename[3] = { ".\\bitmaps\\greenslime1.bmp",".\\bitmaps\\greenslime2.bmp",".\\bitmaps\\greenslime3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
-			slime.AddBitmap(filename[i], RGB(0, 0, 0));
+			walkingRight.AddBitmap(filename[i], RGB(0, 0, 0));
 		/////攻擊的動畫
 		char *filename2[5] = { ".\\bitmaps\\greenslime_attack1.bmp",".\\bitmaps\\greenslime_attack2.bmp",".\\bitmaps\\greenslime_attack3.bmp", ".\\bitmaps\\greenslime_attack4.bmp", ".\\bitmaps\\greenslime_attack5.bmp" };
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
-			attack_animation.AddBitmap(filename2[i], RGB(0, 0, 0));
-		attack_animation.SetDelayCount(3);
+			normalAttackR.AddBitmap(filename2[i], RGB(0, 0, 0));
+		normalAttackR.SetDelayCount(3);
 	}
 
 	void GreenSlime::OnMove(Maps * m) {
@@ -60,7 +60,7 @@ namespace game_framework {
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
-			slime.OnMove();
+			walkingRight.OnMove();
 			movement(m);
 		}
 		if (!isAlive()) {
@@ -77,9 +77,9 @@ namespace game_framework {
 				blood_bar.showBloodBar(m, hp);
 			}
 			else {
-				slime.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+				walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 				//enemy.SetTopLeft(x, y);
-				slime.OnShow();
+				walkingRight.OnShow();
 				blood_bar.setXY(GetX1(), GetY1() + 50);
 				blood_bar.showBloodBar(m, hp);
 			}
@@ -102,12 +102,12 @@ namespace game_framework {
 
 	int GreenSlime::GetX2()
 	{
-		return _x + slime.Width();
+		return _x + walkingRight.Width();
 	}
 
 	int GreenSlime::GetY2()
 	{
-		return _y + slime.Height();
+		return _y + walkingRight.Height();
 	}
 
 	void GreenSlime::Initialize() {
@@ -126,7 +126,7 @@ namespace game_framework {
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
-			if (x2 >= _x + 20 && x1 <= _x + slime.Width() - 20 && y2 >= _y + 80 && y1 <= _y + slime.Height() - 15) {
+			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 80 && y1 <= _y + walkingRight.Height() - 15) {
 				return true;
 			}
 			else {
@@ -202,18 +202,18 @@ namespace game_framework {
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);
 		}
-		attack_animation.OnMove();
+		normalAttackR.OnMove();
 		if (!isAttacking) {
-			attack_animation.Reset();
+			normalAttackR.Reset();
 		}
 	}
 
 	void GreenSlime::attackShow(Maps * m)
 	{
 		if (isAttacking) {
-			attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));
-			attack_animation.OnShow();
-			if (attack_animation.IsFinalBitmap()) {
+			normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			normalAttackR.OnShow();
+			if (normalAttackR.IsFinalBitmap()) {
 				isAttacking = false;
 				attack_cool_down = 90; //每次攻擊間隔3秒
 			}

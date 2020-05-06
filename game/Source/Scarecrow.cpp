@@ -52,8 +52,8 @@ namespace game_framework {
 		/////攻擊的動畫
 		char *filename[12] = { ".\\bitmaps\\Scarecrow_attack1.bmp",".\\bitmaps\\Scarecrow_attack2.bmp",".\\bitmaps\\Scarecrow_attack3.bmp",".\\bitmaps\\Scarecrow_attack4.bmp", ".\\bitmaps\\Scarecrow_attack5.bmp", ".\\bitmaps\\Scarecrow_attack6.bmp", ".\\bitmaps\\Scarecrow_attack7.bmp", ".\\bitmaps\\Scarecrow_attack8.bmp", ".\\bitmaps\\Scarecrow_attack9.bmp", ".\\bitmaps\\Scarecrow_attack10.bmp", ".\\bitmaps\\Scarecrow_attack11.bmp", ".\\bitmaps\\Scarecrow_attack12.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
-			attack_animation.AddBitmap(filename[i], RGB(0, 0, 0));
-		attack_animation.SetDelayCount(1);
+			normalAttackR.AddBitmap(filename[i], RGB(0, 0, 0));
+		normalAttackR.SetDelayCount(1);
 	}
 
 	void Scarecrow::OnMove(Maps * m) {
@@ -174,18 +174,18 @@ namespace game_framework {
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);
 		}
-		attack_animation.OnMove();
+		normalAttackR.OnMove();
 		if (!isAttacking) {
-			attack_animation.Reset();
+			normalAttackR.Reset();
 		}
 	}
 
 	void Scarecrow::attackShow(Maps * m)
 	{
 		if (isAttacking) {
-			attack_animation.SetTopLeft(m->screenX(_x), m->screenY(_y));
-			attack_animation.OnShow();
-			if (attack_animation.IsFinalBitmap()) {
+			normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			normalAttackR.OnShow();
+			if (normalAttackR.IsFinalBitmap()) {
 				isAttacking = false;
 				attack_cool_down = 90; //每次攻擊間隔3秒
 			}

@@ -8,7 +8,7 @@
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
-	// 他超廢，他還不會自己攻擊												   //
+	//  												   //
 	/////////////////////////////////////////////////////////////////////////////
 
 	class Scarecrow :public Enemy
@@ -47,7 +47,7 @@ namespace game_framework {
 		void attackShow(Maps *m);
 	private:
 		CMovingBitmap enemy;
-		CAnimation attack_animation;
+		CAnimation normalAttackR;
 		int attack_damage;
 		bool isMovingRight;
 		bool isMovingLeft;
