@@ -30,6 +30,10 @@ namespace game_framework {
 		int getY2();
 	private:
 		CMovingBitmap fire_attack;
+		CAnimation flame_L1;
+		CAnimation flame_L2;
+		CAnimation flame_R1;
+		CAnimation flame_R2;
 		CMovingBitmap fire_attack_boom;
 		CMovingBitmap ice_attack;
 		CMovingBitmap plant_attack;

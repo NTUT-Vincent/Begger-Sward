@@ -37,29 +37,77 @@ namespace game_framework {
 		fire_attack.LoadBitmap(IDB_FIREATTACK, RGB(0, 0, 0));
 		ice_attack.LoadBitmap(IDB_ATTACK1, RGB(0, 0, 0));
 		plant_attack.LoadBitmap(IDB_ATTACKPLANT, RGB(0, 0, 0));
+		
+		//向左火焰動畫
+		
+		char *filename1_1[6] = { ".\\bitmaps\\flameL1.bmp",".\\bitmaps\\flameL2.bmp",".\\bitmaps\\flameL3.bmp",".\\bitmaps\\flameL4.bmp", ".\\bitmaps\\flameL5.bmp", ".\\bitmaps\\flameL6.bmp" };
+		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+			flame_L1.AddBitmap(filename1_1[i], RGB(0, 0, 0));
+		char *filename1_2[4] = { ".\\bitmaps\\flameL7.bmp",".\\bitmaps\\flameL8.bmp",".\\bitmaps\\flameL9.bmp",".\\bitmaps\\flameL8.bmp"};
+		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+			flame_L2.AddBitmap(filename1_2[i], RGB(0, 0, 0));
+		
+		//向右火焰動畫
+		
+		char *filename2_1[6] = { ".\\bitmaps\\flameR1.bmp",".\\bitmaps\\flameR2.bmp",".\\bitmaps\\flameR3.bmp",".\\bitmaps\\flameR4.bmp", ".\\bitmaps\\flameR5.bmp", ".\\bitmaps\\flameR6.bmp" };
+		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+			flame_R1.AddBitmap(filename2_1[i], RGB(0, 0, 0));
+		char *filename2_2[4] = { ".\\bitmaps\\flameR7.bmp",".\\bitmaps\\flameR8.bmp",".\\bitmaps\\flameR9.bmp",".\\bitmaps\\flameR8.bmp" };
+		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+			flame_R2.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 	}
 
 	void Attack::OnMove(Maps * m)
 	{
-		if (_direction == 0) {
-			if (m->isEmpty(_x, _y)) {
-				_x -= 10;
+		if (_attribute == FIRE)
+		{
+			if(_direction == 0)
+				
+				flame_L2.OnMove();
+			else
+				flame_R2.OnMove();
+			/*if (_direction == 0) {
+				if (m->isEmpty(_x, _y)) {
+					_x -= 10;
+				}
+			}
+			if (_direction == 1) {
+				if (m->isEmpty(_x, _y)) {
+					_x += 10;
+				}
+			}*/
+		}
+		else
+		{
+			if (_direction == 0) {
+				if (m->isEmpty(_x, _y)) {
+					_x -= 10;
+				}
+			}
+			if (_direction == 1) {
+				if (m->isEmpty(_x, _y)) {
+					_x += 10;
+				}
 			}
 		}
-		if (_direction == 1) {
-			if (m->isEmpty(_x, _y)) {
-				_x += 10;
-			}
-		}
-
 	}
 
 	void Attack::OnShow(Maps * m)
 	{
 		if (_attribute == FIRE) {
-			if (m->isEmpty(_x, _y)) {
-				fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				fire_attack.ShowBitmap();
+			if (_direction == 0) 
+			{
+				if (m->isEmpty(_x, _y)) {
+					flame_L2.SetTopLeft(m->screenX(_x)-192, m->screenY(_y));
+					flame_L2.OnShow();
+				}
+			}
+			if (_direction == 1) 
+			{
+				if (m->isEmpty(_x, _y)) {
+					flame_R2.SetTopLeft(m->screenX(_x)+64, m->screenY(_y));
+					flame_R2.OnShow();
+				}
 			}
 		}
 		if (_attribute == ICE) {
@@ -84,11 +132,16 @@ namespace game_framework {
 
 	void Attack::setXY(int x, int y)
 	{
-		if (!_attackIsFlying) {
+		if (_attribute == FIRE) {
 			_x = x;
 			_y = y;
 		}
-		
+		else {
+			if (!_attackIsFlying) {
+				_x = x;
+				_y = y;
+			}
+		}
 	}
 
 	void Attack::setDirection(int direction)
@@ -108,7 +161,7 @@ namespace game_framework {
 
 	int Attack::getX2()
 	{
-		if (_attribute == FIRE) {
+		if (_attribute == FIRE ) {
 			return _x + fire_attack.Width();
 		}
 		if (_attribute == ICE) {
