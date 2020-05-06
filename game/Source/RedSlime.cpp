@@ -26,7 +26,7 @@ namespace game_framework {
 		attack_damage = 0;
 	}
 
-	RedSlime::RedSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "RedSlime", h, FIRE)
+	RedSlime::RedSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "RedSlime", h, ICE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
@@ -45,13 +45,20 @@ namespace game_framework {
 			items.at(i)->load();
 		}
 		/////怪物的動畫
-		char *filename[3] = { ".\\bitmaps\\redslime1.bmp",".\\bitmaps\\redslime2.bmp",".\\bitmaps\\redslime3.bmp"};
+		char *filename1_1[3] = { ".\\bitmaps\\redslimeL1.bmp",".\\bitmaps\\redslimeL2.bmp",".\\bitmaps\\redslimeL3.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
-			walkingRight.AddBitmap(filename[i], RGB(0, 0, 0));
+			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
+		char *filename1_2[3] = { ".\\bitmaps\\redslimeR1.bmp",".\\bitmaps\\redslimeR2.bmp",".\\bitmaps\\redslimeR3.bmp"};
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		/////攻擊的動畫
-		char *filename2[5] = { ".\\bitmaps\\redslime_attack1.bmp",".\\bitmaps\\redslime_attack2.bmp",".\\bitmaps\\redslime_attack3.bmp", ".\\bitmaps\\redslime_attack4.bmp", ".\\bitmaps\\redslime_attack5.bmp" };
+		char *filename2_1[5] = { ".\\bitmaps\\redslime_attackL1.bmp",".\\bitmaps\\redslime_attackL2.bmp",".\\bitmaps\\redslime_attackL3.bmp", ".\\bitmaps\\redslime_attackL4.bmp", ".\\bitmaps\\redslime_attackL5.bmp" };
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
-			normalAttackR.AddBitmap(filename2[i], RGB(0, 0, 0));
+			normalAttackL.AddBitmap(filename2_1[i], RGB(0, 0, 0));
+		normalAttackL.SetDelayCount(3);
+		char *filename2_2[5] = { ".\\bitmaps\\redslime_attackR1.bmp",".\\bitmaps\\redslime_attackR2.bmp",".\\bitmaps\\redslime_attackR3.bmp", ".\\bitmaps\\redslime_attackR4.bmp", ".\\bitmaps\\redslime_attackR5.bmp" };
+		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
+			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
 	}
 
@@ -60,6 +67,7 @@ namespace game_framework {
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
+			walkingLeft.OnMove();
 			walkingRight.OnMove();
 			movement(m);
 		}
@@ -71,18 +79,37 @@ namespace game_framework {
 	void RedSlime::OnShow(Maps *m)
 	{
 		if (isAlive()) {
-			if (isAttacking) {
-				attackShow(m);
-				blood_bar.setXY(GetX1(), GetY1());
-				blood_bar.showBloodBar(m, hp);
+			if (_direction == 0)
+			{
+				if (isAttacking) {
+					attackShow(m);
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
+				else {
+					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					//enemy.SetTopLeft(x, y);
+					walkingLeft.OnShow();
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
 			}
-			else {
-				walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-				//enemy.SetTopLeft(x, y);
-				walkingRight.OnShow();
-				blood_bar.setXY(GetX1(), GetY1());
-				blood_bar.showBloodBar(m, hp);
+			else
+			{
+				if (isAttacking) {
+					attackShow(m);
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
+				else {
+					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					//enemy.SetTopLeft(x, y);
+					walkingRight.OnShow();
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+				}
 			}
+			
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
@@ -116,6 +143,8 @@ namespace game_framework {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		hp = 1200;
 		blood_bar.setFullHP(hp);
+		walkingLeft.SetDelayCount(5);
+		walkingRight.SetDelayCount(5);
 		///道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->Initialize();
@@ -168,13 +197,15 @@ namespace game_framework {
 	void RedSlime::movement(Maps *m)
 	{
 		int x = GetX1();
-		int y1 = GetY1();
+		int y1 = GetY1() ;
 		int step_size = rand() % 3;
 		if (distanceToHero() < 500) {
 			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y1) && m->isEmpty(GetX2() + step_size, GetY2())) {
+				_direction = 1;
 				_x += step_size;
 			}
 			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y1) && m->isEmpty(x - step_size, GetY2())) {
+				_direction = 0;
 				_x -= step_size;
 			}
 			if (hero_on_map->GetY1() > y1 && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {

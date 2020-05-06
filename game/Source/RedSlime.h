@@ -1,5 +1,5 @@
-#ifndef REDSLIME_H
-#define REDSLIME_H
+#ifndef BLUESLIME_H
+#define BLUESLIME_H
 
 #include "Maps.h"
 #include "Character.h"
@@ -8,7 +8,7 @@
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
-	//  												   //
+	//		 																	//
 	/////////////////////////////////////////////////////////////////////////////
 
 	class RedSlime :public Enemy
@@ -47,8 +47,11 @@ namespace game_framework {
 		void attack();
 		void attackShow(Maps *m);
 	private:
+		CAnimation walkingLeft;
 		CAnimation walkingRight;
+		CAnimation normalAttackL;
 		CAnimation normalAttackR;
+		bool _direction;
 		int attack_damage;
 		bool isMovingRight;
 		bool isMovingLeft;

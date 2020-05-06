@@ -60,6 +60,9 @@
 #include "gamelib.h"
 #include "mygame.h"
 #include "Character.h"
+#include "BlueSlime.h"
+#include "GreenSlime.h"
+#include "RedSlime.h"
 #include "Util.h"
 
 namespace game_framework {
