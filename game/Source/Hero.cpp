@@ -24,15 +24,14 @@ namespace game_framework {
 		hp = 1200;
 		attack = 20;
 		skillTimes = 0;*/
-		
 		for (int i = 0; i < 6; i++) {
-			items.push_back(NULL);
+			items.push_back(nullptr);
 		}
 	}
 
 	Hero::~Hero() {
 		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
-			if (*it_i != NULL) {
+			if (*it_i != nullptr) {
 				delete *it_i;
 			}
 		}
@@ -192,6 +191,9 @@ namespace game_framework {
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
 		_attribute = FIRE;
+		for (int i = 0; i < 6; i++) {
+			items.at(i) = nullptr;
+		}
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -481,7 +483,15 @@ namespace game_framework {
 		if (skill_q_cool_down > 0) {
 			skill_q_cool_down -= 1;
 		}
-		q_attack.setAttribute(_attribute);
+		if (_attribute == FIRE) {
+			q_attack.setAttackName(FIRE_FLAME);
+		}
+		if (_attribute == ICE) {
+			q_attack.setAttackName(ICE_BALL);
+		}
+		if (_attribute == PLANT) {
+			q_attack.setAttackName(GRASS_BALL);
+		}
 	}
 
 	void Hero::skillQShow(Maps * m)

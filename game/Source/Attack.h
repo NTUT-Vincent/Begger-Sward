@@ -21,6 +21,7 @@ namespace game_framework {
 		void OnMove(Maps *m);
 		void OnShow(Maps *m);
 		void setAttribute(ELEMENT_ATTRIBUTE attribute);
+		void setAttackName(ATTACK_NAME name);
 		void setXY(int x, int y);
 		void setDirection(int direction);
 		void setAttackIsFlying(bool b);
@@ -40,6 +41,7 @@ namespace game_framework {
 		int _x, _y;
 		int _direction; //0=left, 1=right
 		ELEMENT_ATTRIBUTE _attribute;
+		ATTACK_NAME		_attack_name;
 		bool _attackIsFlying;
 	};
 }

@@ -28,6 +28,7 @@ namespace game_framework {
 		_x = 280;
 		_y = 280;
 		_attribute = FIRE;
+		_attack_name = FIRE_BALL;
 		_direction = 0;
 		_attackIsFlying = false;
 	}
@@ -59,7 +60,7 @@ namespace game_framework {
 
 	void Attack::OnMove(Maps * m)
 	{
-		if (_attribute == FIRE)
+		if (_attack_name == FIRE_FLAME)
 		{
 			if(_direction == 0)
 				
@@ -94,7 +95,7 @@ namespace game_framework {
 
 	void Attack::OnShow(Maps * m)
 	{
-		if (_attribute == FIRE) {
+		if (_attack_name == FIRE_FLAME) {
 			if (_direction == 0) 
 			{
 				if (m->isEmpty(_x, _y)) {
@@ -110,13 +111,19 @@ namespace game_framework {
 				}
 			}
 		}
-		if (_attribute == ICE) {
+		if (_attack_name == FIRE_BALL) {
+			if (m->isEmpty(_x, _y)) {
+				fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				fire_attack.ShowBitmap();
+			}
+		}
+		if (_attack_name == ICE_BALL) {
 			if (m->isEmpty(_x, _y)) {
 				ice_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				ice_attack.ShowBitmap();
 			}
 		}
-		if (_attribute == PLANT) {
+		if (_attack_name == GRASS_BALL) {
 			if (m->isEmpty(_x, _y)) {
 				plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				plant_attack.ShowBitmap();
@@ -130,9 +137,14 @@ namespace game_framework {
 		_attribute = attribute;
 	}
 
+	void Attack::setAttackName(ATTACK_NAME name)
+	{
+		_attack_name = name;
+	}
+
 	void Attack::setXY(int x, int y)
 	{
-		if (_attribute == FIRE) {
+		if (_attack_name == FIRE_FLAME) {
 			_x = x;
 			_y = y;
 		}
@@ -156,19 +168,39 @@ namespace game_framework {
 
 	int Attack::getX1()
 	{
+		if (_attack_name == FIRE_FLAME) {
+			if (_direction == 0)
+			{
+				return _x - 192;
+			}
+			if (_direction == 1)
+			{
+				return _x + 64;
+			}
+		}
 		return _x;
 	}
 
 	int Attack::getX2()
 	{
-		if (_attribute == FIRE ) {
+		if (_attack_name == FIRE_BALL) {
 			return _x + fire_attack.Width();
 		}
-		if (_attribute == ICE) {
+		if (_attack_name == ICE_BALL) {
 			return _x + ice_attack.Width();
 		}
-		if (_attribute == PLANT) {
+		if (_attack_name == GRASS_BALL) {
 			return _x + plant_attack.Width();
+		}
+		if (_attack_name == FIRE_FLAME) {
+			if (_direction == 0)
+			{
+				return getX1() + flame_L2.Width();
+			}
+			if (_direction == 1)
+			{
+				return getX1() + flame_R2.Width();
+			}
 		}
 		return _x;
 		
@@ -181,14 +213,24 @@ namespace game_framework {
 
 	int Attack::getY2()
 	{
-		if (_attribute == FIRE) {
+		if (_attack_name == FIRE_BALL) {
 			return _y + fire_attack.Height();
 		}
-		if (_attribute == ICE) {
+		if (_attack_name == ICE_BALL) {
 			return _y + ice_attack.Height();
 		}
-		if (_attribute == PLANT) {
+		if (_attack_name == GRASS_BALL) {
 			return _y + plant_attack.Height();
+		}
+		if (_attack_name == FIRE_FLAME) {
+			if (_direction == 0)
+			{
+				return getY1() + flame_L2.Height();
+			}
+			if (_direction == 1)
+			{
+				return getY1() + flame_R2.Height();
+			}
 		}
 		return _y;
 	}

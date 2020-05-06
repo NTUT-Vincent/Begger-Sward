@@ -61,4 +61,12 @@
 
 	};
 
+	enum ATTACK_NAME {
+		FIRE_BALL,				//火球
+		ICE_BALL,				//Q技能的冰
+		GRASS_BALL,				//Q技能的草
+		FIRE_FLAME,
+
+	};
+
 #endif // !UTIL_H
