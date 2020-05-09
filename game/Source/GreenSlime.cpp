@@ -26,7 +26,7 @@ namespace game_framework {
 		attack_damage = 0;
 	}
 
-	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h, ICE)
+	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h, PLANT)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;

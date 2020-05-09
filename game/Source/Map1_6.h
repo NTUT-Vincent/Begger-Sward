@@ -8,7 +8,7 @@ namespace game_framework {
 		Map1_6();
 		~Map1_6();
 		void Initialize();
-		//void setPos(int x, int y, int n);
+		void setPos(int x, int y, int n);
 		bool isEmpty(int x, int y) const;
 		bool inFinishArea(int x, int y) override;
 		void OnMove();

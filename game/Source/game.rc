@@ -222,6 +222,10 @@ IDB_SKILLQICEPIC        BITMAP                  "..\\RES\\skill_q_ice_pic.bmp"
 
 IDB_ITEMPOTION          BITMAP                  "..\\RES\\Item_potion.bmp"
 
+IDB_ITEMCLOCK           BITMAP                  "..\\RES\\Item_clock.bmp"
+
+IDB_BOX                 BITMAP                  "..\\RES\\box.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

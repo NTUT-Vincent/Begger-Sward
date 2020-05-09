@@ -50,6 +50,7 @@
 #include "GreenSlime.h"
 #include "RedSlime.h"
 #include "BlueSlime.h"
+#include "Box.h"
 #include "PlayerStatus.h"
 
 namespace game_framework {

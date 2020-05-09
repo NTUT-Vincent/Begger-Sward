@@ -262,6 +262,8 @@
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\BlueSlime.cpp" />
+    <ClCompile Include="Source\Box.cpp" />
+    <ClCompile Include="Source\Clock.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\GreenSlime.cpp" />
@@ -323,6 +325,8 @@
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\BloodBar.h" />
     <ClInclude Include="Source\BlueSlime.h" />
+    <ClInclude Include="Source\Box.h" />
+    <ClInclude Include="Source\Clock.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Enemy.h" />
@@ -375,6 +379,7 @@
     <Image Include="RES\blood_almost_die.bmp" />
     <Image Include="RES\blood_full.bmp" />
     <Image Include="RES\blood_little_damaged.bmp" />
+    <Image Include="RES\box.bmp" />
     <Image Include="res\Clock1.bmp" />
     <Image Include="res\Clock2.bmp" />
     <Image Include="res\Clock3.bmp" />
@@ -395,6 +400,7 @@
     <Image Include="RES\FireAttackBoom.bmp" />
     <Image Include="RES\hero1.bmp" />
     <Image Include="res\hero2.bmp" />
+    <Image Include="RES\Item_clock.bmp" />
     <Image Include="RES\Item_fire_attribute.bmp" />
     <Image Include="RES\Item_health.bmp" />
     <Image Include="RES\Item_ice_attribute.bmp" />

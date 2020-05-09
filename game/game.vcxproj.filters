@@ -175,6 +175,12 @@
     <ClCompile Include="Source\Potion.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Clock.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Box.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -265,6 +271,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Potion.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Clock.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Box.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -464,6 +476,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Item_potion.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_clock.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\box.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

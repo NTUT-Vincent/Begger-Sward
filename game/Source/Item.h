@@ -20,11 +20,13 @@ namespace game_framework {
 		void Initialize();
 		bool isExist();
 		void setExist(bool b);
+		void setNumOfBox(int n);
 		void setXY(int x, int y);
 		void setRandomNum(int n);
 		int getX();
 		int getY();
 		int getRandomNum();
+		int getNumOfBox();
 		bool intercect(Hero *h);
 		bool getIsUsed();
 		void setIsUsed(bool b);
@@ -34,6 +36,7 @@ namespace game_framework {
 		bool _isExist;
 		int random_num;
 		bool _isUsed;
+		int num_of_box;
 	
 	protected:
 		CMovingBitmap item_on_status_bar;

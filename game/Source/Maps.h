@@ -21,7 +21,7 @@ namespace game_framework {
 		virtual int screenY(int y) { return 0; };
 		virtual void getHeroX(int x) {};
 		virtual void getHeroY(int y) {};
-		//virtual void setPos(int x, int y, int n) {};
+		virtual void setPos(int x, int y, int n) = 0;
 		virtual bool inFinishArea(int x, int y) = 0;
 		void setXY(int x, int y);
 		int getSX();

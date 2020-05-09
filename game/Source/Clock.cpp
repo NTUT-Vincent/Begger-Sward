@@ -7,7 +7,7 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Item.h"
-#include "Health.h"
+#include "Clock.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -15,41 +15,46 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	
-	Health::Health()
+	Clock::Clock()
 	{
 	}
 
-	void Health::load()
+	void Clock::load()
 	{
-		health_pic.LoadBitmap(IDB_ITEMHEALTH, RGB(0, 0, 0));
+		clock_pic.LoadBitmap(IDB_ITEMCLOCK);
+		item_on_status_bar.LoadBitmapA(IDB_ITEMCLOCK);
 	}
 
-	void Health::OnMove(Maps *m, Hero *h)
+	void Clock::OnMove(Maps *m, Hero *h)
 	{
-		if (isExist() && intercect(h) && (getRandomNum() % 100) < 40) {
-			h->addHp(50);
+		_x = getX();
+		_y = getY();
+		if (isExist() && intercect(h) && getNumOfBox() % 100 < 50) {
+			Clock * p = new Clock();
+			p->load();
+			h->addItem(p);
 			setExist(false);
 		}
 	}
 
-	void Health::OnShow(Maps *m)
+	void Clock::OnShow(Maps *m)
 	{
-		if (isExist() && (getRandomNum() % 100) < 40) {
-			health_pic.SetTopLeft(m->screenX(getX()), m->screenY(getY()));
-			health_pic.ShowBitmap();
+		if (isExist() && getNumOfBox() % 100 < 50) {
+			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			clock_pic.ShowBitmap();
 		}
 		
 	}
 
-	void Health::effect(Hero *h)
+	void Clock::effect(Hero *h)
 	{
+		h->SetAllCoolDownToZero();
+		setIsUsed(false);
 	}
 
-
-
-	/*bool Health::intercect(Hero * h)
+	bool Clock::intercect(Hero * h)
 	{
-		if(isExist()) {
+		if (isExist()) {
 			if (h->GetX2() >= _x + 10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) {
 				return true;
 			}
@@ -59,6 +64,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-*/
+
 
 }

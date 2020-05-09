@@ -70,24 +70,24 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()))
+		if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()-10))
 		{
 			m->addSX(HMS);
 			x -= HMS;
 		}
 
-		if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2()))
+		if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2()-10))
 		{
 			m->addSX(-HMS);
 			x += HMS;
 		}
-		if (isMovingUp && m->isEmpty(x, y - HMS) && m->isEmpty(GetX2(), y - HMS))
+		if (isMovingUp && m->isEmpty(x+10, y - HMS) && m->isEmpty(GetX2()-10, y - HMS))
 		{
 			m->addSY(HMS);
 			y -= HMS;
 		}
 
-		if (isMovingDown && m->isEmpty(x, GetY2() + HMS) && m->isEmpty(GetX2(), GetY2() + HMS))
+		if (isMovingDown && m->isEmpty(x+10, GetY2() + HMS) && m->isEmpty(GetX2()-10, GetY2() + HMS))
 		{
 			m->addSY(-HMS);
 			y += HMS;
@@ -287,6 +287,11 @@ namespace game_framework {
 	{
 		_attribute = e;
 	}
+
+	void Hero::SetAllCoolDownToZero()
+	{
+		skill_q_cool_down = skill_e_cool_down = 0;
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////
 	
@@ -302,7 +307,7 @@ namespace game_framework {
 		if (_attribute == PLANT) {
 			attack = -1*attack_plant;
 		}
-		attack = -10000;
+		//attack = -10000;
 		for (unsigned i = 0; i < enemys->size(); i++)
 		{
 			if (enemys->at(i)->intersect(x1, x2, y1, y2))
@@ -511,7 +516,10 @@ namespace game_framework {
 			skill_q_cool_down -= 1;
 		}
 		if (_attribute == FIRE) {
-			q_attack.setAttackName(FIRE_FLAME);
+			q_attack.setAttackName(FIRE_BALL);
+			if (attack_fire > 30) {
+				q_attack.setAttackName(FIRE_FLAME);
+			}
 		}
 		if (_attribute == ICE) {
 			q_attack.setAttackName(ICE_BALL);

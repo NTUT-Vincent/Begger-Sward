@@ -58,6 +58,7 @@ namespace game_framework {
 		void SetUsingE(bool b);
 		void SetUsingR(bool b);
 		void SetElementAttribute(ELEMENT_ATTRIBUTE e);
+		void SetAllCoolDownToZero();
 		/////////////////////////////////////////////////////////////////////////////
 		// 前身是cantPass，應該是本程式最重要的函式之一
 		// 1. 角色碰到敵人會扣血

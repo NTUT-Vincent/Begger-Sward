@@ -21,10 +21,10 @@ namespace game_framework {
 	void Item::showOnStatusBar(int n)
 	{
 		if (n < 3) {
-			item_on_status_bar.SetTopLeft(570, (n % 3) * 30);
+			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 0);
 		}
 		if (n >= 3) {
-			item_on_status_bar.SetTopLeft(600, (n % 3) * 30);
+			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 30);
 		}
 		
 		item_on_status_bar.ShowBitmap();
@@ -45,6 +45,11 @@ namespace game_framework {
 	void Item::setExist(bool b)
 	{
 		_isExist = b;
+	}
+
+	void Item::setNumOfBox(int n)
+	{
+		num_of_box = n;
 	}
 
 	void Item::setXY(int x, int y)
@@ -71,6 +76,11 @@ namespace game_framework {
 	int Item::getRandomNum()
 	{
 		return random_num;
+	}
+
+	int Item::getNumOfBox()
+	{
+		return num_of_box;
 	}
 
 

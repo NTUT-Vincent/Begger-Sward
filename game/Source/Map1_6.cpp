@@ -53,12 +53,12 @@ namespace game_framework {
 		setXY(-500, -1190);
 	}
 
-	/*void Map1_6::setPos(int x, int y, int n)
+	void Map1_6::setPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] = n;
-	}*/
+	}
 
 	bool Map1_6::isEmpty(int x, int y) const
 	{

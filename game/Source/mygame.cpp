@@ -201,6 +201,10 @@ namespace game_framework {
 	{
 		current_stage = STAGE_1_1;
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
+		enemys1_1.push_back(new Box(256, 384, &player1));
+		for (int i = 1; i < 4; i++) {
+			enemys1_2.push_back(new Box((64 * 3*i), 448, &player1));
+		}
 		enemys1_2.push_back(new GreenSlime(300, 300, &player1));
 		enemys1_2.push_back(new BlueSlime(700, 700, &player1));
 		for (int i = 0; i < 5; i++) {
@@ -368,6 +372,10 @@ namespace game_framework {
 		case KEY_DOWN: player1.SetMovingDown(true); break;
 		case NUM_1: player1.useItem(1); /*current_stage = STAGE_1_1;*/ break;
 		case NUM_2: player1.useItem(2);/* current_stage = STAGE_1_2;*/ break;
+		case NUM_3: player1.useItem(3); break;
+		case NUM_4: player1.useItem(4); break;
+		case NUM_5: player1.useItem(5); break;
+		case NUM_6: player1.useItem(6); break;
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: player1.SetUsingQ(true); break;
 		case KEY_W: player1.SetUsingW(true); break;

@@ -9,6 +9,7 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Potion.h"
+#include "Clock.h"
 
 
 namespace game_framework {
@@ -33,7 +34,6 @@ namespace game_framework {
 		hero_on_map = h;
 		_attribute = a;
 		items.push_back(new Health());
-		items.push_back(new Potion());
 	}
 
 	Enemy::~Enemy()

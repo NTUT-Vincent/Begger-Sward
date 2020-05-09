@@ -28,8 +28,8 @@ namespace game_framework {
 	void Potion::OnMove(Maps *m, Hero *h)
 	{
 		_x = getX();
-		_y = getY() + 40;
-		if (isExist() && intercect(h) && getRandomNum() % 1 == 0) {
+		_y = getY();
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 50) {
 			Potion * p = new Potion();
 			p->load();
 			h->addItem(p);
@@ -39,7 +39,7 @@ namespace game_framework {
 
 	void Potion::OnShow(Maps *m)
 	{
-		if (isExist() && getRandomNum() % 1 == 0) {
+		if (isExist() && getNumOfBox() % 100 > 50) {
 			potion_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			potion_pic.ShowBitmap();
 		}
