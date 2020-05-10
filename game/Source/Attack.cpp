@@ -63,20 +63,9 @@ namespace game_framework {
 		if (_attack_name == FIRE_FLAME)
 		{
 			if(_direction == 0)
-				
 				flame_L2.OnMove();
 			else
 				flame_R2.OnMove();
-			/*if (_direction == 0) {
-				if (m->isEmpty(_x, _y)) {
-					_x -= 10;
-				}
-			}
-			if (_direction == 1) {
-				if (m->isEmpty(_x, _y)) {
-					_x += 10;
-				}
-			}*/
 		}
 		else
 		{
@@ -164,6 +153,17 @@ namespace game_framework {
 	void Attack::setAttackIsFlying(bool b)
 	{
 		_attackIsFlying = b;
+	}
+
+	void Attack::resetAnimation(ATTACK_NAME atk)
+	{
+		if (atk == FIRE_FLAME)
+		{
+			flame_L1.Reset();
+			flame_L2.Reset();
+			flame_R1.Reset();
+			flame_R1.Reset();
+		}
 	}
 
 	int Attack::getX1()

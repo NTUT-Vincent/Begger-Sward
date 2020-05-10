@@ -90,7 +90,8 @@ namespace game_framework {
 		start_1.LoadBitmap(IDB_START1, RGB(0, 0, 0));
 		start_2.LoadBitmap(IDB_START2, RGB(0, 0, 0));
 		story_1.LoadBitmap(IDB_STORY1, RGB(0, 0, 0));
-		story_2.LoadBitmap(IDB_STORY2, RGB(0, 0, 0));
+		story_2.LoadBitmap(IDB_STORY2, RGB(0, 0, 0)
+		);
 		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -228,8 +229,11 @@ namespace game_framework {
 		current_stage = STAGE_1_1;
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
 		enemys1_1.push_back(new Box(256, 384, &player1));
-		for (int i = 1; i < 4; i++) {
+		for (int i = 0; i < 3; i++) {
 			enemys1_2.push_back(new Box((64 * 3*i), 448, &player1));
+		}
+		for (int i = 0; i < 2; i++) {
+			enemys1_2.push_back(new RedSlime((64 * 3*i)+400, 448, &player1));
 		}
 		enemys1_2.push_back(new GreenSlime(300, 300, &player1));
 		enemys1_2.push_back(new BlueSlime(700, 700, &player1));

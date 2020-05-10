@@ -4,12 +4,13 @@
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個.h file 定義了參數的值，可以直接從這裡取用						   //
 	/////////////////////////////////////////////////////////////////////////////
-	const int OBJS_DEFAULT_SPEED = 4; //物件固定移動速度
-	const int SMOOTH_MOVE_TRESHHOLD = OBJS_DEFAULT_SPEED * 3 - 1; //平滑移動門檻值
+	constexpr int OBJS_DEFAULT_SPEED = 4; //物件固定移動速度;
+	constexpr int SMOOTH_MOVE_TRESHOLD = OBJS_DEFAULT_SPEED * 3 - 1; //平滑移動門檻值
 
-	const int HERO_MOVE_SPEED = 5;//英雄移動速度
+	constexpr int HERO_MOVE_SPEED = 5;		//英雄移動速度
+	constexpr int SKILL_EVO_TVALUE = 22;	//技能進化的Treshold Value
 
-	const int MAX_ENEMY_PER_MAP = 10;//最大的敵人存量
+	constexpr int MAX_ENEMY_PER_MAP = 10;//最大的敵人存量
 
 	const double PROB_ENEMY_TURN = 0.02;//敵人自動轉向機率
 	const double PROB_ITEM_GEN = 0.005;//打死敵人生寶物的機率

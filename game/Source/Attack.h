@@ -21,10 +21,11 @@ namespace game_framework {
 		void OnMove(Maps *m);
 		void OnShow(Maps *m);
 		void setAttribute(ELEMENT_ATTRIBUTE attribute);
-		void setAttackName(ATTACK_NAME name);
+		void setAttackName(ATTACK_NAME name);			//設定攻擊名稱
 		void setXY(int x, int y);
 		void setDirection(int direction);
 		void setAttackIsFlying(bool b);
+		void resetAnimation(ATTACK_NAME atk);
 		int getX1();
 		int getX2();
 		int getY1();
@@ -39,9 +40,9 @@ namespace game_framework {
 		CMovingBitmap ice_attack;
 		CMovingBitmap plant_attack;
 		int _x, _y;
-		int _direction; //0=left, 1=right
+		int _direction;									//0=left, 1=right
 		ELEMENT_ATTRIBUTE _attribute;
-		ATTACK_NAME		_attack_name;
+		ATTACK_NAME	_attack_name;						//攻擊的種類從這裡Call
 		bool _attackIsFlying;
 	};
 }
