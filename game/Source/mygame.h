@@ -66,6 +66,11 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
+		bool goto_status;								// 0是上面的 game start, 1是下面的 story
+		CMovingBitmap start_1;
+		CMovingBitmap start_2;
+		CMovingBitmap story_1;
+		CMovingBitmap story_2;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

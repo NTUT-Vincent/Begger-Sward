@@ -107,6 +107,11 @@
 #define IDB_ITEMCLOCK                   231
 #define IDB_BITMAP10                    232
 #define IDB_BOX                         232
+#define IDB_START1                      234
+#define IDB_START2                      235
+#define IDB_STORY1                      236
+#define IDB_BITMAP16                    237
+#define IDB_STORY2                      237
 #define IDC_README                      1001
 #define ID_FILE_PAUSE                   32771
 #define ID_TOGGLE_FULLSCREEN            32772
@@ -119,7 +124,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        233
+#define _APS_NEXT_RESOURCE_VALUE        238
 #define _APS_NEXT_COMMAND_VALUE         32776
 #define _APS_NEXT_CONTROL_VALUE         1003
 #define _APS_NEXT_SYMED_VALUE           101

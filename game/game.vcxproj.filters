@@ -484,5 +484,20 @@
     <Image Include="RES\box.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\start_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\story_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\story_2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

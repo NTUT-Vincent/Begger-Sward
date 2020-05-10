@@ -85,7 +85,12 @@ namespace game_framework {
 		//
 		// 開始載入資料
 		//
+		goto_status = 0;
 		logo.LoadBitmap(IDB_STARTBACKGROUND);
+		start_1.LoadBitmap(IDB_START1, RGB(0, 0, 0));
+		start_2.LoadBitmap(IDB_START2, RGB(0, 0, 0));
+		story_1.LoadBitmap(IDB_STORY1, RGB(0, 0, 0));
+		story_2.LoadBitmap(IDB_STORY2, RGB(0, 0, 0));
 		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
@@ -100,8 +105,13 @@ namespace game_framework {
 	{
 		const char KEY_ESC = 27;
 		const char KEY_SPACE = ' ';
+		if (nChar == KEY_UP)
+			goto_status = 0;
+		if (nChar == KEY_DOWN)
+			goto_status = 1;
 		if (nChar == KEY_SPACE)
-			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+			if (goto_status == 0)
+				GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
 		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 	}
@@ -119,6 +129,22 @@ namespace game_framework {
 		//logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
 		logo.SetTopLeft(0, 0);
 		logo.ShowBitmap();
+		if (goto_status == 0)
+		{
+			start_1.SetTopLeft(192, 256);
+			start_1.ShowBitmap();
+			story_2.SetTopLeft(256, 320);
+			story_2.ShowBitmap();
+		}
+		if (goto_status == 1)
+		{
+			start_2.SetTopLeft(192, 256);
+			start_2.ShowBitmap();
+			story_1.SetTopLeft(256, 320);
+			story_1.ShowBitmap();
+		}
+			
+		
 		//
 		// Demo螢幕字型的使用，不過開發時請盡量避免直接使用字型，改用CMovingBitmap比較好
 		//
