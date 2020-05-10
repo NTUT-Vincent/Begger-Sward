@@ -21,6 +21,7 @@ namespace game_framework {
 		_attribute = FIRE;
 		_direction = 0;
 		_attackIsFlying = false;
+		flame_status = 0;
 	}
 
 	Attack::Attack()
@@ -30,6 +31,7 @@ namespace game_framework {
 		_attribute = FIRE;
 		_attack_name = FIRE_BALL;
 		_direction = 0;
+		flame_status = 0;
 		_attackIsFlying = false;
 	}
 
@@ -44,28 +46,42 @@ namespace game_framework {
 		char *filename1_1[6] = { ".\\bitmaps\\flameL1.bmp",".\\bitmaps\\flameL2.bmp",".\\bitmaps\\flameL3.bmp",".\\bitmaps\\flameL4.bmp", ".\\bitmaps\\flameL5.bmp", ".\\bitmaps\\flameL6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_L1.AddBitmap(filename1_1[i], RGB(0, 0, 0));
+		flame_L1.SetDelayCount(200000);
 		char *filename1_2[4] = { ".\\bitmaps\\flameL7.bmp",".\\bitmaps\\flameL8.bmp",".\\bitmaps\\flameL9.bmp",".\\bitmaps\\flameL8.bmp"};
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_L2.AddBitmap(filename1_2[i], RGB(0, 0, 0));
+		flame_L2.SetDelayCount(2);
 		
 		//向右火焰動畫
 		
 		char *filename2_1[6] = { ".\\bitmaps\\flameR1.bmp",".\\bitmaps\\flameR2.bmp",".\\bitmaps\\flameR3.bmp",".\\bitmaps\\flameR4.bmp", ".\\bitmaps\\flameR5.bmp", ".\\bitmaps\\flameR6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_R1.AddBitmap(filename2_1[i], RGB(0, 0, 0));
+		flame_R1.SetDelayCount(200000);
 		char *filename2_2[4] = { ".\\bitmaps\\flameR7.bmp",".\\bitmaps\\flameR8.bmp",".\\bitmaps\\flameR9.bmp",".\\bitmaps\\flameR8.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_R2.AddBitmap(filename2_2[i], RGB(0, 0, 0));
+		flame_R2.SetDelayCount(2);
 	}
 
 	void Attack::OnMove(Maps * m)
 	{
 		if (_attack_name == FIRE_FLAME)
 		{
-			if(_direction == 0)
-				flame_L2.OnMove();
+			if (_direction == 0)
+			{
+				if (flame_status == 0)
+					flame_L1.OnMove();
+				else
+					flame_L2.OnMove();
+			}
 			else
-				flame_R2.OnMove();
+			{
+				if (flame_status == 0)
+					flame_R1.OnMove();
+				else
+					flame_R2.OnMove();
+			}
 		}
 		else
 		{
@@ -85,18 +101,42 @@ namespace game_framework {
 	void Attack::OnShow(Maps * m)
 	{
 		if (_attack_name == FIRE_FLAME) {
-			if (_direction == 0) 
+			if (_direction == 0 && m->isEmpty(_x, _y))
 			{
-				if (m->isEmpty(_x, _y)) {
-					flame_L2.SetTopLeft(m->screenX(_x)-192, m->screenY(_y));
+				if (flame_status == 0)
+				{
+					flame_L1.SetTopLeft(m->screenX(_x) - 192, m->screenY(_y));
+					flame_L1.OnShow();
+					do
+					{
+						flame_status = 1;
+						flame_L1.Reset();
+					} while (flame_L1.IsFinalBitmap());
+				}
+				else
+				{
+					flame_L2.SetTopLeft(m->screenX(_x) - 192, m->screenY(_y));
 					flame_L2.OnShow();
+
 				}
 			}
-			if (_direction == 1) 
+			if (_direction == 1 && m->isEmpty(_x, _y))
 			{
-				if (m->isEmpty(_x, _y)) {
-					flame_R2.SetTopLeft(m->screenX(_x)+64, m->screenY(_y));
+				if (flame_status == 0)
+				{
+					flame_R1.SetTopLeft(m->screenX(_x) + 64, m->screenY(_y));
+					flame_R1.OnShow();
+					do
+					{
+						flame_status = 1;
+						flame_R1.Reset();
+					} while (flame_R1.IsFinalBitmap());
+				}
+				else
+				{
+					flame_R2.SetTopLeft(m->screenX(_x) + 64, m->screenY(_y));
 					flame_R2.OnShow();
+
 				}
 			}
 		}
@@ -118,7 +158,6 @@ namespace game_framework {
 				plant_attack.ShowBitmap();
 			}
 		}
-		
 	}
 
 	void Attack::setAttribute(ELEMENT_ATTRIBUTE attribute)
@@ -163,6 +202,7 @@ namespace game_framework {
 			flame_L2.Reset();
 			flame_R1.Reset();
 			flame_R1.Reset();
+			flame_status = 0;
 		}
 	}
 

@@ -39,6 +39,7 @@ namespace game_framework {
 		CMovingBitmap fire_attack_boom;
 		CMovingBitmap ice_attack;
 		CMovingBitmap plant_attack;
+		bool flame_status;
 		int _x, _y;
 		int _direction;									//0=left, 1=right
 		ELEMENT_ATTRIBUTE _attribute;
