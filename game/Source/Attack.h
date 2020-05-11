@@ -36,6 +36,7 @@ namespace game_framework {
 		CAnimation flame_L2;
 		CAnimation flame_R1;
 		CAnimation flame_R2;
+		CAnimation ice_ball;
 		CMovingBitmap fire_attack_boom;
 		CMovingBitmap ice_attack;
 		CMovingBitmap plant_attack;

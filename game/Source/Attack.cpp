@@ -62,6 +62,12 @@ namespace game_framework {
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_R2.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		flame_R2.SetDelayCount(2);
+
+		//冰球動畫
+		char *filename_3[3] = { ".\\bitmaps\\ice_attack1.bmp",".\\bitmaps\\ice_attack2.bmp",".\\bitmaps\\ice_attack3.bmp"};
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			ice_ball.AddBitmap(filename_3[i], RGB(0, 0, 0));
+		ice_ball.SetDelayCount(1);
 	}
 
 	void Attack::OnMove(Maps * m)
@@ -95,6 +101,10 @@ namespace game_framework {
 					_x += 10;
 				}
 			}
+		}
+
+		if (_attack_name == ICE_BALL) {
+			ice_ball.OnMove();
 		}
 	}
 
@@ -148,8 +158,10 @@ namespace game_framework {
 		}
 		if (_attack_name == ICE_BALL) {
 			if (m->isEmpty(_x, _y)) {
-				ice_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				ice_attack.ShowBitmap();
+				/*ice_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				ice_attack.ShowBitmap();*/
+				ice_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				ice_ball.OnShow();
 			}
 		}
 		if (_attack_name == GRASS_BALL) {
