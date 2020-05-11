@@ -32,7 +32,7 @@ namespace game_framework {
 	void ItemAttribute::OnMove(Maps *m, Hero *h)
 	{
 		_x = getX();
-		_y = getY() + 20;
+		_y = getY() + 30;
 		if (isExist() && intercect(h)) {
 			h->SetElementAttribute(_attribute);
 			h->addAttack(1, _attribute);

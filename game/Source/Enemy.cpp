@@ -140,4 +140,9 @@ namespace game_framework {
 		return false;
 	}
 
+	string Enemy::GetName()
+	{
+		return getName();
+	}
+
 }

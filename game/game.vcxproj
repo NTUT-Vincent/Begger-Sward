@@ -264,6 +264,7 @@
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\BlueSlime.cpp" />
     <ClCompile Include="Source\Box.cpp" />
+    <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Clock.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
