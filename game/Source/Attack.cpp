@@ -46,7 +46,7 @@ namespace game_framework {
 		char *filename1_1[6] = { ".\\bitmaps\\flameL1.bmp",".\\bitmaps\\flameL2.bmp",".\\bitmaps\\flameL3.bmp",".\\bitmaps\\flameL4.bmp", ".\\bitmaps\\flameL5.bmp", ".\\bitmaps\\flameL6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_L1.AddBitmap(filename1_1[i], RGB(0, 0, 0));
-		flame_L1.SetDelayCount(200000);
+		flame_L1.SetDelayCount(10);
 		char *filename1_2[4] = { ".\\bitmaps\\flameL7.bmp",".\\bitmaps\\flameL8.bmp",".\\bitmaps\\flameL9.bmp",".\\bitmaps\\flameL8.bmp"};
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_L2.AddBitmap(filename1_2[i], RGB(0, 0, 0));
@@ -57,7 +57,7 @@ namespace game_framework {
 		char *filename2_1[6] = { ".\\bitmaps\\flameR1.bmp",".\\bitmaps\\flameR2.bmp",".\\bitmaps\\flameR3.bmp",".\\bitmaps\\flameR4.bmp", ".\\bitmaps\\flameR5.bmp", ".\\bitmaps\\flameR6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_R1.AddBitmap(filename2_1[i], RGB(0, 0, 0));
-		flame_R1.SetDelayCount(200000);
+		flame_R1.SetDelayCount(10);
 		char *filename2_2[4] = { ".\\bitmaps\\flameR7.bmp",".\\bitmaps\\flameR8.bmp",".\\bitmaps\\flameR9.bmp",".\\bitmaps\\flameR8.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_R2.AddBitmap(filename2_2[i], RGB(0, 0, 0));
@@ -72,6 +72,7 @@ namespace game_framework {
 
 	void Attack::OnMove(Maps * m)
 	{
+		TRACE("-----------------------------%d %d %d \n" , _attack_name, _direction, flame_status);
 		if (_attack_name == FIRE_FLAME)
 		{
 			if (_direction == 0)
@@ -117,17 +118,16 @@ namespace game_framework {
 				{
 					flame_L1.SetTopLeft(m->screenX(_x) - 192, m->screenY(_y));
 					flame_L1.OnShow();
-					do
+					if (flame_L1.IsFinalBitmap())
 					{
 						flame_status = 1;
 						flame_L1.Reset();
-					} while (flame_L1.IsFinalBitmap());
+					}
 				}
 				else
 				{
 					flame_L2.SetTopLeft(m->screenX(_x) - 192, m->screenY(_y));
 					flame_L2.OnShow();
-
 				}
 			}
 			if (_direction == 1 && m->isEmpty(_x, _y))
@@ -136,11 +136,11 @@ namespace game_framework {
 				{
 					flame_R1.SetTopLeft(m->screenX(_x) + 64, m->screenY(_y));
 					flame_R1.OnShow();
-					do
+					if (flame_R1.IsFinalBitmap())
 					{
 						flame_status = 1;
 						flame_R1.Reset();
-					} while (flame_R1.IsFinalBitmap());
+					}
 				}
 				else
 				{
