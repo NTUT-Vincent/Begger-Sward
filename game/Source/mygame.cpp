@@ -459,7 +459,7 @@ namespace game_framework {
 	bool CGameStateRun::allEnemyDie(vector<Enemy*> enemys)
 	{
 		for (unsigned i = 0; i < enemys.size(); i++) {
-			if (enemys.at(i)->isAlive()) {
+			if (enemys.at(i)->isAlive() && enemys.at(i)->GetName() != "Box") {
 				return false;
 			}
 		}

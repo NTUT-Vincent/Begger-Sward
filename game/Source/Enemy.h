@@ -27,6 +27,7 @@ namespace game_framework {
 		virtual int GetY1() = 0;					//回傳最上側Y值
 		virtual int GetX2() = 0;					//回傳最右側X值
 		virtual int GetY2() = 0;					//回傳最下側Y值
+		string GetName();
 
 		virtual void Initialize() = 0;				//初始化
 										//英雄是否和此敵人所在同一位置，前身是cannotPass

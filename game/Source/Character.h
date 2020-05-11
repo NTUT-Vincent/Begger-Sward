@@ -18,6 +18,8 @@ namespace game_framework {
 
 		}
 
+		string getName();
+
 		virtual void OnShow(Maps *m) {};
 
 
