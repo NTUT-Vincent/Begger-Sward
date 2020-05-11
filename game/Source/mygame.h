@@ -38,6 +38,7 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
+#include "ABoss.h"
 #include "Maps.h"
 #include "Map1_1.h"
 #include "Map1_6.h"

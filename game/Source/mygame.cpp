@@ -227,6 +227,7 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		current_stage = STAGE_1_1;
+		enemys1_1.push_back(new ABoss(200, 200, &player1));	
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
 		enemys1_1.push_back(new Box(256, 384, &player1));
 		for (int i = 0; i < 3; i++) {
