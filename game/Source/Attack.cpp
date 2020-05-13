@@ -46,7 +46,7 @@ namespace game_framework {
 		char *filename1_1[6] = { ".\\bitmaps\\flameL1.bmp",".\\bitmaps\\flameL2.bmp",".\\bitmaps\\flameL3.bmp",".\\bitmaps\\flameL4.bmp", ".\\bitmaps\\flameL5.bmp", ".\\bitmaps\\flameL6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_L1.AddBitmap(filename1_1[i], RGB(0, 0, 0));
-		flame_L1.SetDelayCount(10);
+		flame_L1.SetDelayCount(1);
 		char *filename1_2[4] = { ".\\bitmaps\\flameL7.bmp",".\\bitmaps\\flameL8.bmp",".\\bitmaps\\flameL9.bmp",".\\bitmaps\\flameL8.bmp"};
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_L2.AddBitmap(filename1_2[i], RGB(0, 0, 0));
@@ -57,7 +57,7 @@ namespace game_framework {
 		char *filename2_1[6] = { ".\\bitmaps\\flameR1.bmp",".\\bitmaps\\flameR2.bmp",".\\bitmaps\\flameR3.bmp",".\\bitmaps\\flameR4.bmp", ".\\bitmaps\\flameR5.bmp", ".\\bitmaps\\flameR6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_R1.AddBitmap(filename2_1[i], RGB(0, 0, 0));
-		flame_R1.SetDelayCount(10);
+		flame_R1.SetDelayCount(1);
 		char *filename2_2[4] = { ".\\bitmaps\\flameR7.bmp",".\\bitmaps\\flameR8.bmp",".\\bitmaps\\flameR9.bmp",".\\bitmaps\\flameR8.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			flame_R2.AddBitmap(filename2_2[i], RGB(0, 0, 0));
@@ -67,7 +67,7 @@ namespace game_framework {
 		char *filename_3[3] = { ".\\bitmaps\\ice_attack1.bmp",".\\bitmaps\\ice_attack2.bmp",".\\bitmaps\\ice_attack3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
 			ice_ball.AddBitmap(filename_3[i], RGB(0, 0, 0));
-		ice_ball.SetDelayCount(1);
+		ice_ball.SetDelayCount(3);
 	}
 
 	void Attack::OnMove(Maps * m)

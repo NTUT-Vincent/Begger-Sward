@@ -227,7 +227,7 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		current_stage = STAGE_1_1;
-		enemys1_1.push_back(new ABoss(200, 200, &player1));	
+		//enemys1_1.push_back(new ABoss(200, 200, &player1));	
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
 		enemys1_1.push_back(new Box(256, 384, &player1));
 		for (int i = 0; i < 3; i++) {
@@ -270,7 +270,7 @@ namespace game_framework {
 		const int HITS_LEFT_Y = 0;
 		const int BACKGROUND_X = 60;
 		const int ANIMATION_SPEED = 15;
-		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
+		//CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		player1.Initialize();
 		//第一關怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
@@ -387,7 +387,9 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_SWORD, "sounds\\swing2.mp3");
 		CAudio::Instance()->Load(AUDIO_FIRE, "sounds\\fireball.mp3");
 		CAudio::Instance()->Load(AUDIO_SKILLE, "sounds\\swing4.mp3");
-		CAudio::Instance()->Load(Audio_KNIFE,  "sounds\\knife.mp3");
+		CAudio::Instance()->Load(Audio_KNIFE,  "sounds\\knife2.mp3");
+		CAudio::Instance()->Load(AUDIO_ICE, "sounds\\iceball.mp3");
+		CAudio::Instance()->Load(AUDIO_HITTING, "sounds\\hitting4.mp3");
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//

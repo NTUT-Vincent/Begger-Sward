@@ -172,6 +172,7 @@ namespace game_framework {
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
 			isAttacking = true;
+			CAudio::Instance()->Play(Audio_KNIFE);
 			hero_on_map->offsetHp(attack_damage);
 		}
 		normalAttackR.OnMove();
