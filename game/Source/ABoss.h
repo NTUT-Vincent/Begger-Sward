@@ -52,9 +52,10 @@ namespace game_framework {
 		CAnimation normalAttackL;
 		CAnimation normalAttackR;
 		enum status {
-			ATTACK,
+			WALKING,
 			PREPARE,
-			WALKING
+			ATTACK,
+			BACK_TO_WALK
 		};
 		int status;
 		bool _direction;
@@ -68,6 +69,7 @@ namespace game_framework {
 		int atk_cd;
 		int prepare_cd;
 		int walking_cd;
+		int back_to_walk_cd;
 		int move_or_not;
 		int time_bump_into_sth;
 

@@ -72,22 +72,28 @@ namespace game_framework {
 
 	void Attack::OnMove(Maps * m)
 	{
-		TRACE("-----------------------------%d %d %d \n" , _attack_name, _direction, flame_status);
+		TRACE("-----------------------------%d %d %d %d \n" , _attack_name, _direction, flame_status, flame_L1.GetCurrentBitmapNumber());
 		if (_attack_name == FIRE_FLAME)
 		{
 			if (_direction == 0)
 			{
 				if (flame_status == 0)
 					flame_L1.OnMove();
-				else
-					flame_L2.OnMove();
+					if (flame_L1.IsFinalBitmap())
+					{
+						flame_status = 1;
+						flame_L2.OnMove();
+					}
 			}
 			else
 			{
 				if (flame_status == 0)
 					flame_R1.OnMove();
-				else
-					flame_R2.OnMove();
+					if (flame_R1.IsFinalBitmap())
+					{
+						flame_status = 1;
+						flame_R2.OnMove();
+					}
 			}
 		}
 		else
@@ -118,11 +124,6 @@ namespace game_framework {
 				{
 					flame_L1.SetTopLeft(m->screenX(_x) - 192, m->screenY(_y));
 					flame_L1.OnShow();
-					if (flame_L1.IsFinalBitmap())
-					{
-						flame_status = 1;
-						flame_L1.Reset();
-					}
 				}
 				else
 				{
@@ -136,11 +137,6 @@ namespace game_framework {
 				{
 					flame_R1.SetTopLeft(m->screenX(_x) + 64, m->screenY(_y));
 					flame_R1.OnShow();
-					if (flame_R1.IsFinalBitmap())
-					{
-						flame_status = 1;
-						flame_R1.Reset();
-					}
 				}
 				else
 				{
