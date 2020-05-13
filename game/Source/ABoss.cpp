@@ -33,7 +33,7 @@ namespace game_framework {
 		items.push_back(new ItemAttribute(_attribute));
 		status = WALKING;
 		atk_cd = walking_cd = 300;
-		prepare_cd = 150;
+		prepare_cd = back_to_walk_cd =  120;
 	}
 
 	ABoss::~ABoss()
@@ -197,6 +197,7 @@ namespace game_framework {
 		_y = y;
 	}
 
+
 	void ABoss::movement(Maps *m)
 	{
 		int x = GetX1();
@@ -209,19 +210,39 @@ namespace game_framework {
 			{step_size = 4;
 			walking_cd -= 1;
 			if (walking_cd == 0)
+			{
+
 				status = PREPARE;
+				walking_cd = 300;
+			}
+
 			break; }
 			case ATTACK:
 			{step_size =10;
 			atk_cd -= 1;
-			if (walking_cd == 0)
-				status = PREPARE; 
+			if (atk_cd == 0)
+			{
+				status = BACK_TO_WALK;
+				atk_cd = 300;
+			}
 			break; }
 			case PREPARE: 
 			{step_size = 0;
 			prepare_cd -= 1;
 			if (prepare_cd == 0)
+			{
 				status = ATTACK;
+				prepare_cd = 120;
+			}
+			break; }
+			case BACK_TO_WALK:
+			{step_size = 0;
+			back_to_walk_cd -= 1;
+			if (back_to_walk_cd == 0)
+			{
+				status = WALKING;
+				back_to_walk_cd = 120;
+			}
 			break; }
 			}
 			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
