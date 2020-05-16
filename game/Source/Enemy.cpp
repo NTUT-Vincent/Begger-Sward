@@ -74,15 +74,21 @@ namespace game_framework {
 
 	void Enemy::offsetHP(int offset, ELEMENT_ATTRIBUTE attribute)
 	{
-		if (isCounterAttribute(_attribute, attribute)) {
-			hp += (offset * 2);
-		}
-		else if (isCounterAttribute(attribute, _attribute)) {
-			hp += (offset / 2);
+		if (GetName() == "Box") {
+			hp -= 1;
 		}
 		else {
-			hp += offset;
+			if (isCounterAttribute(_attribute, attribute)) {
+				hp += (offset * 2);
+			}
+			else if (isCounterAttribute(attribute, _attribute)) {
+				hp += (offset / 2);
+			}
+			else {
+				hp += offset;
+			}
 		}
+		
 	}
 		
 	

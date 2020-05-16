@@ -26,7 +26,7 @@ namespace game_framework {
 	{
 		_x = 384;
 		_y = 384;
-		hp = 1200;
+		hp = 2;
 		attack_damage = 0;
 	}
 
@@ -46,6 +46,7 @@ namespace game_framework {
 	void Box::LoadBitmap()
 	{
 		box.LoadBitmap(IDB_BOX, RGB(0, 0, 0));
+		damaged_box.LoadBitmap(IDB_BOXDAMAGED, RGB(0, 0, 0));
 		////¹D¨ã
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->load();
@@ -69,11 +70,14 @@ namespace game_framework {
 	void Box::OnShow(Maps *m)
 	{
 		if (isAlive()) {
-			box.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-			//box.SetTopLeft(x, y);
-			box.ShowBitmap();
-			blood_bar.setXY(GetX1(), GetY1()-10);
-			blood_bar.showBloodBar(m, hp);
+			if (hp > 10) {
+				box.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+				box.ShowBitmap();
+			}
+			if (hp <= 10) {
+				damaged_box.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+				damaged_box.ShowBitmap();
+			}
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
@@ -102,7 +106,7 @@ namespace game_framework {
 	}
 
 	void Box::Initialize() {
-		hp = 1200;
+		hp = 20;
 		rand_num = rand();
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);

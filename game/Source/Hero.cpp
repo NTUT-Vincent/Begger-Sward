@@ -196,7 +196,8 @@ namespace game_framework {
 		x = 480;
 		y = 480;
 		hp = 1200;
-		attack_fire = SKILL_EVO_TVALUE; //借我測一下flame，晚點改回來。
+		//attack_fire = SKILL_EVO_TVALUE; //借我測一下flame，晚點改回來。
+		attack_fire = 20;
 		attack_ice = 20;
 		attack_plant = 20;
 		skillTimes = 0;
@@ -547,6 +548,10 @@ namespace game_framework {
 		}
 		if (_attribute == FIRE) {
 			q_attack.setAttackName(FIRE_BALL);
+			if (!isUsingQ)
+			{
+				q_attack.resetAnimation(FIRE_BALL);
+			}
 			if (attack_fire >= SKILL_EVO_TVALUE) {
 				q_attack.setAttackName(FIRE_FLAME);
 				if (!isUsingQ)
@@ -557,9 +562,17 @@ namespace game_framework {
 		}
 		if (_attribute == ICE) {
 			q_attack.setAttackName(ICE_BALL);
+			if (!isUsingQ)
+			{
+				q_attack.resetAnimation(ICE_BALL);
+			}
 		}
 		if (_attribute == PLANT) {
 			q_attack.setAttackName(GRASS_BALL);
+			if (!isUsingQ)
+			{
+				q_attack.resetAnimation(GRASS_BALL);
+			}
 		}
 	}
 
