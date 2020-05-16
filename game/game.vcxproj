@@ -384,6 +384,7 @@
     <Image Include="RES\blood_full.bmp" />
     <Image Include="RES\blood_little_damaged.bmp" />
     <Image Include="RES\box.bmp" />
+    <Image Include="RES\box2.bmp" />
     <Image Include="res\Clock1.bmp" />
     <Image Include="res\Clock2.bmp" />
     <Image Include="res\Clock3.bmp" />

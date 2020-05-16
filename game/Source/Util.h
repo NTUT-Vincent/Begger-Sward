@@ -55,6 +55,8 @@
 		AUDIO_FIRE,				// 5
 		AUDIO_SKILLE,			// 6
 		Audio_KNIFE,			//7
+		AUDIO_ICE,
+		AUDIO_HITTING
 	};
 
 	enum STAGE {				// 定義各種音效的編號

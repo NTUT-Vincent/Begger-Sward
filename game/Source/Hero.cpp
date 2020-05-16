@@ -41,6 +41,12 @@ namespace game_framework {
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
 		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));
 		blood_bar.loadBloodBar();
+		//被攻擊
+		char *filename_attacked[4] = { ".\\bitmaps\\getting_attacked.bmp",".\\bitmaps\\getting_attacked2.bmp",".\\bitmaps\\getting_attacked.bmp",".\\bitmaps\\getting_attacked2.bmp"};
+		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+			get_attacked.AddBitmap(filename_attacked[i], RGB(0, 0, 0));
+		get_attacked.SetDelayCount(2);
+
 		//向左走動畫
 		char *filename1[6] = { ".\\bitmaps\\walkingL1.bmp",".\\bitmaps\\walkingL2.bmp",".\\bitmaps\\walkingL3.bmp",".\\bitmaps\\walkingL4.bmp", ".\\bitmaps\\walkingL3.bmp", ".\\bitmaps\\walkingL2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
@@ -104,13 +110,14 @@ namespace game_framework {
 		skillEMove();
 		skillQMove(m);
 		normalAttackMove();
-
+		get_attacked.OnMove();
 	}
 
 	void Hero::OnShow(Maps *m)
 	{
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
+		gettingAttackedShow();
 		if (isUsingSkill()) { 
 			normalAttackShow(m);
 			skillEShow();
@@ -189,11 +196,12 @@ namespace game_framework {
 		x = 480;
 		y = 480;
 		hp = 1200;
-		attack_fire = SKILL_EVO_TVALUE; //借我測一下flame，晚點改回來。
+		//attack_fire = SKILL_EVO_TVALUE; //借我測一下flame，晚點改回來。
+		attack_fire = 20;
 		attack_ice = 20;
 		attack_plant = 20;
 		skillTimes = 0;
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = false;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = is_getting_attacked =false;
 		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
@@ -252,7 +260,7 @@ namespace game_framework {
 			skill_q_cool_down = 60;
 			if (b) {
 				skillQ();
-				CAudio::Instance()->Play(AUDIO_FIRE);
+				//CAudio::Instance()->Play(AUDIO_FIRE);
 			}
 			isUsingQ = b;
 		}
@@ -341,6 +349,7 @@ namespace game_framework {
 
 	void Hero::offsetHp(int n)
 	{
+		is_getting_attacked = true;
 		hp -= n;
 	}
 
@@ -493,10 +502,30 @@ namespace game_framework {
 
 	}
 
+	void Hero::gettingAttackedShow()
+	{
+		if (is_getting_attacked) {
+			get_attacked.SetTopLeft(0, 0);
+			get_attacked.OnShow();
+			if (get_attacked.IsFinalBitmap()) {
+				is_getting_attacked = false;
+			}
+		}
+		else {
+			get_attacked.Reset();
+		}
+	}
+
 	void Hero::skillQ()
 	{
 		if (!isUsingSkill()) {
 			q_attack.setXY(x, y);
+			if (_attribute == FIRE) {
+				CAudio::Instance()->Play(AUDIO_FIRE);
+			}
+			if (_attribute == ICE) {
+				CAudio::Instance()->Play(AUDIO_ICE);
+			}
 			q_attack.setAttackIsFlying(true);
 			if (directionLR == 0) {
 				q_attack.setDirection(0);
@@ -519,6 +548,10 @@ namespace game_framework {
 		}
 		if (_attribute == FIRE) {
 			q_attack.setAttackName(FIRE_BALL);
+			if (!isUsingQ)
+			{
+				q_attack.resetAnimation(FIRE_BALL);
+			}
 			if (attack_fire >= SKILL_EVO_TVALUE) {
 				q_attack.setAttackName(FIRE_FLAME);
 				if (!isUsingQ)
@@ -529,9 +562,17 @@ namespace game_framework {
 		}
 		if (_attribute == ICE) {
 			q_attack.setAttackName(ICE_BALL);
+			if (!isUsingQ)
+			{
+				q_attack.resetAnimation(ICE_BALL);
+			}
 		}
 		if (_attribute == PLANT) {
 			q_attack.setAttackName(GRASS_BALL);
+			if (!isUsingQ)
+			{
+				q_attack.resetAnimation(GRASS_BALL);
+			}
 		}
 	}
 

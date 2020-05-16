@@ -64,10 +64,22 @@ namespace game_framework {
 		flame_R2.SetDelayCount(2);
 
 		//冰球動畫
-		char *filename_3[3] = { ".\\bitmaps\\ice_attack1.bmp",".\\bitmaps\\ice_attack2.bmp",".\\bitmaps\\ice_attack3.bmp"};
+		char *filename_ice_ball[3] = { ".\\bitmaps\\ice_attack1.bmp",".\\bitmaps\\ice_attack2.bmp",".\\bitmaps\\ice_attack3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
-			ice_ball.AddBitmap(filename_3[i], RGB(0, 0, 0));
-		ice_ball.SetDelayCount(1);
+			ice_ball.AddBitmap(filename_ice_ball[i], RGB(0, 0, 0));
+		ice_ball.SetDelayCount(3);
+
+		//火球動畫
+		char *filename_fire_ball[3] = { ".\\bitmaps\\FireAttack.bmp",".\\bitmaps\\FireAttack2.bmp",".\\bitmaps\\FireAttack3.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			fire_ball.AddBitmap(filename_fire_ball[i], RGB(0, 0, 0));
+		fire_ball.SetDelayCount(3);
+
+		//草球動畫
+		char *filename_plant_ball[3] = { ".\\bitmaps\\PlantAttack1.bmp",".\\bitmaps\\PlantAttack2.bmp",".\\bitmaps\\PlantAttack3.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			grass_ball.AddBitmap(filename_plant_ball[i], RGB(0, 0, 0));
+		grass_ball.SetDelayCount(8);
 	}
 
 	void Attack::OnMove(Maps * m)
@@ -113,6 +125,12 @@ namespace game_framework {
 		if (_attack_name == ICE_BALL) {
 			ice_ball.OnMove();
 		}
+		if (_attack_name == FIRE_BALL) {
+			fire_ball.OnMove();
+		}
+		if (_attack_name == GRASS_BALL) {
+			grass_ball.OnMove();
+		}
 	}
 
 	void Attack::OnShow(Maps * m)
@@ -148,8 +166,10 @@ namespace game_framework {
 		}
 		if (_attack_name == FIRE_BALL) {
 			if (m->isEmpty(_x, _y)) {
-				fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				fire_attack.ShowBitmap();
+				/*fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				fire_attack.ShowBitmap();*/
+				fire_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				fire_ball.OnShow();
 			}
 		}
 		if (_attack_name == ICE_BALL) {
@@ -162,8 +182,10 @@ namespace game_framework {
 		}
 		if (_attack_name == GRASS_BALL) {
 			if (m->isEmpty(_x, _y)) {
-				plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				plant_attack.ShowBitmap();
+				/*plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				plant_attack.ShowBitmap();*/
+				grass_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				grass_ball.OnShow();
 			}
 		}
 	}
@@ -212,6 +234,15 @@ namespace game_framework {
 			flame_R1.Reset();
 			flame_status = 0;
 		}
+		if (atk == FIRE_BALL) {
+			fire_ball.Reset();
+		}
+		if (atk == GRASS_BALL) {
+			grass_ball.Reset();
+		}
+		if (atk == ICE_BALL) {
+			ice_ball.Reset();
+		}
 	}
 
 	int Attack::getX1()
@@ -232,13 +263,13 @@ namespace game_framework {
 	int Attack::getX2()
 	{
 		if (_attack_name == FIRE_BALL) {
-			return _x + fire_attack.Width();
+			return _x + fire_ball.Width();
 		}
 		if (_attack_name == ICE_BALL) {
-			return _x + ice_attack.Width();
+			return _x + ice_ball.Width();
 		}
 		if (_attack_name == GRASS_BALL) {
-			return _x + plant_attack.Width();
+			return _x + grass_ball.Width();
 		}
 		if (_attack_name == FIRE_FLAME) {
 			if (_direction == 0)
@@ -262,13 +293,13 @@ namespace game_framework {
 	int Attack::getY2()
 	{
 		if (_attack_name == FIRE_BALL) {
-			return _y + fire_attack.Height();
+			return _y + fire_ball.Height();
 		}
 		if (_attack_name == ICE_BALL) {
-			return _y + ice_attack.Height();
+			return _y + ice_ball.Height();
 		}
 		if (_attack_name == GRASS_BALL) {
-			return _y + plant_attack.Height();
+			return _y + grass_ball.Height();
 		}
 		if (_attack_name == FIRE_FLAME) {
 			if (_direction == 0)

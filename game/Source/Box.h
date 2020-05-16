@@ -47,6 +47,7 @@ namespace game_framework {
 		void attackShow(Maps *m);
 	private:
 		CMovingBitmap box;
+		CMovingBitmap damaged_box;
 		int rand_num;
 		int attack_damage;
 		bool isMovingRight;

@@ -230,6 +230,7 @@ namespace game_framework {
 	void RedSlime::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
+			CAudio::Instance()->Play(AUDIO_HITTING);
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);
 		}

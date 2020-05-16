@@ -79,6 +79,7 @@ namespace game_framework {
 		void normalAttackMove();		// 普功的Move
 		void normalAttackShow(Maps *m);		// 普功的Show
 		void showHeroStatus();			//顯示hp 技能冷卻時間
+		void gettingAttackedShow();
 		/////////////////////////////////////////////////////////////////////////////
 		void skillQ();
 		void skillQMove(Maps *m);
@@ -106,6 +107,7 @@ namespace game_framework {
 		CAnimation skillE;
 		CAnimation normalAttackL; // 向左普功動畫
 		CAnimation normalAttackR; // 向右普功動畫
+		CAnimation get_attacked;
 		
 		BloodBar blood_bar;
 		CRect RectHero;
@@ -127,6 +129,7 @@ namespace game_framework {
 		bool isUsingW;
 		bool isUsingE;
 		bool isUsingR;
+		bool is_getting_attacked;
 		int status;
 		bool directionLR; // 0為左 1為右
 		bool directionUD; // 0為上 1為下
