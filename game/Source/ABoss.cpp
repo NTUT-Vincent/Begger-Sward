@@ -66,7 +66,7 @@ namespace game_framework {
 	}
 
 	void ABoss::OnMove(Maps * m) {
-		const int STEP_SIZE = 5;
+		const int STEP_SIZE = 3;
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
@@ -82,6 +82,8 @@ namespace game_framework {
 	void ABoss::OnShow(Maps *m)
 	{
 		if (isAlive()) {
+			blood_bar.setXY(GetX1(), GetY1());
+			blood_bar.showBloodBar(m, hp);
 			if (_direction == 0)
 			{
 				if (isAttacking) {
@@ -93,16 +95,12 @@ namespace game_framework {
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					//enemy.SetTopLeft(x, y);
 					walkingLeft.OnShow();
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
 				}
 			}
 			else
 			{
 				if (isAttacking) {
 					attackShow(m);
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
 				}
 				else {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
@@ -166,7 +164,6 @@ namespace game_framework {
 			}
 		}
 		return false;
-
 	}
 
 	//bool Enemy::cannotPass(Hero * hero)
@@ -207,7 +204,7 @@ namespace game_framework {
 			switch (status)
 			{
 			case WALKING:
-			{step_size = 4;
+			{step_size = 3;
 			walking_cd -= 1;
 			if (walking_cd == 0)
 			{
@@ -289,7 +286,7 @@ namespace game_framework {
 
 	void ABoss::attackShow(Maps * m)
 	{
-		if (isAttacking) {
+		if (status == ATTACK) {
 			if (_direction == 0)
 			{
 				normalAttackL.SetTopLeft(m->screenX(_x), m->screenY(_y));
