@@ -32,8 +32,8 @@ namespace game_framework {
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 		status = WALKING;
-		atk_cd = walking_cd = 300;
-		prepare_cd = back_to_walk_cd =  120;
+		status_counter = 840;
+		step_size = 2;
 	}
 
 	ABoss::~ABoss()
@@ -47,13 +47,14 @@ namespace game_framework {
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->load();
 		}
-		/////怪物的動畫
+		/////怪物走路的動畫
 		char *filename1_1[4] = { ".\\bitmaps\\ABossL1.bmp",".\\bitmaps\\ABossL2.bmp",".\\bitmaps\\ABossL3.bmp",".\\bitmaps\\ABossL2.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		char *filename1_2[4] = { ".\\bitmaps\\ABossR1.bmp",".\\bitmaps\\ABossR2.bmp",".\\bitmaps\\ABossR3.bmp",".\\bitmaps\\ABossR2.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
+		
 		/////攻擊的動畫
 		char *filename2_1[2] = { ".\\bitmaps\\ABoss_attackL1.bmp",".\\bitmaps\\ABoss_attackL2.bmp"};
 		for (int i = 0; i < 2; i++)	// 載入動畫(由6張圖形構成)
@@ -63,6 +64,26 @@ namespace game_framework {
 		for (int i = 0; i < 2; i++)	// 載入動畫(由6張圖形構成)
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
+		
+		/////準備攻擊的動畫
+		char *filename3_1[3] = { ".\\bitmaps\\Aboss_PrepareAttackL1.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			prepare_attackL.AddBitmap(filename3_1[i], RGB(0, 0, 0));
+		prepare_attackL.SetDelayCount(3);
+		char *filename3_2[3] = { ".\\bitmaps\\Aboss_PrepareAttackR1.bmp",".\\bitmaps\\Aboss_PrepareAttackR2.bmp",".\\bitmaps\\Aboss_PrepareAttackR3.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			prepare_attackR.AddBitmap(filename3_2[i], RGB(0, 0, 0));
+		prepare_attackR.SetDelayCount(3);
+		
+		/////回去走路的動畫
+		char *filename4_1[3] = { ".\\bitmaps\\Aboss_PrepareAttackL3.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp",".\\bitmaps\\Aboss_PrepareAttackL1.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			back_to_walkL.AddBitmap(filename4_1[i], RGB(0, 0, 0));
+		back_to_walkL.SetDelayCount(3);
+		char *filename4_2[3] = { ".\\bitmaps\\Aboss_PrepareAttackR3.bmp",".\\bitmaps\\Aboss_PrepareAttackR2.bmp",".\\bitmaps\\Aboss_PrepareAttackR1.bmp" };
+		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
+			back_to_walkR.AddBitmap(filename4_2[i], RGB(0, 0, 0));
+		back_to_walkR.SetDelayCount(3);
 	}
 
 	void ABoss::OnMove(Maps * m) {
@@ -70,8 +91,7 @@ namespace game_framework {
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
-			walkingLeft.OnMove();
-			walkingRight.OnMove();
+			status_counter -= 1;
 			movement(m);
 		}
 		if (!isAlive()) {
@@ -81,35 +101,81 @@ namespace game_framework {
 
 	void ABoss::OnShow(Maps *m)
 	{
+		TRACE("-----------------------------%d %d %d \n", status_counter, status, _direction);
 		if (isAlive()) {
-			blood_bar.setXY(GetX1(), GetY1());
-			blood_bar.showBloodBar(m, hp);
-			if (_direction == 0)
+			switch (status)
 			{
-				if (isAttacking) {
-					attackShow(m);
+			case WALKING:
+			{
+				if (_direction == 0)
+				{
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
-				}
-				else {
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-					//enemy.SetTopLeft(x, y);
 					walkingLeft.OnShow();
 				}
-			}
-			else
-			{
-				if (isAttacking) {
-					attackShow(m);
-				}
-				else {
-					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-					//enemy.SetTopLeft(x, y);
-					walkingRight.OnShow();
+				if(_direction == 1)
+				{
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
+					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					walkingRight.OnShow();
 				}
 			}
+			case PREPARE:
+			{
+				if (_direction == 0)
+				{
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+					prepare_attackL.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					prepare_attackL.OnShow();
+				}
+				if(_direction == 1)
+				{
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+					prepare_attackR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					prepare_attackR.OnShow();
+				}
+			}
+			case ATTACK:
+			{
+				if (_direction == 0)
+				{
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+					normalAttackL.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					normalAttackL.OnShow();
+				}
+				if(_direction == 1)
+				{
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+					normalAttackR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					normalAttackR.OnShow();
+				}
+			}
+			case BACK_TO_WALK:
+			{
+				if (_direction == 0)
+				{
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+					back_to_walkL.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					back_to_walkL.OnShow();
+				}
+				if (_direction == 1)
+				{
+					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.showBloodBar(m, hp);
+					back_to_walkR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					back_to_walkR.OnShow();
+				}
+			}
+				break;
+			}
+			
 			
 		}
 		if (!isAlive()) {
@@ -144,8 +210,6 @@ namespace game_framework {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		hp = 2400;
 		blood_bar.setFullHP(hp);
-		walkingLeft.SetDelayCount(5);
-		walkingRight.SetDelayCount(5);
 		///道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->Initialize();
@@ -199,49 +263,47 @@ namespace game_framework {
 	{
 		int x = GetX1();
 		int y = GetY1() ;
-		int step_size = 0;
 		if (distanceToHero() < 50000) {
 			switch (status)
 			{
 			case WALKING:
-			{step_size = 3;
-			walking_cd -= 1;
-			if (walking_cd == 0)
+			{step_size = 2;
+			walkingLeft.OnMove();
+			walkingRight.OnMove();
+			if (status_counter <= 540)
 			{
-
 				status = PREPARE;
-				walking_cd = 300;
-			}
-
-			break; }
-			case ATTACK:
-			{step_size =10;
-			atk_cd -= 1;
-			if (atk_cd == 0)
-			{
-				status = BACK_TO_WALK;
-				atk_cd = 300;
 			}
 			break; }
-			case PREPARE: 
+			case PREPARE:
 			{step_size = 0;
-			prepare_cd -= 1;
-			if (prepare_cd == 0)
+			prepare_attackL.OnMove();
+			prepare_attackR.OnMove();
+			if (status_counter <= 420)
 			{
 				status = ATTACK;
-				prepare_cd = 120;
+			}
+			break; }
+			case ATTACK:
+			{step_size = 5;
+			normalAttackL.OnMove();
+			normalAttackR.OnMove();
+			if (status_counter <= 120)
+			{
+				status = BACK_TO_WALK;
 			}
 			break; }
 			case BACK_TO_WALK:
 			{step_size = 0;
-			back_to_walk_cd -= 1;
-			if (back_to_walk_cd == 0)
+			back_to_walkL.OnMove();
+			back_to_walkR.OnMove();
+			if (status_counter == 0)
 			{
 				status = WALKING;
-				back_to_walk_cd = 120;
+				status_counter = 840;
 			}
 			break; }
-			}
+		}
 			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
 				_direction = 1;
 				_x += step_size;
@@ -272,40 +334,8 @@ namespace game_framework {
 	void ABoss::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
-			isAttacking = true;
+			attack_cool_down = 90;
 			hero_on_map->offsetHp(attack_damage);
 		}
-		if (_direction == 0)
-			normalAttackL.OnMove();
-		else
-			normalAttackR.OnMove();
-		if (!isAttacking) {
-			normalAttackR.Reset();
-		}
 	}
-
-	void ABoss::attackShow(Maps * m)
-	{
-		if (status == ATTACK) {
-			if (_direction == 0)
-			{
-				normalAttackL.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				normalAttackL.OnShow();
-				if (normalAttackL.IsFinalBitmap()) {
-					isAttacking = false;
-					attack_cool_down = 300; //每次攻擊間隔10秒
-				}
-			}
-			else
-			{
-				normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				normalAttackR.OnShow();
-				if (normalAttackR.IsFinalBitmap()) {
-					isAttacking = false;
-					attack_cool_down = 300; //每次攻擊間隔10秒
-				}
-			}
-		}
-	}
-
 }

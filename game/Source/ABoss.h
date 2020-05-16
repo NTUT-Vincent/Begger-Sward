@@ -45,12 +45,15 @@ namespace game_framework {
 		CRect * GetRect();					//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		//用來攻擊的
 		void attack();
-		void attackShow(Maps *m);
 	private:
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation normalAttackL;
 		CAnimation normalAttackR;
+		CAnimation prepare_attackL;
+		CAnimation prepare_attackR;
+		CAnimation back_to_walkL;
+		CAnimation back_to_walkR;
 		enum status {
 			WALKING,
 			PREPARE,
@@ -58,6 +61,7 @@ namespace game_framework {
 			BACK_TO_WALK
 		};
 		int status;
+		int step_size;
 		bool _direction;
 		int attack_damage;
 		bool isMovingRight;
@@ -66,10 +70,7 @@ namespace game_framework {
 		bool isMovingDown;
 		bool isAttacking;
 		int attack_cool_down;
-		int atk_cd;
-		int prepare_cd;
-		int walking_cd;
-		int back_to_walk_cd;
+		int status_counter;
 		int move_or_not;
 		int time_bump_into_sth;
 

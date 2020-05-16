@@ -84,7 +84,7 @@ namespace game_framework {
 
 	void Attack::OnMove(Maps * m)
 	{
-		TRACE("-----------------------------%d %d %d %d \n" , _attack_name, _direction, flame_status, flame_L1.GetCurrentBitmapNumber());
+		//TRACE("-----------------------------%d %d %d %d \n" , _attack_name, _direction, flame_status, flame_L1.GetCurrentBitmapNumber());
 		if (_attack_name == FIRE_FLAME)
 		{
 			if (_direction == 0)
