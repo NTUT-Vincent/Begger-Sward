@@ -26,7 +26,7 @@ namespace game_framework {
 		attack_damage = 0;
 	}
 
-	ABoss::ABoss(int x, int y, Hero *h) : Enemy(x, y, 2400, "ABoss", h, ICE)
+	ABoss::ABoss(int x, int y, Hero *h) : Enemy(x, y, 4800, "ABoss", h, ICE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
@@ -42,7 +42,7 @@ namespace game_framework {
 
 	void ABoss::LoadBitmap()
 	{
-		blood_bar.loadBloodBar();
+		boss_blood_bar.loadBloodBar();
 		/////掉落道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->load();
@@ -101,7 +101,7 @@ namespace game_framework {
 
 	void ABoss::OnShow(Maps *m)
 	{
-		TRACE("-----------------------------%d %d %d \n", status_counter, status, _direction);
+		//TRACE("-----------------------------%d %d %d \n", status_counter, status, _direction);
 		if (isAlive()) {
 			switch (status)
 			{
@@ -109,17 +109,17 @@ namespace game_framework {
 			{
 				if (_direction == 0)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					walkingLeft.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					walkingLeft.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				if(_direction == 1)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					walkingRight.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					walkingRight.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				break;
 			}
@@ -127,17 +127,17 @@ namespace game_framework {
 			{
 				if (_direction == 0)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					prepare_attackL.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					prepare_attackL.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					prepare_attackL.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				if(_direction == 1)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					prepare_attackR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					prepare_attackR.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					prepare_attackR.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				break;
 			}
@@ -145,17 +145,17 @@ namespace game_framework {
 			{
 				if (_direction == 0)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					normalAttackL.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					normalAttackL.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					normalAttackL.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				if(_direction == 1)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					normalAttackR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					normalAttackR.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					normalAttackR.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				break;
 			}
@@ -163,17 +163,17 @@ namespace game_framework {
 			{
 				if (_direction == 0)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					back_to_walkL.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					back_to_walkL.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					back_to_walkL.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				if (_direction == 1)
 				{
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					back_to_walkR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					back_to_walkR.SetTopLeft(m->screenX(GetX1()+104), m->screenY(GetY1()+32));
 					back_to_walkR.OnShow();
+					boss_blood_bar.setXY(GetX1(), GetY1());;
+					boss_blood_bar.showBloodBar(m, hp);
 				}
 				break;
 			}
@@ -213,7 +213,7 @@ namespace game_framework {
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
 		hp = 2400;
-		blood_bar.setFullHP(hp);
+		boss_blood_bar.setFullHP(hp);
 		///道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->Initialize();
@@ -224,7 +224,7 @@ namespace game_framework {
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
-			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) {
+			if (x2 >= _x + 64 && x1 <= _x + walkingRight.Width() - 64 && y2 >= _y + 64 && y1 <= _y + walkingRight.Height() - 15) {
 				return true;
 			}
 			else {
@@ -271,7 +271,7 @@ namespace game_framework {
 			switch (status)
 			{
 			case WALKING:
-			{step_size = 2;
+			{step_size = 3;
 			if (x <= hero_on_map->GetX1()) {
 				_direction = 1;
 			}
@@ -319,7 +319,7 @@ namespace game_framework {
 			}
 			break; }
 			case ATTACK:
-			{step_size = 10;
+			{step_size = 15;
 			normalAttackL.OnMove();
 			normalAttackR.OnMove(); 
 			if (attack_target_location_x > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
@@ -385,7 +385,7 @@ namespace game_framework {
 	void ABoss::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
-			attack_cool_down = 90;
+			attack_cool_down = 40;
 			hero_on_map->offsetHp(attack_damage);
 		}
 	}

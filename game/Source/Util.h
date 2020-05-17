@@ -58,6 +58,8 @@
 		AUDIO_ICE,
 		AUDIO_HITTING,
 		AUDIO_GRASSBALL,
+		AUDIO_BEGGER,
+		AUDIO_AWAKEN
 	};
 
 	enum STAGE {				// 定義各種音效的編號

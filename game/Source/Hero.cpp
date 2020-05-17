@@ -278,6 +278,7 @@ namespace game_framework {
 		if (!isUsingSkill() && skill_e_cool_down <= 0) {
 			skill_e_cool_down = 150;
 			if (b) {
+				CAudio::Instance()->Play(AUDIO_BEGGER);
 				CAudio::Instance()->Play(AUDIO_SKILLE);
 			}
 			isUsingE = b;

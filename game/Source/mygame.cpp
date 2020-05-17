@@ -227,24 +227,27 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		current_stage = STAGE_1_1;
-		//enemys1_1.push_back(new ABoss(200, 200, &player1));	
 		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
-		/*enemys1_1.push_back(new Box(256, 384, &player1));
+		enemys1_1.push_back(new Box(256, 384, &player1));
 		for (int i = 0; i < 3; i++) {
 			enemys1_2.push_back(new Box((64 * 3*i)+128, 448, &player1));
 		}
 		for (int i = 0; i < 2; i++) {
 			enemys1_2.push_back(new RedSlime((64 * 3*i)+400, 448, &player1));
-		}*/
-		enemys1_2.push_back(new GreenSlime(300, 300, &player1));
-		/*enemys1_2.push_back(new BlueSlime(700, 700, &player1));
-		for (int i = 0; i < 5; i++) {
+		}
+		for (int i = 0; i < 2; i++) {
+			enemys1_2.push_back(new GreenSlime((64 * 3 * i) + 300, 400, &player1));
+		}
+		for (int i = 0; i < 2; i++) {
+			enemys1_2.push_back(new BlueSlime((64 * 3 * i) + 200, 496, &player1));
+		}
+		/*for (int i = 0; i < 5; i++) {
 			enemys1_6.push_back(new GreenSlime(200, (300 + 64*i), &player1));
 			enemys1_6.push_back(new RedSlime(900, (300 + 64 * i), &player1));
 			enemys1_6.push_back(new BlueSlime( (200 + 64*i), 900, &player1));
 			enemys1_6.push_back(new Scarecrow(500, (200 + 64*i), &player1));
 		}*/
-		enemys1_1.push_back(new ABoss(300, 300, &player1));
+		enemys1_6.push_back(new ABoss(800, 300, &player1));
 	}
 
 	CGameStateRun::~CGameStateRun()
@@ -270,7 +273,12 @@ namespace game_framework {
 		const int HITS_LEFT_Y = 0;
 		const int BACKGROUND_X = 60;
 		const int ANIMATION_SPEED = 15;
-		//CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
+		if (current_stage != STAGE_1_6)
+		{
+			CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
+			CAudio::Instance()->Stop(AUDIO_AWAKEN);			// 撥放 MIDI
+		}
+		
 		player1.Initialize();
 		//第一關怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
@@ -325,7 +333,11 @@ namespace game_framework {
 				break;
 			case STAGE_1_6:
 				stage_process_move(map_stg1_6, player1, enemys1_6, STAGE_1_6);
+				CAudio::Instance()->Stop(AUDIO_GOLDENWIND);			// 撥放 MIDI
+				CAudio::Instance()->Play(AUDIO_AWAKEN, true);			// 撥放 MIDI
+				break;
 		}
+
 
 		if (!player1.isAlive()) {
 			GotoGameState(GAME_STATE_OVER);
@@ -392,6 +404,8 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_ICE, "sounds\\iceball.mp3");
 		CAudio::Instance()->Load(AUDIO_HITTING, "sounds\\hitting4.mp3");
 		CAudio::Instance()->Load(AUDIO_GRASSBALL, "sounds\\grassball.mp3");
+		CAudio::Instance()->Load(AUDIO_BEGGER, "sounds\\begger.mp3");
+		CAudio::Instance()->Load(AUDIO_AWAKEN, "sounds\\awaken.mp3");
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//

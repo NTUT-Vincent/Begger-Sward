@@ -187,6 +187,9 @@
     <ClCompile Include="Source\ABoss.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\BossBloodBar.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -286,6 +289,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\ABoss.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\BossBloodBar.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,7 @@
 
 #include "Maps.h"
 #include "Character.h"
-#include "BloodBar.h"
+#include "BossBloodBar.h"
 #include "Enemy.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -46,6 +46,7 @@ namespace game_framework {
 		//¥Î¨Ó§ðÀ»ªº
 		void attack();
 	private:
+		BossBloodBar boss_blood_bar;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation normalAttackL;

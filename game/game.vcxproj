@@ -263,6 +263,7 @@
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\BloodBar.cpp" />
     <ClCompile Include="Source\BlueSlime.cpp" />
+    <ClCompile Include="Source\BossBloodBar.cpp" />
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Clock.cpp" />
@@ -328,6 +329,7 @@
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\BloodBar.h" />
     <ClInclude Include="Source\BlueSlime.h" />
+    <ClInclude Include="Source\BossBloodBar.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Clock.h" />
     <ClInclude Include="Source\Collision.h" />
