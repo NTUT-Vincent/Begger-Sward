@@ -121,6 +121,7 @@ namespace game_framework {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
 				}
+				break;
 			}
 			case PREPARE:
 			{
@@ -138,6 +139,7 @@ namespace game_framework {
 					prepare_attackR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					prepare_attackR.OnShow();
 				}
+				break;
 			}
 			case ATTACK:
 			{
@@ -155,6 +157,7 @@ namespace game_framework {
 					normalAttackR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					normalAttackR.OnShow();
 				}
+				break;
 			}
 			case BACK_TO_WALK:
 			{
@@ -172,6 +175,7 @@ namespace game_framework {
 					back_to_walkR.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					back_to_walkR.OnShow();
 				}
+				break;
 			}
 				break;
 			}
@@ -262,14 +266,32 @@ namespace game_framework {
 	void ABoss::movement(Maps *m)
 	{
 		int x = GetX1();
-		int y = GetY1() ;
+		int y = (GetY1() + GetY2()) / 2;
 		if (distanceToHero() < 50000) {
 			switch (status)
 			{
 			case WALKING:
 			{step_size = 2;
+			if (x <= hero_on_map->GetX1()) {
+				_direction = 1;
+			}
+			else {
+				_direction = 0;
+			}
 			walkingLeft.OnMove();
 			walkingRight.OnMove();
+			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
+				_x += step_size;
+			}
+			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y) && m->isEmpty(x - step_size, GetY2())) {
+				_x -= step_size;
+			}
+			if (hero_on_map->GetY1() > y && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
+				_y += step_size;
+			}
+			if (hero_on_map->GetY1() < y && m->isEmpty(x, y - step_size) && m->isEmpty(GetX2(), y - step_size)) {
+				_y -= step_size;
+			}
 			if (status_counter <= 540)
 			{
 				status = PREPARE;
@@ -279,15 +301,44 @@ namespace game_framework {
 			{step_size = 0;
 			prepare_attackL.OnMove();
 			prepare_attackR.OnMove();
-			if (status_counter <= 420)
+			if (status_counter <= 420 && status_counter > 300)
+			{
+				status = ATTACK;
+			}
+			attack_target_location_x = x + (hero_on_map->GetX1() - x)*2;
+			attack_target_location_y = y + ((hero_on_map->GetY1()) - y)*2;
+			if (attack_target_location_x > x) {
+				_direction = 1;
+			}
+			else {
+				_direction = 0;
+			}
+			if (status_counter <= 200)
 			{
 				status = ATTACK;
 			}
 			break; }
 			case ATTACK:
-			{step_size = 5;
+			{step_size = 10;
 			normalAttackL.OnMove();
-			normalAttackR.OnMove();
+			normalAttackR.OnMove(); 
+			if (attack_target_location_x > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
+				//_direction = 1;
+				_x += step_size;
+			}
+			if (attack_target_location_x < x && m->isEmpty(x - step_size, y) && m->isEmpty(x - step_size, GetY2())) {
+				//_direction = 0;
+				_x -= step_size;
+			}
+			if (attack_target_location_y > y && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
+				_y += step_size;
+			}
+			if (attack_target_location_y < y && m->isEmpty(x, y - step_size) && m->isEmpty(GetX2(), y - step_size)) {
+				_y -= step_size;
+			}
+			if (status_counter <= 300 && status_counter > 200) {
+				status = PREPARE;
+			}
 			if (status_counter <= 120)
 			{
 				status = BACK_TO_WALK;
@@ -304,7 +355,7 @@ namespace game_framework {
 			}
 			break; }
 		}
-			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
+			/*if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
 				_direction = 1;
 				_x += step_size;
 			}
@@ -317,7 +368,7 @@ namespace game_framework {
 			}
 			if (hero_on_map->GetY1() < y && m->isEmpty(x, y - step_size) && m->isEmpty(GetX2(), y - step_size)) {
 				_y -= step_size;
-			}
+			}*/
 		}
 		
 		

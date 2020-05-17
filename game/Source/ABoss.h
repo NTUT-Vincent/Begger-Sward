@@ -73,6 +73,7 @@ namespace game_framework {
 		int status_counter;
 		int move_or_not;
 		int time_bump_into_sth;
+		int attack_target_location_x, attack_target_location_y;
 
 	};
 }
