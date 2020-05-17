@@ -16,6 +16,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	Map1_2::Map1_2():Maps(-200, -200) {
+		all_enemy_clear = 0;
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 13; j++) {
 				if (i > 0 && i < 15 && j >= 2 && j <= 11) {
@@ -49,6 +50,11 @@ namespace game_framework {
 		map[gx][gy] = n;
 	}
 
+	void Map1_2::setClear(bool b)
+	{
+		all_enemy_clear = b;
+	}
+
 	bool Map1_2::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;
@@ -75,11 +81,21 @@ namespace game_framework {
 
 	void Map1_2::LoadBitmap() {
 		firstmap.LoadBitmap(IDB_MAP1_2);
+		char *filename1_1[4] = { ".\\bitmaps\\gate1.bmp",".\\bitmaps\\gate2.bmp",".\\bitmaps\\gate3.bmp",".\\bitmaps\\gate4.bmp" };
+		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
+		gate.SetDelayCount(3);
 	}
 
 	void Map1_2::OnShow() {
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
+		if (all_enemy_clear == 1)
+		{
+			gate.SetTopLeft(getSX()+448, getSY());
+			gate.OnMove();
+			gate.OnShow();
+		}
 	}
 
 	void Map1_2::getHeroX(int x)

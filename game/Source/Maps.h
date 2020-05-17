@@ -22,6 +22,7 @@ namespace game_framework {
 		virtual void getHeroX(int x) {};
 		virtual void getHeroY(int y) {};
 		virtual void setPos(int x, int y, int n) = 0;
+		virtual void setClear(bool b) = 0;
 		virtual bool inFinishArea(int x, int y) = 0;
 		void setXY(int x, int y);
 		int getSX();
@@ -31,6 +32,7 @@ namespace game_framework {
 
 	private:
 		int _sx, _sy;
+		bool all_enemy_clear;
 	};
 }
 #endif

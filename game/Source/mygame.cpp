@@ -306,6 +306,7 @@ namespace game_framework {
 		case STAGE_1_6: next_x = 780; next_y = 1470;
 			break;
 		}
+		stage_map.setClear(allEnemyDie(enemy_array));
 		if (allEnemyDie(enemy_array) && player.isInFinishArea(&stage_map))
 		{
 				current_stage = next_stage;
