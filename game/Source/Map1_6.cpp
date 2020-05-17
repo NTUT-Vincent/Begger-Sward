@@ -60,6 +60,11 @@ namespace game_framework {
 		map[gx][gy] = n;
 	}
 
+	void Map1_6::setClear(bool b)
+	{
+		all_enemy_clear = b;
+	}
+
 	bool Map1_6::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;

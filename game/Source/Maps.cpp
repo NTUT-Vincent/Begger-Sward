@@ -32,6 +32,7 @@ namespace game_framework {
 		_sy += n;
 	}
 
+
 	void Maps::setXY(int x, int y)
 	{
 		_sx = x;

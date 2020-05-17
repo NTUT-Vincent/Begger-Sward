@@ -9,6 +9,7 @@ namespace game_framework {
 		~Map1_2();
 		void Initialize();
 		void setPos(int x, int y, int n);
+		void setClear(bool b) override;
 		bool isEmpty(int x, int y) const;
 		bool inFinishArea(int x, int y) override;
 		void OnMove();
@@ -21,6 +22,8 @@ namespace game_framework {
 
 	private:
 		CMovingBitmap firstmap;
+		CAnimation gate;
+		bool all_enemy_clear;
 		int map[15][12];
 		int hx, hy;
 		int stage_left, stage_top;
