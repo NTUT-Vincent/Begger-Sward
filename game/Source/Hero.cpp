@@ -526,6 +526,9 @@ namespace game_framework {
 			if (_attribute == ICE) {
 				CAudio::Instance()->Play(AUDIO_ICE);
 			}
+			if (_attribute == PLANT) {
+				CAudio::Instance()->Play(AUDIO_GRASSBALL);
+			}
 			q_attack.setAttackIsFlying(true);
 			if (directionLR == 0) {
 				q_attack.setDirection(0);

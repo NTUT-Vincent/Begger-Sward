@@ -390,6 +390,7 @@ namespace game_framework {
 		CAudio::Instance()->Load(Audio_KNIFE,  "sounds\\knife2.mp3");
 		CAudio::Instance()->Load(AUDIO_ICE, "sounds\\iceball.mp3");
 		CAudio::Instance()->Load(AUDIO_HITTING, "sounds\\hitting4.mp3");
+		CAudio::Instance()->Load(AUDIO_GRASSBALL, "sounds\\grassball.mp3");
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//
