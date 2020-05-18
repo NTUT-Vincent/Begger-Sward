@@ -367,6 +367,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="RES\Aboss_Attacked.bmp" />
     <Image Include="RES\attack1.bmp" />
     <Image Include="RES\beggersword.bmp" />
     <Image Include="res\bitmap13.bmp" />

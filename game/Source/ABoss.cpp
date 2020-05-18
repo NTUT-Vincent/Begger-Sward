@@ -265,7 +265,7 @@ namespace game_framework {
 
 	void ABoss::movement(Maps *m)
 	{
-		int x = GetX1();
+		int x = (GetX1()+ GetX2()) / 2;
 		int y = (GetY1() + GetY2()) / 2;
 		if (distanceToHero() < 50000) {
 			switch (status)

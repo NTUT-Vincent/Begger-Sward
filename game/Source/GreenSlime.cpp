@@ -28,7 +28,7 @@ namespace game_framework {
 
 	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h, PLANT)
 	{
-		attack_damage = 20;
+		attack_damage = 70;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
@@ -229,7 +229,7 @@ namespace game_framework {
 
 	void GreenSlime::attack()
 	{
-		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
+		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
 			CAudio::Instance()->Play(AUDIO_HITTING);
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);

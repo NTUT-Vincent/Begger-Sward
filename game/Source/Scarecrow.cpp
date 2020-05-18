@@ -31,7 +31,7 @@ namespace game_framework {
 
 	Scarecrow::Scarecrow(int x, int y, Hero *h) : Enemy(x, y, 1200, "scarecrow", h, PLANT)
 	{
-		attack_damage = 20;
+		attack_damage = 50;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(PLANT));
 	}
@@ -170,7 +170,7 @@ namespace game_framework {
 
 	void Scarecrow::attack()
 	{
-		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
+		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
 			isAttacking = true;
 			CAudio::Instance()->Play(Audio_KNIFE);
 			hero_on_map->offsetHp(attack_damage);

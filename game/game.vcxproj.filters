@@ -517,5 +517,8 @@
     <Image Include="RES\box2.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\Aboss_Attacked.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -273,11 +273,7 @@ namespace game_framework {
 		const int HITS_LEFT_Y = 0;
 		const int BACKGROUND_X = 60;
 		const int ANIMATION_SPEED = 15;
-		if (current_stage != STAGE_1_6)
-		{
-			CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
-			CAudio::Instance()->Stop(AUDIO_AWAKEN);			// 撥放 MIDI
-		}
+		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		
 		player1.Initialize();
 		//第一關怪物
@@ -317,6 +313,14 @@ namespace game_framework {
 		stage_map.setClear(allEnemyDie(enemy_array));
 		if (allEnemyDie(enemy_array) && player.isInFinishArea(&stage_map))
 		{
+			if (next_stage == STAGE_1_6) {
+				CAudio::Instance()->Stop(AUDIO_GOLDENWIND);			// 撥放 MIDI
+				CAudio::Instance()->Play(AUDIO_AWAKEN, true);			// 撥放 MIDI
+			}
+			else {
+				CAudio::Instance()->Play(AUDIO_GOLDENWIND);			// 撥放 MIDI
+				CAudio::Instance()->Stop(AUDIO_AWAKEN);			// 撥放 MIDI
+			}
 				current_stage = next_stage;
 				player.SetXY(next_x, next_y);
 		}
@@ -333,8 +337,7 @@ namespace game_framework {
 				break;
 			case STAGE_1_6:
 				stage_process_move(map_stg1_6, player1, enemys1_6, STAGE_1_6);
-				CAudio::Instance()->Stop(AUDIO_GOLDENWIND);			// 撥放 MIDI
-				CAudio::Instance()->Play(AUDIO_AWAKEN, true);			// 撥放 MIDI
+				
 				break;
 		}
 
@@ -425,6 +428,11 @@ namespace game_framework {
 		case NUM_4: player1.useItem(4); break;
 		case NUM_5: player1.useItem(5); break;
 		case NUM_6: player1.useItem(6); break;
+		case NUM_9: 
+			player1.addAttack(5, FIRE);
+			player1.addAttack(5, PLANT);
+			player1.addAttack(5, ICE);
+			break;
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: player1.SetUsingQ(true); break;
 		case KEY_W: player1.SetUsingW(true); break;
