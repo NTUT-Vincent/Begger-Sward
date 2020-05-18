@@ -90,7 +90,7 @@ namespace game_framework {
 			else {
 				hp += offset;
 			}
-			//knockBack();
+			knockBack();
 		}
 		
 	}
