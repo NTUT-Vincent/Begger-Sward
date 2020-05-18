@@ -226,7 +226,7 @@ namespace game_framework {
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
-			if (x2 >= _x + 64 && x1 <= _x + walkingRight.Width() - 64 && y2 >= _y + 64 && y1 <= _y + walkingRight.Height() - 15) {
+			if (x2 >= _x  && x1 <= _x + 192 && y2 >= _y  && y1 <= _y + 192)  {
 				return true;
 			}
 			else {
@@ -324,6 +324,7 @@ namespace game_framework {
 			break; }
 			case ATTACK:
 			{step_size = 15;
+			attack_damage = 60;
 			normalAttackL.OnMove();
 			normalAttackR.OnMove(); 
 			if (attack_target_location_x > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
@@ -353,6 +354,7 @@ namespace game_framework {
 			{step_size = 0;
 			back_to_walkL.OnMove();
 			back_to_walkR.OnMove();
+			attack_damage = 20;
 			if (status_counter == 0)
 			{
 				status = WALKING;
@@ -390,7 +392,7 @@ namespace game_framework {
 
 	void ABoss::attack()
 	{
-		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
+		if (intersect(hero_on_map->GetX1()-64, hero_on_map->GetX2()-64, hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
 			attack_cool_down = 40;
 			hero_on_map->offsetHp(attack_damage);
 		}
