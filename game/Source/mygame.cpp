@@ -409,6 +409,9 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_GRASSBALL, "sounds\\grassball.mp3");
 		CAudio::Instance()->Load(AUDIO_BEGGER, "sounds\\begger.mp3");
 		CAudio::Instance()->Load(AUDIO_AWAKEN, "sounds\\awaken.mp3");
+		CAudio::Instance()->Load(AUDIO_DAMAGE1, "sounds\\damage1.mp3");
+		CAudio::Instance()->Load(AUDIO_ABOSS_WALK, "sounds\\footsteps_of_a_giant.mp3");
+		CAudio::Instance()->Load(AUDIO_ABOSS_PREPARE, "sounds\\ABoss_prepare.mp3");
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//
@@ -416,12 +419,22 @@ namespace game_framework {
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
+		int n = rand() % 3;
 		switch (nChar)
 		{
 		case KEY_LEFT: player1.SetMovingLeft(true); break;
 		case KEY_RIGHT: player1.SetMovingRight(true); break;
 		case KEY_UP: player1.SetMovingUp(true); break;
 		case KEY_DOWN: player1.SetMovingDown(true); break;
+		case NUM_0:
+			
+			if(n == 0)
+				player1.SetElementAttribute(FIRE);
+			if (n == 1)
+				player1.SetElementAttribute(ICE);
+			if (n == 2)
+				player1.SetElementAttribute(PLANT);
+			break;
 		case NUM_1: player1.useItem(1); /*current_stage = STAGE_1_1;*/ break;
 		case NUM_2: player1.useItem(2);/* current_stage = STAGE_1_2;*/ break;
 		case NUM_3: player1.useItem(3); break;
@@ -429,6 +442,7 @@ namespace game_framework {
 		case NUM_5: player1.useItem(5); break;
 		case NUM_6: player1.useItem(6); break;
 		case NUM_9: 
+			player1.addHp(50);
 			player1.addAttack(5, FIRE);
 			player1.addAttack(5, PLANT);
 			player1.addAttack(5, ICE);

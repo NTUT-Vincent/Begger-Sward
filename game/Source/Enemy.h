@@ -51,6 +51,7 @@ namespace game_framework {
 		CRect * GetRect();				//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		bool isAttack();
 		bool isCounterAttribute(ELEMENT_ATTRIBUTE a, ELEMENT_ATTRIBUTE b);
+		void knockBack();
 	protected:
 		Hero * hero_on_map;
 		BloodBar blood_bar;
@@ -65,6 +66,7 @@ namespace game_framework {
 		bool isMovingUp;
 		bool isMovingDown;
 		bool isAttacking;
+		int _direction;
 		ELEMENT_ATTRIBUTE _attribute;
 		
 	};

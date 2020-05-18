@@ -51,7 +51,6 @@ namespace game_framework {
 		CAnimation walkingRight;
 		CAnimation normalAttackL;
 		CAnimation normalAttackR;
-		bool _direction;
 		int attack_damage;
 		bool isMovingRight;
 		bool isMovingLeft;

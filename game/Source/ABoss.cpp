@@ -95,6 +95,8 @@ namespace game_framework {
 			movement(m);
 		}
 		if (!isAlive()) {
+			CAudio::Instance()->Stop(AUDIO_ABOSS_PREPARE);
+			CAudio::Instance()->Stop(AUDIO_ABOSS_WALK);
 			itemsOnMove(m);
 		}
 	}
@@ -295,6 +297,8 @@ namespace game_framework {
 			if (status_counter <= 540)
 			{
 				status = PREPARE;
+				CAudio::Instance()->Stop(AUDIO_ABOSS_WALK);
+				CAudio::Instance()->Play(AUDIO_ABOSS_PREPARE);
 			}
 			break; }
 			case PREPARE:
@@ -338,6 +342,7 @@ namespace game_framework {
 			}
 			if (status_counter <= 300 && status_counter > 200) {
 				status = PREPARE;
+				CAudio::Instance()->Play(AUDIO_ABOSS_PREPARE);
 			}
 			if (status_counter <= 120)
 			{
@@ -352,6 +357,7 @@ namespace game_framework {
 			{
 				status = WALKING;
 				status_counter = 840;
+				CAudio::Instance()->Play(AUDIO_ABOSS_WALK, true);
 			}
 			break; }
 		}

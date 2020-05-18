@@ -63,7 +63,6 @@ namespace game_framework {
 		};
 		int status;
 		int step_size;
-		bool _direction;
 		int attack_damage;
 		bool isMovingRight;
 		bool isMovingLeft;

@@ -33,7 +33,9 @@ namespace game_framework {
 		isAttacking = false;
 		hero_on_map = h;
 		_attribute = a;
-		items.push_back(new Health());
+		if (GetName() != "Box") {
+			items.push_back(new Health());
+		}
 	}
 
 	Enemy::~Enemy()
@@ -80,6 +82,7 @@ namespace game_framework {
 		else {
 			if (isCounterAttribute(_attribute, attribute)) {
 				hp += (offset * 2);
+
 			}
 			else if (isCounterAttribute(attribute, _attribute)) {
 				hp += (offset / 2);
@@ -87,6 +90,7 @@ namespace game_framework {
 			else {
 				hp += offset;
 			}
+			//knockBack();
 		}
 		
 	}
@@ -144,6 +148,16 @@ namespace game_framework {
 			}
 		}
 		return false;
+	}
+
+	void Enemy::knockBack()
+	{
+		if (_direction == 0) {
+			_x += 1;
+		}
+		if (_direction == 1) {
+			_x -= 1;
+		}
 	}
 
 	string Enemy::GetName()
