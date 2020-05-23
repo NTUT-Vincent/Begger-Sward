@@ -190,6 +190,12 @@
     <ClCompile Include="Source\BossBloodBar.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\RandomAttribute.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\RedGoblin.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -292,6 +298,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\BossBloodBar.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RandomAttribute.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\RedGoblin.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -518,6 +530,9 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Aboss_Attacked.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\Item_rand_elem.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

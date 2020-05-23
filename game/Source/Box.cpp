@@ -14,6 +14,7 @@
 #include "Item.h"
 #include "Clock.h"
 #include "Potion.h"
+#include "RandomAttribute.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -36,6 +37,7 @@ namespace game_framework {
 		attack_cool_down = 0;
 		items.push_back(new Potion());
 		items.push_back(new Clock());
+		items.push_back(new RandomAttribute());
 		
 	}
 

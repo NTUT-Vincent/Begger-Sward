@@ -236,6 +236,8 @@ IDB_STORY2              BITMAP                  "..\\RES\\story_2.bmp"
 
 IDB_BOXDAMAGED          BITMAP                  "..\\RES\\box2.bmp"
 
+IDB_ITEMRANDOMATTRIBUTE BITMAP                  "..\\RES\\Item_rand_elem.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

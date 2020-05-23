@@ -29,7 +29,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 < 50) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 30 && getNumOfBox() % 100 < 50) {
 			Clock * p = new Clock();
 			p->load();
 			h->addItem(p);
@@ -39,7 +39,7 @@ namespace game_framework {
 
 	void Clock::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 < 50) {
+		if (isExist() && getNumOfBox() % 100 > 30 && getNumOfBox() % 100 <= 50) {
 			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			clock_pic.ShowBitmap();
 		}
