@@ -75,6 +75,7 @@ namespace game_framework {
 		bool isInFinishArea(Maps *m);
 		bool isUsingSkill();			// 如果在用技能，return true	
 		void heroShow(Maps *m);
+		bool intercect(int x1, int x2, int y1, int y2);
 		/////////////////////////////////////////////////////////////////////////////
 		void normalAttackMove();		// 普功的Move
 		void normalAttackShow(Maps *m);		// 普功的Show

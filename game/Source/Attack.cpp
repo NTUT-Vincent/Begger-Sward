@@ -18,6 +18,8 @@ namespace game_framework {
 	{
 		_x = x;
 		_y = y;
+		step_size_x = 0;
+		step_size_y = 0;
 		_attribute = FIRE;
 		_direction = 0;
 		_attackIsFlying = false;
@@ -28,6 +30,8 @@ namespace game_framework {
 	{
 		_x = 280;
 		_y = 280;
+		step_size_x = 0;
+		step_size_y = 0;
 		_attribute = FIRE;
 		_attack_name = FIRE_BALL;
 		_direction = 0;
@@ -84,7 +88,7 @@ namespace game_framework {
 
 	void Attack::OnMove(Maps * m)
 	{
-		//TRACE("-----------------------------%d %d %d %d \n" , _attack_name, _direction, flame_status, flame_L1.GetCurrentBitmapNumber());
+		//TRACE("-----------------------------%d %d %d %d \n" , _x, _y, m->screenX(_x) - 192, m->screenY(_y));
 		if (_attack_name == FIRE_FLAME)
 		{
 			if (_direction == 0)
@@ -110,7 +114,7 @@ namespace game_framework {
 		}
 		else
 		{
-			if (_direction == 0) {
+			/*if (_direction == 0) {
 				if (m->isEmpty(_x, _y)) {
 					_x -= 10;
 				}
@@ -119,6 +123,10 @@ namespace game_framework {
 				if (m->isEmpty(_x, _y)) {
 					_x += 10;
 				}
+			}*/
+			if (m->isEmpty(_x, _y)) {
+				_x += step_size_x;
+				_y += step_size_y;
 			}
 		}
 
@@ -135,6 +143,7 @@ namespace game_framework {
 
 	void Attack::OnShow(Maps * m)
 	{
+		//TRACE("-----------------------------%d %d %d %d \n", _x, _y, m->screenX(_x) - 192, m->screenY(_y));
 		if (_attack_name == FIRE_FLAME) {
 			if (_direction == 0 && m->isEmpty(_x, _y))
 			{
@@ -222,6 +231,12 @@ namespace game_framework {
 	void Attack::setAttackIsFlying(bool b)
 	{
 		_attackIsFlying = b;
+	}
+
+	void Attack::setStepSize(int x, int y)
+	{
+		step_size_x = x;
+		step_size_y = y;
 	}
 
 	void Attack::resetAnimation(ATTACK_NAME atk)

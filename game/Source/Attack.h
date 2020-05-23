@@ -25,6 +25,7 @@ namespace game_framework {
 		void setXY(int x, int y);
 		void setDirection(int direction);
 		void setAttackIsFlying(bool b);
+		void setStepSize(int x, int y);
 		void resetAnimation(ATTACK_NAME atk);
 		int getX1();
 		int getX2();
@@ -44,6 +45,7 @@ namespace game_framework {
 		CMovingBitmap plant_attack;
 		bool flame_status;
 		int _x, _y;
+		int step_size_x, step_size_y;
 		int _direction;									//0=left, 1=right
 		ELEMENT_ATTRIBUTE _attribute;
 		ATTACK_NAME	_attack_name;						//攻擊的種類從這裡Call

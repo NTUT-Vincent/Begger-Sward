@@ -45,6 +45,9 @@ namespace game_framework {
 		CRect * GetRect();					//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		//用來攻擊的
 		void attack();
+		void iceAttack();
+		void iceAttackMove(Maps *m);
+		void iceAttackShow(Maps *m);
 	private:
 		BossBloodBar boss_blood_bar;
 		CAnimation walkingLeft;
@@ -74,6 +77,10 @@ namespace game_framework {
 		int move_or_not;
 		int time_bump_into_sth;
 		int attack_target_location_x, attack_target_location_y;
+		Attack q_attack;
+		Attack ice_attack[18];
+		int skillTimes;
+		bool isUsingQ;
 
 	};
 }

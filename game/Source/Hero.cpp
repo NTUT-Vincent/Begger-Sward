@@ -457,6 +457,16 @@ namespace game_framework {
 		}
 	}
 
+	bool Hero::intercect(int x1, int x2, int y1, int y2)
+	{
+		if (x2 >= x + 20 && x1 <= x + walkingRight.Width() && y2 >= y && y1 <= y + walkingRight.Height()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	/////////////////////////////////////////////////////////////////////////////
 
 	void Hero::normalAttackMove()
@@ -533,9 +543,11 @@ namespace game_framework {
 			q_attack.setAttackIsFlying(true);
 			if (directionLR == 0) {
 				q_attack.setDirection(0);
+				q_attack.setStepSize(-10, 0);
 			}
 			if (directionLR == 1) {
 				q_attack.setDirection(1);
+				q_attack.setStepSize(10, 0);
 			}
 		}
 

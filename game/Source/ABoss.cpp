@@ -14,6 +14,7 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
+#include "Attack.h"
 
 namespace game_framework {
 
@@ -64,6 +65,11 @@ namespace game_framework {
 		for (int i = 0; i < 2; i++)	// 載入動畫(由6張圖形構成)
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
+
+		q_attack.loadBitmap();
+		for (int i = 0; i < 18; i++) {
+			ice_attack[i].loadBitmap();
+		}
 		
 		/////準備攻擊的動畫
 		char *filename3_1[3] = { ".\\bitmaps\\Aboss_PrepareAttackL1.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp" };
@@ -87,13 +93,17 @@ namespace game_framework {
 	}
 
 	void ABoss::OnMove(Maps * m) {
-		TRACE("-----------------------------%d %d %d %d \n", _x, _y, hero_on_map->GetX1(), hero_on_map->GetY1());
+		//TRACE("-----------------------------%d %d %d %d \n", _x, _y, hero_on_map->GetX1(), hero_on_map->GetY1());
 		const int STEP_SIZE = 3;
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
 			status_counter -= 1;
 			movement(m);
+			iceAttackMove(m);
+			if (status_counter == 390 || status_counter == 180) {
+				iceAttack();
+			}
 		}
 		if (!isAlive()) {
 			CAudio::Instance()->Stop(AUDIO_ABOSS_PREPARE);
@@ -183,7 +193,7 @@ namespace game_framework {
 			}
 				break;
 			}
-			
+			iceAttackShow(m);
 			
 		}
 		if (!isAlive()) {
@@ -215,9 +225,12 @@ namespace game_framework {
 	void ABoss::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
-		hp = 80000;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = isUsingQ = false;
+		skillTimes = 0;
+		hp = 8000;
 		boss_blood_bar.setFullHP(hp);
+		status = WALKING;
+		status_counter = 840;
 		///道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->Initialize();
@@ -397,6 +410,80 @@ namespace game_framework {
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
 			attack_cool_down = 40;
 			hero_on_map->offsetHp(attack_damage);
+		}
+	}
+
+	void ABoss::iceAttack()
+	{
+		if (!isUsingQ) {
+			isUsingQ = true;
+			q_attack.setXY(_x + 100, _y + 100);
+			for (int i = 0; i < 18; i++) {
+				ice_attack[i].setXY(_x + 100, _y + 100);
+			}
+			if (_attribute == FIRE) {
+				CAudio::Instance()->Play(AUDIO_FIRE);
+			}
+			if (_attribute == ICE) {
+				CAudio::Instance()->Play(AUDIO_ICE);
+			}
+			if (_attribute == PLANT) {
+				CAudio::Instance()->Play(AUDIO_GRASSBALL);
+			}
+			q_attack.setAttackIsFlying(true);
+			for (int i = 0; i < 18; i++) {
+				//TRACE("---------------%d : %d %d \n", i, (int)(sin(i * 45.0 * 3.14159 / 180.0) * 10), (int)(cos(i * 45 * 3.14159 / 180.0) * 10));
+				ice_attack[i].setAttackIsFlying(true);
+				//ice_attack[i].setDirection(0);
+				ice_attack[i].setStepSize((int)(sin(i * 20.0 * 3.14159 / 180.0) * 10), (int)(cos(i * 20 * 3.14159 / 180.0) * 10));
+			}
+			//q_attack.setDirection(0);
+			//q_attack.setStepSize(0, 0);
+		}
+
+	}
+
+	void ABoss::iceAttackMove(Maps *m)
+	{
+		if (isUsingQ) {
+			q_attack.OnMove(m);
+			for (int i = 0; i < 18; i++) {
+				ice_attack[i].OnMove(m);
+				if (hero_on_map->intercect(ice_attack[i].getX1(), ice_attack[i].getX2(), ice_attack[i].getY1(), ice_attack[i].getY2())) {
+					hero_on_map->offsetHp(attack_damage);
+				}
+			}
+			//q_attack.setXY(_x, _y);
+		}
+		q_attack.setAttackName(ICE_BALL);
+		for (int i = 0; i < 18; i++) {
+			ice_attack[i].setAttackName(ICE_BALL);
+		}
+		if (!isUsingQ)
+		{
+			q_attack.resetAnimation(ICE_BALL);
+			for (int i = 0; i < 18; i++) {
+				ice_attack[i].resetAnimation(ICE_BALL);
+			}
+		}
+	}
+
+	void ABoss::iceAttackShow(Maps * m)
+	{
+		if (isUsingQ) {
+			q_attack.OnShow(m);
+			for (int i = 0; i < 18; i++) {
+				ice_attack[i].OnShow(m);
+			}
+			skillTimes += 1;							//+1代表跑了1/30秒
+			if (skillTimes > 80) {						//預計讓他飛2/3秒
+				isUsingQ = false;
+				q_attack.setAttackIsFlying(false);
+				for (int i = 0; i < 18; i++) {
+					ice_attack[i].setAttackIsFlying(false);
+				}
+				skillTimes = 0;							//跑完整個技能把skillTime設回為0
+			}
 		}
 	}
 }
