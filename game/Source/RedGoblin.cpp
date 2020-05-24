@@ -6,6 +6,7 @@
 #include <ctgmath>
 #include "audio.h"
 #include "gamelib.h"
+#include "Arrow.h"
 #include "Enemy.h"
 #include "Hero.h"
 #include "Maps.h"
@@ -60,6 +61,7 @@ namespace game_framework {
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
+		arr.loadBitmap();
 	}
 
 	void RedGoblin::OnMove(Maps * m) {
@@ -67,9 +69,11 @@ namespace game_framework {
 		if (isAlive()) {
 			attack();
 			attack_cool_down -= 1;
+			arrowAttackCD -= 1;
 			walkingLeft.OnMove();
 			walkingRight.OnMove();
 			movement(m);
+			arrowAttack();
 		}
 		if (!isAlive()) {
 			itemsOnMove(m);
@@ -85,13 +89,16 @@ namespace game_framework {
 					attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
+					arrowAttackShow(m);
 				}
 				else {
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					//enemy.SetTopLeft(x, y);
 					walkingLeft.OnShow();
-					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
+					arrowAttackShow(m);
+
 				}
 			}
 			else
@@ -100,13 +107,17 @@ namespace game_framework {
 					attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
+					arrowAttackShow(m);
+
 				}
 				else {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					//enemy.SetTopLeft(x, y);
 					walkingRight.OnShow();
-					blood_bar.setXY(GetX1(), GetY1());
+					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
+					arrowAttackShow(m);
+
 				}
 			}
 			
@@ -199,20 +210,20 @@ namespace game_framework {
 		int x = GetX1();
 		int y1 = GetY1() ;
 		int step_size = rand() % 3;
-		if (distanceToHero() < 500) {
-			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y1) && m->isEmpty(GetX2() + step_size, GetY2())) {
-				_direction = 1;
-				_x += step_size;
+		if (_x != hero_on_map->GetX1() && _y != hero_on_map->GetY1()) {
+			if (abs(_x - hero_on_map->GetX1()) > abs(_y - hero_on_map->GetY1()))
+			{
+				if (_y > hero_on_map->GetY1())
+					_y -= step_size;
+				else
+					_y += step_size;
 			}
-			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y1) && m->isEmpty(x - step_size, GetY2())) {
-				_direction = 0;
-				_x -= step_size;
-			}
-			if (hero_on_map->GetY1() > y1 && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
-				_y += step_size;
-			}
-			if (hero_on_map->GetY1() < y1 && m->isEmpty(x, y1 - step_size) && m->isEmpty(GetX2(), y1 - step_size)) {
-				_y -= step_size;
+			else
+			{
+				if (_x > hero_on_map->GetX1())
+					_x -= step_size;
+				else
+					_x += step_size;
 			}
 		}
 		
@@ -250,6 +261,52 @@ namespace game_framework {
 				attack_cool_down = 90; //每次攻擊間隔3秒
 			}
 		}
+	}
+
+	void RedGoblin::arrowAttack()
+	{
+		if (!attackIsFlying)
+		{
+			attackIsFlying = true;
+			arr.setArrowXY(_x, _y);
+			if (_y == hero_on_map->GetY1() && _direction == 0)
+			{
+				arr.setAttackIsFlying(true);
+				arr.setDirection(0);
+			}
+			if (_y == hero_on_map->GetY1() && _direction == 1)
+			{
+				arr.setAttackIsFlying(true);
+				arr.setDirection(1);
+			}
+			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() >= _y )
+			{
+				arr.setAttackIsFlying(true);
+				arr.setDirection(2);
+			}
+			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() < _y )
+			{
+				arr.setAttackIsFlying(true);
+				arr.setDirection(3);
+			}
+			
+		}
+	}
+
+	void RedGoblin::arrowAttackMove(Maps * m)
+	{
+		if (arrowAttackCD == 0)
+		{
+			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
+				hero_on_map->offsetHp(attack_damage);
+			}
+		}
+		arrowAttackCD = 180;
+	}
+
+	void RedGoblin::arrowAttackShow(Maps * m)
+	{
+		arr.OnShow(m);
 	}
 
 }

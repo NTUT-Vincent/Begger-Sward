@@ -5,12 +5,13 @@
 #include "Character.h"
 #include "BloodBar.h"
 #include "Enemy.h"
+#include "Arrow.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
 	//		 																	//
 	/////////////////////////////////////////////////////////////////////////////
-
+	class Arrow;
 	class RedGoblin :public Enemy
 	{
 	public:
@@ -46,21 +47,26 @@ namespace game_framework {
 		//用來攻擊的
 		void attack();
 		void attackShow(Maps *m);
+		void arrowAttack();
+		void arrowAttackMove(Maps *m);
+		void arrowAttackShow(Maps *m);
 	private:
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation normalAttackL;
 		CAnimation normalAttackR;
+		Arrow arr;
 		int attack_damage;
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;
 		bool isMovingDown;
 		bool isAttacking;
+		bool attackIsFlying;
 		int attack_cool_down;
 		int move_or_not;
 		int time_bump_into_sth;
-
+		int arrowAttackCD;
 	};
 }
 
