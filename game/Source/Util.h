@@ -68,7 +68,11 @@
 	enum STAGE {				// 定義各種音效的編號
 		STAGE_1_1,				
 		STAGE_1_2,
-		STAGE_1_6
+		STAGE_1_6,
+		STAGE_2_1,
+		STAGE_2_2,
+		STAGE_2_3,
+		STAGE_2_4,
 	};
 
 	enum ELEMENT_ATTRIBUTE {

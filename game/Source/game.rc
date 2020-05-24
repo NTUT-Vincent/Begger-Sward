@@ -238,6 +238,14 @@ IDB_BOXDAMAGED          BITMAP                  "..\\RES\\box2.bmp"
 
 IDB_ITEMRANDOMATTRIBUTE BITMAP                  "..\\RES\\Item_rand_elem.bmp"
 
+IDB_MAP2_1              BITMAP                  "..\\RES\\map2-1.bmp"
+
+IDB_MAP2_2              BITMAP                  "..\\RES\\map2-2.bmp"
+
+IDB_MAP2_3              BITMAP                  "..\\RES\\map2-3.bmp"
+
+IDB_MAP2_4              BITMAP                  "..\\RES\\map2-4.bmp"
+
 
 /////////////////////////////////////////////////////////////////////////////
 //

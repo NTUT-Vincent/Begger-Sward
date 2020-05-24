@@ -43,6 +43,10 @@
 #include "Map1_1.h"
 #include "Map1_6.h"
 #include "Map1_2.h"
+#include "Map2_1.h"
+#include "Map2_2.h"
+#include "Map2_3.h"
+#include "Map2_4.h"
 #include "Hero.h"
 #include "Enemy.h"
 #include "Util.h"
@@ -104,10 +108,18 @@ namespace game_framework {
 		Map1_1			map_stg1_1;
 		Map1_2			map_stg1_2;
 		Map1_6			map_stg1_6;
+		Map2_1			map_stg2_1;
+		Map2_2			map_stg2_2;
+		Map2_3			map_stg2_3;
+		Map2_4			map_stg2_4;
 		Hero			player1;
 		vector<Enemy*>  enemys1_1;
 		vector<Enemy*>  enemys1_2;
 		vector<Enemy*>  enemys1_6;
+		vector<Enemy*>  enemys2_1;
+		vector<Enemy*>  enemys2_2;
+		vector<Enemy*>  enemys2_3;
+		vector<Enemy*>  enemys2_4;
 		STAGE			current_stage;
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖

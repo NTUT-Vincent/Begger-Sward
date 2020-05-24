@@ -41,6 +41,7 @@ namespace game_framework {
 			map[23][i] = 0;
 		}
 		map[2][9] = map[22][9] = map[2][15] = map[22][15] = 0;
+		map[12][2] = map[11][2] = 3;
 	}
 
 	Map1_6::~Map1_6()

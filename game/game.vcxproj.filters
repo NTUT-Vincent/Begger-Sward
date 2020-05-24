@@ -196,6 +196,18 @@
     <ClCompile Include="Source\RedGoblin.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Map2_1.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Map2_2.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Map2_3.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Map2_4.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -304,6 +316,18 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\RedGoblin.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map2_1.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map2_2.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map2_3.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map2_4.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
@@ -533,6 +557,18 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="RES\Item_rand_elem.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map2-1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map2-2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map2-3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\map2-4.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

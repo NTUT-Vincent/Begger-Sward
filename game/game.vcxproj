@@ -297,6 +297,10 @@
     </ClCompile>
     <ClCompile Include="Source\Map1_2.cpp" />
     <ClCompile Include="Source\Map1_6.cpp" />
+    <ClCompile Include="Source\Map2_1.cpp" />
+    <ClCompile Include="Source\Map2_2.cpp" />
+    <ClCompile Include="Source\Map2_3.cpp" />
+    <ClCompile Include="Source\Map2_4.cpp" />
     <ClCompile Include="Source\Maps.cpp" />
     <ClCompile Include="Source\PlayerStatus.cpp" />
     <ClCompile Include="Source\Potion.cpp" />
@@ -345,6 +349,10 @@
     <ClInclude Include="Source\Map1_1.h" />
     <ClInclude Include="Source\Map1_2.h" />
     <ClInclude Include="Source\Map1_6.h" />
+    <ClInclude Include="Source\Map2_1.h" />
+    <ClInclude Include="Source\Map2_2.h" />
+    <ClInclude Include="Source\Map2_3.h" />
+    <ClInclude Include="Source\Map2_4.h" />
     <ClInclude Include="Source\Maps.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
@@ -421,6 +429,10 @@
     <Image Include="RES\Item_rand_elem.bmp" />
     <Image Include="RES\map1-2.bmp" />
     <Image Include="RES\map1-6.bmp" />
+    <Image Include="RES\map2-1.bmp" />
+    <Image Include="RES\map2-2.bmp" />
+    <Image Include="RES\map2-3.bmp" />
+    <Image Include="RES\map2-4.bmp" />
     <Image Include="RES\PlantAttack.bmp" />
     <Image Include="RES\PLAYER1.bmp" />
     <Image Include="RES\scarecrow.bmp" />
