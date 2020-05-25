@@ -287,7 +287,7 @@ namespace game_framework {
 			arr.setArrowXY(_x, _y);*/
 			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() <= _x)
 			{
-				arrorClock = 30;
+				arrorClock = 60;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(0);
 				arr.setArrowXY(_x+32, _y+25);
@@ -296,7 +296,7 @@ namespace game_framework {
 			}
 			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() > _x)
 			{
-				arrorClock = 30;
+				arrorClock = 60;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(1);
 				arr.setArrowXY(_x+32, _y+25);
@@ -305,7 +305,7 @@ namespace game_framework {
 			}
 			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() <= _y )
 			{
-				arrorClock = 30;
+				arrorClock = 60;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(2);
 				arr.setArrowXY(_x+32, _y+25);
@@ -314,7 +314,7 @@ namespace game_framework {
 			}
 			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() > _y )
 			{
-				arrorClock = 30;
+				arrorClock = 60;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(3);
 				arr.setArrowXY(_x+32, _y+25);
@@ -332,12 +332,12 @@ namespace game_framework {
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		if (arrowAttackCD == 0)
+		/*if (arrowAttackCD == 0)
 		{
 			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
 				hero_on_map->offsetHp(attack_damage);
 			}
-		}
+		}*/
 		if (isAttacking && arrorClock != 0) {
 			arrorClock--;
 			if (arrorClock == 0) {
