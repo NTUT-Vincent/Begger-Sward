@@ -87,8 +87,8 @@ namespace game_framework {
 		void skillQShow(Maps *m);
 		void useItem(int n);
 
-		//void skillW();
-		//void skillWMove();
+		void skillW();
+		void skillWMove(Maps *m);
 		//void skillWShow();
 
 		/*void skillE();*/
@@ -138,6 +138,7 @@ namespace game_framework {
 		Attack q_attack;
 		///冷卻時間
 		int skill_q_cool_down; //cool down在每個skill的move function裡每秒-30
+		int skill_w_cool_down;
 		int skill_e_cool_down;
 	};
 }
