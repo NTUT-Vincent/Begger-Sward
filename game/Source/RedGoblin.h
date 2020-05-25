@@ -67,6 +67,7 @@ namespace game_framework {
 		int move_or_not;
 		int time_bump_into_sth;
 		int arrowAttackCD;
+		int arrorClock;
 	};
 }
 

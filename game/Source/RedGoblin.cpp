@@ -29,7 +29,7 @@ namespace game_framework {
 
 	RedGoblin::RedGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "RedGoblin", h, FIRE)
 	{
-		attack_damage = 70;
+		attack_damage = 20;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
@@ -67,13 +67,18 @@ namespace game_framework {
 	void RedGoblin::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
-			attack();
+			//attack();
 			attack_cool_down -= 1;
-			arrowAttackCD -= 1;
+			//arrowAttackCD -= 1;
 			walkingLeft.OnMove();
 			walkingRight.OnMove();
 			movement(m);
 			arrowAttack();
+			arr.OnMove(m);
+			arrowAttackMove(m);
+			if (arrowAttackCD != 0) {
+				arrowAttackCD--;
+			}
 		}
 		if (!isAlive()) {
 			itemsOnMove(m);
@@ -86,39 +91,42 @@ namespace game_framework {
 			if (_direction == 0)
 			{
 				if (isAttacking) {
-					attackShow(m);
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
+					//attackShow(m);
+					blood_bar.setXY(GetX1(), GetY1()-16);
+					blood_bar.showBloodBar(m, hp - 16);
 					arrowAttackShow(m);
 				}
 				else {
-					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					
 					//enemy.SetTopLeft(x, y);
-					walkingLeft.OnShow();
+					
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
-					arrowAttackShow(m);
+					//arrowAttackShow(m);
 
 				}
+				walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+				walkingLeft.OnShow();
 			}
 			else
 			{
 				if (isAttacking) {
-					attackShow(m);
-					blood_bar.setXY(GetX1(), GetY1());
-					blood_bar.showBloodBar(m, hp);
-					arrowAttackShow(m);
-
-				}
-				else {
-					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-					//enemy.SetTopLeft(x, y);
-					walkingRight.OnShow();
+					//attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
 					arrowAttackShow(m);
 
 				}
+				else {
+					
+					blood_bar.setXY(GetX1(), GetY1()-16);
+					blood_bar.showBloodBar(m, hp);
+					//arrowAttackShow(m);
+
+				}
+				walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+				//enemy.SetTopLeft(x, y);
+				walkingRight.OnShow();
 			}
 			
 		}
@@ -151,8 +159,10 @@ namespace game_framework {
 	void RedGoblin::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking =  false;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = false;
 		hp = 1200;
+		arrorClock = 0;
+		arrowAttackCD = 0;
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
@@ -209,6 +219,12 @@ namespace game_framework {
 	{
 		int x = GetX1();
 		int y1 = GetY1() ;
+		if (_x > hero_on_map->GetX1()) {
+			_direction = 0;
+		}
+		else {
+			_direction = 1;
+		}
 		int step_size = rand() % 3;
 		if (_x != hero_on_map->GetX1() && _y != hero_on_map->GetY1()) {
 			if (abs(_x - hero_on_map->GetX1()) > abs(_y - hero_on_map->GetY1()))
@@ -240,7 +256,7 @@ namespace game_framework {
 
 	void RedGoblin::attack()
 	{
-		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
+		/*if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
 			CAudio::Instance()->Play(AUDIO_HITTING);
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);
@@ -248,7 +264,7 @@ namespace game_framework {
 		normalAttackR.OnMove();
 		if (!isAttacking) {
 			normalAttackR.Reset();
-		}
+		}*/
 	}
 
 	void RedGoblin::attackShow(Maps * m)
@@ -265,29 +281,45 @@ namespace game_framework {
 
 	void RedGoblin::arrowAttack()
 	{
-		if (!attackIsFlying)
+		if (!isAttacking && arrowAttackCD == 0)
 		{
-			attackIsFlying = true;
-			arr.setArrowXY(_x, _y);
-			if (_y == hero_on_map->GetY1() && _direction == 0)
+			/*attackIsFlying = true;
+			arr.setArrowXY(_x, _y);*/
+			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() <= _x)
 			{
+				arrorClock = 30;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(0);
+				arr.setArrowXY(_x+32, _y+25);
+				isAttacking = true;
+				arrowAttackCD = 180;
 			}
-			if (_y == hero_on_map->GetY1() && _direction == 1)
+			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() > _x)
 			{
+				arrorClock = 30;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(1);
+				arr.setArrowXY(_x+32, _y+25);
+				isAttacking = true;
+				arrowAttackCD = 180;
 			}
-			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() >= _y )
+			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() <= _y )
 			{
+				arrorClock = 30;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(2);
+				arr.setArrowXY(_x+32, _y+25);
+				isAttacking = true;
+				arrowAttackCD = 180;
 			}
-			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() < _y )
+			if (_x == hero_on_map->GetX1() && hero_on_map->GetY1() > _y )
 			{
+				arrorClock = 30;
 				arr.setAttackIsFlying(true);
 				arr.setDirection(3);
+				arr.setArrowXY(_x+32, _y+25);
+				isAttacking = true;
+				arrowAttackCD = 180;
 			}
 			
 		}
@@ -295,13 +327,25 @@ namespace game_framework {
 
 	void RedGoblin::arrowAttackMove(Maps * m)
 	{
+		if (isAttacking) {
+			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
+				hero_on_map->offsetHp(attack_damage);
+			}
+		}
 		if (arrowAttackCD == 0)
 		{
 			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		arrowAttackCD = 180;
+		if (isAttacking && arrorClock != 0) {
+			arrorClock--;
+			if (arrorClock == 0) {
+				isAttacking = false;
+			}
+		}
+		
+		
 	}
 
 	void RedGoblin::arrowAttackShow(Maps * m)

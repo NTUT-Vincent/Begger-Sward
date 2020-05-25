@@ -48,13 +48,13 @@ namespace game_framework {
 	{
 		if (m->isEmpty(_arrowX, _arrowY)) {
 			if (fly_direction == 0)
-				_arrowX -= 4;
+				_arrowX -= 8;
 			if (fly_direction == 1)
-				_arrowX += 4;
+				_arrowX += 8;
 			if (fly_direction == 2)
-				_arrowY -= 4;
+				_arrowY -= 8;
 			if (fly_direction == 3)
-				_arrowY += 4;
+				_arrowY += 8;
 		}
 		
 	}
@@ -62,19 +62,19 @@ namespace game_framework {
 	void Arrow::OnShow(Maps * m)
 	{
 		if (fly_direction == 0) {
-			arrowLeft.SetTopLeft(_arrowX, _arrowY);
+			arrowLeft.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowLeft.ShowBitmap();
 		}
 		if (fly_direction == 1){
-			arrowRight.SetTopLeft(_arrowX, _arrowY);
+			arrowRight.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowRight.ShowBitmap();
 		}
 		if (fly_direction == 2) {
-			arrowUp.SetTopLeft(_arrowX, _arrowY);
+			arrowUp.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowUp.ShowBitmap();
 		}
 		if (fly_direction == 3) {
-			arrowDown.SetTopLeft(_arrowX, _arrowY);
+			arrowDown.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowDown.ShowBitmap();
 		}
 	}
