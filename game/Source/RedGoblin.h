@@ -71,4 +71,4 @@ namespace game_framework {
 	};
 }
 
-#endif // !Scarecrow_H
+#endif 
