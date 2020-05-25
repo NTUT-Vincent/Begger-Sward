@@ -633,27 +633,58 @@ namespace game_framework {
 		}
 		if (isUsingW)
 		{
-			if (isMovingLeft && m->isEmpty(x - 15 * HMS, y) && m->isEmpty(x - 15 * HMS, GetY2() - 10) && m->isEmpty(x - 30 * HMS, y) && m->isEmpty(x - 30 * HMS, GetY2() - 10))
+			if (isMovingLeft)
 			{
-				m->addSX(32 * HMS);
-				x -= 32 * HMS;
+				if (m->isEmpty(x - 15 * HMS, y) && m->isEmpty(x - 15 * HMS, GetY2() - 10) && m->isEmpty(x - 30 * HMS, y) && m->isEmpty(x - 30 * HMS, GetY2() - 10))
+				{
+					CAudio::Instance()->Play(AUDIO_GOODFLASH);
+					m->addSX(32 * HMS);
+					x -= 32 * HMS;
+				}
+				else
+				{
+					CAudio::Instance()->Play(AUDIO_BADFLASH);
+				}
 			}
 
-			if (isMovingRight && m->isEmpty(GetX2() + 15 * HMS, y) && m->isEmpty(GetX2() + 15 * HMS, GetY2() - 10) && m->isEmpty(GetX2() + 30 * HMS, y) && m->isEmpty(GetX2() + 30 * HMS, GetY2() - 10))
+			if (isMovingRight)
 			{
-				m->addSX(-32 * HMS);
-				x += 32 * HMS;
+				if (m->isEmpty(GetX2() + 15 * HMS, y) && m->isEmpty(GetX2() + 15 * HMS, GetY2() - 10) && m->isEmpty(GetX2() + 30 * HMS, y) && m->isEmpty(GetX2() + 30 * HMS, GetY2() - 10))
+				{
+					CAudio::Instance()->Play(AUDIO_GOODFLASH);
+					m->addSX(-32 * HMS);
+					x += 32 * HMS;
+				}
+				else
+				{
+					CAudio::Instance()->Play(AUDIO_BADFLASH);
+				}
 			}
-			if (isMovingUp && m->isEmpty(x + 10, y - 15 * HMS) && m->isEmpty(GetX2() - 10, y - 15 * HMS) && m->isEmpty(x + 10, y - 30 * HMS) && m->isEmpty(GetX2() - 10, y - 30 * HMS))
+			if (isMovingUp)
 			{
-				m->addSY(32 * HMS);
-				y -= 32 * HMS;
+				if (m->isEmpty(x + 10, y - 15 * HMS) && m->isEmpty(GetX2() - 10, y - 15 * HMS) && m->isEmpty(x + 10, y - 30 * HMS) && m->isEmpty(GetX2() - 10, y - 30 * HMS))
+				{
+					CAudio::Instance()->Play(AUDIO_GOODFLASH);
+					m->addSY(32 * HMS);
+					y -= 32 * HMS;
+				}
+				else
+				{
+					CAudio::Instance()->Play(AUDIO_BADFLASH);
+				}
 			}
 
-			if (isMovingDown && m->isEmpty(x + 10, GetY2() + 15 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 15 * HMS) && m->isEmpty(x + 10, GetY2() + 30 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 30 * HMS))
+			if (isMovingDown)
 			{
-				m->addSY(-32 * HMS);
-				y += 32 * HMS;
+				if (m->isEmpty(x + 10, GetY2() + 15 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 15 * HMS) && m->isEmpty(x + 10, GetY2() + 30 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 30 * HMS))
+				{
+					m->addSY(-32 * HMS);
+					y += 32 * HMS;
+				}
+				else
+				{
+					CAudio::Instance()->Play(AUDIO_BADFLASH);
+				}
 			}
 		}
 		isUsingW = false;

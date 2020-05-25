@@ -489,6 +489,9 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_DAMAGE1, "sounds\\damage1.mp3");
 		CAudio::Instance()->Load(AUDIO_ABOSS_WALK, "sounds\\footsteps_of_a_giant.mp3");
 		CAudio::Instance()->Load(AUDIO_ABOSS_PREPARE, "sounds\\ABoss_prepare.mp3");
+		CAudio::Instance()->Load(AUDIO_GOODFLASH, "sounds\\goodflash.mp3");
+		CAudio::Instance()->Load(AUDIO_BADFLASH, "sounds\\badflash.mp3");
+
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 		//
