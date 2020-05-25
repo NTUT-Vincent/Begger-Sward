@@ -108,6 +108,7 @@ namespace game_framework {
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
 		skillEMove();
+		skillWMove(m);
 		skillQMove(m);
 		normalAttackMove();
 		get_attacked.OnMove();
@@ -268,7 +269,8 @@ namespace game_framework {
 	
 	void Hero::SetUsingW(bool b)
 	{
-		if (!isUsingSkill()) {
+		if (!isUsingSkill() && skill_w_cool_down <= 0) {
+			skill_w_cool_down = 180;
 			isUsingW = b;
 		}
 	}
@@ -299,7 +301,7 @@ namespace game_framework {
 
 	void Hero::SetAllCoolDownToZero()
 	{
-		skill_q_cool_down = skill_e_cool_down = 0;
+		skill_q_cool_down = skill_e_cool_down = skill_w_cool_down = 0;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -617,6 +619,45 @@ namespace game_framework {
 		}
 		delete *it_i;
 		items.at(n - 1) = nullptr;
+	}
+
+	void Hero::skillW()
+	{
+
+	}
+
+	void Hero::skillWMove(Maps *m)
+	{
+		if (skill_w_cool_down > 0) {
+			skill_w_cool_down -= 1;
+		}
+		if (isUsingW)
+		{
+			if (isMovingLeft && m->isEmpty(x - 15 * HMS, y) && m->isEmpty(x - 15 * HMS, GetY2() - 10) && m->isEmpty(x - 30 * HMS, y) && m->isEmpty(x - 30 * HMS, GetY2() - 10))
+			{
+				m->addSX(32 * HMS);
+				x -= 32 * HMS;
+			}
+
+			if (isMovingRight && m->isEmpty(GetX2() + 15 * HMS, y) && m->isEmpty(GetX2() + 15 * HMS, GetY2() - 10) && m->isEmpty(GetX2() + 30 * HMS, y) && m->isEmpty(GetX2() + 30 * HMS, GetY2() - 10))
+			{
+				m->addSX(-32 * HMS);
+				x += 32 * HMS;
+			}
+			if (isMovingUp && m->isEmpty(x + 10, y - 15 * HMS) && m->isEmpty(GetX2() - 10, y - 15 * HMS) && m->isEmpty(x + 10, y - 30 * HMS) && m->isEmpty(GetX2() - 10, y - 30 * HMS))
+			{
+				m->addSY(32 * HMS);
+				y -= 32 * HMS;
+			}
+
+			if (isMovingDown && m->isEmpty(x + 10, GetY2() + 15 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 15 * HMS) && m->isEmpty(x + 10, GetY2() + 30 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 30 * HMS))
+			{
+				m->addSY(-32 * HMS);
+				y += 32 * HMS;
+			}
+		}
+		isUsingW = false;
+
 	}
 
 	void Hero::skillEMove()
