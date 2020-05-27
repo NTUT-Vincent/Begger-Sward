@@ -76,27 +76,32 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
+		//TRACE("-------%d", slide_left);
 		if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()-10))
 		{
 			m->addSX(HMS);
 			x -= HMS;
+			slide_left = 30;
 		}
 
 		if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2()-10))
 		{
 			m->addSX(-HMS);
 			x += HMS;
+			slide_right = 30;
 		}
 		if (isMovingUp && m->isEmpty(x+10, y - HMS) && m->isEmpty(GetX2()-10, y - HMS))
 		{
 			m->addSY(HMS);
 			y -= HMS;
+			slide_up = 30;
 		}
 
 		if (isMovingDown && m->isEmpty(x+10, GetY2() + HMS) && m->isEmpty(GetX2()-10, GetY2() + HMS))
 		{
 			m->addSY(-HMS);
 			y += HMS;
+			slide_down = 30;
 		}
 		if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
 		{
@@ -112,6 +117,9 @@ namespace game_framework {
 		skillQMove(m);
 		normalAttackMove();
 		get_attacked.OnMove();
+		if (isSlide) {
+			slide(m);
+		}
 	}
 
 	void Hero::OnShow(Maps *m)
@@ -208,6 +216,8 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
+		slide_left = slide_right = slide_down = slide_up = 0;
+		isSlide = true;
 		_attribute = FIRE;
 		for (int i = 0; i < 6; i++) {
 			items.at(i) = nullptr;
@@ -388,6 +398,72 @@ namespace game_framework {
 		else {
 			delete item;
 		}
+
+	}
+
+	void Hero::slide(Maps * m)
+	{
+		if (slide_right > 0) {
+			slide_right--;
+		}
+		if (slide_left > 0) {
+			slide_left--;
+		}
+		if (slide_up > 0) {
+			slide_up--;
+		}
+		if (slide_down > 0) {
+			slide_down--;
+		}
+		if (!isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2() - 10))
+		{
+			if (slide_left > 0) {
+				m->addSX((int)(slide_left/5.0));
+				x -= (int)(slide_left / 5.0);
+				if (isMovingRight) {
+					m->addSX(HMS);
+					x -= HMS;
+				}
+			}
+		}
+
+		if (!isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2() - 10))
+		{
+			if (slide_right > 0) {
+				m->addSX(-(int)(slide_right / 5.0));
+				x += (int)(slide_right / 5.0);
+				if (isMovingLeft) {
+					m->addSX(-HMS);
+					x += HMS;
+				}
+			}
+		}
+		if (!isMovingUp && m->isEmpty(x + 10, y - HMS) && m->isEmpty(GetX2() - 10, y - HMS))
+		{
+			if (slide_up > 0) {
+				m->addSY((int)(slide_up / 5.0));
+				y -= (int)(slide_up / 5.0);
+				if(isMovingDown){
+					m->addSY(HMS);
+					y -= HMS;
+				}
+			}
+
+		}
+
+		if (!isMovingDown && m->isEmpty(x + 10, GetY2() + HMS) && m->isEmpty(GetX2() - 10, GetY2() + HMS))
+		{
+			if (slide_down > 0) {
+				m->addSY(-(int)(slide_down / 5.0));
+				y += (int)(slide_down / 5.0);
+				if (isMovingUp) {
+					m->addSY(-HMS);
+					y += HMS;
+				}
+			}
+
+		}
+
 
 	}
 

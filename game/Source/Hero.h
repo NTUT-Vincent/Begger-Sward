@@ -69,6 +69,7 @@ namespace game_framework {
 		void addHp(int n);
 		void addAttack(int n, ELEMENT_ATTRIBUTE attribute);
 		void addItem(Item * item);
+		void slide(Maps *m);
 		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();
@@ -140,6 +141,10 @@ namespace game_framework {
 		int skill_q_cool_down; //cool down在每個skill的move function裡每秒-30
 		int skill_w_cool_down;
 		int skill_e_cool_down;
+
+		//滑起來
+		int slide_right, slide_left, slide_up, slide_down;
+		bool isSlide;
 	};
 }
 
