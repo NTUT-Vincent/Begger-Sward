@@ -51,6 +51,8 @@ namespace game_framework {
 		void arrowAttackMove(Maps *m);
 		void arrowAttackShow(Maps *m);
 	private:
+		CMovingBitmap arrowAttackL;
+		CMovingBitmap arrowAttackR;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation normalAttackL;

@@ -48,10 +48,10 @@ namespace game_framework {
 		/////怪物的動畫
 		char *filename1_1[4] = { ".\\bitmaps\\redgoblinL1.bmp",".\\bitmaps\\redgoblinL2.bmp",".\\bitmaps\\redgoblinL3.bmp", ".\\bitmaps\\redgoblinL4.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
-			walkingLeft.AddBitmap(filename1_1[i], RGB(1, 1, 1));
+			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		char *filename1_2[4] = { ".\\bitmaps\\redgoblinR1.bmp",".\\bitmaps\\redgoblinR2.bmp",".\\bitmaps\\redgoblinR3.bmp", ".\\bitmaps\\redgoblinR4.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
-			walkingRight.AddBitmap(filename1_2[i], RGB(1, 1, 1));
+			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		/////攻擊的動畫
 		char *filename2_1[5] = { ".\\bitmaps\\redslime_attackL1.bmp",".\\bitmaps\\redslime_attackL2.bmp",".\\bitmaps\\redslime_attackL3.bmp", ".\\bitmaps\\redslime_attackL4.bmp", ".\\bitmaps\\redslime_attackL5.bmp" };
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
@@ -61,6 +61,8 @@ namespace game_framework {
 		for (int i = 0; i < 5; i++)	// 載入動畫(由6張圖形構成)
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
+		arrowAttackL.LoadBitmap(".\\bitmaps\\red_arrow_attackL.bmp", RGB(0, 0, 0));
+		arrowAttackR.LoadBitmap(".\\bitmaps\\red_arrow_attackR.bmp", RGB(0, 0, 0));
 		arr.loadBitmap();
 	}
 
@@ -91,42 +93,33 @@ namespace game_framework {
 			if (_direction == 0)
 			{
 				if (isAttacking) {
-					//attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp - 16);
 					arrowAttackShow(m);
 				}
 				else {
-					
-					//enemy.SetTopLeft(x, y);
-					
+					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					walkingLeft.OnShow();
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
-					//arrowAttackShow(m);
-
 				}
-				walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-				walkingLeft.OnShow();
+				
 			}
 			else
 			{
 				if (isAttacking) {
-					//attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
 					arrowAttackShow(m);
-
 				}
 				else {
 					
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
-					//arrowAttackShow(m);
-
+					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
+					walkingRight.OnShow();
 				}
-				walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-				//enemy.SetTopLeft(x, y);
-				walkingRight.OnShow();
+				
 			}
 			
 		}
@@ -350,7 +343,20 @@ namespace game_framework {
 
 	void RedGoblin::arrowAttackShow(Maps * m)
 	{
-		arr.OnShow(m);
+		if (isAttacking) {
+			if (_direction == 0)
+			{
+				arrowAttackL.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				arrowAttackL.ShowBitmap();
+				arr.OnShow(m);
+			}
+			if (_direction == 1)
+			{
+				arrowAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				arrowAttackR.ShowBitmap();
+				arr.OnShow(m);
+			}
+		}
 	}
 
 }
