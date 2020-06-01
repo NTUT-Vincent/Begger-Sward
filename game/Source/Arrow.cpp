@@ -47,13 +47,13 @@ namespace game_framework {
 	void Arrow::OnMove(Maps * m)
 	{
 		if (m->isEmpty(_arrowX, _arrowY)) {
-			if (fly_direction == 0)
+			if (fly_direction == 0 && m->isEmpty(_arrowX, _arrowY))
 				_arrowX -= 8;
-			if (fly_direction == 1)
+			if (fly_direction == 1 && m->isEmpty(_arrowX + arrowRight.Width(), _arrowY))
 				_arrowX += 8;
-			if (fly_direction == 2)
+			if (fly_direction == 2 && m->isEmpty(_arrowX, _arrowY))
 				_arrowY -= 8;
-			if (fly_direction == 3)
+			if (fly_direction == 3 && m->isEmpty(_arrowX, _arrowY + arrowDown.Height()))
 				_arrowY += 8;
 		}
 		
