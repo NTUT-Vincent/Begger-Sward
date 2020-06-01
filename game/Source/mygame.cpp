@@ -228,25 +228,26 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		current_stage = STAGE_1_1;
-		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
-		/*enemys1_1.push_back(new RedGoblin(300, 450, &player1));
-		enemys1_1.push_back(new RedGoblin(300, 550, &player1));*/
-		enemys1_1.push_back(new Box(256, 384, &player1));
-		//enemys1_1.push_back(new ABoss(256, 384, &player1));
-		enemys1_2.push_back(new RedGoblin(300, 450, &player1));
-		enemys1_2.push_back(new RedGoblin(300, 550, &player1));
-		for (int i = 0; i < 3; i++) {
-			enemys1_2.push_back(new Box((64 * 3*i)+128, 448, &player1));
-		}
-		for (int i = 0; i < 2; i++) {
-			enemys1_2.push_back(new RedSlime((64 * 3*i)+400, 448, &player1));
-		}
-		for (int i = 0; i < 2; i++) {
-			enemys1_2.push_back(new GreenSlime((64 * 3 * i) + 300, 400, &player1));
-		}
-		for (int i = 0; i < 2; i++) {
-			enemys1_2.push_back(new BlueSlime((64 * 3 * i) + 200, 496, &player1));
-		}
+		//enemys1_1.push_back(new Scarecrow(400, 450, &player1));
+		///*enemys1_1.push_back(new RedGoblin(300, 450, &player1));
+		//enemys1_1.push_back(new RedGoblin(300, 550, &player1));*/
+		//enemys1_1.push_back(new Box(256, 384, &player1));
+		////enemys1_1.push_back(new ABoss(256, 384, &player1));
+		//enemys1_2.push_back(new RedGoblin(300, 450, &player1));
+		//enemys1_2.push_back(new RedGoblin(300, 550, &player1));
+		//for (int i = 0; i < 3; i++) {
+		//	enemys1_2.push_back(new Box((64 * 3*i)+128, 448, &player1));
+		//}
+		//for (int i = 0; i < 2; i++) {
+		//	enemys1_2.push_back(new RedSlime((64 * 3*i)+400, 448, &player1));
+		//}
+		//for (int i = 0; i < 2; i++) {
+		//	enemys1_2.push_back(new GreenSlime((64 * 3 * i) + 300, 400, &player1));
+		//}
+		//for (int i = 0; i < 2; i++) {
+		//	enemys1_2.push_back(new BlueSlime((64 * 3 * i) + 200, 496, &player1));
+		//}
+		enemys1_3.push_back(new RedGoblin(300, 550, &player1));
 		for (int i = 0; i < 5; i++) {
 			enemys1_6.push_back(new GreenSlime(200, (300 + 64*i), &player1));
 			enemys1_6.push_back(new RedSlime(900, (300 + 64 * i), &player1));
@@ -266,6 +267,9 @@ namespace game_framework {
 			delete *it_i;
 		}
 		for (vector<Enemy*>::iterator it_i = enemys1_2.begin(); it_i != enemys1_2.end(); ++it_i) {
+			delete *it_i;
+		}
+		for (vector<Enemy*>::iterator it_i = enemys1_3.begin(); it_i != enemys1_3.end(); ++it_i) {
 			delete *it_i;
 		}
 		for (vector<Enemy*>::iterator it_i = enemys1_6.begin(); it_i != enemys1_6.end(); ++it_i) {
@@ -306,6 +310,10 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys1_2.size(); i++) {
 			enemys1_2[i]->Initialize();
 		}
+		//1_3怪物
+		for (unsigned i = 0; i < enemys1_3.size(); i++) {
+			enemys1_3[i]->Initialize();
+		}
 		//第六關怪物
 		for (unsigned i = 0; i < enemys1_6.size(); i++) {
 			enemys1_6[i]->Initialize();
@@ -330,6 +338,7 @@ namespace game_framework {
 		map_stg1_1.Initialize();
 		map_stg1_6.Initialize();
 		map_stg1_2.Initialize();
+		map_stg1_3.Initialize();
 		map_stg2_1.Initialize();
 		map_stg2_3.Initialize();
 		map_stg2_4.Initialize();
@@ -347,6 +356,8 @@ namespace game_framework {
 		switch (next_stage)
 		{
 		case STAGE_1_2: next_x = 480; next_y = 480;
+			break;
+		case STAGE_1_3: next_x = 480; next_y = 480;
 			break;
 		case STAGE_1_6: next_x = 780; next_y = 1470;
 			break;
@@ -382,7 +393,10 @@ namespace game_framework {
 				stage_process_move(map_stg1_1, player1, enemys1_1, STAGE_1_2);
 				break;
 			case STAGE_1_2:
-				stage_process_move(map_stg1_2, player1, enemys1_2, STAGE_1_6);
+				stage_process_move(map_stg1_2, player1, enemys1_2, STAGE_1_3);
+				break;
+			case STAGE_1_3:
+				stage_process_move(map_stg1_3, player1, enemys1_3, STAGE_1_6);
 				break;
 			case STAGE_1_6:
 				stage_process_move(map_stg1_6, player1, enemys1_6, STAGE_2_1);
@@ -438,6 +452,10 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys1_2.size(); i++) {
 			enemys1_2[i]->LoadBitmap();
 		}
+		//1_3怪物
+		for (unsigned i = 0; i < enemys1_3.size(); i++) {
+			enemys1_3[i]->LoadBitmap();
+		}
 		//第六關怪物
 		for (unsigned i = 0; i < enemys1_6.size(); i++) {
 			enemys1_6[i]->LoadBitmap();
@@ -461,6 +479,7 @@ namespace game_framework {
 
 		map_stg1_1.LoadBitmap();
 		map_stg1_2.LoadBitmap();
+		map_stg1_3.LoadBitmap();
 		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 		map_stg1_6.LoadBitmap();
 		map_stg2_1.LoadBitmap();
@@ -670,6 +689,28 @@ namespace game_framework {
 				enemys1_2[i]->OnShow(&map_stg1_2);
 				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
 					player1.OnShow(&map_stg1_2);
+				}
+
+			}
+		}
+
+		/////////////////////////////////////////////1_3
+
+		if (current_stage == STAGE_1_3) {
+			map_stg1_3.OnShow();
+			int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
+			for (unsigned i = 0; i < enemys1_3.size(); i++) {
+				if (player1.GetY2() > enemys1_3[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
+					hero_position = i;
+				}
+			}
+			if (hero_position == -1) {
+				player1.OnShow(&map_stg1_3);
+			}
+			for (unsigned i = 0; i < enemys1_3.size(); i++) {
+				enemys1_3[i]->OnShow(&map_stg1_3);
+				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+					player1.OnShow(&map_stg1_3);
 				}
 
 			}

@@ -71,6 +71,7 @@
 		STAGE_1_1,				
 		STAGE_1_2,
 		STAGE_1_6,
+		STAGE_1_3,
 		STAGE_2_1,
 		STAGE_2_2,
 		STAGE_2_3,

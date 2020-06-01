@@ -42,6 +42,7 @@
 #include "Maps.h"
 #include "Map1_1.h"
 #include "Map1_6.h"
+#include "Map1_3.h"
 #include "Map1_2.h"
 #include "Map2_1.h"
 #include "Map2_2.h"
@@ -107,6 +108,7 @@ namespace game_framework {
 		PlauerStatus	player_status;
 		Map1_1			map_stg1_1;
 		Map1_2			map_stg1_2;
+		Map1_3			map_stg1_3;
 		Map1_6			map_stg1_6;
 		Map2_1			map_stg2_1;
 		Map2_2			map_stg2_2;
@@ -115,6 +117,7 @@ namespace game_framework {
 		Hero			player1;
 		vector<Enemy*>  enemys1_1;
 		vector<Enemy*>  enemys1_2;
+		vector<Enemy*>  enemys1_3;
 		vector<Enemy*>  enemys1_6;
 		vector<Enemy*>  enemys2_1;
 		vector<Enemy*>  enemys2_2;

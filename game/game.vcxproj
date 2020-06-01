@@ -297,6 +297,7 @@
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='UnitTest|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <ClCompile Include="Source\Map1_2.cpp" />
+    <ClCompile Include="Source\Map1_3.cpp" />
     <ClCompile Include="Source\Map1_6.cpp" />
     <ClCompile Include="Source\Map2_1.cpp" />
     <ClCompile Include="Source\Map2_2.cpp" />
@@ -350,6 +351,7 @@
     <ClInclude Include="Source\ItemAttribute.h" />
     <ClInclude Include="Source\Map1_1.h" />
     <ClInclude Include="Source\Map1_2.h" />
+    <ClInclude Include="Source\Map1_3.h" />
     <ClInclude Include="Source\Map1_6.h" />
     <ClInclude Include="Source\Map2_1.h" />
     <ClInclude Include="Source\Map2_2.h" />
@@ -430,6 +432,7 @@
     <Image Include="RES\Item_potion.bmp" />
     <Image Include="RES\Item_rand_elem.bmp" />
     <Image Include="RES\map1-2.bmp" />
+    <Image Include="RES\map1-3.bmp" />
     <Image Include="RES\map1-6.bmp" />
     <Image Include="RES\map2-1.bmp" />
     <Image Include="RES\map2-2.bmp" />
