@@ -31,6 +31,7 @@ namespace game_framework {
 		int GetY2();					//回傳最下側Y值
 		
 		int GetQCoolDown();
+		int GetWCoolDown();
 		int GetECoolDown();
 		int getHP();
 		int getFullHP();

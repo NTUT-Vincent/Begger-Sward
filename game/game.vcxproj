@@ -449,6 +449,7 @@
     <Image Include="RES\skill_q_fire_pic.bmp" />
     <Image Include="RES\skill_q_ice_pic.bmp" />
     <Image Include="RES\skill_q_plant_pic.bmp" />
+    <Image Include="RES\skill_w_pic.bmp" />
     <Image Include="RES\startbackgrond.bmp" />
     <Image Include="RES\startpicture.bmp" />
     <Image Include="RES\start_1.bmp" />

@@ -22,6 +22,7 @@ namespace game_framework {
 		void loadDigitsBitmap(CMovingBitmap a[]);
 		void showQ();
 		void showE();
+		void showW();
 		void showHP();
 		void showAttackFire();
 		void showAttackIce();
@@ -37,6 +38,8 @@ namespace game_framework {
 		CMovingBitmap skill_q_ice_pic;
 		CMovingBitmap skill_q_plant_pic;
 		CMovingBitmap skill_e_pic;
+		CMovingBitmap skill_w_pic;
+
 		CMovingBitmap HP_first[10];
 		CMovingBitmap HP_ten[10];
 		CMovingBitmap HP_hundred[10];
@@ -44,6 +47,10 @@ namespace game_framework {
 
 		CMovingBitmap Q_cooldown_first[10];
 		CMovingBitmap Q_cooldown_ten[10];
+
+		CMovingBitmap W_cooldown_first[10];
+		CMovingBitmap W_cooldown_ten[10];
+
 		CMovingBitmap E_cooldown_first[10];
 		CMovingBitmap E_cooldown_ten[10];
 

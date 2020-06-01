@@ -31,8 +31,12 @@ namespace game_framework {
 		skill_q_ice_pic.LoadBitmap(IDB_SKILLQICEPIC);
 		skill_q_plant_pic.LoadBitmap(IDB_SKILLQPLANTPIC);
 		skill_e_pic.LoadBitmap(IDB_SKILLEPIC);
+		skill_w_pic.LoadBitmap(IDB_SKILLWPIC);
 		loadDigitsBitmap(Q_cooldown_first);
 		loadDigitsBitmap(Q_cooldown_ten);
+		
+		loadDigitsBitmap(W_cooldown_first);
+		loadDigitsBitmap(W_cooldown_ten);
 		
 		loadDigitsBitmap(E_cooldown_first);
 		loadDigitsBitmap(E_cooldown_ten);
@@ -63,6 +67,7 @@ namespace game_framework {
 		status_bar.ShowBitmap();
 		showQ();
 		showE();
+		showW();
 		showHP();
 		showAttackFire();
 		showAttackIce();
@@ -132,6 +137,24 @@ namespace game_framework {
 			E_cooldown_first[first].ShowBitmap();
 			E_cooldown_ten[second].SetTopLeft(190, 20);
 			E_cooldown_ten[second].ShowBitmap();
+		}
+	}
+	
+	void PlauerStatus::showW()
+	{
+		int w_cd = _h->GetWCoolDown()/30;
+		if (_h->GetWCoolDown() == 0) {
+			skill_w_pic.SetTopLeft(90, 0);
+			skill_w_pic.ShowBitmap();
+		}
+		if (_h->GetECoolDown() != 0) {
+			int first = w_cd % 10;
+			w_cd /= 10;
+			int second = w_cd % 10;
+			W_cooldown_first[first].SetTopLeft(125, 20);
+			W_cooldown_first[first].ShowBitmap();
+			W_cooldown_ten[second].SetTopLeft(115, 20);
+			W_cooldown_ten[second].ShowBitmap();
 		}
 	}
 

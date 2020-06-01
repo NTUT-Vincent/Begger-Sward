@@ -598,5 +598,8 @@
     <Image Include="RES\map1-3.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\skill_w_pic.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

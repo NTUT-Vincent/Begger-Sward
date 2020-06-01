@@ -161,6 +161,11 @@ namespace game_framework {
 		return skill_q_cool_down;
 	}
 
+	int Hero::GetWCoolDown()
+	{
+		return skill_w_cool_down;
+	}
+
 	int Hero::GetECoolDown()
 	{
 		return skill_e_cool_down;
