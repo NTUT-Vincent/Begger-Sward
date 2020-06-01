@@ -1,5 +1,5 @@
-#ifndef REDGOBLIN_H
-#define REDGOBLIN_H
+#ifndef GREENGOBLIN_H
+#define GREENGOBLIN_H
 
 #include "Maps.h"
 #include "Character.h"
@@ -12,12 +12,12 @@ namespace game_framework {
 	//		 																	//
 	/////////////////////////////////////////////////////////////////////////////
 	class Arrow;
-	class RedGoblin :public Enemy
+	class GreenGoblin :public Enemy
 	{
 	public:
-		RedGoblin();						//建構子，傳給Character角色名稱
-		RedGoblin(int x, int y, Hero *h);	//建構子，設定角色初始位置給Character()，方便vector一次建立
-		~RedGoblin();
+		GreenGoblin();						//建構子，傳給Character角色名稱
+		GreenGoblin(int x, int y, Hero *h);	//建構子，設定角色初始位置給Character()，方便vector一次建立
+		~GreenGoblin();
 		void LoadBitmap();					//加載敵人Bitmap
 		void OnShow(Maps *m) override;		//顯示敵人於畫面上
 		void OnMove(Maps *m);				//敵人移動

@@ -64,6 +64,8 @@
 #include "GreenSlime.h"
 #include "RedSlime.h"
 #include "RedGoblin.h"
+#include "BlueGoblin.h"
+#include "GreenGoblin.h"
 #include "Util.h"
 
 namespace game_framework {
@@ -230,7 +232,9 @@ namespace game_framework {
 		current_stage = STAGE_1_1;
 		//enemys1_1.push_back(new Scarecrow(400, 450, &player1));
 		///*enemys1_1.push_back(new RedGoblin(300, 450, &player1));
-		//enemys1_1.push_back(new RedGoblin(300, 550, &player1));*/
+		enemys1_1.push_back(new RedGoblin(300, 550, &player1));
+		enemys1_1.push_back(new BlueGoblin(350, 600, &player1));
+		enemys1_1.push_back(new GreenGoblin(400, 650, &player1));
 		//enemys1_1.push_back(new Box(256, 384, &player1));
 		////enemys1_1.push_back(new ABoss(256, 384, &player1));
 		//enemys1_2.push_back(new RedGoblin(300, 450, &player1));

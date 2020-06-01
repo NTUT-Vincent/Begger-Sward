@@ -56,6 +56,9 @@
 #include "GreenSlime.h"
 #include "RedSlime.h"
 #include "BlueSlime.h"
+#include "RedGoblin.h"
+#include "BlueGoblin.h"
+#include "GreenGoblin.h"
 #include "Box.h"
 #include "PlayerStatus.h"
 

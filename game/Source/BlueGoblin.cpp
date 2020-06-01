@@ -11,7 +11,7 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Enemy.h"
-#include "RedGoblin.h"
+#include "BlueGoblin.h"
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
@@ -20,25 +20,25 @@ namespace game_framework {
 
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
 
-	RedGoblin::RedGoblin()
+	BlueGoblin::BlueGoblin()
 	{
 		_x = 384;
 		_y = 384;
 		attack_damage = 0;
 	}
 
-	RedGoblin::RedGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "RedGoblin", h, FIRE)
+	BlueGoblin::BlueGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "BlueGoblin", h, ICE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
 
-	RedGoblin::~RedGoblin()
+	BlueGoblin::~BlueGoblin()
 	{
 	}
 
-	void RedGoblin::LoadBitmap()
+	void BlueGoblin::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
 		/////掉落道具
@@ -46,19 +46,19 @@ namespace game_framework {
 			items.at(i)->load();
 		}
 		/////怪物的動畫
-		char *filename1_1[4] = { ".\\bitmaps\\redgoblinL1.bmp",".\\bitmaps\\redgoblinL2.bmp",".\\bitmaps\\redgoblinL3.bmp", ".\\bitmaps\\redgoblinL4.bmp" };
+		char *filename1_1[4] = { ".\\bitmaps\\bluegoblinL1.bmp",".\\bitmaps\\bluegoblinL2.bmp",".\\bitmaps\\bluegoblinL3.bmp", ".\\bitmaps\\bluegoblinL4.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
-		char *filename1_2[4] = { ".\\bitmaps\\redgoblinR1.bmp",".\\bitmaps\\redgoblinR2.bmp",".\\bitmaps\\redgoblinR3.bmp", ".\\bitmaps\\redgoblinR4.bmp" };
+		char *filename1_2[4] = { ".\\bitmaps\\bluegoblinR1.bmp",".\\bitmaps\\bluegoblinR2.bmp",".\\bitmaps\\bluegoblinR3.bmp", ".\\bitmaps\\bluegoblinR4.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		/////攻擊的動畫
-		arrowAttackL.LoadBitmap(".\\bitmaps\\red_arrow_attackL.bmp", RGB(0, 0, 0));
-		arrowAttackR.LoadBitmap(".\\bitmaps\\red_arrow_attackR.bmp", RGB(0, 0, 0));
+		arrowAttackL.LoadBitmap(".\\bitmaps\\blue_arrow_attackL.bmp", RGB(0, 0, 0));
+		arrowAttackR.LoadBitmap(".\\bitmaps\\blue_arrow_attackR.bmp", RGB(0, 0, 0));
 		arr.loadBitmap();
 	}
 
-	void RedGoblin::OnMove(Maps * m) {
+	void BlueGoblin::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
 			//attack();
@@ -79,7 +79,7 @@ namespace game_framework {
 		}
 	}
 
-	void RedGoblin::OnShow(Maps *m)
+	void BlueGoblin::OnShow(Maps *m)
 	{
 		if (isAlive()) {
 			if (_direction == 0)
@@ -121,27 +121,27 @@ namespace game_framework {
 
 	}
 
-	int RedGoblin::GetX1()
+	int BlueGoblin::GetX1()
 	{
 		return _x;
 	}
 
-	int RedGoblin::GetY1()
+	int BlueGoblin::GetY1()
 	{
 		return _y;
 	}
 
-	int RedGoblin::GetX2()
+	int BlueGoblin::GetX2()
 	{
 		return _x + walkingRight.Width();
 	}
 
-	int RedGoblin::GetY2()
+	int BlueGoblin::GetY2()
 	{
 		return _y + walkingRight.Height();
 	}
 
-	void RedGoblin::Initialize() {
+	void BlueGoblin::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = false;
@@ -157,7 +157,7 @@ namespace game_framework {
 		}
 	}
 
-	bool RedGoblin::intersect(int x1, int x2, int y1, int y2)
+	bool BlueGoblin::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
@@ -178,29 +178,29 @@ namespace game_framework {
 	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
 	//}
 	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
-	void RedGoblin::SetMovingDown(bool b) {
+	void BlueGoblin::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
 
-	void RedGoblin::SetMovingUp(bool b) {
+	void BlueGoblin::SetMovingUp(bool b) {
 		isMovingUp = b;
 	}
 
-	void RedGoblin::SetMovingLeft(bool b) {
+	void BlueGoblin::SetMovingLeft(bool b) {
 		isMovingLeft = b;
 	}
 
-	void RedGoblin::SetMovingRight(bool b) {
+	void BlueGoblin::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
 
-	void RedGoblin::SetXY(int x, int y)
+	void BlueGoblin::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
 
-	void RedGoblin::movement(Maps *m)
+	void BlueGoblin::movement(Maps *m)
 	{
 		int x = GetX1();
 		int y1 = GetY1() ;
@@ -234,12 +234,12 @@ namespace game_framework {
 
 
 
-	CRect * RedGoblin::GetRect()
+	CRect * BlueGoblin::GetRect()
 	{
 		return &EnemyRect;
 	}
 
-	void RedGoblin::attack()
+	void BlueGoblin::attack()
 	{
 		/*if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
 			CAudio::Instance()->Play(AUDIO_HITTING);
@@ -252,12 +252,12 @@ namespace game_framework {
 		}*/
 	}
 
-	void RedGoblin::attackShow(Maps * m)
+	void BlueGoblin::attackShow(Maps * m)
 	{
 		
 	}
 
-	void RedGoblin::arrowAttack()
+	void BlueGoblin::arrowAttack()
 	{
 		if (!isAttacking && arrowAttackCD == 0)
 		{
@@ -303,7 +303,7 @@ namespace game_framework {
 		}
 	}
 
-	void RedGoblin::arrowAttackMove(Maps * m)
+	void BlueGoblin::arrowAttackMove(Maps * m)
 	{
 		if (isAttacking) {
 			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
@@ -326,7 +326,7 @@ namespace game_framework {
 		
 	}
 
-	void RedGoblin::arrowAttackShow(Maps * m)
+	void BlueGoblin::arrowAttackShow(Maps * m)
 	{
 		if (isAttacking) {
 			if (_direction == 0)
