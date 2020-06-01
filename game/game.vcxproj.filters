@@ -214,6 +214,9 @@
     <ClCompile Include="Source\Map1_3.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\IceBird.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -340,6 +343,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Map1_3.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IceBird.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

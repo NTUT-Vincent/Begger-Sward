@@ -64,6 +64,7 @@
 #include "GreenSlime.h"
 #include "RedSlime.h"
 #include "RedGoblin.h"
+#include "IceBird.h"
 #include "Util.h"
 
 namespace game_framework {
@@ -247,6 +248,7 @@ namespace game_framework {
 		//for (int i = 0; i < 2; i++) {
 		//	enemys1_2.push_back(new BlueSlime((64 * 3 * i) + 200, 496, &player1));
 		//}
+		enemys1_1.push_back(new IceBird(400, 400, &player1));
 		enemys1_3.push_back(new RedGoblin(300, 550, &player1));
 		for (int i = 0; i < 5; i++) {
 			enemys1_6.push_back(new GreenSlime(200, (300 + 64*i), &player1));
