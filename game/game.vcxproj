@@ -275,6 +275,7 @@
     <ClCompile Include="Source\GreenSlime.cpp" />
     <ClCompile Include="Source\Health.cpp" />
     <ClCompile Include="Source\Hero.cpp" />
+    <ClCompile Include="Source\IceBird.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\ItemAttribute.cpp" />
     <ClCompile Include="Source\Map1_1.cpp" />
@@ -351,6 +352,7 @@
     <ClInclude Include="Source\GreenSlime.h" />
     <ClInclude Include="Source\Health.h" />
     <ClInclude Include="Source\Hero.h" />
+    <ClInclude Include="Source\IceBird.h" />
     <ClInclude Include="Source\Item.h" />
     <ClInclude Include="Source\ItemAttribute.h" />
     <ClInclude Include="Source\Map1_1.h" />
