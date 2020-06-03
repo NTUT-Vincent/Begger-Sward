@@ -84,6 +84,12 @@ namespace game_framework {
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
 			grass_ball.AddBitmap(filename_plant_ball[i], RGB(0, 0, 0));
 		grass_ball.SetDelayCount(8);
+
+		//草龍捲風動畫
+		char *filename_plant_tornado[12] = { ".\\bitmaps\\tornado1.bmp",".\\bitmaps\\tornado2.bmp",".\\bitmaps\\tornado3.bmp", ".\\bitmaps\\tornado4.bmp", ".\\bitmaps\\tornado5.bmp", ".\\bitmaps\\tornado6.bmp", ".\\bitmaps\\tornado7.bmp", ".\\bitmaps\\tornado8.bmp", ".\\bitmaps\\tornado9.bmp", ".\\bitmaps\\tornado10.bmp", ".\\bitmaps\\tornado11.bmp", ".\\bitmaps\\tornado12.bmp" };
+		for (int i = 0; i < 12; i++)	// 載入動畫(由6張圖形構成)
+			tornado.AddBitmap(filename_plant_tornado[i], RGB(255, 255, 255));
+		tornado.SetDelayCount(1);
 	}
 
 	void Attack::OnMove(Maps * m)
@@ -138,6 +144,9 @@ namespace game_framework {
 		}
 		if (_attack_name == GRASS_BALL) {
 			grass_ball.OnMove();
+		}
+		if (_attack_name == GRASS_TORNADO) {
+			tornado.OnMove();
 		}
 	}
 
@@ -195,6 +204,14 @@ namespace game_framework {
 				plant_attack.ShowBitmap();*/
 				grass_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				grass_ball.OnShow();
+			}
+		}
+		if (_attack_name == GRASS_TORNADO) {
+			if (m->isEmpty(_x, _y)) {
+				/*plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				plant_attack.ShowBitmap();*/
+				tornado.SetTopLeft(m->screenX(_x), m->screenY(_y));
+				tornado.OnShow();
 			}
 		}
 	}
@@ -258,6 +275,9 @@ namespace game_framework {
 		if (atk == ICE_BALL) {
 			ice_ball.Reset();
 		}
+		if (atk == GRASS_TORNADO) {
+			tornado.Reset();
+		}
 	}
 
 	int Attack::getX1()
@@ -296,6 +316,9 @@ namespace game_framework {
 				return getX1() + flame_R2.Width();
 			}
 		}
+		if (_attack_name == GRASS_TORNADO) {
+			return _x + tornado.Width();
+		}
 		return _x;
 		
 	}
@@ -325,6 +348,9 @@ namespace game_framework {
 			{
 				return getY1() + flame_R2.Height();
 			}
+		}
+		if (_attack_name == GRASS_TORNADO) {
+			return getY1() + tornado.Height();
 		}
 		return _y;
 	}

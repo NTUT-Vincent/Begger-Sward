@@ -222,7 +222,7 @@ namespace game_framework {
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = 0;
 		slide_left = slide_right = slide_down = slide_up = 0;
-		isSlide = true;
+		isSlide = false;
 		_attribute = FIRE;
 		for (int i = 0; i < 6; i++) {
 			items.at(i) = nullptr;
@@ -352,9 +352,19 @@ namespace game_framework {
 			//Q技能
 			if (enemys->at(i)->intersect(q_attack.getX1(), q_attack.getX2(), q_attack.getY1(), q_attack.getY2()) && isUsingQ)
 			{
-				if (attack_fire >= SKILL_EVO_TVALUE && _attribute == FIRE)
-					enemys->at(i)->offsetHP(attack*2, _attribute);
-				enemys->at(i)->offsetHP(attack, _attribute);
+				if (attack_fire >= SKILL_EVO_TVALUE && _attribute == FIRE) {
+					enemys->at(i)->offsetHP(attack * 2, _attribute);
+				}
+				else if (attack_plant >= SKILL_EVO_TVALUE && _attribute == PLANT) {
+					enemys->at(i)->offsetHP(attack/10, _attribute);
+					enemys->at(i)->knockBack();
+					enemys->at(i)->knockBack();
+				}
+				else {
+					enemys->at(i)->offsetHP(attack, _attribute);
+				}
+					
+				
 			}
 			//E技能
 			if (enemys->at(i)->intersect(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
@@ -671,6 +681,13 @@ namespace game_framework {
 			if (!isUsingQ)
 			{
 				q_attack.resetAnimation(GRASS_BALL);
+			}
+			if (attack_plant >= SKILL_EVO_TVALUE) {
+				q_attack.setAttackName(GRASS_TORNADO);
+				if (!isUsingQ)
+				{
+					q_attack.resetAnimation(GRASS_TORNADO);
+				}
 			}
 		}
 	}

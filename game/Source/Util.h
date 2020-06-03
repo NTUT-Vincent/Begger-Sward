@@ -91,6 +91,7 @@
 		ICE_BALL,				//Q技能的冰
 		GRASS_BALL,				//Q技能的草
 		FIRE_FLAME,
+		GRASS_TORNADO,
 
 	};
 
