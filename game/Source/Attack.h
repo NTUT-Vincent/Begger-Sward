@@ -40,6 +40,7 @@ namespace game_framework {
 		CAnimation ice_ball;
 		CAnimation fire_ball;
 		CAnimation grass_ball;
+		CAnimation tornado;
 		CMovingBitmap fire_attack_boom;
 		CMovingBitmap ice_attack;
 		CMovingBitmap plant_attack;

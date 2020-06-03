@@ -229,26 +229,28 @@ namespace game_framework {
 		: CGameState(g), NUMBALLS(28)
 	{
 		current_stage = STAGE_1_1;
-		//enemys1_1.push_back(new Scarecrow(400, 450, &player1));
-		///*enemys1_1.push_back(new RedGoblin(300, 450, &player1));
-		//enemys1_1.push_back(new RedGoblin(300, 550, &player1));*/
-		//enemys1_1.push_back(new Box(256, 384, &player1));
-		////enemys1_1.push_back(new ABoss(256, 384, &player1));
-		//enemys1_2.push_back(new RedGoblin(300, 450, &player1));
-		//enemys1_2.push_back(new RedGoblin(300, 550, &player1));
-		//for (int i = 0; i < 3; i++) {
-		//	enemys1_2.push_back(new Box((64 * 3*i)+128, 448, &player1));
-		//}
-		//for (int i = 0; i < 2; i++) {
-		//	enemys1_2.push_back(new RedSlime((64 * 3*i)+400, 448, &player1));
-		//}
-		//for (int i = 0; i < 2; i++) {
-		//	enemys1_2.push_back(new GreenSlime((64 * 3 * i) + 300, 400, &player1));
-		//}
-		//for (int i = 0; i < 2; i++) {
-		//	enemys1_2.push_back(new BlueSlime((64 * 3 * i) + 200, 496, &player1));
-		//}
-		enemys1_1.push_back(new IceBird(400, 400, &player1));
+		enemys1_1.push_back(new Scarecrow(400, 450, &player1));
+		/*enemys1_1.push_back(new RedGoblin(300, 450, &player1));
+		enemys1_1.push_back(new RedGoblin(300, 550, &player1));*/
+		enemys1_1.push_back(new Box(256, 384, &player1));
+		//enemys1_1.push_back(new ABoss(256, 384, &player1));
+		enemys1_2.push_back(new RedGoblin(300, 450, &player1));
+		enemys1_2.push_back(new RedGoblin(300, 550, &player1));
+		for (int i = 0; i < 3; i++) {
+			enemys1_2.push_back(new Box((64 * 3*i)+128, 448, &player1));
+			enemys1_6.push_back(new Box((64 * 3 * i) + 128, 448, &player1));
+			enemys2_1.push_back(new Box((64 * 3 * i) + 128, 448, &player1));
+			enemys2_2.push_back(new Box((64 * 3 * i) + 128, 448, &player1));
+		}
+		for (int i = 0; i < 2; i++) {
+			enemys1_2.push_back(new RedSlime((64 * 3*i)+400, 448, &player1));
+		}
+		for (int i = 0; i < 2; i++) {
+			enemys1_2.push_back(new GreenSlime((64 * 3 * i) + 300, 400, &player1));
+		}
+		for (int i = 0; i < 2; i++) {
+			enemys1_2.push_back(new BlueSlime((64 * 3 * i) + 200, 496, &player1));
+		}
 		enemys1_3.push_back(new RedGoblin(300, 550, &player1));
 		for (int i = 0; i < 5; i++) {
 			enemys1_6.push_back(new GreenSlime(200, (300 + 64*i), &player1));
@@ -259,8 +261,11 @@ namespace game_framework {
 		enemys1_6.push_back(new ABoss(800, 300, &player1));
 		enemys2_1.push_back(new RedSlime(600, 600, &player1));
 		enemys2_2.push_back(new GreenSlime(500, 500, &player1));
+		enemys2_2.push_back(new IceBird(600, 500, &player1));
 		enemys2_3.push_back(new GreenSlime(500, 500, &player1));
 		enemys2_4.push_back(new BlueSlime(500, 500, &player1));
+		
+
 	}
 
 	CGameStateRun::~CGameStateRun()

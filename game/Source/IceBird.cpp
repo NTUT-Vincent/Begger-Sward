@@ -157,7 +157,7 @@ namespace game_framework {
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = false;
 		hp = 1200;
 		arrorClock = 0;
-		arrowAttackCD = 0;
+		arrowAttackCD = 180;
 		blood_bar.setFullHP(hp);
 		//walkingLeft.SetDelayCount(3);
 		//walkingRight.SetDelayCount(3);
@@ -172,7 +172,7 @@ namespace game_framework {
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
 		if (isAlive()) {
-			if (x2 >= _x  && x1 <= _x + walkingRight.Width() && y2 >= _y  && y1 <= _y + walkingRight.Height() ) {
+			if (x2 >= _x + 80  && x1 <= _x + walkingRight.Width() - 80 && y2 >= _y  && y1 <= _y + walkingRight.Height() ) {
 				return true;
 			}
 			else {
@@ -309,7 +309,7 @@ namespace game_framework {
 			/*attackIsFlying = true;
 			arr.setArrowXY(_x, _y);*/
 			ice_attack.setXY(x, y);
-			if (y == hero_on_map->GetY1() && hero_on_map->GetX1() <= x)
+			/*if (y == hero_on_map->GetY1() && hero_on_map->GetX1() <= x)
 			{
 				arrorClock = 60;
 				ice_attack.setAttackIsFlying(true);
@@ -338,6 +338,19 @@ namespace game_framework {
 				arrorClock = 60;
 				ice_attack.setAttackIsFlying(true);
 				ice_attack.setStepSize(0, 8);
+				isAttacking = true;
+				arrowAttackCD = 180;
+			}*/
+			if (distanceToHero() <= 180) {
+				int x = (GetX1() + GetX2()) / 2;
+				int y = (GetY1() + GetY2()) / 2;
+				double x_distance =  hero_on_map->GetX1() - x;
+				double y_distance =  hero_on_map->GetY1() - y;
+				int ice_step_size_x = (int)(10 * x_distance / distanceToHero());
+				int ice_step_size_y = (int)(10 * y_distance / distanceToHero());
+				arrorClock = 60;
+				ice_attack.setAttackIsFlying(true);
+				ice_attack.setStepSize(ice_step_size_x, ice_step_size_y);
 				isAttacking = true;
 				arrowAttackCD = 180;
 			}
