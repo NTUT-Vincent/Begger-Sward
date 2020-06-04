@@ -220,7 +220,7 @@ namespace game_framework {
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
-		skill_e_cool_down = skill_q_cool_down = 0;
+		skill_e_cool_down = skill_q_cool_down = skill_w_cool_down =0;
 		slide_left = slide_right = slide_down = slide_up = 0;
 		isSlide = false;
 		_attribute = FIRE;
@@ -356,7 +356,7 @@ namespace game_framework {
 					enemys->at(i)->offsetHP(attack * 2, _attribute);
 				}
 				else if (attack_plant >= SKILL_EVO_TVALUE && _attribute == PLANT) {
-					enemys->at(i)->offsetHP(attack/10, _attribute);
+					enemys->at(i)->offsetHP(attack/5, _attribute);
 					enemys->at(i)->knockBack();
 					enemys->at(i)->knockBack();
 				}

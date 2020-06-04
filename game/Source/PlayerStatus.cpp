@@ -147,7 +147,7 @@ namespace game_framework {
 			skill_w_pic.SetTopLeft(90, 0);
 			skill_w_pic.ShowBitmap();
 		}
-		if (_h->GetECoolDown() != 0) {
+		if (_h->GetWCoolDown() != 0) {
 			int first = w_cd % 10;
 			w_cd /= 10;
 			int second = w_cd % 10;
