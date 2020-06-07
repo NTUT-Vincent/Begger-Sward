@@ -22,6 +22,7 @@ namespace game_framework {
 
 		virtual void OnShow(Maps *m) {};
 
+		int movement_speed;
 
 	private:
 		string _name;

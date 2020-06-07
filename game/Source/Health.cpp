@@ -15,8 +15,9 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	
-	Health::Health()
+	Health::Health(int n)
 	{
+		to_heal = n;
 	}
 
 	void Health::load()
@@ -26,15 +27,15 @@ namespace game_framework {
 
 	void Health::OnMove(Maps *m, Hero *h)
 	{
-		if (isExist() && intercect(h) && (getRandomNum() % 100) < 40) {
-			h->addHp(50);
+		if (isExist() && intercect(h)) {
+			h->addHp(to_heal);
 			setExist(false);
 		}
 	}
 
 	void Health::OnShow(Maps *m)
 	{
-		if (isExist() && (getRandomNum() % 100) < 40) {
+		if (isExist()) {
 			health_pic.SetTopLeft(m->screenX(getX()), m->screenY(getY()));
 			health_pic.ShowBitmap();
 		}

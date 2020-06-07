@@ -15,6 +15,8 @@
 #include "Clock.h"
 #include "Potion.h"
 #include "RandomAttribute.h"
+#include "Shoe.h"
+#include "ProtectiveCover.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -38,7 +40,8 @@ namespace game_framework {
 		items.push_back(new Potion());
 		items.push_back(new Clock());
 		items.push_back(new RandomAttribute());
-		
+		items.push_back(new Shoe());
+		items.push_back(new ProtectiveCover());
 	}
 
 	Box::~Box()

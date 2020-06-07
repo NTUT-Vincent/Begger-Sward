@@ -223,6 +223,12 @@
     <ClCompile Include="Source\IceBird.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Shoe.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ProtectiveCover.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -358,6 +364,12 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\IceBird.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Shoe.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ProtectiveCover.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

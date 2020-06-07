@@ -237,6 +237,7 @@ namespace game_framework {
 		enemys1_2.push_back(new RedGoblin(300, 450, &player1));
 		enemys1_2.push_back(new RedGoblin(300, 550, &player1));
 		for (int i = 0; i < 3; i++) {
+			enemys1_1.push_back(new Box((64 * 3 * i) + 128, 448, &player1));
 			enemys1_2.push_back(new Box((64 * 3*i)+128, 448, &player1));
 			enemys1_6.push_back(new Box((64 * 3 * i) + 128, 448, &player1));
 			enemys2_1.push_back(new Box((64 * 3 * i) + 128, 448, &player1));

@@ -30,7 +30,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 <= 30) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 75) {
 			RandomAttribute * p = new RandomAttribute();
 			p->load();
 			h->addItem(p);
@@ -40,7 +40,7 @@ namespace game_framework {
 
 	void RandomAttribute::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 <= 30) {
+		if (isExist() && getNumOfBox() % 100 > 75) {
 			random_attribute_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			random_attribute_pic.ShowBitmap();
 		}

@@ -34,7 +34,7 @@ namespace game_framework {
 		hero_on_map = h;
 		_attribute = a;
 		if (GetName() != "Box") {
-			items.push_back(new Health());
+			items.push_back(new Health(monsterHp/40));
 		}
 	}
 

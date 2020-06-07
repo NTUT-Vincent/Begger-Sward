@@ -9,7 +9,7 @@
 #include "BloodBar.h"
 #include "Util.h"
 #include "Attack.h"
-#define HMS HERO_MOVE_SPEED
+#define HMS movement_speed
 
 
 namespace game_framework {
@@ -73,6 +73,11 @@ namespace game_framework {
 		normalAttackR.SetDelayCount(5);
 		//Q
 		q_attack.loadBitmap();
+		//防護罩動畫
+		char *filename_protective_cover[4] = { ".\\bitmaps\\protected_cover1.bmp",".\\bitmaps\\protected_cover2.bmp",".\\bitmaps\\protected_cover3.bmp"};
+		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
+			protective_cover.AddBitmap(filename_protective_cover[i], RGB(140, 255, 251));
+		protective_cover.SetDelayCount(10);
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
@@ -117,6 +122,12 @@ namespace game_framework {
 		skillQMove(m);
 		normalAttackMove();
 		get_attacked.OnMove();
+		if (isSpeedingUp) {
+			speedUp();
+		}
+		if (cantBeDamaged) {
+			protectiveCoverCount();
+		}
 		if (isSlide) {
 			slide(m);
 		}
@@ -136,6 +147,7 @@ namespace game_framework {
 			heroShow(m);
 		}
 		showHeroStatus();
+		showProtectiveCover(m);
 	}
 
 	int Hero::GetX1() {
@@ -215,15 +227,17 @@ namespace game_framework {
 		attack_ice = 20;
 		attack_plant = 20;
 		skillTimes = 0;
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = is_getting_attacked =false;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = is_getting_attacked = isSpeedingUp = cantBeDamaged = false;
 		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		skill_e_cool_down = skill_q_cool_down = skill_w_cool_down =0;
 		slide_left = slide_right = slide_down = slide_up = 0;
+		item_shoe_clock = item_protective_cover_clock = 0;
 		isSlide = false;
 		_attribute = FIRE;
+		movement_speed = 5;
 		for (int i = 0; i < 6; i++) {
 			items.at(i) = nullptr;
 		}
@@ -377,8 +391,10 @@ namespace game_framework {
 
 	void Hero::offsetHp(int n)
 	{
-		is_getting_attacked = true;
-		hp -= n;
+		if (!cantBeDamaged) {
+			is_getting_attacked = true;
+			hp -= n;
+		}
 	}
 
 	void Hero::addHp(int n)
@@ -480,6 +496,59 @@ namespace game_framework {
 		}
 
 
+	}
+
+	void Hero::speedUp()
+	{
+		if (item_shoe_clock > 0) {
+			item_shoe_clock--;
+			movement_speed = 10;
+			if (item_shoe_clock == 0) {
+				movement_speed = 5;
+				isSpeedingUp = false;
+			}
+		}
+		
+	}
+
+	void Hero::setSpeedUp(bool b)
+	{
+		if (b) {
+			item_shoe_clock = 90;
+			isSpeedingUp = true;
+		}
+	}
+
+	void Hero::protectiveCoverCount()
+	{
+		if (item_protective_cover_clock > 0) {
+			protective_cover.OnMove();
+			item_protective_cover_clock--;
+			if (item_protective_cover_clock == 0) {
+				cantBeDamaged = false;
+			}
+		}
+		else {
+			protective_cover.Reset();
+		}
+
+	}
+
+	void Hero::setCantBeDamaged(bool b)
+	{
+		if (b) {
+			cantBeDamaged = true;
+			item_protective_cover_clock = 90;
+		}
+	}
+
+	void Hero::showProtectiveCover(Maps * m)
+	{
+		protective_cover.SetTopLeft(260, 270);
+		if (cantBeDamaged) {
+			protective_cover.OnShow();
+		}
+		
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

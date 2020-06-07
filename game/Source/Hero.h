@@ -71,6 +71,12 @@ namespace game_framework {
 		void addAttack(int n, ELEMENT_ATTRIBUTE attribute);
 		void addItem(Item * item);
 		void slide(Maps *m);
+		////////////////////用道具的
+		void speedUp();
+		void setSpeedUp(bool b);
+		void protectiveCoverCount();
+		void setCantBeDamaged(bool b);
+		void showProtectiveCover(Maps *m);
 		/////////////////////////////////////////////////////////////////////////////
 		bool isMoving();					// 在動
 		bool isAlive();
@@ -111,6 +117,7 @@ namespace game_framework {
 		CAnimation normalAttackL; // 向左普功動畫
 		CAnimation normalAttackR; // 向右普功動畫
 		CAnimation get_attacked;
+		CAnimation protective_cover;
 		
 		BloodBar blood_bar;
 		CRect RectHero;
@@ -146,6 +153,11 @@ namespace game_framework {
 		//滑起來
 		int slide_right, slide_left, slide_up, slide_down;
 		bool isSlide;
+
+		int item_shoe_clock;
+		bool isSpeedingUp;
+		bool cantBeDamaged;
+		int item_protective_cover_clock;
 	};
 }
 

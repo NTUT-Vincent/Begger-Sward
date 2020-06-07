@@ -309,10 +309,12 @@
     <ClCompile Include="Source\Maps.cpp" />
     <ClCompile Include="Source\PlayerStatus.cpp" />
     <ClCompile Include="Source\Potion.cpp" />
+    <ClCompile Include="Source\ProtectiveCover.cpp" />
     <ClCompile Include="Source\RandomAttribute.cpp" />
     <ClCompile Include="Source\RedGoblin.cpp" />
     <ClCompile Include="Source\RedSlime.cpp" />
     <ClCompile Include="Source\Scarecrow.cpp" />
+    <ClCompile Include="Source\Shoe.cpp" />
     <ClCompile Include="Source\StdAfx.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -371,11 +373,13 @@
     <ClInclude Include="Source\Objs.h" />
     <ClInclude Include="Source\PlayerStatus.h" />
     <ClInclude Include="Source\Potion.h" />
+    <ClInclude Include="Source\ProtectiveCover.h" />
     <ClInclude Include="Source\RandomAttribute.h" />
     <ClInclude Include="Source\RedGoblin.h" />
     <ClInclude Include="Source\RedSlime.h" />
     <ClInclude Include="Source\Resource.h" />
     <ClInclude Include="Source\Scarecrow.h" />
+    <ClInclude Include="Source\Shoe.h" />
     <ClInclude Include="Source\StdAfx.h" />
     <ClInclude Include="Source\gamelib.h" />
     <ClInclude Include="Source\mygame.h" />

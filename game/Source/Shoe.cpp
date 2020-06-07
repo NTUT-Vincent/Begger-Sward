@@ -7,7 +7,7 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Item.h"
-#include "Potion.h"
+#include "Shoe.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -15,48 +15,44 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	
-	Potion::Potion()
+	Shoe::Shoe()
 	{
 	}
 
-	void Potion::load()
+	void Shoe::load()
 	{
-		potion_pic.LoadBitmap(IDB_ITEMPOTION);
-		item_on_status_bar.LoadBitmapA(IDB_ITEMPOTION);
+		clock_pic.LoadBitmap(".\\bitmaps\\shoes.bmp", RGB(246, 246, 246));
+		item_on_status_bar.LoadBitmapA(".\\bitmaps\\shoes.bmp", RGB(246, 246, 246));
 	}
 
-	void Potion::OnMove(Maps *m, Hero *h)
+	void Shoe::OnMove(Maps *m, Hero *h)
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 50 &&  getNumOfBox() % 100 <= 75) {
-			Potion * p = new Potion();
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
+			Shoe * p = new Shoe();
 			p->load();
 			h->addItem(p);
 			setExist(false);
 		}
 	}
 
-	void Potion::OnShow(Maps *m)
+	void Shoe::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 > 50 && getNumOfBox() % 100 <= 75) {
-			potion_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
-			potion_pic.ShowBitmap();
+		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
+			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
+			clock_pic.ShowBitmap();
 		}
 		
 	}
 
-	void Potion::effect(Hero *h)
+	void Shoe::effect(Hero *h)
 	{
-		for (int i = 0; i < 100; i++) {
-			if (h->getHP() < h->getFullHP()) {
-				h->addHp(1);
-			}
-		}
+		h->setSpeedUp(true);
 		setIsUsed(false);
 	}
 
-	bool Potion::intercect(Hero * h)
+	bool Shoe::intercect(Hero * h)
 	{
 		if (isExist()) {
 			if (h->GetX2() >= _x + 10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) {
