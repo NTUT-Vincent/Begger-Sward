@@ -33,6 +33,7 @@ namespace game_framework {
 		int GetQCoolDown();
 		int GetWCoolDown();
 		int GetECoolDown();
+		int GetRCoolDown();
 		int getHP();
 		int getFullHP();
 		int get_attack_fire();
@@ -95,7 +96,7 @@ namespace game_framework {
 		void skillQShow(Maps *m);
 		void useItem(int n);
 
-		void skillW();
+		//void skillW();
 		void skillWMove(Maps *m);
 		//void skillWShow();
 
@@ -103,9 +104,9 @@ namespace game_framework {
 		void skillEMove();
 		void skillEShow();
 
-		/*void skillR();
+		//void skillR();
 		void skillRMove();
-		void skillRShow();*/
+		void skillRShow();
 		/////////////////////////////////////////////////////////////////////////////
 		
 
@@ -114,6 +115,8 @@ namespace game_framework {
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation skillE;
+		CAnimation skillR_L;
+		CAnimation skillR_R;
 		CAnimation normalAttackL; // 向左普功動畫
 		CAnimation normalAttackR; // 向右普功動畫
 		CAnimation get_attacked;
@@ -149,6 +152,7 @@ namespace game_framework {
 		int skill_q_cool_down; //cool down在每個skill的move function裡每秒-30
 		int skill_w_cool_down;
 		int skill_e_cool_down;
+		int skill_r_cool_down;
 
 		//滑起來
 		int slide_right, slide_left, slide_up, slide_down;

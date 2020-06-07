@@ -78,6 +78,16 @@ namespace game_framework {
 		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
 			protective_cover.AddBitmap(filename_protective_cover[i], RGB(140, 255, 251));
 		protective_cover.SetDelayCount(10);
+		//技能R動畫
+		char *filename_skillR_L[5] = { ".\\bitmaps\\skill_rL1.bmp",".\\bitmaps\\skill_rL2.bmp",".\\bitmaps\\skill_rL3.bmp",".\\bitmaps\\skill_rL4.bmp" ,".\\bitmaps\\skill_rL5.bmp" };
+		for (int i = 0; i < 5; i++)	// 載入動畫(由3張圖形構成)
+			skillR_L.AddBitmap(filename_skillR_L[i], RGB(0, 0, 0));
+		skillR_L.SetDelayCount(10);
+		
+		char *filename_skillR_R[5] = { ".\\bitmaps\\skill_rR1.bmp",".\\bitmaps\\skill_rR2.bmp",".\\bitmaps\\skill_rR3.bmp",".\\bitmaps\\skill_rR4.bmp" ,".\\bitmaps\\skill_rR5.bmp" };
+		for (int i = 0; i < 5; i++)	// 載入動畫(由3張圖形構成)
+			skillR_R.AddBitmap(filename_skillR_R[i], RGB(0, 0, 0));
+		skillR_R.SetDelayCount(10);
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
@@ -120,6 +130,7 @@ namespace game_framework {
 		skillEMove();
 		skillWMove(m);
 		skillQMove(m);
+		skillRMove();
 		normalAttackMove();
 		get_attacked.OnMove();
 		if (isSpeedingUp) {
@@ -142,6 +153,7 @@ namespace game_framework {
 			normalAttackShow(m);
 			skillEShow();
 			skillQShow(m);
+			skillRShow();
 		}
 		else {
 			heroShow(m);
@@ -181,6 +193,11 @@ namespace game_framework {
 	int Hero::GetECoolDown()
 	{
 		return skill_e_cool_down;
+	}
+
+	int Hero::GetRCoolDown()
+	{
+		return skill_r_cool_down;
 	}
 
 	int Hero::getHP()
@@ -318,7 +335,8 @@ namespace game_framework {
 	
 	void Hero::SetUsingR(bool b)
 	{
-		if (!isUsingSkill()) {
+		if (!isUsingSkill() && skill_r_cool_down <= 0) {
+			skill_r_cool_down = 90; //如果正式遊戲應該要900(久一點)
 			isUsingR = b;
 		}
 	}
@@ -330,7 +348,7 @@ namespace game_framework {
 
 	void Hero::SetAllCoolDownToZero()
 	{
-		skill_q_cool_down = skill_e_cool_down = skill_w_cool_down = 0;
+		skill_q_cool_down = skill_e_cool_down = skill_w_cool_down = skill_r_cool_down = 0;
 	}
 	
 	/////////////////////////////////////////////////////////////////////////////
@@ -585,7 +603,7 @@ namespace game_framework {
 
 	bool Hero::isUsingSkill()
 	{
-		if (isUsingA || isUsingQ || isUsingE ) {
+		if (isUsingA || isUsingQ || isUsingE || isUsingR) {
 			return true;
 		}
 		return false;
@@ -668,7 +686,7 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0, 0, 0));
 		pDC->SetTextColor(RGB(255, 255, 0));
 		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str,"Cool Down: Q:%d E:%d   HP: %d", skill_q_cool_down / 30,skill_e_cool_down / 30, hp);
+		sprintf(str,"Cool Down: Q:%d  E:%d  R:%d  HP: %d", skill_q_cool_down / 30,skill_e_cool_down / 30, skill_r_cool_down / 30, hp);
 		pDC->TextOut(0, 0, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
@@ -788,11 +806,6 @@ namespace game_framework {
 		items.at(n - 1) = nullptr;
 	}
 
-	void Hero::skillW()
-	{
-
-	}
-
 	void Hero::skillWMove(Maps *m)
 	{
 		if (skill_w_cool_down > 0) {
@@ -879,6 +892,67 @@ namespace game_framework {
 					skillTimes = 0;			//跑完整個技能把skillTime設回為0
 					isUsingE = false;
 				}
+			}
+		}
+	}
+
+	void Hero::skillRMove()
+	{
+		if (isUsingR) {
+			if (skill_r_cool_down > 0) {
+				skill_r_cool_down -= 1;
+			}
+			if (directionLR == 0) {
+				if (!skillR_L.IsFinalBitmap()) {
+					skillR_L.OnMove();
+				}
+				switch (skillR_L.GetCurrentBitmapNumber())
+				{
+				case 0: x -= 27; y += 15;
+				case 1: x -= 27; y += 5;
+				case 2: x -= 27; y += 0;
+				case 3: x -= 27; y += -5;
+				case 4: x -= 27; y += -15;
+				default:return;
+				}
+			}
+			else {
+				if (!skillR_R.IsFinalBitmap()) {
+					skillR_R.OnMove();
+				}
+				switch (skillR_R.GetCurrentBitmapNumber())
+				{
+				case 0: x += 27; y += 15;
+				case 1: x += 27; y += 5;
+				case 2: x += 27; y += 0;
+				case 3: x += 27; y += -5;
+				case 4: x += 27; y += -15;
+				default:return;
+				}
+			}
+		}
+		if (!isUsingR) {
+			skillR_L.Reset();
+			skillR_R.Reset();
+		}
+	}
+
+	void Hero::skillRShow()
+	{
+		//int each_positionL[5][2] = { {280, 280},{280, 280},{280, 280}, {280, 280}, {280, 280} }; //考慮到每張圖不一樣大，再用以下參數調整
+		//int each_positionR[5][2] = { {280, 280},{280, 280},{280, 280}, {280, 280}, {280, 280} }; //考慮到每張圖不一樣大，再用以下參數調整
+		if (isUsingR) {
+			if (directionLR == 0)
+			{
+				skillR_L.OnShow();
+			}
+			else
+			{
+				skillR_R.OnShow();
+			}
+			if (skillR_L.IsFinalBitmap() || skillR_R.IsFinalBitmap())
+			{
+				isUsingR = false;
 			}
 		}
 	}
