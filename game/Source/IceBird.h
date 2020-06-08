@@ -6,6 +6,7 @@
 #include "BloodBar.h"
 #include "Enemy.h"
 #include "Arrow.h"
+#include "BossBloodBar.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
@@ -74,6 +75,7 @@ namespace game_framework {
 		int time_bump_into_sth;
 		int arrowAttackCD;
 		int arrorClock;
+		BossBloodBar boss_blood_bar;
 	};
 }
 

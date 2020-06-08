@@ -29,7 +29,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 100) {
 			Shoe * p = new Shoe();
 			p->load();
 			h->addItem(p);
@@ -39,7 +39,7 @@ namespace game_framework {
 
 	void Shoe::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
+		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 100) {
 			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			clock_pic.ShowBitmap();
 		}
