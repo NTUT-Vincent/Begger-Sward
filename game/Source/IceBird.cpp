@@ -40,7 +40,7 @@ namespace game_framework {
 
 	void IceBird::LoadBitmap()
 	{
-		blood_bar.loadBloodBar();
+		 boss_blood_bar.loadBloodBar();
 		/////掉落道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->load();
@@ -95,29 +95,29 @@ namespace game_framework {
 			if (_direction == 0)
 			{
 				if (isAttacking) {
-					blood_bar.setXY(GetX1(), GetY1()-16);
-					blood_bar.showBloodBar(m, hp - 16);
+					 boss_blood_bar.setXY(GetX1(), GetY1()-16);
+					 boss_blood_bar.showBloodBar(m, hp - 16);
 					iceAttackShow(m);
 				}
 				else {
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
-					blood_bar.setXY(GetX1(), GetY1()-16);
-					blood_bar.showBloodBar(m, hp);
+					 boss_blood_bar.setXY(GetX1(), GetY1()-16);
+					 boss_blood_bar.showBloodBar(m, hp);
 				}
 				
 			}
 			else
 			{
 				if (isAttacking) {
-					blood_bar.setXY(GetX1(), GetY1()-16);
-					blood_bar.showBloodBar(m, hp);
+					 boss_blood_bar.setXY(GetX1(), GetY1()-16);
+					 boss_blood_bar.showBloodBar(m, hp);
 					iceAttackShow(m);
 				}
 				else {
 					
-					blood_bar.setXY(GetX1(), GetY1()-16);
-					blood_bar.showBloodBar(m, hp);
+					 boss_blood_bar.setXY(GetX1(), GetY1()-16);
+					 boss_blood_bar.showBloodBar(m, hp);
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
 				}
@@ -158,7 +158,7 @@ namespace game_framework {
 		hp = 1200;
 		arrorClock = 0;
 		arrowAttackCD = 180;
-		blood_bar.setFullHP(hp);
+		 boss_blood_bar.setFullHP(hp);
 		//walkingLeft.SetDelayCount(3);
 		//walkingRight.SetDelayCount(3);
 		///道具
