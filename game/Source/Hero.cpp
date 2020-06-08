@@ -924,7 +924,7 @@ namespace game_framework {
 			skillR_R.Reset();
 	}
 
-	void Hero::skillEShow()
+	void Hero::skillRShow()
 	{
 		if (isUsingR) {
 			if (directionLR == 0) {
