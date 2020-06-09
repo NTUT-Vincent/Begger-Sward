@@ -94,17 +94,45 @@ namespace game_framework {
 		char *filename_skillR_L[7] = { ".\\bitmaps\\skill_rL1.bmp",".\\bitmaps\\skill_rL2.bmp",".\\bitmaps\\skill_rL3.bmp",".\\bitmaps\\skill_rL4.bmp" ,".\\bitmaps\\skill_rL5.bmp",".\\bitmaps\\skill_rL6.bmp",".\\bitmaps\\skill_rL7.bmp" };
 		for (int i = 0; i < 7; i++)	// 載入動畫(由3張圖形構成)
 			skillR_L.AddBitmap(filename_skillR_L[i], RGB(255, 255, 255));
-		skillR_L.SetDelayCount(5);
+		skillR_L.SetDelayCount(3);
 		
 		char *filename_skillR_R[7] = { ".\\bitmaps\\skill_rR1.bmp",".\\bitmaps\\skill_rR2.bmp",".\\bitmaps\\skill_rR3.bmp",".\\bitmaps\\skill_rR4.bmp" ,".\\bitmaps\\skill_rR5.bmp",".\\bitmaps\\skill_rR6.bmp",".\\bitmaps\\skill_rR7.bmp" };
 		for (int i = 0; i < 7; i++)	// 載入動畫(由3張圖形構成)
 			skillR_R.AddBitmap(filename_skillR_R[i], RGB(255, 255, 255));
-		skillR_R.SetDelayCount(5);
+		skillR_R.SetDelayCount(3);
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
 		//TRACE("-------%d", slide_left);
-		if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()-10))
+		if (!isUsingR) {
+			if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2() - 10))
+			{
+				m->addSX(HMS);
+				x -= HMS;
+				slide_left = 30;
+			}
+
+			if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2() - 10))
+			{
+				m->addSX(-HMS);
+				x += HMS;
+				slide_right = 30;
+			}
+			if (isMovingUp && m->isEmpty(x + 10, y - HMS) && m->isEmpty(GetX2() - 10, y - HMS))
+			{
+				m->addSY(HMS);
+				y -= HMS;
+				slide_up = 30;
+			}
+
+			if (isMovingDown && m->isEmpty(x + 10, GetY2() + HMS) && m->isEmpty(GetX2() - 10, GetY2() + HMS))
+			{
+				m->addSY(-HMS);
+				y += HMS;
+				slide_down = 30;
+			}
+		}
+		/*if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()-10))
 		{
 			m->addSX(HMS);
 			x -= HMS;
@@ -129,7 +157,7 @@ namespace game_framework {
 			m->addSY(-HMS);
 			y += HMS;
 			slide_down = 30;
-		}
+		}*/
 		if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
 		{
 			//hp -= 10;
@@ -914,14 +942,21 @@ namespace game_framework {
 			skill_r_cool_down -= 1;
 		}
 
-		if (directionLR == 0)
+		if (directionLR == 0) {
 			skillR_L.OnMove();
-		else
+		}
+		else {
 			skillR_R.OnMove();
+		}
+			
+		//else
+			
 		
-		if (!isUsingR)
+		if (!isUsingR) {
 			skillR_L.Reset();
 			skillR_R.Reset();
+		}
+			
 	}
 
 	void Hero::skillRShow()
@@ -938,6 +973,10 @@ namespace game_framework {
 			if (skillR_L.IsFinalBitmap()) {
 					isUsingR = false;
 			}
+			if (skillR_R.IsFinalBitmap()) {
+				isUsingR = false;
+			}
+
 		}
 	}
 
