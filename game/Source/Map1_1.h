@@ -19,6 +19,7 @@ namespace game_framework {
 		void getHeroY(int y) override;
 		int screenX(int x) override;
 		int screenY(int y) override;
+		void setIceWallPos(int x, int y, int n);
 		
 	private:
 		CMovingBitmap firstmap;

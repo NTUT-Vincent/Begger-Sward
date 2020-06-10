@@ -265,6 +265,31 @@ namespace game_framework {
 		return attack_plant;
 	}
 
+	bool Hero::GetIsMovingLeft()
+	{
+		return isMovingLeft;
+	}
+
+	bool Hero::GetIsMovingRight()
+	{
+		return isMovingRight;
+	}
+
+	bool Hero::GetIsMovingUp()
+	{
+		return isMovingUp;
+	}
+
+	bool Hero::GetIsMovingDown()
+	{
+		return isMovingDown;
+	}
+
+	int Hero::GetStepSize()
+	{
+		return movement_speed;
+	}
+
 	ELEMENT_ATTRIBUTE Hero::getCurrentAttribute()
 	{
 		return _attribute;
@@ -472,6 +497,7 @@ namespace game_framework {
 			attack_plant += n;
 		}
 	}
+
 
 	void Hero::addItem(Item * item)
 	{

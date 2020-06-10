@@ -39,6 +39,11 @@ namespace game_framework {
 		int get_attack_fire();
 		int get_attack_ice();
 		int get_attack_plant();
+		bool GetIsMovingLeft();
+		bool GetIsMovingRight();
+		bool GetIsMovingUp();
+		bool GetIsMovingDown();
+		int GetStepSize();
 		ELEMENT_ATTRIBUTE getCurrentAttribute();
 		vector<Item *> * getItemsOfPlayer();
 
@@ -157,7 +162,7 @@ namespace game_framework {
 		//滑起來
 		int slide_right, slide_left, slide_up, slide_down;
 		bool isSlide;
-
+		//道具造成狀態
 		int item_shoe_clock;
 		bool isSpeedingUp;
 		bool cantBeDamaged;

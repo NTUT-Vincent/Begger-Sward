@@ -261,11 +261,11 @@ namespace game_framework {
 		}
 		enemys1_6.push_back(new ABoss(800, 300, &player1));
 		enemys2_1.push_back(new RedSlime(600, 600, &player1));
-		enemys2_2.push_back(new GreenSlime(500, 500, &player1));
+		//enemys2_2.push_back(new GreenSlime(500, 500, &player1));
 		enemys2_2.push_back(new IceBird(600, 500, &player1));
-		enemys2_2.push_back(new RedGoblin(700, 500, &player1));
-		enemys2_2.push_back(new BlueGoblin(500, 700, &player1));
-		enemys2_2.push_back(new GreenGoblin(800, 900, &player1));
+		//enemys2_2.push_back(new RedGoblin(700, 500, &player1));
+		//enemys2_2.push_back(new BlueGoblin(500, 700, &player1));
+		//enemys2_2.push_back(new GreenGoblin(800, 900, &player1));
 		enemys2_3.push_back(new GreenSlime(500, 500, &player1));
 		enemys2_4.push_back(new BlueSlime(500, 500, &player1));
 		

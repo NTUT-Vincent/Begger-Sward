@@ -40,7 +40,8 @@ namespace game_framework {
 
 	void IceBird::LoadBitmap()
 	{
-		 boss_blood_bar.loadBloodBar();
+		icewall.LoadBitmap(".\\bitmaps\\ice_wall.bmp", RGB(255, 255, 255));
+		boss_blood_bar.loadBloodBar();
 		/////±¼¸¨¹D¨ã
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->load();
@@ -80,6 +81,8 @@ namespace game_framework {
 			movement(m);
 			iceAttack();
 			iceAttackMove(m);
+			iceWall(m);
+			iceWallMove(m);
 			if (arrowAttackCD != 0) {
 				arrowAttackCD--;
 			}
@@ -105,7 +108,7 @@ namespace game_framework {
 					 boss_blood_bar.setXY(GetX1(), GetY1()-16);
 					 boss_blood_bar.showBloodBar(m, hp);
 				}
-				
+				iceWallShow(m);
 			}
 			else
 			{
@@ -121,6 +124,7 @@ namespace game_framework {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
 				}
+				iceWallShow(m);
 				
 			}
 			
@@ -154,10 +158,12 @@ namespace game_framework {
 	void IceBird::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
-		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = false;
+		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = isUsingIceWall = false;
 		hp = 1200;
 		arrorClock = 0;
 		arrowAttackCD = 180;
+		ice_wall_clock = 0;
+		ice_wall_cd = 180;
 		 boss_blood_bar.setFullHP(hp);
 		//walkingLeft.SetDelayCount(3);
 		//walkingRight.SetDelayCount(3);
@@ -309,38 +315,7 @@ namespace game_framework {
 			/*attackIsFlying = true;
 			arr.setArrowXY(_x, _y);*/
 			ice_attack.setXY(x, y);
-			/*if (y == hero_on_map->GetY1() && hero_on_map->GetX1() <= x)
-			{
-				arrorClock = 60;
-				ice_attack.setAttackIsFlying(true);
-				ice_attack.setStepSize(-8, 0);
-				isAttacking = true;
-				arrowAttackCD = 180;
-			}
-			if (y == hero_on_map->GetY1() && hero_on_map->GetX1() > x)
-			{
-				arrorClock = 60;
-				ice_attack.setAttackIsFlying(true);
-				ice_attack.setStepSize(8, 0);
-				isAttacking = true;
-				arrowAttackCD = 180;
-			}
-			if (x == hero_on_map->GetX1() && hero_on_map->GetY1() <= y )
-			{
-				arrorClock = 60;
-				ice_attack.setAttackIsFlying(true);
-				ice_attack.setStepSize(0, -8);
-				isAttacking = true;
-				arrowAttackCD = 180;
-			}
-			if (x == hero_on_map->GetX1() && hero_on_map->GetY1() > y )
-			{
-				arrorClock = 60;
-				ice_attack.setAttackIsFlying(true);
-				ice_attack.setStepSize(0, 8);
-				isAttacking = true;
-				arrowAttackCD = 180;
-			}*/
+
 			if (distanceToHero() <= 180) {
 				int x = (GetX1() + GetX2()) / 2;
 				int y = (GetY1() + GetY2()) / 2;
@@ -398,6 +373,67 @@ namespace game_framework {
 				normalAttackR.OnShow();;
 				ice_attack.OnShow(m);
 			}
+		}
+	}
+
+
+	void IceBird::iceWall(Maps *m)
+	{
+		if (!isUsingIceWall &&ice_wall_cd == 0) {
+			if (_direction == 0) {
+				ice_wall_x = ((hero_on_map->GetX1() - 36) / 64) * 64;
+				ice_wall_y = ((_y-100) / 64) * 64;
+				isUsingIceWall = true;
+				ice_wall_clock = 180;
+				for (int i = 0; i < 7; i++) {
+					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), 1);
+				}
+			}
+			if (_direction == 1) {
+				ice_wall_x = ((hero_on_map->GetX1() + 100) / 64) * 64;
+				ice_wall_y = ((_y - 100) / 64) * 64;
+				isUsingIceWall = true;
+				ice_wall_clock = 180;
+				for (int i = 0; i < 7; i++) {
+					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), 1);
+				}
+			}
+			
+		}
+	}
+
+	void IceBird::iceWallMove(Maps * m)
+	{
+		/*if (isUsingIceWall) {
+			if (hero_on_map->GetIsMovingLeft) {
+				if (intersectIceWall(hero_on_map->GetX1() - hero_on_map->GetStepSize(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2())) {
+					
+				}
+			}
+		}*/
+		if (isUsingIceWall) {
+			
+		}
+		if (ice_wall_clock > 0) {
+			ice_wall_clock--;
+			if (ice_wall_clock == 0) {
+				isUsingIceWall = false;
+				for (int i = 0; i < 7; i++) {
+					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), -1);
+				}
+				ice_wall_cd = 180;
+			}
+		}
+		if (ice_wall_cd > 0) {
+			ice_wall_cd--;
+		}
+	}
+
+	void IceBird::iceWallShow(Maps * m)
+	{
+		if (isUsingIceWall) {
+			icewall.SetTopLeft(m->screenX(ice_wall_x), m->screenY(ice_wall_y));
+			icewall.ShowBitmap();
 		}
 	}
 

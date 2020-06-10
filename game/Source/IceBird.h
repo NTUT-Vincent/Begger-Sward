@@ -52,7 +52,10 @@ namespace game_framework {
 		void iceAttack();
 		void iceAttackMove(Maps *m);
 		void iceAttackShow(Maps *m);
-		
+		//¦BÀð
+		void iceWall(Maps *m);
+		void iceWallMove(Maps *m);
+		void iceWallShow(Maps *m);
 
 	private:
 		CMovingBitmap arrowAttackL;
@@ -69,13 +72,21 @@ namespace game_framework {
 		bool isMovingUp;
 		bool isMovingDown;
 		bool isAttacking;
+		bool isUsingIceWall;
 		bool attackIsFlying;
 		int attack_cool_down;
 		int move_or_not;
 		int time_bump_into_sth;
+		//©Û¦¡ªºcd
 		int arrowAttackCD;
 		int arrorClock;
+		int ice_wall_clock;
+		int ice_wall_cd;
 		BossBloodBar boss_blood_bar;
+		//¦BÀð
+		CMovingBitmap icewall;
+		int ice_wall_x, ice_wall_y;
+
 	};
 }
 

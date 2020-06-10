@@ -119,4 +119,11 @@ namespace game_framework {
 		return y + getSY();
 	}
 
+	void Map1_6::setIceWallPos(int x, int y, int n)
+	{
+		int gx = x / 64;
+		int gy = y / 64;
+		map[gx][gy] += n;
+	}
+
 }
