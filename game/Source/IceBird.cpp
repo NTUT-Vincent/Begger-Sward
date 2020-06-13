@@ -40,7 +40,8 @@ namespace game_framework {
 
 	void IceBird::LoadBitmap()
 	{
-		icewall.LoadBitmap(".\\bitmaps\\ice_wall.bmp", RGB(255, 255, 255));
+		icewallLeft.LoadBitmap(".\\bitmaps\\icewallL1.bmp", RGB(255, 255, 255));
+		icewallRight.LoadBitmap(".\\bitmaps\\icewallR1.bmp", RGB(255, 255, 255));
 		boss_blood_bar.loadBloodBar();
 		/////掉落道具
 		for (unsigned i = 0; i < items.size(); i++) {
@@ -64,6 +65,15 @@ namespace game_framework {
 		for (int i = 0; i < 10; i++)	// 載入動畫(由6張圖形構成)
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(1);
+		/////冰牆的動畫
+		char *filename_wallL[8] = { ".\\bitmaps\\icewallL1.bmp",".\\bitmaps\\icewallL2.bmp",".\\bitmaps\\icewallL3.bmp",".\\bitmaps\\icewallL4.bmp",".\\bitmaps\\icewallL5.bmp",".\\bitmaps\\icewallL6.bmp",".\\bitmaps\\icewallL7.bmp",".\\bitmaps\\icewallL8.bmp", };
+		for (int i = 0; i < 8; i++)	// 載入動畫(由6張圖形構成)
+			icewallL.AddBitmap(filename_wallL[i], RGB(255, 255, 255));
+		icewallL.SetDelayCount(5);
+		char *filename_wallR[8] = { ".\\bitmaps\\icewallR1.bmp",".\\bitmaps\\icewallR2.bmp",".\\bitmaps\\icewallR3.bmp",".\\bitmaps\\icewallR4.bmp",".\\bitmaps\\icewallR5.bmp",".\\bitmaps\\icewallR6.bmp",".\\bitmaps\\icewallR7.bmp",".\\bitmaps\\icewallR8.bmp",};
+		for (int i = 0; i < 8; i++)	// 載入動畫(由6張圖形構成)
+			icewallR.AddBitmap(filename_wallR[i], RGB(255, 255, 255));
+		icewallR.SetDelayCount(5);
 		ice_attack.loadBitmap();
 	}
 
@@ -412,12 +422,25 @@ namespace game_framework {
 			}
 		}*/
 		if (isUsingIceWall) {
-			
+
 		}
 		if (ice_wall_clock > 0) {
 			ice_wall_clock--;
+			if (ice_wall_clock <= 40 && ice_wall_clock >=0 )
+			{
+				if (_direction == 0 && !icewallL.IsFinalBitmap())
+				{
+					icewallL.OnMove();
+				}
+				if (_direction == 1 && ! icewallR.IsFinalBitmap())
+				{
+					icewallR.OnMove();
+				}
+			}
 			if (ice_wall_clock == 0) {
 				isUsingIceWall = false;
+				icewallL.Reset();
+				icewallR.Reset();
 				for (int i = 0; i < 7; i++) {
 					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), -1);
 				}
@@ -432,8 +455,33 @@ namespace game_framework {
 	void IceBird::iceWallShow(Maps * m)
 	{
 		if (isUsingIceWall) {
-			icewall.SetTopLeft(m->screenX(ice_wall_x), m->screenY(ice_wall_y));
-			icewall.ShowBitmap();
+			if (ice_wall_clock > 40 && ice_wall_clock <= 180)
+			{
+				if (_direction == 0)
+				{
+					icewallLeft.SetTopLeft(m->screenX(ice_wall_x)-80, m->screenY(ice_wall_y));
+					icewallLeft.ShowBitmap();
+				}
+				else
+				{
+					icewallRight.SetTopLeft(m->screenX(ice_wall_x), m->screenY(ice_wall_y));
+					icewallRight.ShowBitmap();
+				}
+			}
+			if (ice_wall_clock <= 40 && ice_wall_clock >=0)
+			{
+				if (_direction == 0)
+				{
+					icewallL.SetTopLeft(m->screenX(ice_wall_x)-80, m->screenY(ice_wall_y));
+					icewallL.OnShow();
+				}
+				else
+				{
+					icewallR.SetTopLeft(m->screenX(ice_wall_x), m->screenY(ice_wall_y));
+					icewallR.OnShow();
+				}
+			}
+			
 		}
 	}
 

@@ -60,10 +60,14 @@ namespace game_framework {
 	private:
 		CMovingBitmap arrowAttackL;
 		CMovingBitmap arrowAttackR;
+		CMovingBitmap icewallLeft;
+		CMovingBitmap icewallRight;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation normalAttackL;
 		CAnimation normalAttackR;
+		CAnimation icewallL;
+		CAnimation icewallR;
 		Arrow arr;
 		Attack ice_attack;
 		int attack_damage;
