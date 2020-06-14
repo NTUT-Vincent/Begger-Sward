@@ -352,6 +352,18 @@ namespace game_framework {
 		x = num_x;
 		y = num_y;
 	}
+
+	void Hero::addSX(int n, Maps *m)
+	{
+		x += n;
+		m->addSX(-n);
+	}
+
+	void Hero::addSY(int n, Maps * m)
+	{
+		y += n;
+		m->addSY(-n);
+	}
 	
 	/////////////////////////////////////////////////////////////////////////////
 	

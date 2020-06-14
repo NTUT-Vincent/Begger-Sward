@@ -56,6 +56,8 @@ namespace game_framework {
 		void SetMovingLeft(bool b);
 		void SetMovingRight(bool b);
 		void SetXY(int num_x, int num_y);
+		void addSX(int n, Maps *m);
+		void addSY(int n, Maps *m);
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Hero使用技能的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
