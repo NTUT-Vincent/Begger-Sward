@@ -81,6 +81,7 @@ namespace game_framework {
 		int attack_cool_down;
 		int move_or_not;
 		int time_bump_into_sth;
+		bool icewall_direction;
 		//©Û¦¡ªºcd
 		int arrowAttackCD;
 		int arrorClock;

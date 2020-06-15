@@ -390,7 +390,8 @@ namespace game_framework {
 	void IceBird::iceWall(Maps *m)
 	{
 		if (!isUsingIceWall &&ice_wall_cd == 0) {
-			if (_direction == 0) {
+			icewall_direction = _direction;
+			if (icewall_direction == 0) {
 				ice_wall_x = ((hero_on_map->GetX1() - 36) / 64) * 64;
 				ice_wall_y = ((_y-100) / 64) * 64;
 				isUsingIceWall = true;
@@ -399,7 +400,7 @@ namespace game_framework {
 					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), 1);
 				}
 			}
-			if (_direction == 1) {
+			if (icewall_direction == 1) {
 				ice_wall_x = ((hero_on_map->GetX1() + 100) / 64) * 64;
 				ice_wall_y = ((_y - 100) / 64) * 64;
 				isUsingIceWall = true;
@@ -428,11 +429,11 @@ namespace game_framework {
 			ice_wall_clock--;
 			if (ice_wall_clock <= 40 && ice_wall_clock >=0 )
 			{
-				if (_direction == 0 && !icewallL.IsFinalBitmap())
+				if (icewall_direction == 0 && !icewallL.IsFinalBitmap())
 				{
 					icewallL.OnMove();
 				}
-				if (_direction == 1 && ! icewallR.IsFinalBitmap())
+				if (icewall_direction == 1 && ! icewallR.IsFinalBitmap())
 				{
 					icewallR.OnMove();
 				}
@@ -457,12 +458,12 @@ namespace game_framework {
 		if (isUsingIceWall) {
 			if (ice_wall_clock > 40 && ice_wall_clock <= 180)
 			{
-				if (_direction == 0)
+				if (icewall_direction == 0)
 				{
 					icewallLeft.SetTopLeft(m->screenX(ice_wall_x)-80, m->screenY(ice_wall_y));
 					icewallLeft.ShowBitmap();
 				}
-				else
+				if (icewall_direction == 1)
 				{
 					icewallRight.SetTopLeft(m->screenX(ice_wall_x), m->screenY(ice_wall_y));
 					icewallRight.ShowBitmap();
@@ -470,12 +471,12 @@ namespace game_framework {
 			}
 			if (ice_wall_clock <= 40 && ice_wall_clock >=0)
 			{
-				if (_direction == 0)
+				if (icewall_direction == 0)
 				{
 					icewallL.SetTopLeft(m->screenX(ice_wall_x)-80, m->screenY(ice_wall_y));
 					icewallL.OnShow();
 				}
-				else
+				if(icewall_direction)
 				{
 					icewallR.SetTopLeft(m->screenX(ice_wall_x), m->screenY(ice_wall_y));
 					icewallR.OnShow();
