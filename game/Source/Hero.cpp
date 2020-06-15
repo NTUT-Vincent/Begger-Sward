@@ -32,7 +32,6 @@ namespace game_framework {
 	Hero::~Hero() {
 		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
 			delete *it_i;
-			
 		}
 	}
 
@@ -526,6 +525,13 @@ namespace game_framework {
 			delete item;
 		}
 
+	}
+
+	void Hero::cleanItems()
+	{
+		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
+			delete *it_i;
+		}
 	}
 
 	void Hero::slide(Maps * m)

@@ -78,6 +78,7 @@ namespace game_framework {
 		void addHp(int n);
 		void addAttack(int n, ELEMENT_ATTRIBUTE attribute);
 		void addItem(Item * item);
+		void cleanItems();
 		void slide(Maps *m);
 		////////////////////用道具的
 		void speedUp();
