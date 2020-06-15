@@ -102,7 +102,7 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		//TRACE("-------%d", slide_left);
+		//TRACE("-------%f", (double)(500) / 1200);
 		if (!isUsingR) {
 			if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2() - 10))
 			{
@@ -444,10 +444,7 @@ namespace game_framework {
 		//attack = -10000;
 		for (unsigned i = 0; i < enemys->size(); i++)
 		{
-			if (enemys->at(i)->intersect(x1, x2, y1, y2))
-			{
-				return true;
-			}
+			
 			//´¶¥\
 			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1 + 10, y2) && directionLR == 0 && isUsingA)
 			{
@@ -478,6 +475,19 @@ namespace game_framework {
 			if (enemys->at(i)->intersect(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
 			{
 				enemys->at(i)->offsetHP(attack, _attribute);
+			}
+			//R§Þ¯à
+			TRACE("-------%d, %d, %f, %d\n", i, enemys->at(i)->distanceToHero(), enemys->at(i)->hpProportion(), isUsingR);
+			if (enemys->at(i)->distanceToHero() < 80 && isUsingR )
+			{
+				if (skillR_R.GetCurrentBitmapNumber() == 5 || skillR_L.GetCurrentBitmapNumber() == 5) {
+					if (enemys->at(i)->hpProportion() <= 0.6) {
+						enemys->at(i)->offsetHP(-10000, _attribute);
+					}
+				}
+				
+				
+				//enemys->at(i)->offsetHP(attack, _attribute);
 			}
 		}
 		return false;
@@ -1015,7 +1025,7 @@ namespace game_framework {
 				skillR_R.OnShow();
 			}
 			if (skillR_L.IsFinalBitmap()) {
-					isUsingR = false;
+				isUsingR = false;
 			}
 			if (skillR_R.IsFinalBitmap()) {
 				isUsingR = false;

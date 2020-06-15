@@ -33,6 +33,7 @@ namespace game_framework {
 										//英雄是否和此敵人所在同一位置，前身是cannotPass
 		virtual bool intersect(int x1, int x2, int y1, int y2) = 0;
 		int distanceToHero();
+		double hpProportion();
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Enemy的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
@@ -60,6 +61,7 @@ namespace game_framework {
 		int _x, _y;
 		int ini_x, ini_y;
 		int hp;
+		int full_hp;
 		int attack;
 		bool isMovingRight;
 		bool isMovingLeft;

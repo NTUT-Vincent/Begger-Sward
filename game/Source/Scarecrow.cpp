@@ -133,6 +133,7 @@ namespace game_framework {
 
 	}
 
+
 	//bool Enemy::cannotPass(Hero * hero)
 	//{
 	//	// 檢測擦子所構成的矩形是否碰到球
