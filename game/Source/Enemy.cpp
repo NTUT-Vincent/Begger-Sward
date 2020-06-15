@@ -29,6 +29,7 @@ namespace game_framework {
 		ini_x = x;
 		ini_y = y;
 		hp = monsterHp;
+		full_hp = monsterHp;
 		attack = 0;
 		isAttacking = false;
 		hero_on_map = h;
@@ -47,9 +48,31 @@ namespace game_framework {
 
 	int Enemy::distanceToHero()
 	{
-		int x_distance = _x - hero_on_map->GetX1();
-		int y_distance = _y - hero_on_map->GetY1();
-		return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
+		if (getName() == "scarecrow") {
+			int x_distance = (_x + 32) - (hero_on_map->GetX1() + 30);
+			int y_distance = (_y + 96) - (hero_on_map->GetY1() + 35);
+			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
+		}
+		else if (getName() == "IceBird") {
+			int x_distance = (_x + 128) - (hero_on_map->GetX1() + 30);
+			int y_distance = (_y + 128) - (hero_on_map->GetY1() + 35);
+			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
+		}
+		else if (getName() == "ABoss") {
+			int x_distance = (_x + 96) - (hero_on_map->GetX1() + 30);
+			int y_distance = (_y + 96) - (hero_on_map->GetY1() + 35);
+			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
+		}
+		else {
+			int x_distance = (_x + 32) - (hero_on_map->GetX1() + 30);
+			int y_distance = (_y + 32) - (hero_on_map->GetY1() + 35);
+			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
+		}
+	}
+
+	double Enemy::hpProportion()
+	{
+		return (double)(hp) / full_hp;
 	}
 
 	void Enemy::SetMovingDown(bool b) {
