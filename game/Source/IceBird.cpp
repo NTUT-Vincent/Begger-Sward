@@ -104,6 +104,7 @@ namespace game_framework {
 			}
 		}
 		if (!isAlive()) {
+			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE);
 			itemsOnMove(m);
 		}
 	}
@@ -189,6 +190,7 @@ namespace game_framework {
 			items.at(i)->Initialize();
 		}
 		ice_attack.setAttackName(ICE_BALL);
+		CAudio::Instance()->Load(AUDIO_ICEBIRD_DIE, "sounds\\icebirddie.mp3");
 	}
 
 	bool IceBird::intersect(int x1, int x2, int y1, int y2)
