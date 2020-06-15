@@ -262,11 +262,11 @@ namespace game_framework {
 		enemys1_6.push_back(new ABoss(800, 300, &player1));
 		enemys2_1.push_back(new RedSlime(600, 600, &player1));
 		//enemys2_2.push_back(new GreenSlime(500, 500, &player1));
-		enemys2_2.push_back(new IceBird(600, 500, &player1));
+		enemys2_4.push_back(new IceBird(600, 500, &player1));
 		//enemys2_2.push_back(new RedGoblin(700, 500, &player1));
 		//enemys2_2.push_back(new BlueGoblin(500, 700, &player1));
 		//enemys2_2.push_back(new GreenGoblin(800, 900, &player1));
-		enemys2_3.push_back(new GreenSlime(500, 500, &player1));
+		//enemys2_3.push_back(new GreenSlime(500, 500, &player1));
 		enemys2_4.push_back(new BlueSlime(500, 500, &player1));
 		
 
@@ -345,7 +345,7 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys2_4.size(); i++) {
 			enemys2_4[i]->Initialize();
 		}
-		current_stage = STAGE_2_2;
+		current_stage = STAGE_1_1;
 		map_stg1_1.Initialize();
 		map_stg1_6.Initialize();
 		map_stg1_2.Initialize();
@@ -430,6 +430,9 @@ namespace game_framework {
 
 		if (!player1.isAlive()) {
 			GotoGameState(GAME_STATE_OVER);
+			for (int i = 0; i < 6; i++) {
+				player1.useItem(i + 1);
+			}
 		}
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
@@ -812,7 +815,6 @@ namespace game_framework {
 				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
 					player1.OnShow(&map_stg2_3);
 				}
-
 			}
 		}
 
@@ -831,11 +833,12 @@ namespace game_framework {
 			}
 			for (unsigned i = 0; i < enemys2_4.size(); i++) {
 				enemys2_4[i]->OnShow(&map_stg2_4);
-				if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-					player1.OnShow(&map_stg2_4);
-				}
+				//if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
+				//	player1.OnShow(&map_stg2_4);
+				//}
 
 			}
+			player1.OnShow(&map_stg2_4);
 		}
 
 		player_status.showPlauerStatus();

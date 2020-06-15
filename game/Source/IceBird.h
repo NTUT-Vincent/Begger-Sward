@@ -56,6 +56,11 @@ namespace game_framework {
 		void iceWall(Maps *m);
 		void iceWallMove(Maps *m);
 		void iceWallShow(Maps *m);
+		//暴風雪
+		void iceStorm(Maps *m);
+		void iceStormMove(Maps *m);
+		void iceStormShow(Maps *m);
+		bool intersectStorm(int x1, int x2, int y1, int y2);
 
 	private:
 		CMovingBitmap arrowAttackL;
@@ -85,12 +90,18 @@ namespace game_framework {
 		//招式的cd
 		int arrowAttackCD;
 		int arrorClock;
-		int ice_wall_clock;
-		int ice_wall_cd;
 		BossBloodBar boss_blood_bar;
 		//冰牆
 		CMovingBitmap icewall;
+		int ice_wall_clock;
 		int ice_wall_x, ice_wall_y;
+		int ice_wall_cd;
+		//暴風雪
+		CAnimation storm;
+		int storm_clock;
+		int storm_x, storm_y;
+		int storm_cd;
+		bool isUsingStorm;
 
 	};
 }
