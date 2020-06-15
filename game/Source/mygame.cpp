@@ -180,13 +180,19 @@ namespace game_framework {
 	void CGameStateOver::OnMove()
 	{
 		counter--;
+		gameover.OnMove();
 		if (counter < 0)
+		{
+			CAudio::Instance()->Stop(AUDIO_GOLDENWIND);
 			GotoGameState(GAME_STATE_INIT);
+		}
+			
 	}
 
 	void CGameStateOver::OnBeginState()
 	{
-		counter = 30 * 5; // 5 seconds
+		counter = 30 * 3; // 4 seconds
+		CAudio::Instance()->Play(AUDIO_GAMEOVER, false);
 	}
 
 	void CGameStateOver::OnInit()
@@ -204,21 +210,28 @@ namespace game_framework {
 		// 最終進度為100%
 		//
 		ShowInitProgress(100);
+		char *filename_gameover[15] = { ".\\bitmaps\\GAME_OVER_0.bmp",".\\bitmaps\\GAME_OVER_1.bmp",".\\bitmaps\\GAME_OVER_2.bmp",".\\bitmaps\\GAME_OVER_3.bmp",".\\bitmaps\\GAME_OVER_4.bmp",".\\bitmaps\\GAME_OVER_5.bmp",".\\bitmaps\\GAME_OVER_6.bmp",".\\bitmaps\\GAME_OVER_7.bmp",".\\bitmaps\\GAME_OVER_8.bmp",".\\bitmaps\\GAME_OVER_9.bmp",".\\bitmaps\\GAME_OVER_10.bmp",".\\bitmaps\\GAME_OVER_11.bmp",".\\bitmaps\\GAME_OVER_12.bmp",".\\bitmaps\\GAME_OVER_13.bmp",".\\bitmaps\\GAME_OVER_14.bmp",};
+		for (int i = 0; i < 15; i++)	// 載入動畫(由6張圖形構成)
+			gameover.AddBitmap(filename_gameover[i], RGB(0, 0, 0));
+		gameover.SetDelayCount(6);
+		CAudio::Instance()->Load(AUDIO_GAMEOVER, "sounds\\gameover.mp3");
 	}
 
 	void CGameStateOver::OnShow()
 	{
-		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
-		CFont f, *fp;
-		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
-		fp = pDC->SelectObject(&f);					// 選用 font f
-		pDC->SetBkColor(RGB(0, 0, 0));
-		pDC->SetTextColor(RGB(255, 255, 0));
-		char str[80];								// Demo 數字對字串的轉換
-		sprintf(str, "Game Over ! (%d)", counter / 30);
-		pDC->TextOut(240, 210, str);
-		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
-		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
+			gameover.SetTopLeft(0, 100);
+			gameover.OnShow();
+		//CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		//CFont f, *fp;
+		//f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		//fp = pDC->SelectObject(&f);					// 選用 font f
+		//pDC->SetBkColor(RGB(0, 0, 0));
+		//pDC->SetTextColor(RGB(255, 255, 0));
+		//char str[80];								// Demo 數字對字串的轉換
+		//sprintf(str, "Game Over ! (%d)", counter / 30);
+		//pDC->TextOut(240, 210, str);
+		//pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		//CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
 	}
 
 	/////////////////////////////////////////////////////////////////////////////
