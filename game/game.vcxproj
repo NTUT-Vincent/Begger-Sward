@@ -441,8 +441,10 @@
     <Image Include="RES\Item_plant_attribute.bmp" />
     <Image Include="RES\Item_potion.bmp" />
     <Image Include="RES\Item_rand_elem.bmp" />
+    <Image Include="res\map1-1.bmp" />
     <Image Include="RES\map1-2.bmp" />
     <Image Include="RES\map1-3.bmp" />
+    <Image Include="res\map1-4.bmp" />
     <Image Include="RES\map1-6.bmp" />
     <Image Include="RES\map2-1.bmp" />
     <Image Include="RES\map2-2.bmp" />

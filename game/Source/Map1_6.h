@@ -2,11 +2,11 @@
 
 namespace game_framework {
 
-	class Map1_6 : public Maps
+	class Map1_4 : public Maps
 	{
 	public:
-		Map1_6();
-		~Map1_6();
+		Map1_4();
+		~Map1_4();
 		void Initialize();
 		void setPos(int x, int y, int n);
 		void setClear(bool b);

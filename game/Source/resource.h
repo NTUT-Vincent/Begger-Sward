@@ -84,6 +84,7 @@
 #define IDB_MAP1_2                      204
 #define IDB_BITMAP8                     205
 #define IDB_MAP1_6                      205
+#define IDB_MAP1_4                      205
 #define IDB_STARTBACKGROUND             211
 #define IDB_BLOOD2OVER10                212
 #define IDB_BLOOD3OVER10                213

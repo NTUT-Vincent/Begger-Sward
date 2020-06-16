@@ -15,7 +15,7 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	Map1_6::Map1_6():Maps(-500, -1190) {
+	Map1_4::Map1_4():Maps(-500, -1190) {
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 25; j++) {
 				if (i > 2 && i < 22 && j >= 3 && j < 22) {
@@ -44,29 +44,29 @@ namespace game_framework {
 		map[12][2] = map[11][2] = 3;
 	}
 
-	Map1_6::~Map1_6()
+	Map1_4::~Map1_4()
 	{
 
 	}
 
-	void Map1_6::Initialize()
+	void Map1_4::Initialize()
 	{
 		setXY(-500, -1190);
 	}
 
-	void Map1_6::setPos(int x, int y, int n)
+	void Map1_4::setPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] = n;
 	}
 
-	void Map1_6::setClear(bool b)
+	void Map1_4::setClear(bool b)
 	{
 		all_enemy_clear = b;
 	}
 
-	bool Map1_6::isEmpty(int x, int y) const
+	bool Map1_4::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;
 		int gy = y / 64;
@@ -76,7 +76,7 @@ namespace game_framework {
 		return false;
 	}
 
-	bool Map1_6::inFinishArea(int x, int y)
+	bool Map1_4::inFinishArea(int x, int y)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
@@ -86,40 +86,40 @@ namespace game_framework {
 		return false;
 	}
 
-	void Map1_6::OnMove() {
+	void Map1_4::OnMove() {
 
 	}
 
-	void Map1_6::LoadBitmap() {
-		firstmap.LoadBitmap(IDB_MAP1_6);
+	void Map1_4::LoadBitmap() {
+		firstmap.LoadBitmap(IDB_MAP1_4);
 	}
 
-	void Map1_6::OnShow() {
+	void Map1_4::OnShow() {
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
 	}
 
-	void Map1_6::getHeroX(int x)
+	void Map1_4::getHeroX(int x)
 	{
 		hx = x;
 	}
 
-	void Map1_6::getHeroY(int y)
+	void Map1_4::getHeroY(int y)
 	{
 		hy = y;
 	}
 
-	int Map1_6::screenX(int x)
+	int Map1_4::screenX(int x)
 	{
 		return x + getSX();
 	}
 
-	int Map1_6::screenY(int y)
+	int Map1_4::screenY(int y)
 	{
 		return y + getSY();
 	}
 
-	void Map1_6::setIceWallPos(int x, int y, int n)
+	void Map1_4::setIceWallPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;

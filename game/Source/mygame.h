@@ -112,7 +112,7 @@ namespace game_framework {
 		Map1_1			map_stg1_1;
 		Map1_2			map_stg1_2;
 		Map1_3			map_stg1_3;
-		Map1_6			map_stg1_6;
+		Map1_4			map_stg1_6;
 		Map2_1			map_stg2_1;
 		Map2_2			map_stg2_2;
 		Map2_3			map_stg2_3;

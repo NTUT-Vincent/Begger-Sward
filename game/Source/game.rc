@@ -108,9 +108,7 @@ IDB_PLAYER              BITMAP                  "..\\res\\PLAYER1.bmp"
 
 IDB_HERO_R              BITMAP                  "..\\res\\hero1.bmp"
 
-IDB_MAP1                BITMAP                  "..\\res\\S__4784130.bmp"
-
-IDB_MAP1_1              BITMAP                  "..\\res\\S__4784130.bmp"
+IDB_MAP1_1              BITMAP                  "..\\res\\map1-1.bmp"
 
 IDB_SCARECROW           BITMAP                  "..\\res\\scarecrow.bmp"
 
@@ -184,7 +182,7 @@ IDB_BEGGERSWORD         BITMAP                  "..\\RES\\beggersword.bmp"
 
 IDB_MAP1_2              BITMAP                  "..\\res\\map1-2.bmp"
 
-IDB_MAP1_6              BITMAP                  "..\\res\\map1-6.bmp"
+IDB_MAP1_4              BITMAP                  "..\\res\\map1-4.bmp"
 
 IDB_STARTBACKGROUND     BITMAP                  "..\\RES\\startpicture.bmp"
 
