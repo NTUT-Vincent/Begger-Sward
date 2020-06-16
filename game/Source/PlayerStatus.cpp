@@ -32,6 +32,7 @@ namespace game_framework {
 		skill_q_plant_pic.LoadBitmap(IDB_SKILLQPLANTPIC);
 		skill_e_pic.LoadBitmap(IDB_SKILLEPIC);
 		skill_w_pic.LoadBitmap(IDB_SKILLWPIC);
+		skill_r_pic.LoadBitmap(".\\bitmaps\\DariusExecute.bmp");
 		loadDigitsBitmap(Q_cooldown_first);
 		loadDigitsBitmap(Q_cooldown_ten);
 		
@@ -40,6 +41,9 @@ namespace game_framework {
 		
 		loadDigitsBitmap(E_cooldown_first);
 		loadDigitsBitmap(E_cooldown_ten);
+
+		loadDigitsBitmap(R_cooldown_first);
+		loadDigitsBitmap(R_cooldown_ten);
 		
 		loadDigitsBitmap(HP_first);
 		loadDigitsBitmap(HP_ten);
@@ -68,6 +72,7 @@ namespace game_framework {
 		showQ();
 		showE();
 		showW();
+		showR();
 		showHP();
 		showAttackFire();
 		showAttackIce();
@@ -155,6 +160,24 @@ namespace game_framework {
 			W_cooldown_first[first].ShowBitmap();
 			W_cooldown_ten[second].SetTopLeft(115, 20);
 			W_cooldown_ten[second].ShowBitmap();
+		}
+	}
+
+	void PlauerStatus::showR()
+	{
+		int r_cd = _h->GetRCoolDown() / 30;
+		if (_h->GetRCoolDown() == 0) {
+			skill_r_pic.SetTopLeft(230, 0);
+			skill_r_pic.ShowBitmap();
+		}
+		if (_h->GetRCoolDown() != 0) {
+			int first = r_cd % 10;
+			r_cd /= 10;
+			int second = r_cd % 10;
+			R_cooldown_first[first].SetTopLeft(275, 20);
+			R_cooldown_first[first].ShowBitmap();
+			R_cooldown_ten[second].SetTopLeft(265, 20);
+			R_cooldown_ten[second].ShowBitmap();
 		}
 	}
 
