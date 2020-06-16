@@ -29,7 +29,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 100) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
 			ProtectiveCover * p = new ProtectiveCover();
 			p->load();
 			h->addItem(p);
@@ -39,7 +39,7 @@ namespace game_framework {
 
 	void ProtectiveCover::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 100) {
+		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
 			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			clock_pic.ShowBitmap();
 		}

@@ -50,7 +50,7 @@ namespace game_framework {
 		blood_bar[11].LoadBitmap(IDB_BLOODFULL, RGB(0, 0, 0));
 	}
 
-	void BloodBar::showBloodBar(Maps *m1, int hp) {
+	void BloodBar::showBloodBar(Maps *m1, int hp) { //  現在血量/滿血血量  的比例 決定血條多長 顯示哪個血條bitmap
 		if (hp > full_hp) {
 			setFullHP(hp);
 		}

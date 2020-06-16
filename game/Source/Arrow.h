@@ -20,18 +20,18 @@ namespace game_framework {
 		void OnMove(Maps *m);
 		void OnShow(Maps *m);
 		void setArrowXY(int x, int y);
-		void setDirection(int direction);
-		void setAttackIsFlying(bool b);
-		int getX1();
+		void setDirection(int direction);					//設定方向
+		void setAttackIsFlying(bool b);						//設定始飛到一半
+		int getX1();									
 		int getX2();
 		int getY1();
 		int getY2();
 	private:
-		CMovingBitmap arrowLeft;
+		CMovingBitmap arrowLeft;							//arrow向上下左右的圖
 		CMovingBitmap arrowRight;
 		CMovingBitmap arrowUp;
 		CMovingBitmap arrowDown;
-		int _arrowX, _arrowY;
+		int _arrowX, _arrowY;								//arrow的座標
 		int fly_direction;									//0=left, 1=right
 		bool _attackIsFlying;
 	};

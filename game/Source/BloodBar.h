@@ -6,8 +6,7 @@
 #include "Character.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供繞圈圈的球
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供血條
 	/////////////////////////////////////////////////////////////////////////////
 
 	class BloodBar
@@ -16,13 +15,13 @@ namespace game_framework {
 		BloodBar();
 		void loadBloodBar();
 		void showBloodBar(Maps *m, int hp);
-		void setFullHP(int n);
-		void setXY(int x, int y);
+		void setFullHP(int n);					//設定滿血的血量
+		void setXY(int x, int y);				//設定血條的x y 座標
 
-		int getFullHP();
+		int getFullHP();						//回傳滿血的血量
 
 	private:
-		CMovingBitmap blood_bar[12];
+		CMovingBitmap blood_bar[12];			//不同長度的血條
 		double full_hp;
 		int _x, _y;
 

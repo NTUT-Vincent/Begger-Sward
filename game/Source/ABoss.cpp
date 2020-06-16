@@ -31,9 +31,9 @@ namespace game_framework {
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
-		items.push_back(new ItemAttribute(_attribute));
-		status = WALKING;
-		status_counter = 840;
+		items.push_back(new ItemAttribute(_attribute));		//死掉會掉的道具
+		status = WALKING;									//一開始是在走路的狀態
+		status_counter = 840;								//用來算是否要換status
 		step_size = 2;
 	}
 
@@ -95,18 +95,18 @@ namespace game_framework {
 	void ABoss::OnMove(Maps * m) {
 		//TRACE("-----------------------------%d %d %d %d \n", _x, _y, hero_on_map->GetX1(), hero_on_map->GetY1());
 		const int STEP_SIZE = 3;
-		if (isAlive()) {
-			attack();
-			attack_cool_down -= 1;
-			status_counter -= 1;
+		if (isAlive()) {					
+			attack();											//每次onMove都會檢查是否要攻擊			
+			attack_cool_down -= 1;								//每次onMove都會-1
+			status_counter -= 1;								//
 			movement(m);
 			iceAttackMove(m);
 			if (status_counter == 390 || status_counter == 180) {
-				iceAttack();
+				iceAttack();									//在statuscouter在這兩個數字時會攻擊
 			}
 		}
 		if (!isAlive()) {
-			CAudio::Instance()->Stop(AUDIO_ABOSS_PREPARE);
+			CAudio::Instance()->Stop(AUDIO_ABOSS_PREPARE);		//如果死掉要停止這些聲音
 			CAudio::Instance()->Stop(AUDIO_ABOSS_WALK);
 			itemsOnMove(m);
 		}
@@ -117,18 +117,18 @@ namespace game_framework {
 		//TRACE("-----------------------------%d %d %d \n", status_counter, status, _direction);
 
 		if (isAlive()) {
-			switch (status)
+			switch (status)			//switch，在不同狀態有不同的動畫
 			{
 			case WALKING:
 			{
-				if (_direction == 0)
+				if (_direction == 0) //如果向左
 				{
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
 					boss_blood_bar.setXY(GetX1() - 100, GetY1() -32);;
 					boss_blood_bar.showBloodBar(m, hp);
 				}
-				if(_direction == 1)
+				if(_direction == 1)	//如果像右
 				{
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
@@ -251,12 +251,6 @@ namespace game_framework {
 		return false;
 	}
 
-	//bool Enemy::cannotPass(Hero * hero)
-	//{
-	//	// 檢測擦子所構成的矩形是否碰到球
-	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
-	//}
-	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
 	void ABoss::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
@@ -285,7 +279,7 @@ namespace game_framework {
 		int x = (GetX1()+ GetX2()) / 2;
 		int y = (GetY1() + GetY2()) / 2;
 		if (distanceToHero() < 50000) {
-			switch (status)
+			switch (status)						//switch 在不同的狀態有不同的移動方式
 			{
 			case WALKING:
 			{step_size = 3;
@@ -343,11 +337,9 @@ namespace game_framework {
 			normalAttackL.OnMove();
 			normalAttackR.OnMove(); 
 			if (attack_target_location_x > x && m->isEmpty(GetX2() + step_size, _y) && m->isEmpty(GetX2() + step_size, GetY2())) {
-				//_direction = 1;
 				_x += step_size;
 			}
 			if (attack_target_location_x < x && m->isEmpty(_x - step_size, _y) && m->isEmpty(_x - step_size, GetY2())) {
-				//_direction = 0;
 				_x -= step_size;
 			}
 			if (attack_target_location_y > y && m->isEmpty(_x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
@@ -378,20 +370,6 @@ namespace game_framework {
 			}
 			break; }
 		}
-			/*if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y) && m->isEmpty(GetX2() + step_size, GetY2())) {
-				_direction = 1;
-				_x += step_size;
-			}
-			if (hero_on_map->GetX1() < x && m->isEmpty(x - step_size, y) && m->isEmpty(x - step_size, GetY2())) {
-				_direction = 0;
-				_x -= step_size;
-			}
-			if (hero_on_map->GetY1() > y && m->isEmpty(x, GetY2() + step_size) && m->isEmpty(GetX2(), GetY2() + step_size)) {
-				_y += step_size;
-			}
-			if (hero_on_map->GetY1() < y && m->isEmpty(x, y - step_size) && m->isEmpty(GetX2(), y - step_size)) {
-				_y -= step_size;
-			}*/
 		}
 		
 		
@@ -408,12 +386,12 @@ namespace game_framework {
 	void ABoss::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
-			attack_cool_down = 40;
-			hero_on_map->offsetHp(attack_damage);
+			attack_cool_down = 40;					//如果跟hero位置重疊就會攻擊 40/30秒會攻擊一次
+			hero_on_map->offsetHp(attack_damage);	//英雄扣血
 		}
 	}
 
-	void ABoss::iceAttack()
+	void ABoss::iceAttack()		//開始ice attack的function
 	{
 		if (!isUsingQ) {
 			isUsingQ = true;
@@ -432,18 +410,14 @@ namespace game_framework {
 			}
 			q_attack.setAttackIsFlying(true);
 			for (int i = 0; i < 18; i++) {
-				//TRACE("---------------%d : %d %d \n", i, (int)(sin(i * 45.0 * 3.14159 / 180.0) * 10), (int)(cos(i * 45 * 3.14159 / 180.0) * 10));
 				ice_attack[i].setAttackIsFlying(true);
-				//ice_attack[i].setDirection(0);
 				ice_attack[i].setStepSize((int)(sin(i * 20.0 * 3.14159 / 180.0) * 10), (int)(cos(i * 20 * 3.14159 / 180.0) * 10));
 			}
-			//q_attack.setDirection(0);
-			//q_attack.setStepSize(0, 0);
 		}
 
 	}
 
-	void ABoss::iceAttackMove(Maps *m)
+	void ABoss::iceAttackMove(Maps *m) //call attack的onMove 並檢查是否有碰到hero
 	{
 		if (isUsingQ) {
 			q_attack.OnMove(m);
@@ -453,7 +427,6 @@ namespace game_framework {
 					hero_on_map->offsetHp(attack_damage);
 				}
 			}
-			//q_attack.setXY(_x, _y);
 		}
 		q_attack.setAttackName(ICE_BALL);
 		for (int i = 0; i < 18; i++) {
@@ -468,7 +441,7 @@ namespace game_framework {
 		}
 	}
 
-	void ABoss::iceAttackShow(Maps * m)
+	void ABoss::iceAttackShow(Maps * m)					//ice attack的onShow
 	{
 		if (isUsingQ) {
 			q_attack.OnShow(m);
@@ -476,7 +449,7 @@ namespace game_framework {
 				ice_attack[i].OnShow(m);
 			}
 			skillTimes += 1;							//+1代表跑了1/30秒
-			if (skillTimes > 80) {						//預計讓他飛2/3秒
+			if (skillTimes > 80) {						//預計讓他飛80/30秒
 				isUsingQ = false;
 				q_attack.setAttackIsFlying(false);
 				for (int i = 0; i < 18; i++) {

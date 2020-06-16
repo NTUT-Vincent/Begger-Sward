@@ -27,59 +27,58 @@ namespace game_framework {
 		int GetY2();						//回傳最下側Y值
 
 		void Initialize()override;			//初始化
-											//英雄是否和此敵人所在同一位置，前身是cannotPass
 		bool intersect(int x1, int x2, int y1, int y2) override;
 
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Enemy的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
 
-		void SetMovingDown(bool b);		//
+		void SetMovingDown(bool b);		//  設定是否往下左右移動
 		void SetMovingUp(bool b);		//
 		void SetMovingLeft(bool b);		//
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
-		void movement(Maps *m);
+		void movement(Maps *m);			//決定角色移動的方式
 
 		//void attacked(int n, ELEMENT_ATTRIBUTE a);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		CRect * GetRect();					//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		//用來攻擊的
-		void attack();
-		void iceAttack();
-		void iceAttackMove(Maps *m);
-		void iceAttackShow(Maps *m);
+		void attack();					//用來判定是否要攻擊//
+		void iceAttack();				//判定是否要用冰的技能攻擊
+		void iceAttackMove(Maps *m);	//ice_attack的onMove
+		void iceAttackShow(Maps *m);	//ice_attack的onShow
 	private:
-		BossBloodBar boss_blood_bar;
-		CAnimation walkingLeft;
+		BossBloodBar boss_blood_bar;	//boss的血條
+		CAnimation walkingLeft;			//向左右走的動畫
 		CAnimation walkingRight;
-		CAnimation normalAttackL;
+		CAnimation normalAttackL;		//向左右攻擊的動畫
 		CAnimation normalAttackR;
-		CAnimation prepare_attackL;
+		CAnimation prepare_attackL;		//準備攻擊的動畫
 		CAnimation prepare_attackR;
-		CAnimation back_to_walkL;
+		CAnimation back_to_walkL;		//準備回到走路狀態的動畫
 		CAnimation back_to_walkR;
-		enum status {
+		enum status {					//boss有的不同狀態，共有四種狀態			
 			WALKING,
 			PREPARE,
 			ATTACK,
 			BACK_TO_WALK
 		};
-		int status;
-		int step_size;
-		int attack_damage;
-		bool isMovingRight;
+		int status;						//boss的狀態
+		int step_size;					//每次移動的速度
+		int attack_damage;				//攻擊力
+		bool isMovingRight;				//是否上下左右走
 		bool isMovingLeft;
 		bool isMovingUp;
 		bool isMovingDown;
-		bool isAttacking;
-		int attack_cool_down;
-		int status_counter;
-		int move_or_not;
+		bool isAttacking;				//是否在攻擊
+		int attack_cool_down;			//攻擊的冷卻時間
+		int status_counter;				
+		int move_or_not;				//是否有在移動
 		int time_bump_into_sth;
-		int attack_target_location_x, attack_target_location_y;
-		Attack q_attack;
-		Attack ice_attack[18];
-		int skillTimes;
+		int attack_target_location_x, attack_target_location_y;  //要攻擊的標位置
+		Attack q_attack;				
+		Attack ice_attack[18];			//攻擊時丟的東西
+		int skillTimes;					//用來算攻擊要飛多遠
 		bool isUsingQ;
 
 	};

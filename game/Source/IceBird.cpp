@@ -40,6 +40,7 @@ namespace game_framework {
 
 	void IceBird::LoadBitmap()
 	{
+		CAudio::Instance()->Load(AUDIO_ICEBIRD_DIE, "sounds\\icebirddie.mp3");
 		icewallLeft.LoadBitmap(".\\bitmaps\\icewallL1.bmp", RGB(255, 255, 255));
 		icewallRight.LoadBitmap(".\\bitmaps\\icewallR1.bmp", RGB(255, 255, 255));
 		boss_blood_bar.loadBloodBar();
@@ -82,7 +83,7 @@ namespace game_framework {
 	}
 
 	void IceBird::OnMove(Maps * m) {
-		TRACE("---%d", distanceToHero());
+		//TRACE("---%d", distanceToHero());
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
 			//attack();
@@ -190,7 +191,6 @@ namespace game_framework {
 			items.at(i)->Initialize();
 		}
 		ice_attack.setAttackName(ICE_BALL);
-		CAudio::Instance()->Load(AUDIO_ICEBIRD_DIE, "sounds\\icebirddie.mp3");
 	}
 
 	bool IceBird::intersect(int x1, int x2, int y1, int y2)

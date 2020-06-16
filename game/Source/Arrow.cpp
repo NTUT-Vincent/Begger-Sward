@@ -43,10 +43,9 @@ namespace game_framework {
 		arrowDown.LoadBitmap(".\\bitmaps\\arrowDown.bmp", RGB(0, 0, 0));
 	}
 
-
 	void Arrow::OnMove(Maps * m)
 	{
-		if (m->isEmpty(_arrowX, _arrowY)) {
+		if (m->isEmpty(_arrowX, _arrowY)) {								//如果下個位置是empty就可以繼續飛
 			if (fly_direction == 0 && m->isEmpty(_arrowX, _arrowY))
 				_arrowX -= 8;
 			if (fly_direction == 1 && m->isEmpty(_arrowX + arrowRight.Width(), _arrowY))
@@ -102,7 +101,7 @@ namespace game_framework {
 
 	int Arrow::getX2()
 	{
-		if (fly_direction == 0)
+		if (fly_direction == 0)						//傳回X2的值
 		{
 			return arrowLeft.Width() + _arrowX;
 		}

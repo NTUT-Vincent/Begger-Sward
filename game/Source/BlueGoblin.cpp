@@ -81,15 +81,15 @@ namespace game_framework {
 
 	void BlueGoblin::OnShow(Maps *m)
 	{
-		if (isAlive()) {
-			if (_direction == 0)
+		if (isAlive()) {									
+			if (_direction == 0)					//向左的onShow
 			{
 				if (isAttacking) {
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp - 16);
 					arrowAttackShow(m);
 				}
-				else {
+				else {								
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
 					blood_bar.setXY(GetX1(), GetY1()-16);
@@ -98,7 +98,7 @@ namespace game_framework {
 				
 			}
 			else
-			{
+			{										//向右
 				if (isAttacking) {
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
@@ -159,7 +159,7 @@ namespace game_framework {
 
 	bool BlueGoblin::intersect(int x1, int x2, int y1, int y2)
 	{
-		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
+		//下面有一些加減運算是因為，Bitmap本身比身體大太多。
 		if (isAlive()) {
 			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) {
 				return true;
@@ -172,12 +172,6 @@ namespace game_framework {
 
 	}
 
-	//bool Enemy::cannotPass(Hero * hero)
-	//{
-	//	// 檢測擦子所構成的矩形是否碰到球
-	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
-	//}
-	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
 	void BlueGoblin::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
@@ -241,15 +235,7 @@ namespace game_framework {
 
 	void BlueGoblin::attack()
 	{
-		/*if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
-			CAudio::Instance()->Play(AUDIO_HITTING);
-			isAttacking = true;
-			hero_on_map->offsetHp(attack_damage);
-		}
-		normalAttackR.OnMove();
-		if (!isAttacking) {
-			normalAttackR.Reset();
-		}*/
+		
 	}
 
 	void BlueGoblin::attackShow(Maps * m)
@@ -261,16 +247,14 @@ namespace game_framework {
 	{
 		if (!isAttacking && arrowAttackCD == 0)
 		{
-			/*attackIsFlying = true;
-			arr.setArrowXY(_x, _y);*/
-			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() <= _x)
+			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() <= _x)	//如果 y座標跟hero y座標一樣 英雄在左邊 射箭
 			{
-				arrorClock = 60;
+				arrorClock = 60;											//攻擊會飛兩秒
 				arr.setAttackIsFlying(true);
-				arr.setDirection(0);
+				arr.setDirection(0);										//設定攻擊的方向 向左 因為英雄在左邊
 				arr.setArrowXY(_x+32, _y+25);
-				isAttacking = true;
-				arrowAttackCD = 180;
+				isAttacking = true;							
+				arrowAttackCD = 180;										// 攻擊cd為6秒
 			}
 			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() > _x)
 			{
@@ -299,7 +283,6 @@ namespace game_framework {
 				isAttacking = true;
 				arrowAttackCD = 180;
 			}
-			
 		}
 	}
 
@@ -310,32 +293,24 @@ namespace game_framework {
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		/*if (arrowAttackCD == 0)
-		{
-			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
-				hero_on_map->offsetHp(attack_damage);
-			}
-		}*/
-		if (isAttacking && arrorClock != 0) {
+		if (isAttacking && arrorClock != 0) {		//arrorClock每次onMove--
 			arrorClock--;
 			if (arrorClock == 0) {
-				isAttacking = false;
+				isAttacking = false;				//如果=0 isAttacking = false 離開攻擊狀態
 			}
 		}
-		
-		
 	}
 
 	void BlueGoblin::arrowAttackShow(Maps * m)
 	{
 		if (isAttacking) {
-			if (_direction == 0)
+			if (_direction == 0)					//向左的時候
 			{
 				arrowAttackL.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				arrowAttackL.ShowBitmap();
 				arr.OnShow(m);
 			}
-			if (_direction == 1)
+			if (_direction == 1)					//向左的時候
 			{
 				arrowAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				arrowAttackR.ShowBitmap();
