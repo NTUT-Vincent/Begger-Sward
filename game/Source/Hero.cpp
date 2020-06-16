@@ -313,7 +313,7 @@ namespace game_framework {
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
-		skill_e_cool_down = skill_q_cool_down = skill_w_cool_down =0;
+		skill_e_cool_down = skill_q_cool_down = skill_w_cool_down = skill_r_cool_down = 0;
 		slide_left = slide_right = slide_down = slide_up = 0;
 		item_shoe_clock = item_protective_cover_clock = 0;
 		isSlide = false;
