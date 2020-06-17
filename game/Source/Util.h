@@ -2,23 +2,22 @@
 #define UTIL_H
 
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個.h file 定義了參數的值，可以直接從這裡取用						   //
+	// 這個.h file 定義了參數的值，可以直接從這裡取用						       //
 	/////////////////////////////////////////////////////////////////////////////
-	constexpr int OBJS_DEFAULT_SPEED = 4; //物件固定移動速度;
-	constexpr int SMOOTH_MOVE_TRESHOLD = OBJS_DEFAULT_SPEED * 3 - 1; //平滑移動門檻值
+	constexpr int OBJS_DEFAULT_SPEED = 4;			//物件固定移動速度;
 
-	constexpr int HERO_MOVE_SPEED = 5;		//英雄移動速度
-	constexpr int SKILL_EVO_TVALUE = 22;	//技能進化的Treshold Value
+	constexpr int HERO_MOVE_SPEED = 5;				//英雄移動速度
+	constexpr int SKILL_EVO_TVALUE = 22;			//技能進化的Treshold Value
 
-	constexpr int MAX_ENEMY_PER_MAP = 10;//最大的敵人存量
+	constexpr int MAX_ENEMY_PER_MAP = 10;			//最大的敵人存量
 
-	const double PROB_ENEMY_TURN = 0.02;//敵人自動轉向機率
-	const double PROB_ITEM_GEN = 0.005;//打死敵人生寶物的機率
+	const double PROB_ENEMY_TURN = 0.02;			//敵人自動轉向機率
+	const double PROB_ITEM_GEN = 0.005;				//打死敵人生寶物的機率
 	///以下為各鍵值
-	const char KEY_LEFT = 0x25; // keyboard左箭頭
-	const char KEY_UP = 0x26; // keyboard上箭頭
-	const char KEY_RIGHT = 0x27; // keyboard右箭頭
-	const char KEY_DOWN = 0x28; // keyboard下箭頭
+	const char KEY_LEFT = 0x25;						//keyboard左箭頭
+	const char KEY_UP = 0x26;						//keyboard上箭頭
+	const char KEY_RIGHT = 0x27;					// keyboard右箭頭
+	const char KEY_DOWN = 0x28;						// keyboard下箭頭
 	const char KEY_A = 0x41;
 	const char KEY_Q = 0x51;
 	const char KEY_W = 0x57;
@@ -38,23 +37,18 @@
 	//以下是一些留給跳躍關卡快捷鍵
 	const char J_STG1_2 = 0x4F; //O
 	const char J_STG1_4 = 0x50; //P
-	const char J_STG1_6 = 0x4C; //L
-	const char J_STG2_2 = 0x3A; //:
-	const char J_STG2_4 = 0x3E; //>
-	const char J_STG2_6 = 0x2F; // \/ (/)
+	const char J_STG2_2 = 0x4C; //L
+	const char J_STG2_4 = 0x3A; //:
 
 
 
 	///音效
-	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT,				// 2
-		AUDIO_GOLDENWIND,		// 3
-		AUDIO_SWORD,			// 4
-		AUDIO_FIRE,				// 5
-		AUDIO_SKILLE,			// 6
-		Audio_KNIFE,			//7
+	enum AUDIO_ID {
+		AUDIO_GOLDENWIND,	
+		AUDIO_SWORD,			
+		AUDIO_FIRE,				
+		AUDIO_SKILLE,			
+		Audio_KNIFE,			
 		AUDIO_ICE,
 		AUDIO_HITTING,
 		AUDIO_GRASSBALL,
@@ -84,16 +78,16 @@
 		FIRE,					//火屬性
 		ICE,					//冰屬性
 		PLANT,					//植物屬性
-		NO,
+		NO,						//沒有屬性
 
 	};
 
 	enum ATTACK_NAME {
-		FIRE_BALL,				//火球
+		FIRE_BALL,				//Q技能的火
 		ICE_BALL,				//Q技能的冰
 		GRASS_BALL,				//Q技能的草
-		FIRE_FLAME,
-		GRASS_TORNADO,
+		FIRE_FLAME,				//Q技能進化後的火
+		GRASS_TORNADO,			//Q技能進化後的草
 
 	};
 

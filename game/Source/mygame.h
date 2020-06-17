@@ -75,16 +75,17 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		CMovingBitmap logo;								// csie的logo
-		bool goto_status;								// 0是上面的 game start, 1是下面的 story
-		CMovingBitmap start_1;
-		CMovingBitmap start_2;
-		CMovingBitmap story_1;
-		CMovingBitmap story_2;
+		CMovingBitmap selection;
+		CMovingBitmap help;
+		CMovingBitmap about;
+		CMovingBitmap choose;
+		int goto_status;								// 0是上面的 game start, 1是下面的 story
+		bool isHelp;
+		bool isAbout;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
-	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
 	class CGameStateRun : public CGameState {
@@ -135,7 +136,6 @@ namespace game_framework {
 
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的結束狀態(Game Over)
-	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
 	class CGameStateOver : public CGameState {

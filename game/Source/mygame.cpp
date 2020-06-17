@@ -87,14 +87,12 @@ namespace game_framework {
 		//
 		// 開始載入資料
 		//
-		goto_status = 0;
+		goto_status = isHelp = isAbout = 0;
 		logo.LoadBitmap(IDB_STARTBACKGROUND);
-		start_1.LoadBitmap(IDB_START1, RGB(0, 0, 0));
-		start_2.LoadBitmap(IDB_START2, RGB(0, 0, 0));
-		story_1.LoadBitmap(IDB_STORY1, RGB(0, 0, 0));
-		story_2.LoadBitmap(IDB_STORY2, RGB(0, 0, 0)
-		);
-		Sleep(300);				// 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
+		selection.LoadBitmap(".\\bitmaps\\choose.bmp");
+		help.LoadBitmap(".\\RES\\help.bmp");
+		about.LoadBitmap(".\\RES\\credits.bmp");
+		choose.LoadBitmap(".\\Bitmaps\\choose.bmp", RGB(0, 0, 0));
 		//
 		// 此OnInit動作會接到CGameStaterRun::OnInit()，所以進度還沒到100%
 		//
@@ -108,20 +106,41 @@ namespace game_framework {
 	{
 		const char KEY_ESC = 27;
 		const char KEY_SPACE = ' ';
-		if (nChar == KEY_UP)
-			goto_status = 0;
-		if (nChar == KEY_DOWN)
-			goto_status = 1;
+		if (nChar == KEY_UP && goto_status > 0)
+			goto_status -= 1;
+		if (nChar == KEY_DOWN && goto_status < 2)
+			goto_status += 1;
 		if (nChar == KEY_SPACE)
+		{
 			if (goto_status == 0)
 				GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+			else if (goto_status == 1)
+			{
+				if (isHelp == 0)
+				{
+					isHelp = 1;
+				}
+				else
+					isHelp = 0;
+			}
+				
+			else if (goto_status == 2)
+			{
+				if (isAbout == 0)
+				{
+					isAbout = 1;
+				}
+				else
+					isAbout = 0;
+			}
+					
+		}
 		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE, 0, 0);	// 關閉遊戲
 	}
 
 	void CGameStateInit::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 	}
 
 	void CGameStateInit::OnShow()
@@ -132,19 +151,31 @@ namespace game_framework {
 		//logo.SetTopLeft((SIZE_X - logo.Width()) / 2, SIZE_Y / 8);
 		logo.SetTopLeft(0, 0);
 		logo.ShowBitmap();
-		if (goto_status == 0)
+		if (isHelp)
 		{
-			start_1.SetTopLeft(192, 256);
-			start_1.ShowBitmap();
-			story_2.SetTopLeft(256, 320);
-			story_2.ShowBitmap();
+			help.SetTopLeft(0, 0);
+			help.ShowBitmap();
 		}
-		if (goto_status == 1)
+		if (isAbout)
 		{
-			start_2.SetTopLeft(192, 256);
-			start_2.ShowBitmap();
-			story_1.SetTopLeft(256, 320);
-			story_1.ShowBitmap();
+			about.SetTopLeft(0, 0);
+			about.ShowBitmap();
+		}
+		if (!isAbout && !isHelp)
+		{
+			if (goto_status == 0)
+			{
+				choose.SetTopLeft(200, 300);
+			}
+			if (goto_status == 1)
+			{
+				choose.SetTopLeft(200, 352);
+			}
+			if (goto_status == 2)
+			{
+				choose.SetTopLeft(200, 396);
+			}
+			choose.ShowBitmap();
 		}
 			
 		
