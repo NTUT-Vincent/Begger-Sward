@@ -579,7 +579,9 @@ namespace game_framework {
 			break; 
 		case KEY_A: player1.SetUsingA(true); break;
 		case KEY_Q: player1.SetUsingQ(true); break;
-		case KEY_W: player1.SetUsingW(true); break;
+		case KEY_W: 
+			player1.setShadePosition();
+			player1.SetUsingW(true); break;
 		case KEY_E: player1.SetUsingE(true); break;
 		case KEY_R: player1.SetUsingR(true); break;
 		default: return;

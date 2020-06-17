@@ -107,7 +107,7 @@ namespace game_framework {
 		//void skillW();
 		void setShadePosition();
 		void skillWMove(Maps *m);
-		void skillWShow();
+		void skillWShow(Maps *m);
 
 		/*void skillE();*/
 		void skillEMove();

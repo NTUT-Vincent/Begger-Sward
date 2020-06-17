@@ -40,7 +40,7 @@ namespace game_framework {
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
 		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));	//如果要測這行要註解掉
 
-		shadeL.LoadBitmap(".\\bitmaps\\skillW_shadeR.bmp", RGB(0, 0, 0));
+		shadeL.LoadBitmap(".\\bitmaps\\skillW_shadeL.bmp", RGB(0, 0, 0));
 		shadeR.LoadBitmap(".\\bitmaps\\skillW_shadeR.bmp", RGB(0, 0, 0));
 		
 		///以下這行用於直接貼圖測試
@@ -175,7 +175,6 @@ namespace game_framework {
 		skillRMove();
 		normalAttackMove();
 		get_attacked.OnMove();
-		setShadePosition();
 		TRACE("-------(%d, %d), %d,  %d\n", skillW_shadeX, skillW_shadeY, skillW_shadeShowCount, skill_w_cool_down);
 		if (skillW_shadeShowCount > 0) {
 			skillW_shadeShowCount -= 1;
@@ -196,7 +195,7 @@ namespace game_framework {
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
 		gettingAttackedShow();
-		skillWShow();
+		skillWShow(m);
 		if (isUsingSkill()) { 
 			normalAttackShow(m);
 			skillEShow();
@@ -913,11 +912,8 @@ namespace game_framework {
 
 	void Hero::setShadePosition()
 	{
-		if (skillW_shadeShowCount != 0)
-		{
-			skillW_shadeX = x;
-			skillW_shadeY = y;
-		}
+		skillW_shadeX = x;
+		skillW_shadeY = y;
 	}
 
 	void Hero::skillWMove(Maps *m)
@@ -928,7 +924,7 @@ namespace game_framework {
 
 		if (isUsingW)
 		{
-			skillW_shadeShowCount = 15;
+			skillW_shadeShowCount = 10;
 			if (isMovingLeft)
 			{
 				if (m->isEmpty(x - 15 * HMS, y) && m->isEmpty(x - 15 * HMS, GetY2() - 10) && m->isEmpty(x - 30 * HMS, y) && m->isEmpty(x - 30 * HMS, GetY2() - 10))
@@ -984,18 +980,18 @@ namespace game_framework {
 		isUsingW = false;
 	}
 
-	void Hero::skillWShow()
+	void Hero::skillWShow(Maps *m)
 	{
 		if (skillW_shadeShowCount > 0)
 		{
 			if (directionLR == 0)
 			{
-				shadeL.SetTopLeft(skillW_shadeX, skillW_shadeY);
+				shadeL.SetTopLeft(m->screenX(skillW_shadeX), m->screenY(skillW_shadeY));
 				shadeL.ShowBitmap();
 			}
 			if (directionLR == 1)
 			{
-				shadeR.SetTopLeft(skillW_shadeX, skillW_shadeY);
+				shadeR.SetTopLeft(m->screenX(skillW_shadeX), m->screenY(skillW_shadeY));
 				shadeR.ShowBitmap();
 			}
 		}
