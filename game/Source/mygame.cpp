@@ -389,7 +389,7 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys2_4.size(); i++) {
 			enemys2_4[i]->Initialize();
 		}
-		current_stage = STAGE_1_1;
+		current_stage = STAGE_2_3;
 		map_stg1_1.Initialize();
 		map_stg1_4.Initialize();
 		map_stg1_2.Initialize();
@@ -588,7 +588,6 @@ namespace game_framework {
 		case KEY_UP: player1.SetMovingUp(true); break;
 		case KEY_DOWN: player1.SetMovingDown(true); break;
 		case NUM_0:
-			
 			if(n == 0)
 				player1.SetElementAttribute(FIRE);
 			if (n == 1)
@@ -615,6 +614,15 @@ namespace game_framework {
 			player1.SetUsingW(true); break;
 		case KEY_E: player1.SetUsingE(true); break;
 		case KEY_R: player1.SetUsingR(true); break;
+		case J_STG1_1: current_stage = STAGE_1_1; player1.SetXY(480, 480); map_stg1_1.Initialize(); break;
+		case J_STG1_2: current_stage = STAGE_1_2; player1.SetXY(480, 480); map_stg1_2.Initialize(); break;
+		case J_STG1_4: current_stage = STAGE_1_3; player1.SetXY(480, 480); map_stg1_3.Initialize(); break;
+		case J_STG1_6: current_stage = STAGE_1_4; player1.SetXY(780, 1470); map_stg1_4.Initialize(); break;
+		case J_STG2_1: current_stage = STAGE_2_1; player1.SetXY(480, 480); map_stg2_1.Initialize(); break;
+		case J_STG2_2: current_stage = STAGE_2_2; player1.SetXY(480, 480); map_stg2_2.Initialize(); break;
+		case J_STG2_3: current_stage = STAGE_2_3; player1.SetXY(480, 480); map_stg2_3.Initialize(); break;
+		case J_STG2_4: current_stage = STAGE_2_4; player1.SetXY(480, 480); map_stg2_4.Initialize(); break;
+
 		default: return;
 		}
 		if(nRepCnt==CTRL)

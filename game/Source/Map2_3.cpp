@@ -32,7 +32,13 @@ namespace game_framework {
 		map[2][3] = map[2][16] = map[21][3] = map[21][16] = 1;
 		map[7][5] = map[7][6] = map[4][9] = map[4][10] = map[7][13] = map[7][14] = map[16][5] = map[16][6] = map[16][14] = map[16][13] = map[19][9] = map[19][10] = 1;
 		//map[7][7] = map[4][11] = map[7][15] = map[16][7] = map[16][15] = map[19][11] = 1;
+		for (int i = 9; i < 15; i++) {
+			for (int j = 8; j < 14; j++) {
+				map[i][j] = 5;
+			}
+		}
 		map[11][10] = map[12][10] = 1;
+		map[11][11] = map[12][11] = 0;
 
 	}
 
@@ -73,6 +79,16 @@ namespace game_framework {
 		int gx = x / 64;
 		int gy = y / 64;
 		if (map[gx][gy] == 3) {
+			return true;
+		}
+		return false;
+	}
+
+	bool Map2_3::isOnIce(int x, int y)
+	{
+		int gx = x / 64;
+		int gy = y / 64;
+		if (map[gx][gy] == 5) {
 			return true;
 		}
 		return false;

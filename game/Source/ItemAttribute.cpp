@@ -19,7 +19,7 @@ namespace game_framework {
 	
 	ItemAttribute::ItemAttribute(ELEMENT_ATTRIBUTE attribute)
 	{
-		_attribute = attribute;
+		_attribute = attribute;									
 	}
 
 	void ItemAttribute::load()
@@ -33,17 +33,17 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY() + 30;
-		if (isExist() && intercect(h)) {
+		if (isExist() && intercect(h)) {					//如果intercest hero的屬性會變成這個掉落物的屬性
 			h->SetElementAttribute(_attribute);
-			h->addAttack(1, _attribute);
+			h->addAttack(1, _attribute);					//hero 這個屬性的攻擊力會+1
 			setExist(false);
 		}
 	}
 
-	void ItemAttribute::OnShow(Maps *m)
+	void ItemAttribute::OnShow(Maps *m)						//看不同屬性 顯示不同的圖片
 	{
-		if (isExist()) {
-			if (_attribute == FIRE) {
+		if (isExist()) {	
+			if (_attribute == FIRE) {						
 				fire_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				fire_pic.ShowBitmap();
 			}

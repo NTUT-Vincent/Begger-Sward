@@ -18,12 +18,12 @@ namespace game_framework {
 		void load();
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
-		void effect(Hero *h);
+		void effect(Hero *h);				
 		//bool intercect(Hero *h) ;
 		
 	private:
 		CMovingBitmap health_pic;
-		int to_heal;
+		int to_heal;						//要回復多少生命
 
 	};
 }

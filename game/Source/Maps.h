@@ -25,6 +25,7 @@ namespace game_framework {
 		virtual void setIceWallPos(int x, int y, int n) = 0; // n = +1士冰牆放出時 n = -1冰牆解除的時候
 		virtual void setClear(bool b) = 0;
 		virtual bool inFinishArea(int x, int y) = 0;
+		virtual bool isOnIce(int x, int y) = 0;
 		void setXY(int x, int y);
 		int getSX();
 		int getSY();

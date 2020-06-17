@@ -12,6 +12,7 @@ namespace game_framework {
 		void setClear(bool b) override;
 		bool isEmpty(int x, int y) const;
 		bool inFinishArea(int x, int y) override;
+		bool isOnIce(int x, int y);
 		void OnMove();
 		void LoadBitmap();
 		void OnShow();

@@ -85,6 +85,16 @@ namespace game_framework {
 		return false;
 	}
 
+	bool Map2_4::isOnIce(int x, int y)
+	{
+		int gx = x / 64;
+		int gy = y / 64;
+		if (map[gx][gy] == 5) {
+			return true;
+		}
+		return false;
+	}
+
 	void Map2_4::OnMove() {
 
 	}

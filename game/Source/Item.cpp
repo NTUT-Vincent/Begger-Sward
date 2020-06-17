@@ -20,10 +20,10 @@ namespace game_framework {
 
 	void Item::showOnStatusBar(int n)
 	{
-		if (n < 3) {
+		if (n < 3) {												//前三個道具顯示在道具欄的上面三個
 			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 0);
 		}
-		if (n >= 3) {
+		if (n >= 3) {												//4-6顯示在下面三個
 			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 30);
 		}
 		
