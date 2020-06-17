@@ -36,12 +36,14 @@
 	const char NUM_8 = 0x38;
 	const char NUM_9 = 0x39	;
 	//以下是一些留給跳躍關卡快捷鍵
-	const char J_STG1_2 = 0x4F; //O
-	const char J_STG1_4 = 0x50; //P
-	const char J_STG1_6 = 0x4C; //L
-	const char J_STG2_2 = 0x3A; //:
-	const char J_STG2_4 = 0x3E; //>
-	const char J_STG2_6 = 0x2F; // \/ (/)
+	const char J_STG1_1 = 0x5A; //Z
+	const char J_STG1_2 = 0x58 ; //X
+	const char J_STG1_4 = 0x43; //C
+	const char J_STG1_6 = 0x56; //V
+	const char J_STG2_1 = 0x42; //B
+	const char J_STG2_2 = 0x4E; //N
+	const char J_STG2_3 = 0x4D; //M
+	const char J_STG2_4 = 0x4A; //J
 
 
 

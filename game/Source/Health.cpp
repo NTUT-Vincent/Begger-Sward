@@ -15,7 +15,7 @@ namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 
 	
-	Health::Health(int n)
+	Health::Health(int n)											
 	{
 		to_heal = n;
 	}
@@ -27,7 +27,7 @@ namespace game_framework {
 
 	void Health::OnMove(Maps *m, Hero *h)
 	{
-		if (isExist() && intercect(h)) {
+		if (isExist() && intercect(h)) {										//如果英雄撿到加生命 撿到後就不存在地圖上了
 			h->addHp(to_heal);
 			setExist(false);
 		}
@@ -42,24 +42,7 @@ namespace game_framework {
 		
 	}
 
-	void Health::effect(Hero *h)
+	void Health::effect(Hero *h)												//因為不是主動使用的道具 所以不用effect
 	{
 	}
-
-
-
-	/*bool Health::intercect(Hero * h)
-	{
-		if(isExist()) {
-			if (h->GetX2() >= _x + 10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		return false;
-	}
-*/
-
 }

@@ -133,33 +133,15 @@ namespace game_framework {
 				y += HMS;
 				slide_down = 30;
 			}
-		}
-		/*if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2()-10))
-		{
-			m->addSX(HMS);
-			x -= HMS;
-			slide_left = 30;
-		}
-
-		if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2()-10))
-		{
-			m->addSX(-HMS);
-			x += HMS;
-			slide_right = 30;
-		}
-		if (isMovingUp && m->isEmpty(x+10, y - HMS) && m->isEmpty(GetX2()-10, y - HMS))
-		{
-			m->addSY(HMS);
-			y -= HMS;
-			slide_up = 30;
+			if (m->isOnIce(x + 30, y + 60)) {							//如果腳的部分踩在冰上面就會滑
+				isSlide = true;
+			}
+			else {
+				isSlide = false;
+				slide_left = slide_right = slide_down = slide_up = 0;
+			}
 		}
 
-		if (isMovingDown && m->isEmpty(x+10, GetY2() + HMS) && m->isEmpty(GetX2()-10, GetY2() + HMS))
-		{
-			m->addSY(-HMS);
-			y += HMS;
-			slide_down = 30;
-		}*/
 		if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
 		{
 			//hp -= 10;
