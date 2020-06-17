@@ -105,8 +105,9 @@ namespace game_framework {
 		void useItem(int n);
 
 		//void skillW();
+		void setShadePosition();
 		void skillWMove(Maps *m);
-		//void skillWShow();
+		void skillWShow();
 
 		/*void skillE();*/
 		void skillEMove();
@@ -120,6 +121,7 @@ namespace game_framework {
 
 	private:
 		CMovingBitmap heroL, heroR;
+		CMovingBitmap shadeL, shadeR;
 		CAnimation walkingLeft;
 		CAnimation walkingRight;
 		CAnimation skillE;
@@ -170,6 +172,9 @@ namespace game_framework {
 		bool isSpeedingUp;
 		bool cantBeDamaged;
 		int item_protective_cover_clock;
+		int skillW_shadeX;
+		int skillW_shadeY;
+		unsigned int skillW_shadeShowCount;
 	};
 }
 

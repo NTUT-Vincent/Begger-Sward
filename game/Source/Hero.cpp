@@ -39,6 +39,9 @@ namespace game_framework {
 	{
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
 		heroR.LoadBitmap(IDB_HERO_R, RGB(0, 0, 0));	//如果要測這行要註解掉
+
+		shadeL.LoadBitmap(".\\bitmaps\\skillW_shadeR.bmp", RGB(0, 0, 0));
+		shadeR.LoadBitmap(".\\bitmaps\\skillW_shadeR.bmp", RGB(0, 0, 0));
 		
 		///以下這行用於直接貼圖測試
 		//heroR.LoadBitmap(".\\bitmaps\\testfile.bmp", RGB(255, 255, 255));
@@ -172,6 +175,11 @@ namespace game_framework {
 		skillRMove();
 		normalAttackMove();
 		get_attacked.OnMove();
+		setShadePosition();
+		TRACE("-------(%d, %d), %d,  %d\n", skillW_shadeX, skillW_shadeY, skillW_shadeShowCount, skill_w_cool_down);
+		if (skillW_shadeShowCount > 0) {
+			skillW_shadeShowCount -= 1;
+		}
 		if (isSpeedingUp) {
 			speedUp();
 		}
@@ -188,6 +196,7 @@ namespace game_framework {
 		blood_bar.setXY(x - 10, y - 10);
 		blood_bar.showBloodBar(m, hp);
 		gettingAttackedShow();
+		skillWShow();
 		if (isUsingSkill()) { 
 			normalAttackShow(m);
 			skillEShow();
@@ -308,6 +317,8 @@ namespace game_framework {
 		attack_ice = 20;
 		attack_plant = 20;
 		skillTimes = 0;
+		skillW_shadeShowCount = 0;
+		skillW_shadeX = skillW_shadeY = 0;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttack = is_getting_attacked = isSpeedingUp = cantBeDamaged = false;
 		isUsingA = isUsingQ = isUsingW = isUsingE = isUsingR = false;
 		blood_bar.setFullHP(hp);
@@ -477,7 +488,7 @@ namespace game_framework {
 				enemys->at(i)->offsetHP(attack, _attribute);
 			}
 			//R技能
-			TRACE("-------%d, %d, %f, %d\n", i, enemys->at(i)->distanceToHero(), enemys->at(i)->hpProportion(), isUsingR);
+			//TRACE("-------%d, %d, %f, %d\n", i, enemys->at(i)->distanceToHero(), enemys->at(i)->hpProportion(), isUsingR);
 			if (enemys->at(i)->distanceToHero() < 80 && isUsingR )
 			{
 				if (skillR_R.GetCurrentBitmapNumber() == 5 || skillR_L.GetCurrentBitmapNumber() == 5) {
@@ -900,13 +911,24 @@ namespace game_framework {
 		items.at(n - 1) = nullptr;
 	}
 
+	void Hero::setShadePosition()
+	{
+		if (skillW_shadeShowCount != 0)
+		{
+			skillW_shadeX = x;
+			skillW_shadeY = y;
+		}
+	}
+
 	void Hero::skillWMove(Maps *m)
 	{
 		if (skill_w_cool_down > 0) {
 			skill_w_cool_down -= 1;
 		}
+
 		if (isUsingW)
 		{
+			skillW_shadeShowCount = 15;
 			if (isMovingLeft)
 			{
 				if (m->isEmpty(x - 15 * HMS, y) && m->isEmpty(x - 15 * HMS, GetY2() - 10) && m->isEmpty(x - 30 * HMS, y) && m->isEmpty(x - 30 * HMS, GetY2() - 10))
@@ -920,7 +942,6 @@ namespace game_framework {
 					CAudio::Instance()->Play(AUDIO_BADFLASH);
 				}
 			}
-
 			if (isMovingRight)
 			{
 				if (m->isEmpty(GetX2() + 15 * HMS, y) && m->isEmpty(GetX2() + 15 * HMS, GetY2() - 10) && m->isEmpty(GetX2() + 30 * HMS, y) && m->isEmpty(GetX2() + 30 * HMS, GetY2() - 10))
@@ -947,7 +968,6 @@ namespace game_framework {
 					CAudio::Instance()->Play(AUDIO_BADFLASH);
 				}
 			}
-
 			if (isMovingDown)
 			{
 				if (m->isEmpty(x + 10, GetY2() + 15 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 15 * HMS) && m->isEmpty(x + 10, GetY2() + 30 * HMS) && m->isEmpty(GetX2() - 10, GetY2() + 30 * HMS))
@@ -962,7 +982,23 @@ namespace game_framework {
 			}
 		}
 		isUsingW = false;
+	}
 
+	void Hero::skillWShow()
+	{
+		if (skillW_shadeShowCount > 0)
+		{
+			if (directionLR == 0)
+			{
+				shadeL.SetTopLeft(skillW_shadeX, skillW_shadeY);
+				shadeL.ShowBitmap();
+			}
+			if (directionLR == 1)
+			{
+				shadeR.SetTopLeft(skillW_shadeX, skillW_shadeY);
+				shadeR.ShowBitmap();
+			}
+		}
 	}
 
 	void Hero::skillEMove()
