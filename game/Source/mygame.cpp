@@ -87,6 +87,7 @@ namespace game_framework {
 		//
 		// 開始載入資料
 		//
+		CAudio::Instance()->Load(AUDIO_CHOOSE, "sounds\\choose.mp3");	
 		goto_status = isHelp = isAbout = 0;
 		logo.LoadBitmap(IDB_STARTBACKGROUND);
 		selection.LoadBitmap(".\\bitmaps\\choose.bmp");
@@ -107,9 +108,15 @@ namespace game_framework {
 		const char KEY_ESC = 27;
 		const char KEY_SPACE = ' ';
 		if (nChar == KEY_UP && goto_status > 0)
+		{
+			CAudio::Instance()->Play(AUDIO_CHOOSE, false);
 			goto_status -= 1;
+		}
 		if (nChar == KEY_DOWN && goto_status < 2)
+		{
+			CAudio::Instance()->Play(AUDIO_CHOOSE, false);
 			goto_status += 1;
+		}
 		if (nChar == KEY_SPACE)
 		{
 			if (goto_status == 0)
@@ -354,6 +361,7 @@ namespace game_framework {
 		const int HITS_LEFT_Y = 0;
 		const int BACKGROUND_X = 60;
 		const int ANIMATION_SPEED = 15;
+		isAllLevelPass = all_level_pass_count = 0;
 		CAudio::Instance()->Play(AUDIO_GOLDENWIND, true);			// 撥放 MIDI
 		
 		player1.Initialize();
@@ -427,18 +435,27 @@ namespace game_framework {
 			break;
 		}
 		stage_map.setClear(allEnemyDie(enemy_array));
+		//如果冰鳥死掉播放音效
+		if (current_stage == STAGE_2_4 && allEnemyDie(enemy_array))
+			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE, false);
+
 		if (allEnemyDie(enemy_array) && player.isInFinishArea(&stage_map))
 		{
-			if (next_stage == STAGE_1_4) {
+			if (next_stage == STAGE_1_4 || STAGE_2_4) {
 				CAudio::Instance()->Stop(AUDIO_GOLDENWIND);			// 撥放 MIDI
 				CAudio::Instance()->Play(AUDIO_AWAKEN, true);			// 撥放 MIDI
 			}
-			else {
+			if (next_stage == STAGE_2_1) {
 				CAudio::Instance()->Play(AUDIO_GOLDENWIND);			// 撥放 MIDI
 				CAudio::Instance()->Stop(AUDIO_AWAKEN);			// 撥放 MIDI
 			}
-				current_stage = next_stage;
-				player.SetXY(next_x, next_y);
+			if (next_stage == CONGRATULATION)
+			{
+				all_level_pass_count = 180;
+				isAllLevelPass = 1;
+			}
+			current_stage = next_stage;
+			player.SetXY(next_x, next_y);
 		}
 	}
 
@@ -467,7 +484,7 @@ namespace game_framework {
 				stage_process_move(map_stg2_3, player1, enemys2_3, STAGE_2_4);
 				break;
 			case STAGE_2_4:
-				stage_process_move(map_stg2_4, player1, enemys2_4, STAGE_2_4);
+				stage_process_move(map_stg2_4, player1, enemys2_4, CONGRATULATION);
 				break;
 		}
 
@@ -477,6 +494,17 @@ namespace game_framework {
 			for (int i = 0; i < 6; i++) {
 				player1.useItem(i + 1);
 			}
+		}
+
+		if (isAllLevelPass && all_level_pass_count>= 0)
+		{
+			all_level_pass_count -= 1;
+			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE, false);
+		}
+
+		if (isAllLevelPass && all_level_pass_count <= 0)
+		{
+			GotoGameState(GAME_STATE_INIT);
 		}
 		//
 		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
@@ -501,7 +529,7 @@ namespace game_framework {
 		// 開始載入資料
 		//
 		player1.LoadBitmap();
-		player_status.loadPlauerStatus();
+		player_status.loadPlayerStatus();
 		//第一關怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->LoadBitmap();
@@ -554,6 +582,7 @@ namespace game_framework {
 		// 繼續載入其他資料
 		//
 		help.LoadBitmap(IDB_HELP, RGB(255, 255, 255));				// 載入說明的圖形
+		you_win.LoadBitmap(".\\RES\\You_win.bmp");
 		corner.LoadBitmap(IDB_CORNER);							// 載入角落圖形
 		corner.ShowBitmap(background);							// 將corner貼到background
 		hits_left.LoadBitmap();
@@ -572,6 +601,7 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_ABOSS_PREPARE, "sounds\\ABoss_prepare.mp3");
 		CAudio::Instance()->Load(AUDIO_GOODFLASH, "sounds\\goodflash.mp3");
 		CAudio::Instance()->Load(AUDIO_BADFLASH, "sounds\\badflash.mp3");
+		CAudio::Instance()->Load(AUDIO_ICEBIRD_DIE, "sounds\\icebirddie.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
@@ -895,7 +925,12 @@ namespace game_framework {
 			player1.OnShow(&map_stg2_4);
 		}
 
-		player_status.showPlauerStatus();
+		if (isAllLevelPass && all_level_pass_count >= 0)
+		{
+			you_win.SetTopLeft(0, 0);
+			you_win.ShowBitmap();
+		}
+		player_status.showPlayerStatus();
 		
 	}
 

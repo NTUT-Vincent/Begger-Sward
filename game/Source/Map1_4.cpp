@@ -7,7 +7,7 @@
 #include "Maps.h"
 #include "Map1_1.h"
 #include "Enemy.h"
-#include "Map1_6.h"
+#include "Map1_4.h"
 #include <vector>
 
 namespace game_framework {
@@ -41,7 +41,7 @@ namespace game_framework {
 			map[23][i] = 0;
 		}
 		map[2][9] = map[22][9] = map[2][15] = map[22][15] = 0;
-		map[12][2] = map[11][2] = 3;
+		map[12][1] = map[11][1] = 3;
 	}
 
 	Map1_4::~Map1_4()
@@ -102,11 +102,21 @@ namespace game_framework {
 
 	void Map1_4::LoadBitmap() {
 		firstmap.LoadBitmap(IDB_MAP1_4);
+		char *filename1_1[4] = { ".\\bitmaps\\gate1.bmp",".\\bitmaps\\gate2.bmp",".\\bitmaps\\gate3.bmp",".\\bitmaps\\gate4.bmp" };
+		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
+		gate.SetDelayCount(3);
 	}
 
 	void Map1_4::OnShow() {
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
+		if (all_enemy_clear == 1)
+		{
+			gate.SetTopLeft(getSX() + 512, getSY() + 64);
+			gate.OnMove();
+			gate.OnShow();
+		}
 	}
 
 	void Map1_4::getHeroX(int x)

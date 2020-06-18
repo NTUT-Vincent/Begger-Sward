@@ -41,9 +41,9 @@
 #include "ABoss.h"
 #include "Maps.h"
 #include "Map1_1.h"
-#include "Map1_6.h"
-#include "Map1_3.h"
 #include "Map1_2.h"
+#include "Map1_3.h"
+#include "Map1_4.h"
 #include "Map2_1.h"
 #include "Map2_2.h"
 #include "Map2_3.h"
@@ -109,7 +109,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
-		PlauerStatus	player_status;
+		PlayerStatus	player_status;
 		Map1_1			map_stg1_1;
 		Map1_2			map_stg1_2;
 		Map1_3			map_stg1_3;
@@ -131,7 +131,10 @@ namespace game_framework {
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
 		CMovingBitmap	corner;		// 角落圖
+		CMovingBitmap you_win;
 		CInteger		hits_left;	// 剩下的撞擊數
+		bool isAllLevelPass;
+		int all_level_pass_count;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

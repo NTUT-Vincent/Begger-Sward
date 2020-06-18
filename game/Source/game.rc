@@ -64,8 +64,6 @@ END
 
 IDB_BALL                BITMAP                  "..\\res\\ball.bmp"
 
-IDB_ERASER1             BITMAP                  "..\\res\\eraser1.bmp"
-
 IDB_BACKGROUND          BITMAP                  "..\\res\\ntutcsie.bmp"
 
 IDB_CORNER              BITMAP                  "..\\res\\corner.bmp"
@@ -94,17 +92,11 @@ IDB_MINUS               BITMAP                  "..\\res\\bmp10.bmp"
 
 IDB_CENTER              BITMAP                  "..\\res\\center.bmp"
 
-IDB_ERASER2             BITMAP                  "..\\res\\eraser2.bmp"
-
-IDB_ERASER3             BITMAP                  "..\\res\\eraser3.bmp"
-
 IDB_CONTINUE            BITMAP                  "..\\res\\continue.bmp"
 
 IDB_HELP                BITMAP                  "..\\res\\help.bmp"
 
 IDB_LOADING             BITMAP                  "..\\res\\loading.bmp"
-
-IDB_PLAYER              BITMAP                  "..\\res\\PLAYER1.bmp"
 
 IDB_HERO_R              BITMAP                  "..\\res\\hero1.bmp"
 
@@ -223,14 +215,6 @@ IDB_ITEMPOTION          BITMAP                  "..\\RES\\Item_potion.bmp"
 IDB_ITEMCLOCK           BITMAP                  "..\\RES\\Item_clock.bmp"
 
 IDB_BOX                 BITMAP                  "..\\RES\\box.bmp"
-
-IDB_START1              BITMAP                  "..\\RES\\start_1.bmp"
-
-IDB_START2              BITMAP                  "..\\RES\\start_2.bmp"
-
-IDB_STORY1              BITMAP                  "..\\RES\\story_1.bmp"
-
-IDB_STORY2              BITMAP                  "..\\RES\\story_2.bmp"
 
 IDB_BOXDAMAGED          BITMAP                  "..\\RES\\box2.bmp"
 

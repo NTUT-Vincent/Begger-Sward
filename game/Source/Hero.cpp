@@ -105,7 +105,6 @@ namespace game_framework {
 	}
 
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		//TRACE("-------%f", (double)(500) / 1200);
 		if (!isUsingR) {
 			if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2() - 10))
 			{
@@ -157,7 +156,6 @@ namespace game_framework {
 		skillRMove();
 		normalAttackMove();
 		get_attacked.OnMove();
-		TRACE("-------(%d, %d), %d,  %d\n", skillW_shadeX, skillW_shadeY, skillW_shadeShowCount, skill_w_cool_down);
 		if (skillW_shadeShowCount > 0) {
 			skillW_shadeShowCount -= 1;
 		}
@@ -460,8 +458,6 @@ namespace game_framework {
 				else {
 					enemys->at(i)->offsetHP(attack, _attribute);
 				}
-					
-				
 			}
 			//E技能
 			if (enemys->at(i)->intersect(x1 - 30, x2 + 30, y1 - 30, y2 + 30) && isUsingE)
@@ -469,7 +465,6 @@ namespace game_framework {
 				enemys->at(i)->offsetHP(attack, _attribute);
 			}
 			//R技能
-			//TRACE("-------%d, %d, %f, %d\n", i, enemys->at(i)->distanceToHero(), enemys->at(i)->hpProportion(), isUsingR);
 			if (enemys->at(i)->distanceToHero() < 80 && isUsingR )
 			{
 				if (skillR_R.GetCurrentBitmapNumber() == 5 || skillR_L.GetCurrentBitmapNumber() == 5) {

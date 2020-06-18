@@ -301,7 +301,7 @@
     </ClCompile>
     <ClCompile Include="Source\Map1_2.cpp" />
     <ClCompile Include="Source\Map1_3.cpp" />
-    <ClCompile Include="Source\Map1_6.cpp" />
+    <ClCompile Include="Source\Map1_4.cpp" />
     <ClCompile Include="Source\Map2_1.cpp" />
     <ClCompile Include="Source\Map2_2.cpp" />
     <ClCompile Include="Source\Map2_3.cpp" />
@@ -360,7 +360,7 @@
     <ClInclude Include="Source\Map1_1.h" />
     <ClInclude Include="Source\Map1_2.h" />
     <ClInclude Include="Source\Map1_3.h" />
-    <ClInclude Include="Source\Map1_6.h" />
+    <ClInclude Include="Source\Map1_4.h" />
     <ClInclude Include="Source\Map2_1.h" />
     <ClInclude Include="Source\Map2_2.h" />
     <ClInclude Include="Source\Map2_3.h" />
