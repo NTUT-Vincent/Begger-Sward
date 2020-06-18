@@ -538,6 +538,7 @@ namespace game_framework {
 		//
 		player1.LoadBitmap();
 		player_status.loadPlayerStatus();
+		change_song = 0;
 		//1-1й╟кл
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->LoadBitmap();

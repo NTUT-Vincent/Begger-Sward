@@ -402,7 +402,7 @@ namespace game_framework {
 	void Hero::SetUsingR(bool b)
 	{
 		if (!isUsingSkill() && skill_r_cool_down <= 0) {
-			skill_r_cool_down = 90; //如果正式遊戲應該要900(久一點)
+			skill_r_cool_down = 900; //如果正式遊戲應該要900(久一點)
 			int random_fx = rand() % 2;
 			if (b) {
 				if (random_fx == 0)
