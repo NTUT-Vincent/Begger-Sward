@@ -95,6 +95,8 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="packages.config" />
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\audio.cpp">
@@ -128,9 +130,6 @@
       <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="Source\Enemy.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Collision.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
     <ClCompile Include="Source\BloodBar.cpp">
@@ -273,16 +272,10 @@
     <ClInclude Include="Source\Enemy.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Collision.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BloodBar.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Util.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Objs.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\Attack.h">
