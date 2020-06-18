@@ -18,7 +18,7 @@ namespace game_framework {
 		void load();
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
-		void effect(Hero *h);
+		void effect(Hero *h);				//道具的效果
 		bool intercect(Hero *h) ;
 		
 	private:

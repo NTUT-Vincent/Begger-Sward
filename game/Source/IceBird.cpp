@@ -97,14 +97,16 @@ namespace game_framework {
 			iceAttack();
 			iceAttackMove(m);
 			iceWall(m);
-			iceWallMove(m);
+			/*iceWallMove(m);*/
 			iceStorm(m);
 			iceStormMove(m);
 			if (arrowAttackCD != 0) {
 				arrowAttackCD--;
 			}
 		}
+		iceWallMove(m);
 		if (!isAlive()) {
+			isUsingIceWall = false;
 			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE);
 			itemsOnMove(m);
 		}
@@ -425,10 +427,7 @@ namespace game_framework {
 	void IceBird::iceWallMove(Maps * m)
 	{
 		
-		if (isUsingIceWall) {
-
-		}
-		if (ice_wall_clock > 0) {
+		if (ice_wall_clock > 0 && isUsingIceWall) {
 			ice_wall_clock--;
 			if (ice_wall_clock <= 40 && ice_wall_clock >=0 )
 			{
@@ -445,10 +444,18 @@ namespace game_framework {
 				isUsingIceWall = false;
 				icewallL.Reset();
 				icewallR.Reset();
+				/*for (int i = 0; i < 7; i++) {
+					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), -1);
+				}*/
+				ice_wall_cd = 180;
+			}
+			if (!isAlive()) {
+				isUsingIceWall = false;
+			}
+			if (!isUsingIceWall) {
 				for (int i = 0; i < 7; i++) {
 					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), -1);
 				}
-				ice_wall_cd = 180;
 			}
 		}
 		if (ice_wall_cd > 0) {
@@ -506,7 +513,7 @@ namespace game_framework {
 		if (storm_clock > 0) {
 			storm_clock--;
 			storm.OnMove();
-			if (ice_wall_clock == 0) {
+			if (storm_clock == 0) {
 				isUsingStorm = false;
 				/*icewallL.Reset();
 				icewallR.Reset();*/
@@ -517,7 +524,7 @@ namespace game_framework {
 		if (storm_cd > 0) {
 			storm_cd--;
 		}
-		if (isUsingIceWall) {
+		if (isUsingStorm) {
 			if (intersectStorm(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2())) {
 				if (hero_on_map->GetIsMovingLeft()) {
 					hero_on_map->addSX(2, m);

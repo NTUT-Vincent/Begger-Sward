@@ -389,7 +389,7 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys2_4.size(); i++) {
 			enemys2_4[i]->Initialize();
 		}
-		current_stage = STAGE_2_3;
+		current_stage = STAGE_1_1;
 		map_stg1_1.Initialize();
 		map_stg1_4.Initialize();
 		map_stg1_2.Initialize();
