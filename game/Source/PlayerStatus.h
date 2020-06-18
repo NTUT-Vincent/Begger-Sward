@@ -11,13 +11,13 @@ namespace game_framework {
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 
-	class PlauerStatus
+	class PlayerStatus
 	{
 	public:
-		PlauerStatus();
+		PlayerStatus();
 		void Initialize(Hero *h);
-		void loadPlauerStatus();
-		void showPlauerStatus();
+		void loadPlayerStatus();
+		void showPlayerStatus();
 		void setXY(int x, int y);
 		void loadDigitsBitmap(CMovingBitmap a[]);		//傳入一個bitmap陣列 對陣列load 1-9的bitmap
 		void showQ();									//把技能圖片show再狀態條上

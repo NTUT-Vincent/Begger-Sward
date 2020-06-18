@@ -14,18 +14,18 @@ namespace game_framework {
 	// CBall: Ball class
 	/////////////////////////////////////////////////////////////////////////////
 
-	PlauerStatus::PlauerStatus()
+	PlayerStatus::PlayerStatus()
 	{
 		_x = 0;
 		_y = 0;
 	}
 
-	void PlauerStatus::Initialize(Hero * h)
+	void PlayerStatus::Initialize(Hero * h)
 	{
 		_h = h;
 	}
 
-	void PlauerStatus::loadPlauerStatus() {
+	void PlayerStatus::loadPlayerStatus() {
 		status_bar.LoadBitmap(IDB_STATUSBAR, RGB(255, 255, 255));
 		skill_q_fire_pic.LoadBitmap(IDB_SKILLQFIREPIC);
 		skill_q_ice_pic.LoadBitmap(IDB_SKILLQICEPIC);
@@ -66,7 +66,7 @@ namespace game_framework {
 		loadDigitsBitmap(attack_plant_thousand);
 	}
 
-	void PlauerStatus::showPlauerStatus() {
+	void PlayerStatus::showPlayerStatus() {
 		status_bar.SetTopLeft(0, 0);
 		status_bar.ShowBitmap();
 		showQ();
@@ -80,12 +80,12 @@ namespace game_framework {
 		showItemsOfPlayer();
 	}
 
-	void PlauerStatus::setXY(int x, int y) {
+	void PlayerStatus::setXY(int x, int y) {
 		_x = x;
 		_y = y;
 	}
 
-	void PlauerStatus::loadDigitsBitmap(CMovingBitmap a[])
+	void PlayerStatus::loadDigitsBitmap(CMovingBitmap a[])
 	{
 		a[0].LoadBitmap(IDB_0 , RGB(0, 0, 0));
 		a[1].LoadBitmap(IDB_1, RGB(0, 0, 0));
@@ -99,7 +99,7 @@ namespace game_framework {
 		a[9].LoadBitmap(IDB_9, RGB(0, 0, 0));
 	}
 
-	void PlauerStatus::showQ()
+	void PlayerStatus::showQ()
 	{
 		if (_h->getCurrentAttribute() == FIRE) {
 			q_pic = skill_q_fire_pic;
@@ -127,7 +127,7 @@ namespace game_framework {
 
 	}
 
-	void PlauerStatus::showE()
+	void PlayerStatus::showE()
 	{
 		int e_cd = _h->GetECoolDown()/30;
 		if (_h->GetECoolDown() == 0) {
@@ -145,7 +145,7 @@ namespace game_framework {
 		}
 	}
 	
-	void PlauerStatus::showW()
+	void PlayerStatus::showW()
 	{
 		int w_cd = _h->GetWCoolDown()/30;
 		if (_h->GetWCoolDown() == 0) {
@@ -163,7 +163,7 @@ namespace game_framework {
 		}
 	}
 
-	void PlauerStatus::showR()
+	void PlayerStatus::showR()
 	{
 		int r_cd = _h->GetRCoolDown() / 30;
 		if (_h->GetRCoolDown() == 0) {
@@ -181,7 +181,7 @@ namespace game_framework {
 		}
 	}
 
-	void PlauerStatus::showHP()
+	void PlayerStatus::showHP()
 	{
 		int hp = _h->getHP();
 		if (hp != 0) {
@@ -204,7 +204,7 @@ namespace game_framework {
 		}
 	}
 
-	void PlauerStatus::showAttackFire()
+	void PlayerStatus::showAttackFire()
 	{
 		int att_fire = _h->get_attack_fire();
 		if (att_fire != 0) {
@@ -227,7 +227,7 @@ namespace game_framework {
 		}
 	}
 
-	void PlauerStatus::showAttackIce()
+	void PlayerStatus::showAttackIce()
 	{
 		int att_ice = _h->get_attack_ice();
 		if (att_ice != 0) {
@@ -250,7 +250,7 @@ namespace game_framework {
 		}
 	}
 
-	void PlauerStatus::showAttackPlant()
+	void PlayerStatus::showAttackPlant()
 	{
 		int att_plant = _h->get_attack_plant();
 		if (att_plant != 0) {
@@ -273,7 +273,7 @@ namespace game_framework {
 		}
 	}
 
-	void PlauerStatus::showItemsOfPlayer()
+	void PlayerStatus::showItemsOfPlayer()
 	{
 		for (int i = 0; i < 6; i++) {
 			if (_h->getItemsOfPlayer()->at(i) != nullptr) {

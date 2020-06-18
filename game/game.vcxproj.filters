@@ -145,9 +145,6 @@
     <ClCompile Include="Source\GreenSlime.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Map1_6.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Maps.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
@@ -229,6 +226,9 @@
     <ClCompile Include="Source\ProtectiveCover.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Map1_4.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -292,9 +292,6 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\GreenSlime.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Map1_6.h">
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayerStatus.h">
@@ -370,6 +367,9 @@
       <Filter>MyGame</Filter>
     </ClInclude>
     <ClInclude Include="Source\ProtectiveCover.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Map1_4.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>

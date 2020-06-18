@@ -27,7 +27,7 @@ namespace game_framework {
 		attack_damage = 0;
 	}
 
-	IceBird::IceBird(int x, int y, Hero *h) : Enemy(x, y, 1200, "IceBird", h, ICE)
+	IceBird::IceBird(int x, int y, Hero *h) : Enemy(x, y, 70000, "IceBird", h, ICE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
@@ -40,7 +40,6 @@ namespace game_framework {
 
 	void IceBird::LoadBitmap()
 	{
-		CAudio::Instance()->Load(AUDIO_ICEBIRD_DIE, "sounds\\icebirddie.mp3");
 		icewallLeft.LoadBitmap(".\\bitmaps\\icewallL1.bmp", RGB(255, 255, 255));
 		icewallRight.LoadBitmap(".\\bitmaps\\icewallR1.bmp", RGB(255, 255, 255));
 		boss_blood_bar.loadBloodBar();
@@ -106,8 +105,11 @@ namespace game_framework {
 		}
 		iceWallMove(m);
 		if (!isAlive()) {
+<<<<<<< HEAD
 			isUsingIceWall = false;
 			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE);
+=======
+>>>>>>> 8e150236cd0bea2d3d75a21a6e6f127211f554ae
 			itemsOnMove(m);
 		}
 	}

@@ -24,6 +24,7 @@ namespace game_framework {
 
 	private:
 		CMovingBitmap firstmap;
+		CAnimation gate;
 		bool all_enemy_clear;
 		int map[25][25];
 		int hx, hy;

@@ -35,7 +35,7 @@ namespace game_framework {
 			}
 		}
 		
-		//map[11][2] = map[12][2] = 3;
+		map[11][2] = map[12][2] = 3;
 		//map[2][3] = map[2][16] = map[21][3] = map[21][16] = 1;
 		//map[7][5] = map[7][6] = map[4][9] = map[4][10] = map[7][13] = map[7][14] = map[16][5] = map[16][6] = map[16][14] = map[16][13] = map[19][9] = map[19][10] = 1;
 		////map[7][7] = map[4][11] = map[7][15] = map[16][7] = map[16][15] = map[19][11] = 1;
@@ -101,7 +101,7 @@ namespace game_framework {
 
 	void Map2_4::LoadBitmap() {
 		firstmap.LoadBitmap(IDB_MAP2_4);
-		char *filename1_1[4] = { ".\\bitmaps\\gate1.bmp",".\\bitmaps\\gate2.bmp",".\\bitmaps\\gate3.bmp",".\\bitmaps\\gate4.bmp" };
+		char *filename1_1[4] = { ".\\bitmaps\\gate5.bmp",".\\bitmaps\\gate6.bmp",".\\bitmaps\\gate7.bmp",".\\bitmaps\\gate8.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		gate.SetDelayCount(3);
@@ -112,7 +112,7 @@ namespace game_framework {
 		firstmap.ShowBitmap();
 		if (all_enemy_clear == 1)
 		{
-			gate.SetTopLeft(getSX()+448, getSY());
+			gate.SetTopLeft(getSX()+704, getSY());
 			gate.OnMove();
 			gate.OnShow();
 		}
