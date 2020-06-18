@@ -230,7 +230,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <None Include="Res\ball.bmp" />
     <None Include="RES\bmp0.bmp" />
