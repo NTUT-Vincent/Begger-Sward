@@ -74,7 +74,8 @@
 		AUDIO_CHOOSE,
 		AUDIO_BEING_ATTACKED,
 		AUDIO_SCOLD,
-		AUDIO_SHOE
+		AUDIO_SHOE,
+		AUDIO_SING
 	};
 
 	enum STAGE {				// 定義各種音效的編號

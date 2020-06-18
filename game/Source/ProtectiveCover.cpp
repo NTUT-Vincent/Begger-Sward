@@ -29,7 +29,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20) {	//用num_of_box決定這個道具會不會掉落
 			ProtectiveCover * p = new ProtectiveCover();
 			p->load();
 			h->addItem(p);
@@ -46,9 +46,9 @@ namespace game_framework {
 		
 	}
 
-	void ProtectiveCover::effect(Hero *h)
+	void ProtectiveCover::effect(Hero *h)						
 	{
-		h->setCantBeDamaged(true);
+		h->setCantBeDamaged(true);					//使用道具的話 英雄就會進入不會被攻擊到的模式
 		setIsUsed(false);
 	}
 

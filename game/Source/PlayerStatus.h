@@ -19,8 +19,8 @@ namespace game_framework {
 		void loadPlayerStatus();
 		void showPlayerStatus();
 		void setXY(int x, int y);
-		void loadDigitsBitmap(CMovingBitmap a[]);
-		void showQ();
+		void loadDigitsBitmap(CMovingBitmap a[]);		//傳入一個bitmap陣列 對陣列load 1-9的bitmap
+		void showQ();									//把技能圖片show再狀態條上
 		void showE();
 		void showW();
 		void showR();
@@ -28,8 +28,8 @@ namespace game_framework {
 		void showAttackFire();
 		void showAttackIce();
 		void showAttackPlant();
-		void showItemsOfPlayer();
-
+		void showItemsOfPlayer();						//把道具圖片show在技能條上
+			
 	private:
 		int _x, _y;
 		CMovingBitmap status_bar;
@@ -42,12 +42,12 @@ namespace game_framework {
 		CMovingBitmap skill_w_pic;
 		CMovingBitmap skill_r_pic;
 
-		CMovingBitmap HP_first[10];
+		CMovingBitmap HP_first[10];						//hp個十百千
 		CMovingBitmap HP_ten[10];
 		CMovingBitmap HP_hundred[10];
 		CMovingBitmap HP_thousand[10];
 
-		CMovingBitmap Q_cooldown_first[10];
+		CMovingBitmap Q_cooldown_first[10];				//技能冷卻時間的十位個位數
 		CMovingBitmap Q_cooldown_ten[10];
 
 		CMovingBitmap W_cooldown_first[10];

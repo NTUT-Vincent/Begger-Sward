@@ -69,7 +69,7 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] != 1) {
+		if (map[gx][gy] != 1 && map[gx][gy] != 2) {
 			return true;
 		}
 		return false;

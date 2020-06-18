@@ -397,7 +397,7 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys2_4.size(); i++) {
 			enemys2_4[i]->Initialize();
 		}
-		current_stage = STAGE_2_3;
+		current_stage = STAGE_1_1;
 		map_stg1_1.Initialize();
 		map_stg1_4.Initialize();
 		map_stg1_2.Initialize();
@@ -459,8 +459,6 @@ namespace game_framework {
 			//若通關播放通關畫面6秒
 			if (next_stage == CONGRATULATION)
 			{
-				//如果冰鳥死掉，過門時回頭對冰鳥開噴
-				CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE, false);
 				all_level_pass_count = 180;
 				isAllLevelPass = 1;
 			}
@@ -615,6 +613,7 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_BEING_ATTACKED, "sounds\\being_attacked.mp3");
 		CAudio::Instance()->Load(AUDIO_SCOLD, "sounds\\scold.mp3");
 		CAudio::Instance()->Load(AUDIO_SHOE, "sounds\\shoe.mp3");
+		CAudio::Instance()->Load(AUDIO_SING, "sounds\\sing.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%

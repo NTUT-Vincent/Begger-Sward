@@ -358,9 +358,12 @@ namespace game_framework {
 	
 	void Hero::SetUsingA(bool b)
 	{
+		int random_fx = rand() % 100;
 		if (!isUsingSkill()) {
 			if (b) {
 				CAudio::Instance()->Play(AUDIO_SWORD);
+				if (random_fx <= 5)
+					CAudio::Instance()->Play(AUDIO_SING);
 			}
 
 			isUsingA = b;
