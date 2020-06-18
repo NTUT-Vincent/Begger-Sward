@@ -403,6 +403,13 @@ namespace game_framework {
 	{
 		if (!isUsingSkill() && skill_r_cool_down <= 0) {
 			skill_r_cool_down = 90; //如果正式遊戲應該要900(久一點)
+			int random_fx = rand() % 2;
+			if (b) {
+				if (random_fx == 0)
+					CAudio::Instance()->Play(AUDIO_SKILLR_1);
+				if (random_fx == 1)
+					CAudio::Instance()->Play(AUDIO_SKILLR_2);
+			}
 			isUsingR = b;
 		}
 	}
@@ -482,7 +489,11 @@ namespace game_framework {
 
 	void Hero::offsetHp(int n)
 	{
+		int rand_being_attacked_fx = rand() % 100;
 		if (!cantBeDamaged) {
+			//有40%的機率發出被攻擊的哭喊(如果一直叫會太吵)
+			if (rand_being_attacked_fx <= 40)
+				CAudio::Instance()->Play(AUDIO_BEING_ATTACKED);
 			is_getting_attacked = true;
 			hp -= n;
 		}
@@ -613,6 +624,7 @@ namespace game_framework {
 	void Hero::setSpeedUp(bool b)
 	{
 		if (b) {
+			CAudio::Instance()->Play(AUDIO_SHOE);
 			item_shoe_clock = 90;
 			isSpeedingUp = true;
 		}

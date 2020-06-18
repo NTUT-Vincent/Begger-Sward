@@ -135,6 +135,7 @@ namespace game_framework {
 		CInteger		hits_left;	// ³Ñ¤Uªº¼²À»¼Æ
 		bool isAllLevelPass;
 		int all_level_pass_count;
+		int change_song;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
