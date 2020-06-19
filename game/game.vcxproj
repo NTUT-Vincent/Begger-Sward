@@ -229,6 +229,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Res\ball.bmp" />
     <None Include="RES\bmp0.bmp" />
@@ -269,7 +270,6 @@
     <ClCompile Include="Source\Box.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Clock.cpp" />
-    <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Enemy.cpp" />
     <ClCompile Include="Source\GreenGoblin.cpp" />
     <ClCompile Include="Source\GreenSlime.cpp" />
@@ -347,7 +347,6 @@
     <ClInclude Include="Source\BossBloodBar.h" />
     <ClInclude Include="Source\Box.h" />
     <ClInclude Include="Source\Clock.h" />
-    <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Enemy.h" />
     <ClInclude Include="Source\GreenGoblin.h" />

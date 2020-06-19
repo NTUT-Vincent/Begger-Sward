@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="game_framework::CGameStateInit" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAGCAAAAAAABAACAAAAAAgQAAAjABAAUAAA=</HashCode>
+      <FileName>Source\mygame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::CGameStateRun" Collapsed="true">
+    <Position X="8.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAQgBAACQAAJgAQEQAABBEhIgAgw8AAAAwAMUIRA=</HashCode>
+      <FileName>Source\mygame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::CGameStateOver" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAACAAAAAAAAAAABAAgUAAAAAAAAEAAA=</HashCode>
+      <FileName>Source\mygame.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Character" Collapsed="true">
+    <Position X="2.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAECAA=</HashCode>
+      <FileName>Source\Character.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Hero" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hIcRkhETDEEaJRBEoDiQQmWiJTSSkG2QSUhlQfVcM04=</HashCode>
+      <FileName>Source\Hero.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Enemy" Collapsed="true">
+    <Position X="2.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FgQAIgAJBAUgAVAMAAgAQASALRAIACiQAQRMAAEENUA=</HashCode>
+      <FileName>Source\Enemy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Maps" Collapsed="true">
+    <Position X="7" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACEAAAAAEQAAAAAAAAAEAcAgIAAACAgAACQQEA=</HashCode>
+      <FileName>Source\Maps.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Item" Collapsed="true">
+    <Position X="13" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAIAIQYAQCMQAAEAAAERAAAAAAAAIAgBGAcAAQ=</HashCode>
+      <FileName>Source\Item.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::ABoss" Collapsed="true">
+    <Position X="1" Y="6.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BAQRpAAABAAFARAIoAgAQASABQAABWiYQwAAADAMcUo=</HashCode>
+      <FileName>Source\ABoss.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Attack" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ADQAIABIAAcAAQgAAKBDAAAAgIAEKIECAgA4AQAEQAA=</HashCode>
+      <FileName>Source\Attack.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::BloodBar" Collapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAIAAQAAAAEAAAAAAAAAAAAAAAQAAQqAIAAAAA=</HashCode>
+      <FileName>Source\BloodBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Arrow" Collapsed="true">
+    <Position X="3" Y="7" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>wAUAAAAAAAIAAAAAAJABAAAAAAAEAIEIAggwAIAGAAA=</HashCode>
+      <FileName>Source\Arrow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::BlueGoblin" Collapsed="true">
+    <Position X="3" Y="6.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BCQQsAEAhAAEARAIAAgAIASAhUAAACiQQQAAAAAEsUo=</HashCode>
+      <FileName>Source\BlueGoblin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::BlueSlime" Collapsed="true">
+    <Position X="4" Y="5.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BAQQoAAABAAEARAIBAgAIASABQAAAGiQQQAAAAQEMUo=</HashCode>
+      <FileName>Source\BlueSlime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::BossBloodBar" Collapsed="true">
+    <Position X="7.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAIAAQAAAAEAAAAAAAAAAAAAAAAAAYqAIAAAAA=</HashCode>
+      <FileName>Source\BossBloodBar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Box" Collapsed="true">
+    <Position X="5" Y="6.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BBQAIAAABIAAARAAAAAAIgSABQYAACiQAQAAAAAEMUo=</HashCode>
+      <FileName>Source\Box.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Clock" Collapsed="true">
+    <Position X="11.5" Y="5.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAIAIQAAAAAAAAAAAAAFAAAAAAAAAAAAAAEAgA=</HashCode>
+      <FileName>Source\Clock.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Health" Collapsed="true">
+    <Position X="15.5" Y="5.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAAAIAAAAAAAAAAAAAAAAABAAAAAIAAAAAEAAA=</HashCode>
+      <FileName>Source\Health.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::IceBird" Collapsed="true">
+    <Position X="2" Y="5.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BKURpAQLhAAEAdAbIhgAIASQhUCCAGiQQyAAgEAE8Uo=</HashCode>
+      <FileName>Source\IceBird.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::ItemAttribute" Collapsed="true">
+    <Position X="13.5" Y="5.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQASACIAIUCAAAAAAAAAAAABAAAAAAAAAAAAAAEAAg=</HashCode>
+      <FileName>Source\ItemAttribute.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map1_1" Collapsed="true">
+    <Position X="4.25" Y="9.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEgAAAAUAAgAAAAAUAEAYAAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map1_1.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::PlayerStatus" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwAEAAAKACQRQQwGgQA7BggAqEgAggQASFAgCAAAGEA=</HashCode>
+      <FileName>Source\PlayerStatus.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Potion" Collapsed="true">
+    <Position X="12.5" Y="6.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAIAIQAAAAAAAAAAAAAhAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Source\Potion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::ProtectiveCover" Collapsed="true">
+    <Position X="14.5" Y="6.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAIAIQAAAAAAAAAAAAAFAAAAAAAAACAAAAEAAA=</HashCode>
+      <FileName>Source\ProtectiveCover.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::RandomAttribute" Collapsed="true">
+    <Position X="16.5" Y="6.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>ABQACAAIAIQAAAAAAAAAAAAABAACAAAAAAAgAAAEAAA=</HashCode>
+      <FileName>Source\RandomAttribute.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Scarecrow" Collapsed="true">
+    <Position X="6" Y="5.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>BAQAIAAABAAAARAAAEAAIASABQAAACiQAQAAAAAEMUo=</HashCode>
+      <FileName>Source\Scarecrow.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Shoe" Collapsed="true">
+    <Position X="10.5" Y="6.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAQACAAIAIQAAAAAAAAAAAAAFAAAABAAAAAAAAAEAAA=</HashCode>
+      <FileName>Source\Shoe.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map1_2" Collapsed="true">
+    <Position X="6" Y="9.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEQAAAAUAAgAAAAAUAEAYAAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map1_2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map1_3" Collapsed="true">
+    <Position X="8" Y="9.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEIAAAAUAAgAAAAAUAEAYAAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map1_3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map2_1" Collapsed="true">
+    <Position X="5" Y="11" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEAAAAAUAAgAAAAAYAEBYAAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map2_1.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map2_3" Collapsed="true">
+    <Position X="8.5" Y="11" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEAAAAAUAAgAAAAAYAEAYAAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map2_3.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map2_4" Collapsed="true">
+    <Position X="10.25" Y="11" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEAAAAAUAAgAAAAAYAEAYCAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map2_4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map1_4" Collapsed="true">
+    <Position X="9.75" Y="9.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEABAAAUAAgAAAAAUAEAYAAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map1_4.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="game_framework::Map2_2" Collapsed="true">
+    <Position X="6.75" Y="11" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AIQQEACEAAAAAUAAgAAAAAYAEA4AAAAIACAAAAAEQEA=</HashCode>
+      <FileName>Source\Map2_2.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="AUDIO_ID" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAEQDABAAAAQEAAgJAAkAEQBAYAAAAQABAABBAIAE=</HashCode>
+      <FileName>Source\Util.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="STAGE" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAgAQ=</HashCode>
+      <FileName>Source\Util.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ELEMENT_ATTRIBUTE" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAEAAAAAAAAAQAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Source\Util.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="ATTACK_NAME" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAQAgACAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>Source\Util.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft JhengHei UI" Size="9" />
+</ClassDiagram>
