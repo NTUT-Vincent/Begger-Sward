@@ -6,12 +6,9 @@
 	/////////////////////////////////////////////////////////////////////////////
 	constexpr int OBJS_DEFAULT_SPEED = 4; //物件固定移動速度;
 	constexpr int SMOOTH_MOVE_TRESHOLD = OBJS_DEFAULT_SPEED * 3 - 1; //平滑移動門檻值
-
 	constexpr int HERO_MOVE_SPEED = 5;		//英雄移動速度
 	constexpr int SKILL_EVO_TVALUE = 22;	//技能進化的Treshold Value
-
 	constexpr int MAX_ENEMY_PER_MAP = 10;//最大的敵人存量
-
 	const double PROB_ENEMY_TURN = 0.02;//敵人自動轉向機率
 	const double PROB_ITEM_GEN = 0.005;//打死敵人生寶物的機率
 	///以下為各鍵值
@@ -44,9 +41,6 @@
 	const char J_STG2_2 = 0x4E; //N
 	const char J_STG2_3 = 0x4D; //M
 	const char J_STG2_4 = 0x4A; //J
-
-
-
 	///音效
 	enum AUDIO_ID {				// 定義各種音效的編號
 		AUDIO_DING,				// 0
@@ -77,8 +71,8 @@
 		AUDIO_SHOE,
 		AUDIO_SING
 	};
-
-	enum STAGE {				// 定義各種音效的編號
+	// 定義各關卡的編號
+	enum STAGE {				
 		STAGE_1_1,				
 		STAGE_1_2,
 		STAGE_1_3,
@@ -89,7 +83,7 @@
 		STAGE_2_4,
 		CONGRATULATION
 	};
-
+	// 定義各種屬性的編號
 	enum ELEMENT_ATTRIBUTE {
 		FIRE,					//火屬性
 		ICE,					//冰屬性
@@ -97,14 +91,12 @@
 		NO,
 
 	};
-
+	// 定義各種攻擊的編號
 	enum ATTACK_NAME {
 		FIRE_BALL,				//火球
 		ICE_BALL,				//Q技能的冰
 		GRASS_BALL,				//Q技能的草
 		FIRE_FLAME,
 		GRASS_TORNADO,
-
 	};
-
-#endif // !UTIL_H
+#endif

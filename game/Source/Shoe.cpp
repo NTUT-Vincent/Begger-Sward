@@ -8,62 +8,57 @@
 #include "Maps.h"
 #include "Item.h"
 #include "Shoe.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// Shoe: Item class
 	/////////////////////////////////////////////////////////////////////////////
-
-	
 	Shoe::Shoe()
 	{
 	}
-
 	void Shoe::load()
 	{
 		clock_pic.LoadBitmap(".\\bitmaps\\shoes.bmp", RGB(246, 246, 246));
 		item_on_status_bar.LoadBitmapA(".\\bitmaps\\shoes.bmp", RGB(246, 246, 246));
 	}
-
 	void Shoe::OnMove(Maps *m, Hero *h)
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 20 && getNumOfBox() % 100 <= 40) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 20 && getNumOfBox() % 100 <= 40) 
+		{
 			Shoe * p = new Shoe();
 			p->load();
 			h->addItem(p);
 			setExist(false);
 		}
 	}
-
 	void Shoe::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 > 20 && getNumOfBox() % 100 <= 40) {
+		if (isExist() && getNumOfBox() % 100 > 20 && getNumOfBox() % 100 <= 40) 
+		{
 			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			clock_pic.ShowBitmap();
 		}
 		
 	}
-
 	void Shoe::effect(Hero *h)
 	{
 		h->setSpeedUp(true);
 		setIsUsed(false);
 	}
-
 	bool Shoe::intercect(Hero * h)
 	{
-		if (isExist()) {
-			if (h->GetX2() >= _x + 10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) {
+		if (isExist()) 
+		{
+			if (h->GetX2() >= _x + 10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) 
+			{
 				return true;
 			}
-			else {
+			else 
+			{
 				return false;
 			}
 		}
 		return false;
 	}
-
-
 }
