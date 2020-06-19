@@ -43,6 +43,7 @@ namespace game_framework {
 	}
 	void Shoe::effect(Hero *h)
 	{
+		//改變Hero的速度(瞬間加速)
 		h->setSpeedUp(true);
 		setIsUsed(false);
 	}

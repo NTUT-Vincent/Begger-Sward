@@ -1,6 +1,5 @@
 #ifndef REDSLIME_H
 #define REDSLIME_H
-
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"

@@ -1,14 +1,11 @@
 #ifndef __PRETECTEDCOVER_H
 #define __PROTECTEDCOVER_H
-
-
 #include "Maps.h"
 #include "Character.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供繞圈圈的球
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供道具 : 防護罩											   //
+	// 道具可由箱子或擊殺怪物獲得											   //
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
 	class ProtectiveCover: public Item
@@ -20,11 +17,9 @@ namespace game_framework {
 		void OnShow(Maps *m);
 		void effect(Hero *h);				//道具的效果
 		bool intercect(Hero *h) ;
-		
 	private:
 		int _x, _y;
 		CMovingBitmap clock_pic;
 	};
 }
-
-#endif // !Health_H
+#endif

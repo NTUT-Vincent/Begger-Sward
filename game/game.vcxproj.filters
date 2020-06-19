@@ -282,9 +282,6 @@
     <ClInclude Include="Source\Util.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Objs.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Attack.h">
       <Filter>MyGame</Filter>
     </ClInclude>

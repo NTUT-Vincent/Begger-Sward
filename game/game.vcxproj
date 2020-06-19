@@ -370,7 +370,6 @@
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />
     <ClInclude Include="Source\MainFrm.h" />
-    <ClInclude Include="Source\Objs.h" />
     <ClInclude Include="Source\PlayerStatus.h" />
     <ClInclude Include="Source\Potion.h" />
     <ClInclude Include="Source\ProtectiveCover.h" />
