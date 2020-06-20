@@ -16,9 +16,7 @@
 #include "ItemAttribute.h"
 
 namespace game_framework {
-
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
-
 	Arrow::Arrow(int x, int y)
 	{
 		_arrowX = x;
@@ -26,7 +24,6 @@ namespace game_framework {
 		fly_direction = 0;
 		_attackIsFlying = false;
 	}
-
 	Arrow::Arrow()
 	{
 		_arrowX = 280;
@@ -34,7 +31,6 @@ namespace game_framework {
 		fly_direction = 0;
 		_attackIsFlying = false;
 	}
-
 	void Arrow::loadBitmap()
 	{
 		arrowLeft.LoadBitmap(".\\bitmaps\\arrowLeft.bmp", RGB(0, 0, 0));
@@ -42,7 +38,6 @@ namespace game_framework {
 		arrowUp.LoadBitmap(".\\bitmaps\\arrowUp.bmp", RGB(0, 0, 0));
 		arrowDown.LoadBitmap(".\\bitmaps\\arrowDown.bmp", RGB(0, 0, 0));
 	}
-
 	void Arrow::OnMove(Maps * m)
 	{
 		if (m->isEmpty(_arrowX, _arrowY)) {								//如果下個位置是empty就可以繼續飛
@@ -55,9 +50,7 @@ namespace game_framework {
 			if (fly_direction == 3 && m->isEmpty(_arrowX, _arrowY + arrowDown.Height()))
 				_arrowY += 8;
 		}
-		
 	}
-
 	void Arrow::OnShow(Maps * m)
 	{
 		if (fly_direction == 0) {
@@ -77,28 +70,23 @@ namespace game_framework {
 			arrowDown.ShowBitmap();
 		}
 	}
-
 	void Arrow::setArrowXY(int x, int y)
 	{
 		_arrowX = x;
 		_arrowY = y;
 	}
-
 	void Arrow::setDirection(int direction)
 	{
 		fly_direction = direction;
 	}
-
 	void Arrow::setAttackIsFlying(bool b)
 	{
 		_attackIsFlying = b;
 	}
-
 	int Arrow::getX1()
 	{
 		return _arrowX;
 	}
-
 	int Arrow::getX2()
 	{
 		if (fly_direction == 0)						//傳回X2的值
@@ -118,12 +106,10 @@ namespace game_framework {
 			return arrowDown.Width() + _arrowX;
 		}
 	}
-
 	int Arrow::getY1()
 	{
 		return _arrowY;
 	}
-
 	int Arrow::getY2()
 	{
 		if (fly_direction == 0)
@@ -143,6 +129,4 @@ namespace game_framework {
 			return arrowDown.Height() + _arrowY;
 		}
 	}
-
-
 }

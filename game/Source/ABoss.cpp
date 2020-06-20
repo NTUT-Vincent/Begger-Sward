@@ -36,11 +36,9 @@ namespace game_framework {
 		status_counter = 840;								//用來算是否要換status
 		step_size = 2;
 	}
-
 	ABoss::~ABoss()
 	{
 	}
-
 	void ABoss::LoadBitmap()
 	{
 		boss_blood_bar.loadBloodBar();
@@ -55,7 +53,6 @@ namespace game_framework {
 		char *filename1_2[4] = { ".\\bitmaps\\ABossR1.bmp",".\\bitmaps\\ABossR2.bmp",".\\bitmaps\\ABossR3.bmp",".\\bitmaps\\ABossR2.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
-		
 		/////攻擊的動畫
 		char *filename2_1[2] = { ".\\bitmaps\\ABoss_attackL1.bmp",".\\bitmaps\\ABoss_attackL2.bmp"};
 		for (int i = 0; i < 2; i++)	// 載入動畫(由6張圖形構成)
@@ -65,12 +62,10 @@ namespace game_framework {
 		for (int i = 0; i < 2; i++)	// 載入動畫(由6張圖形構成)
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
-
 		q_attack.loadBitmap();
 		for (int i = 0; i < 18; i++) {
 			ice_attack[i].loadBitmap();
 		}
-		
 		/////準備攻擊的動畫
 		char *filename3_1[3] = { ".\\bitmaps\\Aboss_PrepareAttackL1.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
@@ -80,7 +75,6 @@ namespace game_framework {
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
 			prepare_attackR.AddBitmap(filename3_2[i], RGB(0, 0, 0));
 		prepare_attackR.SetDelayCount(3);
-		
 		/////回去走路的動畫
 		char *filename4_1[3] = { ".\\bitmaps\\Aboss_PrepareAttackL3.bmp",".\\bitmaps\\Aboss_PrepareAttackL2.bmp",".\\bitmaps\\Aboss_PrepareAttackL1.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由6張圖形構成)
@@ -91,8 +85,8 @@ namespace game_framework {
 			back_to_walkR.AddBitmap(filename4_2[i], RGB(0, 0, 0));
 		back_to_walkR.SetDelayCount(3);
 	}
-
-	void ABoss::OnMove(Maps * m) {
+	void ABoss::OnMove(Maps * m) 
+	{
 		//TRACE("-----------------------------%d %d %d %d \n", _x, _y, hero_on_map->GetX1(), hero_on_map->GetY1());
 		const int STEP_SIZE = 3;
 		if (isAlive()) {					
@@ -111,7 +105,6 @@ namespace game_framework {
 			itemsOnMove(m);
 		}
 	}
-
 	void ABoss::OnShow(Maps *m)
 	{
 		//TRACE("-----------------------------%d %d %d \n", status_counter, status, _direction);
@@ -194,34 +187,27 @@ namespace game_framework {
 				break;
 			}
 			iceAttackShow(m);
-			
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
 		}
-
 	}
-
 	int ABoss::GetX1()
 	{
 		return _x;
 	}
-
 	int ABoss::GetY1()
 	{
 		return _y;
 	}
-
 	int ABoss::GetX2()
 	{
 		return _x + walkingRight.Width();
 	}
-
 	int ABoss::GetY2()
 	{
 		return _y + walkingRight.Height();
 	}
-
 	void ABoss::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
@@ -236,7 +222,6 @@ namespace game_framework {
 			items.at(i)->Initialize();
 		}
 	}
-
 	bool ABoss::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
@@ -250,30 +235,26 @@ namespace game_framework {
 		}
 		return false;
 	}
-
-	void ABoss::SetMovingDown(bool b) {
+	void ABoss::SetMovingDown(bool b) 
+	{
 		isMovingDown = b;
 	}
-
-	void ABoss::SetMovingUp(bool b) {
+	void ABoss::SetMovingUp(bool b)
+	{
 		isMovingUp = b;
 	}
-
-	void ABoss::SetMovingLeft(bool b) {
+	void ABoss::SetMovingLeft(bool b) 
+	{
 		isMovingLeft = b;
 	}
-
 	void ABoss::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
-
 	void ABoss::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
-
-
 	void ABoss::movement(Maps *m)
 	{
 		int x = (GetX1()+ GetX2()) / 2;
@@ -371,18 +352,11 @@ namespace game_framework {
 			break; }
 		}
 		}
-		
-		
 	}
-
-
-
-
 	CRect * ABoss::GetRect()
 	{
 		return &EnemyRect;
 	}
-
 	void ABoss::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0) {
@@ -390,7 +364,6 @@ namespace game_framework {
 			hero_on_map->offsetHp(attack_damage);	//英雄扣血
 		}
 	}
-
 	void ABoss::iceAttack()		//開始ice attack的function
 	{
 		if (!isUsingQ) {
@@ -414,9 +387,7 @@ namespace game_framework {
 				ice_attack[i].setStepSize((int)(sin(i * 20.0 * 3.14159 / 180.0) * 10), (int)(cos(i * 20 * 3.14159 / 180.0) * 10));
 			}
 		}
-
 	}
-
 	void ABoss::iceAttackMove(Maps *m) //call attack的onMove 並檢查是否有碰到hero
 	{
 		if (isUsingQ) {
@@ -440,7 +411,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void ABoss::iceAttackShow(Maps * m)					//ice attack的onShow
 	{
 		if (isUsingQ) {

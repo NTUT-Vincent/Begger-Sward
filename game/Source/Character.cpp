@@ -11,16 +11,9 @@
 #include "Potion.h"
 #include "Clock.h"
 #include "Character.h"
-
-
 namespace game_framework {
-
-	
-	
-
 	string Character::getName()
 	{
 		return _name;
 	}
-
 }

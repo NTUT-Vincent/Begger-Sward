@@ -9,32 +9,23 @@
 #include "BossBloodBar.h"
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
 	BossBloodBar::BossBloodBar()
 	{
 		_x = 0;
 		_y = 0;
 		full_hp = 0;
 	}
-
-
 	void BossBloodBar::setFullHP(int n) {
 		full_hp = n;
 	}
-
 	void BossBloodBar::setXY(int x, int y) {
 		_x = x;
 		_y = y;
 	}
-
 	int BossBloodBar::getFullHP()
 	{
 		return (int)full_hp;
 	}
-
 	void BossBloodBar::loadBloodBar() {
 		blood_bar[0].LoadBitmap(".\\bitmaps\\boss_blood_almost_die.bmp", RGB(0, 0, 0));
 		blood_bar[1].LoadBitmap(".\\bitmaps\\boss_blood_almost_die.bmp", RGB(0, 0, 0));
@@ -49,7 +40,6 @@ namespace game_framework {
 		blood_bar[10].LoadBitmap(".\\bitmaps\\boss_blood_little_damaged.bmp", RGB(0, 0, 0));
 		blood_bar[11].LoadBitmap(".\\bitmaps\\boss_blood_full.bmp", RGB(0, 0, 0));
 	}
-
 	void BossBloodBar::showBloodBar(Maps *m1, int hp) {
 		if (hp > full_hp) {
 			setFullHP(hp);

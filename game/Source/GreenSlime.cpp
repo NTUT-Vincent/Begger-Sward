@@ -14,29 +14,23 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
-
 namespace game_framework {
-
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
-
 	GreenSlime::GreenSlime()
 	{
 		_x = 384;
 		_y = 384;
 		attack_damage = 0;
 	}
-
 	GreenSlime::GreenSlime(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenSlime", h, PLANT)
 	{
 		attack_damage = 70;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
-
 	GreenSlime::~GreenSlime()
 	{
 	}
-
 	void GreenSlime::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
@@ -61,7 +55,6 @@ namespace game_framework {
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
 	}
-
 	void GreenSlime::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
@@ -75,7 +68,6 @@ namespace game_framework {
 			itemsOnMove(m);
 		}
 	}
-
 	void GreenSlime::OnShow(Maps *m)
 	{
 		if (isAlive()) {
@@ -88,7 +80,6 @@ namespace game_framework {
 				}
 				else {
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-					//enemy.SetTopLeft(x, y);
 					walkingLeft.OnShow();
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
@@ -103,40 +94,32 @@ namespace game_framework {
 				}
 				else {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
-					//enemy.SetTopLeft(x, y);
 					walkingRight.OnShow();
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
 				}
 			}
-			
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
 		}
-
 	}
-
 	int GreenSlime::GetX1()
 	{
 		return _x;
 	}
-
 	int GreenSlime::GetY1()
 	{
 		return _y;
 	}
-
 	int GreenSlime::GetX2()
 	{
 		return _x + walkingRight.Width();
 	}
-
 	int GreenSlime::GetY2()
 	{
 		return _y + walkingRight.Height();
 	}
-
 	void GreenSlime::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
@@ -150,7 +133,6 @@ namespace game_framework {
 			items.at(i)->Initialize();
 		}
 	}
-
 	bool GreenSlime::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
@@ -163,37 +145,28 @@ namespace game_framework {
 			}
 		}
 		return false;
-
 	}
-
-	//bool Enemy::cannotPass(Hero * hero)
-	//{
-	//	// 檢測擦子所構成的矩形是否碰到球
-	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
-	//}
-	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
-	void GreenSlime::SetMovingDown(bool b) {
+	void GreenSlime::SetMovingDown(bool b) 
+	{
 		isMovingDown = b;
 	}
-
-	void GreenSlime::SetMovingUp(bool b) {
+	void GreenSlime::SetMovingUp(bool b) 
+	{
 		isMovingUp = b;
 	}
-
-	void GreenSlime::SetMovingLeft(bool b) {
+	void GreenSlime::SetMovingLeft(bool b) 
+	{
 		isMovingLeft = b;
 	}
-
-	void GreenSlime::SetMovingRight(bool b) {
+	void GreenSlime::SetMovingRight(bool b) 
+	{
 		isMovingRight = b;
 	}
-
 	void GreenSlime::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
-
 	void GreenSlime::movement(Maps *m)
 	{
 		int x = GetX1();
@@ -215,18 +188,11 @@ namespace game_framework {
 				_y -= step_size;
 			}
 		}
-		
-		
 	}
-
-
-
-
 	CRect * GreenSlime::GetRect()
 	{
 		return &EnemyRect;
 	}
-
 	void GreenSlime::attack()
 	{
 		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
@@ -239,7 +205,6 @@ namespace game_framework {
 			normalAttackR.Reset();
 		}
 	}
-
 	void GreenSlime::attackShow(Maps * m)
 	{
 		if (isAttacking) {
@@ -251,5 +216,4 @@ namespace game_framework {
 			}
 		}
 	}
-
 }

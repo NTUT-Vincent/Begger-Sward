@@ -24,11 +24,11 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 50 &&  getNumOfBox() % 100 <= 75) 
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 50 &&  getNumOfBox() % 100 <= 75)  //如果num_ofBox%100 = 50-75 箱子會掉這個道具
 		{
 			Potion * p = new Potion();
 			p->load();
-			h->addItem(p);
+			h->addItem(p);					//push給英雄道具欄的vector
 			setExist(false);
 		}
 	}
@@ -42,7 +42,7 @@ namespace game_framework {
 	}
 	void Potion::effect(Hero *h)
 	{
-		for (int i = 0; i < 100; i++) 
+		for (int i = 0; i < 100; i++)				//使用藥水後會增加100hp，但不會加超過最大生命
 		{
 			if (h->getHP() < h->getFullHP()) 
 			{

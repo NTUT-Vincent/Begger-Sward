@@ -10,10 +10,7 @@
 #include "Maps.h"
 #include "Potion.h"
 #include "Clock.h"
-
-
 namespace game_framework {
-
 	Enemy::Enemy() : Character("scarecrow")
 	{
 		_x = 384;
@@ -21,7 +18,6 @@ namespace game_framework {
 		hp = 1200;
 		attack = 0;
 	}
-
 	Enemy::Enemy(int x, int y, int monsterHp, string name, Hero *h, ELEMENT_ATTRIBUTE a) : Character(name)
 	{
 		_x = x;
@@ -38,14 +34,12 @@ namespace game_framework {
 			items.push_back(new Health(monsterHp/40));
 		}
 	}
-
 	Enemy::~Enemy()
 	{
 		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
 			delete *it_i;
 		}
 	}
-
 	int Enemy::distanceToHero()
 	{
 		if (getName() == "scarecrow") {
@@ -69,34 +63,27 @@ namespace game_framework {
 			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
 		}
 	}
-
 	double Enemy::hpProportion()
 	{
 		return (double)(hp) / full_hp;
 	}
-
 	void Enemy::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
-
 	void Enemy::SetMovingUp(bool b) {
 		isMovingUp = b;
 	}
-
 	void Enemy::SetMovingLeft(bool b) {
 		isMovingLeft = b;
 	}
-
 	void Enemy::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
-
 	void Enemy::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
-
 	void Enemy::offsetHP(int offset, ELEMENT_ATTRIBUTE attribute)
 	{
 		if (GetName() == "Box") {
@@ -115,18 +102,13 @@ namespace game_framework {
 			}
 			knockBack();
 		}
-		
 	}
-		
-	
-
 	void Enemy::itemsOnMove(Maps * m)
 	{
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->OnMove(m, hero_on_map);
 		}
 	}
-
 	void Enemy::itemsOnShow(Maps *m)
 	{
 		for (unsigned i = 0; i < items.size(); i++) {
@@ -134,7 +116,6 @@ namespace game_framework {
 			items.at(i)->OnShow(m);
 		}
 	}
-
 	bool Enemy::isAlive()
 	{
 		if (hp <= 0) {
@@ -142,17 +123,14 @@ namespace game_framework {
 		}
 		return true;
 	}
-
 	CRect * Enemy::GetRect()
 	{
 		return &EnemyRect;
 	}
-
 	bool Enemy::isAttack()
 	{
 		return isAttacking;
 	}
-
 	bool Enemy::isCounterAttribute(ELEMENT_ATTRIBUTE a, ELEMENT_ATTRIBUTE b)
 	{
 		if (a == FIRE) {
@@ -172,7 +150,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	void Enemy::knockBack()
 	{
 		if (_direction == 0) {
@@ -182,10 +159,8 @@ namespace game_framework {
 			_x -= 1;
 		}
 	}
-
 	string Enemy::GetName()
 	{
 		return getName();
 	}
-
 }

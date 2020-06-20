@@ -17,27 +17,22 @@
 #include "ItemAttribute.h"
 
 namespace game_framework {
-
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
-
 	BlueGoblin::BlueGoblin()
 	{
 		_x = 384;
 		_y = 384;
 		attack_damage = 0;
 	}
-
 	BlueGoblin::BlueGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "BlueGoblin", h, ICE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
-
 	BlueGoblin::~BlueGoblin()
 	{
 	}
-
 	void BlueGoblin::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
@@ -57,8 +52,8 @@ namespace game_framework {
 		arrowAttackR.LoadBitmap(".\\bitmaps\\blue_arrow_attackR.bmp", RGB(0, 0, 0));
 		arr.loadBitmap();
 	}
-
-	void BlueGoblin::OnMove(Maps * m) {
+	void BlueGoblin::OnMove(Maps * m) 
+	{
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
 			//attack();
@@ -78,7 +73,6 @@ namespace game_framework {
 			itemsOnMove(m);
 		}
 	}
-
 	void BlueGoblin::OnShow(Maps *m)
 	{
 		if (isAlive()) {									
@@ -111,36 +105,28 @@ namespace game_framework {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
 				}
-				
 			}
-			
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
 		}
-
 	}
-
 	int BlueGoblin::GetX1()
 	{
 		return _x;
 	}
-
 	int BlueGoblin::GetY1()
 	{
 		return _y;
 	}
-
 	int BlueGoblin::GetX2()
 	{
 		return _x + walkingRight.Width();
 	}
-
 	int BlueGoblin::GetY2()
 	{
 		return _y + walkingRight.Height();
 	}
-
 	void BlueGoblin::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
@@ -156,7 +142,6 @@ namespace game_framework {
 			items.at(i)->Initialize();
 		}
 	}
-
 	bool BlueGoblin::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，Bitmap本身比身體大太多。
@@ -169,31 +154,24 @@ namespace game_framework {
 			}
 		}
 		return false;
-
 	}
-
 	void BlueGoblin::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
-
 	void BlueGoblin::SetMovingUp(bool b) {
 		isMovingUp = b;
 	}
-
 	void BlueGoblin::SetMovingLeft(bool b) {
 		isMovingLeft = b;
 	}
-
 	void BlueGoblin::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
-
 	void BlueGoblin::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
-
 	void BlueGoblin::movement(Maps *m)
 	{
 		int x = GetX1();
@@ -221,28 +199,17 @@ namespace game_framework {
 					_x += step_size;
 			}
 		}
-		
-		
 	}
-
-
-
-
 	CRect * BlueGoblin::GetRect()
 	{
 		return &EnemyRect;
 	}
-
 	void BlueGoblin::attack()
 	{
-		
 	}
-
 	void BlueGoblin::attackShow(Maps * m)
 	{
-		
 	}
-
 	void BlueGoblin::arrowAttack()
 	{
 		if (!isAttacking && arrowAttackCD == 0)
@@ -285,7 +252,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void BlueGoblin::arrowAttackMove(Maps * m)
 	{
 		if (isAttacking) {
@@ -300,7 +266,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void BlueGoblin::arrowAttackShow(Maps * m)
 	{
 		if (isAttacking) {
@@ -318,5 +283,4 @@ namespace game_framework {
 			}
 		}
 	}
-
 }

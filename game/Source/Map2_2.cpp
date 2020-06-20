@@ -12,9 +12,8 @@
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// 地圖的class都很相似 註解都可以參考Map1_1
 	/////////////////////////////////////////////////////////////////////////////
-
 	Map2_2::Map2_2():Maps(-200, -200) {
 		all_enemy_clear = 0;
 		for (int i = 0; i < 18; i++) {
@@ -36,29 +35,23 @@ namespace game_framework {
 			}
 		}
 	}
-
 	Map2_2::~Map2_2()
 	{
-
 	}
-
 	void Map2_2::Initialize()
 	{
 		setXY(-200, -200);
 	}
-
 	void Map2_2::setPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] = n;
 	}
-
 	void Map2_2::setClear(bool b)
 	{
 		all_enemy_clear = b;
 	}
-
 	bool Map2_2::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;
@@ -68,7 +61,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	bool Map2_2::inFinishArea(int x, int y)
 	{
 		int gx = x / 64;
@@ -78,7 +70,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	bool Map2_2::isOnIce(int x, int y)
 	{
 		int gx = x / 64;
@@ -88,20 +79,19 @@ namespace game_framework {
 		}
 		return false;
 	}
-
-	void Map2_2::OnMove() {
-
+	void Map2_2::OnMove()
+	{
 	}
-
-	void Map2_2::LoadBitmap() {
+	void Map2_2::LoadBitmap() 
+	{
 		firstmap.LoadBitmap(IDB_MAP2_2);
 		char *filename1_1[4] = { ".\\bitmaps\\gate5.bmp",".\\bitmaps\\gate6.bmp",".\\bitmaps\\gate7.bmp",".\\bitmaps\\gate8.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		gate.SetDelayCount(3);
 	}
-
-	void Map2_2::OnShow() {
+	void Map2_2::OnShow()
+	{
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
 		if (all_enemy_clear == 1)
@@ -111,32 +101,26 @@ namespace game_framework {
 			gate.OnShow();
 		}
 	}
-
 	void Map2_2::getHeroX(int x)
 	{
 		hx = x;
 	}
-
 	void Map2_2::getHeroY(int y)
 	{
 		hy = y;
 	}
-
 	int Map2_2::screenX(int x)
 	{
 		return x + getSX();
 	}
-
 	int Map2_2::screenY(int y)
 	{
 		return y + getSY();
 	}
-
 	void Map2_2::setIceWallPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] += n;
 	}
-
 }

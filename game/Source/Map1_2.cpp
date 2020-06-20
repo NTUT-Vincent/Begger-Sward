@@ -12,9 +12,8 @@
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// 地圖的class都很相似 註解都可以參考Map1_1
 	/////////////////////////////////////////////////////////////////////////////
-
 	Map1_2::Map1_2():Maps(-200, -200) {
 		all_enemy_clear = 0;
 		for (int i = 0; i < 16; i++) {
@@ -32,29 +31,23 @@ namespace game_framework {
 		map[1][2] = map[1][3] = map[2][2] = map[13][2] = map[14][2] = map[14][3] = 1;
 		map[1][11] = map[1][10] = map[2][11] = map[14][10] = map[13][11] = map[14][11] = 1;
 	}
-
 	Map1_2::~Map1_2()
 	{
-
 	}
-
 	void Map1_2::Initialize()
 	{
 		setXY(-200, -200);
 	}
-
 	void Map1_2::setPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] = n;
 	}
-
 	void Map1_2::setClear(bool b)
 	{
 		all_enemy_clear = b;
 	}
-
 	bool Map1_2::isEmpty(int x, int y) const
 	{
 		int gx = x / 64;
@@ -64,7 +57,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	bool Map1_2::inFinishArea(int x, int y)
 	{
 		int gx = x / 64;
@@ -74,7 +66,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	bool Map1_2::isOnIce(int x, int y)
 	{
 		int gx = x / 64;
@@ -84,11 +75,9 @@ namespace game_framework {
 		}
 		return false;
 	}
-
-	void Map1_2::OnMove() {
-
+	void Map1_2::OnMove()
+	{
 	}
-
 	void Map1_2::LoadBitmap() {
 		firstmap.LoadBitmap(IDB_MAP1_2);
 		char *filename1_1[4] = { ".\\bitmaps\\gate1.bmp",".\\bitmaps\\gate2.bmp",".\\bitmaps\\gate3.bmp",".\\bitmaps\\gate4.bmp" };
@@ -96,7 +85,6 @@ namespace game_framework {
 			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		gate.SetDelayCount(3);
 	}
-
 	void Map1_2::OnShow() {
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
@@ -107,32 +95,26 @@ namespace game_framework {
 			gate.OnShow();
 		}
 	}
-
 	void Map1_2::getHeroX(int x)
 	{
 		hx = x;
 	}
-
 	void Map1_2::getHeroY(int y)
 	{
 		hy = y;
 	}
-
 	int Map1_2::screenX(int x)
 	{
 		return x + getSX();
 	}
-
 	int Map1_2::screenY(int y)
 	{
 		return y + getSY();
 	}
-
 	void Map1_2::setIceWallPos(int x, int y, int n)
 	{
 		int gx = x / 64;
 		int gy = y / 64;
 		map[gx][gy] += n;
 	}
-
 }

@@ -7,10 +7,9 @@
 #include "Enemy.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供一個敵人													   //
+	// 這個class提供一個敵人 他是boss													   //
 	//		 																	//
 	/////////////////////////////////////////////////////////////////////////////
-
 	class ABoss :public Enemy
 	{
 	public:
@@ -20,27 +19,21 @@ namespace game_framework {
 		void LoadBitmap();					//加載敵人Bitmap
 		void OnShow(Maps *m) override;		//顯示敵人於畫面上
 		void OnMove(Maps *m);				//敵人移動
-
 		int GetX1();						//回傳最左側X值
 		int GetY1();						//回傳最上側Y值
 		int GetX2();						//回傳最右側X值
 		int GetY2();						//回傳最下側Y值
-
 		void Initialize()override;			//初始化
 		bool intersect(int x1, int x2, int y1, int y2) override;
-
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Enemy的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
-
 		void SetMovingDown(bool b);		//  設定是否往下左右移動
 		void SetMovingUp(bool b);		//
 		void SetMovingLeft(bool b);		//
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
 		void movement(Maps *m);			//決定角色移動的方式
-
-		//void attacked(int n, ELEMENT_ATTRIBUTE a);		//增減此Enemy的血量(enemys->at->heroExistingArea(的攻擊範圍作增減))
 		CRect * GetRect();					//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		//用來攻擊的
 		void attack();					//用來判定是否要攻擊//
@@ -80,8 +73,6 @@ namespace game_framework {
 		Attack ice_attack[18];			//攻擊時丟的東西
 		int skillTimes;					//用來算攻擊要飛多遠
 		bool isUsingQ;
-
 	};
 }
-
 #endif 

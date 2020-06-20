@@ -9,11 +9,6 @@
 #include "Attack.h"
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
-
 	Attack::Attack(int x, int y)
 	{
 		_x = x;
@@ -25,7 +20,6 @@ namespace game_framework {
 		_attackIsFlying = false;
 		flame_status = 0;
 	}
-
 	Attack::Attack()
 	{
 		_x = 280;
@@ -38,15 +32,12 @@ namespace game_framework {
 		flame_status = 0;
 		_attackIsFlying = false;
 	}
-
 	void Attack::loadBitmap()
 	{
 		fire_attack.LoadBitmap(IDB_FIREATTACK, RGB(0, 0, 0));
 		ice_attack.LoadBitmap(IDB_ATTACK1, RGB(0, 0, 0));
 		plant_attack.LoadBitmap(IDB_ATTACKPLANT, RGB(0, 0, 0));
-		
 		//向左火焰動畫
-
 		char *filename1_1[6] = { ".\\bitmaps\\flameL1.bmp",".\\bitmaps\\flameL2.bmp",".\\bitmaps\\flameL3.bmp",".\\bitmaps\\flameL4.bmp", ".\\bitmaps\\flameL5.bmp", ".\\bitmaps\\flameL6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_L1.AddBitmap(filename1_1[i], RGB(0, 0, 0));
@@ -55,9 +46,7 @@ namespace game_framework {
 		for (int i = 0; i < 4; i++)	// 載入動畫(由4張圖形構成)
 			flame_L2.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		flame_L2.SetDelayCount(2);
-		
 		//向右火焰動畫
-		
 		char *filename2_1[6] = { ".\\bitmaps\\flameR1.bmp",".\\bitmaps\\flameR2.bmp",".\\bitmaps\\flameR3.bmp",".\\bitmaps\\flameR4.bmp", ".\\bitmaps\\flameR5.bmp", ".\\bitmaps\\flameR6.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			flame_R1.AddBitmap(filename2_1[i], RGB(0, 0, 0));
@@ -66,32 +55,27 @@ namespace game_framework {
 		for (int i = 0; i < 4; i++)	// 載入動畫(由4張圖形構成)
 			flame_R2.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		flame_R2.SetDelayCount(2);
-
 		//冰球動畫
 		char *filename_ice_ball[3] = { ".\\bitmaps\\ice_attack1.bmp",".\\bitmaps\\ice_attack2.bmp",".\\bitmaps\\ice_attack3.bmp"};
 		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
 			ice_ball.AddBitmap(filename_ice_ball[i], RGB(0, 0, 0));
 		ice_ball.SetDelayCount(3);
-
 		//火球動畫
 		char *filename_fire_ball[3] = { ".\\bitmaps\\FireAttack.bmp",".\\bitmaps\\FireAttack2.bmp",".\\bitmaps\\FireAttack3.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
 			fire_ball.AddBitmap(filename_fire_ball[i], RGB(0, 0, 0));
 		fire_ball.SetDelayCount(3);
-
 		//草球動畫
 		char *filename_plant_ball[3] = { ".\\bitmaps\\PlantAttack1.bmp",".\\bitmaps\\PlantAttack2.bmp",".\\bitmaps\\PlantAttack3.bmp" };
 		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
 			grass_ball.AddBitmap(filename_plant_ball[i], RGB(0, 0, 0));
 		grass_ball.SetDelayCount(8);
-
 		//草龍捲風動畫
 		char *filename_plant_tornado[12] = { ".\\bitmaps\\tornado1.bmp",".\\bitmaps\\tornado2.bmp",".\\bitmaps\\tornado3.bmp", ".\\bitmaps\\tornado4.bmp", ".\\bitmaps\\tornado5.bmp", ".\\bitmaps\\tornado6.bmp", ".\\bitmaps\\tornado7.bmp", ".\\bitmaps\\tornado8.bmp", ".\\bitmaps\\tornado9.bmp", ".\\bitmaps\\tornado10.bmp", ".\\bitmaps\\tornado11.bmp", ".\\bitmaps\\tornado12.bmp" };
 		for (int i = 0; i < 12; i++)	// 載入動畫(由12張圖形構成)
 			tornado.AddBitmap(filename_plant_tornado[i], RGB(255, 255, 255));
 		tornado.SetDelayCount(1);
 	}
-
 	void Attack::OnMove(Maps * m)
 	{
 		if (_attack_name == FIRE_FLAME)					//看attack_name是什麼決定onMove執行哪裡
@@ -124,7 +108,6 @@ namespace game_framework {
 				_y += step_size_y;
 			}
 		}
-
 		if (_attack_name == ICE_BALL) {
 			ice_ball.OnMove();
 		}
@@ -138,7 +121,6 @@ namespace game_framework {
 			tornado.OnMove();
 		}
 	}
-
 	void Attack::OnShow(Maps * m)
 	{																				//看attack_name決定onShow執行哪裡
 		if (_attack_name == FIRE_FLAME) {
@@ -203,17 +185,14 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Attack::setAttribute(ELEMENT_ATTRIBUTE attribute)
 	{
 		_attribute = attribute;
 	}
-
 	void Attack::setAttackName(ATTACK_NAME name)				//設定attack_name
 	{
 		_attack_name = name;
 	}
-
 	void Attack::setXY(int x, int y)							//設定xy座標
 	{
 		if (_attack_name == FIRE_FLAME) {
@@ -227,23 +206,19 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Attack::setDirection(int direction)
 	{
 		_direction = direction;
 	}
-
 	void Attack::setAttackIsFlying(bool b)
 	{
 		_attackIsFlying = b;
 	}
-
 	void Attack::setStepSize(int x, int y)					//設每次onMove x y 加減
 	{
 		step_size_x = x;
 		step_size_y = y;
 	}
-
 	void Attack::resetAnimation(ATTACK_NAME atk)			//reset animation
 	{
 		if (atk == FIRE_FLAME)
@@ -267,7 +242,6 @@ namespace game_framework {
 			tornado.Reset();
 		}
 	}
-
 	int Attack::getX1()
 	{
 		if (_attack_name == FIRE_FLAME) {
@@ -282,7 +256,6 @@ namespace game_framework {
 		}
 		return _x;
 	}
-
 	int Attack::getX2()						// x2 = x1 + 圖片寬度
 	{
 		if (_attack_name == FIRE_BALL) {
@@ -308,14 +281,11 @@ namespace game_framework {
 			return _x + tornado.Width();
 		}
 		return _x;
-		
 	}
-
 	int Attack::getY1()
 	{
 		return _y;
 	}
-
 	int Attack::getY2()							//y2 = y1 + 圖片高度
 	{
 		if (_attack_name == FIRE_BALL) {
@@ -342,5 +312,4 @@ namespace game_framework {
 		}
 		return _y;
 	}
-
 }

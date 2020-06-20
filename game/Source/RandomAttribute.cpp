@@ -25,7 +25,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 75) 
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 75)		//如果num_ofBox%100 = 75-100 箱子會掉這個道具
 		{
 			RandomAttribute * p = new RandomAttribute();
 			p->load();

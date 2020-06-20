@@ -8,20 +8,19 @@ namespace game_framework {
 		Map1_1();
 		~Map1_1();
 		void Initialize();
-		void setPos(int x, int y, int n);			//不再使用setPos為不可穿透區域
+		void setPos(int x, int y, int n);			//將地圖座標的陣列設為傳入的數字
 		void setClear(bool b);
-		bool isEmpty(int x, int y) const;
-		bool inFinishArea(int x, int y) override;
-		bool isOnIce(int x, int y);
+		bool isEmpty(int x, int y) const;			//檢查是否為可以走的地方
+		bool inFinishArea(int x, int y) override;	//是否在可以前往下一關的地方
+		bool isOnIce(int x, int y);					//是否在冰上面
 		void OnMove();
 		void LoadBitmap();
 		void OnShow();
 		void getHeroX(int x) override;
 		void getHeroY(int y) override;
-		int screenX(int x) override;
+		int screenX(int x) override;				//把絕對座標換成螢幕的做鰾
 		int screenY(int y) override;
-		void setIceWallPos(int x, int y, int n);
-		
+		void setIceWallPos(int x, int y, int n);	//設定icewall
 	private:
 		CMovingBitmap firstmap;
 		CAnimation gate;

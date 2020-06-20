@@ -54,7 +54,8 @@ namespace game_framework {
 		loadDigitsBitmap(attack_plant_hundred);
 		loadDigitsBitmap(attack_plant_thousand);
 	}
-	void PlayerStatus::showPlayerStatus() {
+	void PlayerStatus::showPlayerStatus()
+	{
 		status_bar.SetTopLeft(0, 0);
 		status_bar.ShowBitmap();
 		showQ();
@@ -67,7 +68,8 @@ namespace game_framework {
 		showAttackPlant();
 		showItemsOfPlayer();
 	}
-	void PlayerStatus::setXY(int x, int y) {
+	void PlayerStatus::setXY(int x, int y) 
+	{
 		_x = x;
 		_y = y;
 	}

@@ -7,7 +7,7 @@
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供繞圈圈的球
+	// 這個class提供道具，可以重製所有招式的冷卻時間
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
@@ -18,9 +18,8 @@ namespace game_framework {
 		void load();
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
-		void effect(Hero *h);
+		void effect(Hero *h);				//使用道具的效果
 		bool intercect(Hero *h) ;
-		
 	private:
 		int _x, _y;
 		CMovingBitmap clock_pic;

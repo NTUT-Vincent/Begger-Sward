@@ -24,7 +24,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 20 && getNumOfBox() % 100 <= 40) 
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 20 && getNumOfBox() % 100 <= 40)  //如果num_ofBox%100 = 20-40 箱子會掉這個道具
 		{
 			Shoe * p = new Shoe();
 			p->load();

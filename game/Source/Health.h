@@ -7,8 +7,8 @@
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供繞圈圈的球
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供一個掉落物檢調會永久增加生命值
+	// 
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
 	class Health: public Item
@@ -19,13 +19,9 @@ namespace game_framework {
 		void OnMove(Maps *m, Hero *h);
 		void OnShow(Maps *m);
 		void effect(Hero *h);				
-		//bool intercect(Hero *h) ;
-		
 	private:
 		CMovingBitmap health_pic;
 		int to_heal;						//要回復多少生命
-
 	};
 }
-
 #endif // !Health_H

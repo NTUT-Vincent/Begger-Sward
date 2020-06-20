@@ -10,25 +10,17 @@
 #include "Health.h"
 #include "ItemAttribute.h"
 #include "Util.h"
-
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
-	
 	ItemAttribute::ItemAttribute(ELEMENT_ATTRIBUTE attribute)
 	{
 		_attribute = attribute;									
 	}
-
 	void ItemAttribute::load()
 	{
 		fire_pic.LoadBitmap(IDB_ATTRIBUTEFIRE, RGB(0, 0, 0));
 		ice_pic.LoadBitmap(IDB_ATTRIBUTEICE, RGB(0, 0, 0));
 		plant_pic.LoadBitmap(IDB_ATTRIBUTEPLANT, RGB(0, 0, 0));
 	}
-
 	void ItemAttribute::OnMove(Maps *m, Hero *h)
 	{
 		_x = getX();
@@ -39,7 +31,6 @@ namespace game_framework {
 			setExist(false);
 		}
 	}
-
 	void ItemAttribute::OnShow(Maps *m)						//看不同屬性 顯示不同的圖片
 	{
 		if (isExist()) {	
@@ -56,9 +47,7 @@ namespace game_framework {
 				plant_pic.ShowBitmap();
 			}
 		}
-		
 	}
-
 	bool ItemAttribute::intercect(Hero * h)
 	{
 		if(isExist()) {
@@ -71,11 +60,7 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	void ItemAttribute::effect(Hero *h)
 	{
 	}
-
-
-
 }

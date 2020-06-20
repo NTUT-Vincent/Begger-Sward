@@ -11,42 +11,31 @@
 #include <vector>
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
-	
 	Maps::Maps(int x, int y)
 	{
 		_sx = x;
 		_sy = y;
 	}
 
-	void Maps::addSX(int n)
+	void Maps::addSX(int n)			//sx+=n 就是地圖向左移動n
 	{
 		_sx += n;
 	}
-
-	void Maps::addSY(int n)
+	void Maps::addSY(int n)			//sx+=n 就是地圖上移動n
 	{
 		_sy += n;
 	}
-
-
 	void Maps::setXY(int x, int y)
 	{
 		_sx = x;
 		_sy = y;
 	}
-
 	int Maps::getSX()
 	{
 		return _sx;
 	}
-
 	int Maps::getSY()
 	{
 		return _sy;
 	}
-
 }

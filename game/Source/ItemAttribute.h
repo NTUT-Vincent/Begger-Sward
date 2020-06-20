@@ -25,5 +25,4 @@ namespace game_framework {
 		int _x, _y;
 	};
 }
-
 #endif // !Health_H

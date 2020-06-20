@@ -9,15 +9,9 @@
 #include "Item.h"
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
-	
 	Item::Item()
 	{
 	}
-
 	void Item::showOnStatusBar(int n)
 	{
 		if (n < 3) {												//前三個道具顯示在道具欄的上面三個
@@ -26,64 +20,51 @@ namespace game_framework {
 		if (n >= 3) {												//4-6顯示在下面三個
 			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 30);
 		}
-		
 		item_on_status_bar.ShowBitmap();
 	}
-
 	void Item::Initialize()
 	{
 		_isExist = true;
 		random_num = rand();
 		_isUsed = false;
 	}
-
 	bool Item::isExist()
 	{
 		return _isExist;
 	}
-
 	void Item::setExist(bool b)
 	{
 		_isExist = b;
 	}
-
 	void Item::setNumOfBox(int n)
 	{
 		num_of_box = n;
 	}
-
 	void Item::setXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
-
 	void Item::setRandomNum(int n)
 	{
 		random_num = n;
 	}
-
 	int Item::getX()
 	{
 		return _x;
 	}
-
 	int Item::getY()
 	{
 		return _y;
 	}
-
 	int Item::getRandomNum()
 	{
 		return random_num;
 	}
-
 	int Item::getNumOfBox()
 	{
 		return num_of_box;
 	}
-
-
 	bool Item::intercect(Hero * h)
 	{
 		if (isExist()) {
@@ -96,15 +77,12 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	bool Item::getIsUsed()
 	{
 		return _isUsed;
 	}
-
 	void Item::setIsUsed(bool b)
 	{
 		_isUsed = b;
 	}
-
 }

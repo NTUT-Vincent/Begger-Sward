@@ -15,29 +15,23 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
-
 namespace game_framework {
-
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
-
 	GreenGoblin::GreenGoblin()
 	{
 		_x = 384;
 		_y = 384;
 		attack_damage = 0;
 	}
-
 	GreenGoblin::GreenGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenGoblin", h, FIRE)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;
 		items.push_back(new ItemAttribute(_attribute));
 	}
-
 	GreenGoblin::~GreenGoblin()
 	{
 	}
-
 	void GreenGoblin::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
@@ -57,7 +51,6 @@ namespace game_framework {
 		arrowAttackR.LoadBitmap(".\\bitmaps\\green_arrow_attackR.bmp", RGB(0, 0, 0));
 		arr.loadBitmap();
 	}
-
 	void GreenGoblin::OnMove(Maps * m) {
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
@@ -78,7 +71,6 @@ namespace game_framework {
 			itemsOnMove(m);
 		}
 	}
-
 	void GreenGoblin::OnShow(Maps *m)
 	{
 		if (isAlive()) {
@@ -95,7 +87,6 @@ namespace game_framework {
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
 				}
-				
 			}
 			else
 			{
@@ -111,36 +102,28 @@ namespace game_framework {
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
 				}
-				
 			}
-			
 		}
 		if (!isAlive()) {
 			itemsOnShow(m);
 		}
-
 	}
-
 	int GreenGoblin::GetX1()
 	{
 		return _x;
 	}
-
 	int GreenGoblin::GetY1()
 	{
 		return _y;
 	}
-
 	int GreenGoblin::GetX2()
 	{
 		return _x + walkingRight.Width();
 	}
-
 	int GreenGoblin::GetY2()
 	{
 		return _y + walkingRight.Height();
 	}
-
 	void GreenGoblin::Initialize() {
 		_x = ini_x;
 		_y = ini_y;
@@ -156,7 +139,6 @@ namespace game_framework {
 			items.at(i)->Initialize();
 		}
 	}
-
 	bool GreenGoblin::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
@@ -169,37 +151,24 @@ namespace game_framework {
 			}
 		}
 		return false;
-
 	}
-
-	//bool Enemy::cannotPass(Hero * hero)
-	//{
-	//	// 檢測擦子所構成的矩形是否碰到球
-	//	return (hero->GetX2() >= x && hero->GetX1() <= x+enemy.Width() && hero->GetY2() >= y && hero->GetY1() <= y + enemy.Height());
-	//}
-	////其實我不知道到底這個寫在map還是hero還是enemy好，但邏輯是她和hero不能重疊
 	void GreenGoblin::SetMovingDown(bool b) {
 		isMovingDown = b;
 	}
-
 	void GreenGoblin::SetMovingUp(bool b) {
 		isMovingUp = b;
 	}
-
 	void GreenGoblin::SetMovingLeft(bool b) {
 		isMovingLeft = b;
 	}
-
 	void GreenGoblin::SetMovingRight(bool b) {
 		isMovingRight = b;
 	}
-
 	void GreenGoblin::SetXY(int x, int y)
 	{
 		_x = x;
 		_y = y;
 	}
-
 	void GreenGoblin::movement(Maps *m)
 	{
 		int x = GetX1();
@@ -227,42 +196,21 @@ namespace game_framework {
 					_x += step_size;
 			}
 		}
-		
-		
 	}
-
-
-
-
 	CRect * GreenGoblin::GetRect()
 	{
 		return &EnemyRect;
 	}
-
 	void GreenGoblin::attack()
 	{
-		/*if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
-			CAudio::Instance()->Play(AUDIO_HITTING);
-			isAttacking = true;
-			hero_on_map->offsetHp(attack_damage);
-		}
-		normalAttackR.OnMove();
-		if (!isAttacking) {
-			normalAttackR.Reset();
-		}*/
 	}
-
 	void GreenGoblin::attackShow(Maps * m)
 	{
-		
 	}
-
 	void GreenGoblin::arrowAttack()
 	{
 		if (!isAttacking && arrowAttackCD == 0)
 		{
-			/*attackIsFlying = true;
-			arr.setArrowXY(_x, _y);*/
 			if (_y == hero_on_map->GetY1() && hero_on_map->GetX1() <= _x)
 			{
 				arrorClock = 60;
@@ -299,10 +247,8 @@ namespace game_framework {
 				isAttacking = true;
 				arrowAttackCD = 180;
 			}
-			
 		}
 	}
-
 	void GreenGoblin::arrowAttackMove(Maps * m)
 	{
 		if (isAttacking) {
@@ -310,22 +256,13 @@ namespace game_framework {
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		/*if (arrowAttackCD == 0)
-		{
-			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
-				hero_on_map->offsetHp(attack_damage);
-			}
-		}*/
 		if (isAttacking && arrorClock != 0) {
 			arrorClock--;
 			if (arrorClock == 0) {
 				isAttacking = false;
 			}
 		}
-		
-		
 	}
-
 	void GreenGoblin::arrowAttackShow(Maps * m)
 	{
 		if (isAttacking) {
@@ -343,5 +280,4 @@ namespace game_framework {
 			}
 		}
 	}
-
 }

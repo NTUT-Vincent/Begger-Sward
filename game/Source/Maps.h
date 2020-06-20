@@ -1,15 +1,11 @@
 #ifndef __MAPS_H__
 #define __MAPS_H__
 #include <vector>
-//#include "Enemy.h"
-
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供繞圈圈的球
-	// 看懂就可以改寫成自己的程式了
+	// Maps的犯行
+	// 
 	/////////////////////////////////////////////////////////////////////////////
-
 	class Maps
 	{
 	public:
@@ -29,9 +25,6 @@ namespace game_framework {
 		void setXY(int x, int y);
 		int getSX();
 		int getSY();
-		//virtual bool bumpIntoEnemy(int x1, int x2, int y1, int y2) = 0;
-		//virtual vector<Enemy> returnEnemys() = 0 ;
-
 	private:
 		int _sx, _sy;
 		bool all_enemy_clear;

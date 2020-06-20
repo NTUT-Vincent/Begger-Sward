@@ -50,7 +50,6 @@
  *   2010-03-23 V4.6
  *      1. Demo MP3 support: use lake.mp3 to replace lake.wav.
 */
-
 #include "stdafx.h"
 #include "Resource.h"
 #include <mmsystem.h>
@@ -66,17 +65,14 @@
 #include "RedGoblin.h"
 #include "IceBird.h"
 #include "Util.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
 	/////////////////////////////////////////////////////////////////////////////
-
 	CGameStateInit::CGameStateInit(CGame *g)
 		: CGameState(g)
 	{
 	}
-
 	void CGameStateInit::OnInit()
 	{
 		//
@@ -516,6 +512,9 @@ namespace game_framework {
 
 		if (isAllLevelPass && all_level_pass_count <= 0)
 		{
+			for (int i = 0; i < 6; i++) {
+				player1.useItem(i + 1);
+			}
 			GotoGameState(GAME_STATE_INIT);
 		}
 		

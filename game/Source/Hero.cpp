@@ -10,13 +10,7 @@
 #include "Util.h"
 #include "Attack.h"
 #define HMS movement_speed
-
-
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
 	Hero::Hero() : Character("Hero")
 	{
 		/*x = 480;
@@ -28,13 +22,12 @@ namespace game_framework {
 			items.push_back(nullptr);
 		}
 	}
-
-	Hero::~Hero() {
+	Hero::~Hero() 
+	{
 		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
 			delete *it_i;
 		}
 	}
-
 	void Hero::LoadBitmap()
 	{
 		heroL.LoadBitmap(IDB_HERO_L, RGB(0, 0, 0));
@@ -49,22 +42,13 @@ namespace game_framework {
 		blood_bar.loadBloodBar();
 		//被攻擊
 		char *filename_attacked[4] = { ".\\bitmaps\\getting_attacked.bmp",".\\bitmaps\\getting_attacked2.bmp",".\\bitmaps\\getting_attacked.bmp",".\\bitmaps\\getting_attacked2.bmp"};
-		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 4; i++)	// 載入動畫(由4張圖形構成)
 			get_attacked.AddBitmap(filename_attacked[i], RGB(0, 0, 0));
 		get_attacked.SetDelayCount(2);
-
 		//向左走動畫
 		char *filename1[6] = { ".\\bitmaps\\walkingL1.bmp",".\\bitmaps\\walkingL2.bmp",".\\bitmaps\\walkingL3.bmp",".\\bitmaps\\walkingL4.bmp", ".\\bitmaps\\walkingL3.bmp", ".\\bitmaps\\walkingL2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
 			walkingLeft.AddBitmap(filename1[i], RGB(0, 0, 0));
-		//如果要測這區要註解掉
-		
-		/////以下這區用於直接測試動畫
-		//char *filename1[6] = { ".\\bitmaps\\testfile1.bmp",".\\bitmaps\\testfile2.bmp",".\\bitmaps\\testfile3.bmp", ".\\bitmaps\\testfile4.bmp", ".\\bitmaps\\testfile5.bmp", ".\\bitmaps\\testfile6.bmp" };
-		//for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
-		//	walkingLeft.AddBitmap(filename1[i], RGB(255, 255, 255));
-		/////以上這行用於直接測試動畫
-
 		//向右走動畫
 		char *filename2[6] = { ".\\bitmaps\\walkingR1.bmp",".\\bitmaps\\walkingR2.bmp",".\\bitmaps\\walkingR3.bmp",".\\bitmaps\\walkingR4.bmp", ".\\bitmaps\\walkingR3.bmp", ".\\bitmaps\\walkingR2.bmp" };
 		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
@@ -72,7 +56,7 @@ namespace game_framework {
 		RectHero = heroL.ReturnCRect();
 		//E動畫
 		char *filenameW[8] = { ".\\bitmaps\\Clock1.bmp",".\\bitmaps\\Clock2.bmp",".\\bitmaps\\Clock3.bmp",".\\bitmaps\\Clock4.bmp", ".\\bitmaps\\Clock5.bmp", ".\\bitmaps\\Clock6.bmp", ".\\bitmaps\\Clock7.bmp", ".\\bitmaps\\Clock8.bmp" };
-		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 6; i++)	// 載入動畫(由8張圖形構成)
 			skillE.AddBitmap(filenameW[i], RGB(0, 0, 0));
 		skillE.SetDelayCount(2);
 		//普功動畫(左)
@@ -103,16 +87,14 @@ namespace game_framework {
 			skillR_R.AddBitmap(filename_skillR_R[i], RGB(255, 255, 255));
 		skillR_R.SetDelayCount(3);
 	}
-
 	void Hero::OnMove(Maps * m, vector<Enemy*> * enemys) {
-		if (!isUsingR) {
+		if (!isUsingR) {				//如果向要向左，並且下一步是可以走的地方，就會向左走。其他右上下以此類推
 			if (isMovingLeft && m->isEmpty(x - HMS, y) && m->isEmpty(x - HMS, GetY2() - 10))
 			{
 				m->addSX(HMS);
 				x -= HMS;
 				slide_left = 30;
 			}
-
 			if (isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2() - 10))
 			{
 				m->addSX(-HMS);
@@ -125,7 +107,6 @@ namespace game_framework {
 				y -= HMS;
 				slide_up = 30;
 			}
-
 			if (isMovingDown && m->isEmpty(x + 10, GetY2() + HMS) && m->isEmpty(GetX2() - 10, GetY2() + HMS))
 			{
 				m->addSY(-HMS);
@@ -140,17 +121,15 @@ namespace game_framework {
 				slide_left = slide_right = slide_down = slide_up = 0;
 			}
 		}
-
 		if (gonnaBleeding(enemys, GetX1(), GetX2(), GetY1(), GetY2()))
 		{
 			//hp -= 10;
 		}
-
 		m->getHeroX(x);
 		m->getHeroY(y);
 		walkingLeft.OnMove();
 		walkingRight.OnMove();
-		skillEMove();
+		skillEMove();					
 		skillWMove(m);
 		skillQMove(m);
 		skillRMove();
@@ -159,17 +138,16 @@ namespace game_framework {
 		if (skillW_shadeShowCount > 0) {
 			skillW_shadeShowCount -= 1;
 		}
-		if (isSpeedingUp) {
+		if (isSpeedingUp) {					//如果處於加速狀態，跑速增加
 			speedUp();
 		}
-		if (cantBeDamaged) {
+		if (cantBeDamaged) {				//如果正在用防護罩，每次防護招的使用期限--
 			protectiveCoverCount();
 		}
 		if (isSlide) {
 			slide(m);
 		}
 	}
-
 	void Hero::OnShow(Maps *m)
 	{
 		blood_bar.setXY(x - 10, y - 10);
@@ -188,105 +166,86 @@ namespace game_framework {
 		showHeroStatus();
 		showProtectiveCover(m);
 	}
-
-	int Hero::GetX1() {
+	int Hero::GetX1() 
+	{
 		return x;
 	}
-
-	int Hero::GetY1() {
+	int Hero::GetY1()
+	{
 		return y;
 	}
-
 	int Hero::GetX2()
 	{
 		return x + heroR.Width();
 	}
-
 	int Hero::GetY2()
 	{
 		return y + heroR.Height();
 	}
-
 	int Hero::GetQCoolDown()
 	{
 		return skill_q_cool_down;
 	}
-
 	int Hero::GetWCoolDown()
 	{
 		return skill_w_cool_down;
 	}
-
 	int Hero::GetECoolDown()
 	{
 		return skill_e_cool_down;
 	}
-
 	int Hero::GetRCoolDown()
 	{
 		return skill_r_cool_down;
 	}
-
 	int Hero::getHP()
 	{
 		return hp;
 	}
-
 	int Hero::getFullHP()
 	{
 		return blood_bar.getFullHP();
 	}
-
 	int Hero::get_attack_fire()
 	{
 		return attack_fire;
 	}
-
 	int Hero::get_attack_ice()
 	{
 		return attack_ice;
 	}
-
 	int Hero::get_attack_plant()
 	{
 		return attack_plant;
 	}
-
 	bool Hero::GetIsMovingLeft()
 	{
 		return isMovingLeft;
 	}
-
 	bool Hero::GetIsMovingRight()
 	{
 		return isMovingRight;
 	}
-
 	bool Hero::GetIsMovingUp()
 	{
 		return isMovingUp;
 	}
-
 	bool Hero::GetIsMovingDown()
 	{
 		return isMovingDown;
 	}
-
 	int Hero::GetStepSize()
 	{
 		return movement_speed;
 	}
-
 	ELEMENT_ATTRIBUTE Hero::getCurrentAttribute()
 	{
 		return _attribute;
 	}
-
 	vector<Item*>* Hero::getItemsOfPlayer()
 	{
 		return &items;
 	}
-
 	void Hero::Initialize() {
 		x = 480;
 		y = 480;
@@ -313,83 +272,72 @@ namespace game_framework {
 			items.at(i) = nullptr;
 		}
 	}
-	
 	/////////////////////////////////////////////////////////////////////////////
-	
-	void Hero::SetMovingDown(bool b) {
+	void Hero::SetMovingDown(bool b) 
+	{
 		isMovingDown = b;
 		directionUD = 1;
 	}
-
-	void Hero::SetMovingUp(bool b) {
+	void Hero::SetMovingUp(bool b) 
+	{
 		isMovingUp = b;
 		directionUD = 0;
 	}
-
-	void Hero::SetMovingLeft(bool b) {
+	void Hero::SetMovingLeft(bool b)
+	{
 		isMovingLeft = b;
 		directionLR = 0;
 	}
-
-	void Hero::SetMovingRight(bool b) {
+	void Hero::SetMovingRight(bool b) 
+	{
 		isMovingRight = b;
 		directionLR = 1;
 	}
-
 	void Hero::SetXY(int num_x, int num_y)
 	{
 		x = num_x;
 		y = num_y;
 	}
-
 	void Hero::addSX(int n, Maps *m)
 	{
 		x += n;
 		m->addSX(-n);
 	}
-
 	void Hero::addSY(int n, Maps * m)
 	{
 		y += n;
 		m->addSY(-n);
 	}
-	
 	/////////////////////////////////////////////////////////////////////////////
-	
 	void Hero::SetUsingA(bool b)
 	{
 		int random_fx = rand() % 100;
-		if (!isUsingSkill()) {
+		if (!isUsingSkill()) {							//偵測到按下A，如果沒有正在使用其他技能
 			if (b) {
 				CAudio::Instance()->Play(AUDIO_SWORD);
 				if (random_fx <= 5)
 					CAudio::Instance()->Play(AUDIO_SING);
 			}
-
-			isUsingA = b;
+			isUsingA = b;								//把isUsingA改成b
 		}
 	}
-	
 	void Hero::SetUsingQ(bool b)
 	{
 		if (!isUsingSkill() && skill_q_cool_down <= 0) {
 			skill_q_cool_down = 60;
 			if (b) {
 				skillQ();
-				//CAudio::Instance()->Play(AUDIO_FIRE);
 			}
 			isUsingQ = b;
 		}
 	}
-	
 	void Hero::SetUsingW(bool b)
 	{
-		if (!isUsingSkill() && skill_w_cool_down <= 0) {
+		if (!isUsingSkill() && skill_w_cool_down <= 0) {		//如果沒再用其他技能，且w技能的冷卻時間以冷卻完成，才可以把isUsingW設為true
 			skill_w_cool_down = 180;
 			isUsingW = b;
 		}
 	}
-	
 	void Hero::SetUsingE(bool b)
 	{
 		if (!isUsingSkill() && skill_e_cool_down <= 0) {
@@ -401,7 +349,6 @@ namespace game_framework {
 			isUsingE = b;
 		}
 	}
-	
 	void Hero::SetUsingR(bool b)
 	{
 		if (!isUsingSkill() && skill_r_cool_down <= 0) {
@@ -416,36 +363,30 @@ namespace game_framework {
 			isUsingR = b;
 		}
 	}
-
 	void Hero::SetElementAttribute(ELEMENT_ATTRIBUTE e)
 	{
 		_attribute = e;
 	}
-
-	void Hero::SetAllCoolDownToZero()
+	void Hero::SetAllCoolDownToZero()			//讓所有技能冷卻時間重製為0
 	{
 		skill_q_cool_down = skill_e_cool_down = skill_w_cool_down = skill_r_cool_down = 0;
 	}
-	
 	/////////////////////////////////////////////////////////////////////////////
-	
 	bool Hero::gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2)
 	{
 		int attack = 0;
-		if (_attribute == FIRE) {
+		if (_attribute == FIRE) {				//如果現在屬性是火屬性的，攻擊力就等於火屬性的攻擊力
 			attack = -1*attack_fire;
 		}
-		if (_attribute == ICE) {
+		if (_attribute == ICE) {				//如果現在屬性是冰屬性的，攻擊力就等於冰屬性的攻擊力
 			attack = -1*attack_ice;
 		}
-		if (_attribute == PLANT) {
+		if (_attribute == PLANT) {				//如果現在屬性是草屬性的，攻擊力就等於草屬性的攻擊力
 			attack = -1*attack_plant;
 		}
-		//attack = -10000;
 		for (unsigned i = 0; i < enemys->size(); i++)
 		{
-			
-			//普功
+			//普功   如果跟普功的範圍有相交，enemy就會扣血
 			if (enemys->at(i)->intersect(x1 - 30, x2 - 30, y1 + 10, y2) && directionLR == 0 && isUsingA)
 			{
 				enemys->at(i)->offsetHP(attack, _attribute);
@@ -454,14 +395,14 @@ namespace game_framework {
 			{
 				enemys->at(i)->offsetHP(attack, _attribute);
 			}
-			//Q技能
+			//Q技能	  如果跟技能的範圍有相交，enemy就會扣血
 			if (enemys->at(i)->intersect(q_attack.getX1(), q_attack.getX2(), q_attack.getY1(), q_attack.getY2()) && isUsingQ)
 			{
-				if (attack_fire >= SKILL_EVO_TVALUE && _attribute == FIRE) {
+				if (attack_fire >= SKILL_EVO_TVALUE && _attribute == FIRE) {  //如果火屬性攻擊力超過升級標準，就會變成進化的攻擊技能
 					enemys->at(i)->offsetHP(attack * 2, _attribute);
 				}
 				else if (attack_plant >= SKILL_EVO_TVALUE && _attribute == PLANT) {
-					enemys->at(i)->offsetHP(attack/5, _attribute);
+					enemys->at(i)->offsetHP(attack/2, _attribute);
 					enemys->at(i)->knockBack();
 					enemys->at(i)->knockBack();
 				}
@@ -482,14 +423,10 @@ namespace game_framework {
 						enemys->at(i)->offsetHP(-10000, _attribute);
 					}
 				}
-				
-				
-				//enemys->at(i)->offsetHP(attack, _attribute);
 			}
 		}
 		return false;
 	}
-
 	void Hero::offsetHp(int n)
 	{
 		int rand_being_attacked_fx = rand() % 100;
@@ -501,12 +438,10 @@ namespace game_framework {
 			hp -= n;
 		}
 	}
-
 	void Hero::addHp(int n)
 	{
 		hp += n;
 	}
-
 	void Hero::addAttack(int n, ELEMENT_ATTRIBUTE attribute)
 	{
 		if (attribute == FIRE) {
@@ -519,8 +454,6 @@ namespace game_framework {
 			attack_plant += n;
 		}
 	}
-
-
 	void Hero::addItem(Item * item)
 	{
 		int n = -1;
@@ -535,16 +468,13 @@ namespace game_framework {
 		else {
 			delete item;
 		}
-
 	}
-
 	void Hero::cleanItems()
 	{
 		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
 			delete *it_i;
 		}
 	}
-
 	void Hero::slide(Maps * m)
 	{
 		if (slide_right > 0) {
@@ -570,7 +500,6 @@ namespace game_framework {
 				}
 			}
 		}
-
 		if (!isMovingRight && m->isEmpty(GetX2() + HMS, y) && m->isEmpty(GetX2() + HMS, GetY2() - 10))
 		{
 			if (slide_right > 0) {
@@ -592,9 +521,7 @@ namespace game_framework {
 					y -= HMS;
 				}
 			}
-
 		}
-
 		if (!isMovingDown && m->isEmpty(x + 10, GetY2() + HMS) && m->isEmpty(GetX2() - 10, GetY2() + HMS))
 		{
 			if (slide_down > 0) {
@@ -605,12 +532,8 @@ namespace game_framework {
 					y += HMS;
 				}
 			}
-
 		}
-
-
 	}
-
 	void Hero::speedUp()
 	{
 		if (item_shoe_clock > 0) {
@@ -621,9 +544,7 @@ namespace game_framework {
 				isSpeedingUp = false;
 			}
 		}
-		
 	}
-
 	void Hero::setSpeedUp(bool b)
 	{
 		if (b) {
@@ -632,7 +553,6 @@ namespace game_framework {
 			isSpeedingUp = true;
 		}
 	}
-
 	void Hero::protectiveCoverCount()
 	{
 		if (item_protective_cover_clock > 0) {
@@ -645,9 +565,7 @@ namespace game_framework {
 		else {
 			protective_cover.Reset();
 		}
-
 	}
-
 	void Hero::setCantBeDamaged(bool b)
 	{
 		if (b) {
@@ -655,18 +573,14 @@ namespace game_framework {
 			item_protective_cover_clock = 90;
 		}
 	}
-
 	void Hero::showProtectiveCover(Maps * m)
 	{
 		protective_cover.SetTopLeft(260, 270);
 		if (cantBeDamaged) {
 			protective_cover.OnShow();
 		}
-		
 	}
-
 	/////////////////////////////////////////////////////////////////////////////
-
 	bool Hero::isMoving()
 	{
 		if (isMovingDown || isMovingLeft || isMovingRight || isMovingUp) {
@@ -676,7 +590,6 @@ namespace game_framework {
 			return false;
 		}
 	}
-
 	bool Hero::isAlive()
 	{
 		if (hp > 0) {
@@ -686,7 +599,6 @@ namespace game_framework {
 			return false;
 		}
 	}
-
 	bool Hero::isInFinishArea(Maps * m)
 	{
 		if (m->inFinishArea(x, y)) {
@@ -696,7 +608,6 @@ namespace game_framework {
 			return false;
 		}
 	}
-
 	bool Hero::isUsingSkill()
 	{
 		if (isUsingA || isUsingQ || isUsingE || isUsingR) {
@@ -704,7 +615,6 @@ namespace game_framework {
 		}
 		return false;
 	}
-
 	void Hero::heroShow(Maps *m)
 	{
 		if (directionLR == 0)
@@ -729,10 +639,8 @@ namespace game_framework {
 				heroR.SetTopLeft(m->screenX(x), m->screenY(y));
 				heroR.ShowBitmap();
 			}
-
 		}
 	}
-
 	bool Hero::intercect(int x1, int x2, int y1, int y2)
 	{
 		if (x2 >= x + 20 && x1 <= x + walkingRight.Width() && y2 >= y && y1 <= y + walkingRight.Height()) {
@@ -742,9 +650,7 @@ namespace game_framework {
 			return false;
 		}
 	}
-
 	/////////////////////////////////////////////////////////////////////////////
-
 	void Hero::normalAttackMove()
 	{
 		normalAttackL.OnMove();
@@ -754,7 +660,6 @@ namespace game_framework {
 			normalAttackR.Reset();
 		}
 	}
-
 	void Hero::normalAttackShow(Maps *m)
 	{
 		if (directionLR == 0 && isUsingA) {
@@ -772,7 +677,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Hero::showHeroStatus()
 	{
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
@@ -786,9 +690,7 @@ namespace game_framework {
 		pDC->TextOut(0, 0, str);
 		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
 		CDDraw::ReleaseBackCDC();					// 放掉 Back Plain 的 CDC
-
 	}
-
 	void Hero::gettingAttackedShow()
 	{
 		if (is_getting_attacked) {
@@ -802,7 +704,6 @@ namespace game_framework {
 			get_attacked.Reset();
 		}
 	}
-
 	void Hero::skillQ()
 	{
 		if (!isUsingSkill()) {
@@ -826,9 +727,7 @@ namespace game_framework {
 				q_attack.setStepSize(10, 0);
 			}
 		}
-
 	}
-
 	void Hero::skillQMove(Maps *m)
 	{
 		if (isUsingQ) {
@@ -874,7 +773,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Hero::skillQShow(Maps * m)
 	{
 		if (isUsingQ) {
@@ -888,7 +786,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Hero::useItem(int n)
 	{
 		if (items.at(n - 1) != nullptr) {
@@ -901,13 +798,11 @@ namespace game_framework {
 		delete *it_i;
 		items.at(n - 1) = nullptr;
 	}
-
 	void Hero::setShadePosition()
 	{
 		skillW_shadeX = x;
 		skillW_shadeY = y;
 	}
-
 	void Hero::skillWMove(Maps *m)
 	{
 		if (skill_w_cool_down > 0) {
@@ -971,7 +866,6 @@ namespace game_framework {
 		}
 		isUsingW = false;
 	}
-
 	void Hero::skillWShow(Maps *m)
 	{
 		if (skillW_shadeShowCount > 0)
@@ -988,7 +882,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Hero::skillEMove()
 	{
 		if (skill_e_cool_down > 0) {
@@ -998,7 +891,6 @@ namespace game_framework {
 		if (!isUsingE)
 			skillE.Reset(); 
 	}
-
 	void Hero::skillEShow()
 	{
 		if (isUsingE) {
@@ -1013,7 +905,6 @@ namespace game_framework {
 			}
 		}
 	}
-
 	void Hero::skillRMove()
 	{
 		if (skill_r_cool_down > 0) {
@@ -1026,17 +917,11 @@ namespace game_framework {
 		else {
 			skillR_R.OnMove();
 		}
-			
-		//else
-			
-		
 		if (!isUsingR) {
 			skillR_L.Reset();
 			skillR_R.Reset();
 		}
-			
 	}
-
 	void Hero::skillRShow()
 	{
 		if (isUsingR) {
@@ -1054,10 +939,7 @@ namespace game_framework {
 			if (skillR_R.IsFinalBitmap()) {
 				isUsingR = false;
 			}
-
 		}
 	}
-
 	/////////////////////////////////////////////////////////////////////////////
-
 }

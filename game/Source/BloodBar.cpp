@@ -9,33 +9,27 @@
 #include "BloodBar.h"
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
 	BloodBar::BloodBar()
 	{
 		_x = 0;
 		_y = 0;
 		full_hp = 0;
 	}
-
-
-	void BloodBar::setFullHP(int n) {
+	void BloodBar::setFullHP(int n) 
+	{
 		full_hp = n;
 	}
-
-	void BloodBar::setXY(int x, int y) {
+	void BloodBar::setXY(int x, int y) 
+	{
 		_x = x;
 		_y = y;
 	}
-
 	int BloodBar::getFullHP()
 	{
 		return (int)full_hp;
 	}
-
-	void BloodBar::loadBloodBar() {
+	void BloodBar::loadBloodBar() 
+	{
 		blood_bar[0].LoadBitmap(IDB_BLOODALMOSTDIE, RGB(0, 0, 0));
 		blood_bar[1].LoadBitmap(IDB_BLOOD2OVER10, RGB(0, 0, 0));
 		blood_bar[2].LoadBitmap(IDB_BLOOD1OF4, RGB(0, 0, 0));
@@ -49,7 +43,6 @@ namespace game_framework {
 		blood_bar[10].LoadBitmap(IDB_BLOODLITTLEDAMAGED, RGB(0, 0, 0));
 		blood_bar[11].LoadBitmap(IDB_BLOODFULL, RGB(0, 0, 0));
 	}
-
 	void BloodBar::showBloodBar(Maps *m1, int hp) { //  現在血量/滿血血量  的比例 決定血條多長 顯示哪個血條bitmap
 		if (hp > full_hp) {
 			setFullHP(hp);

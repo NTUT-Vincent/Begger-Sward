@@ -1,6 +1,5 @@
 #ifndef HERO_H
 #define HERO_H
-
 #include "Util.h"
 #include "Maps.h"
 #include "Character.h"
@@ -8,10 +7,9 @@
 #include "Enemy.h"
 #include "Attack.h"
 #include "Item.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供繞圈圈的球
+	// 這個class提供玩家操控的hero
 	// 看懂就可以改寫成自己的程式了
 	/////////////////////////////////////////////////////////////////////////////
 	class Enemy;
@@ -24,29 +22,26 @@ namespace game_framework {
 		void LoadBitmap();
 		void OnShow(Maps *m) override;
 		void OnMove(Maps *m, vector<Enemy*> * enemys);
-
 		int GetX1();					//回傳最左側X值
 		int GetY1();					//回傳最上側Y值
 		int GetX2();					//回傳最右側X值
 		int GetY2();					//回傳最下側Y值
-		
-		int GetQCoolDown();
+		int GetQCoolDown();				//回傳冷卻時間
 		int GetWCoolDown();
 		int GetECoolDown();
 		int GetRCoolDown();
-		int getHP();
-		int getFullHP();
-		int get_attack_fire();
+		int getHP();					//回傳HP
+		int getFullHP();				//回傳滿血狀態的HP
+		int get_attack_fire();			//回傳火屬性的攻擊力
 		int get_attack_ice();
 		int get_attack_plant();
-		bool GetIsMovingLeft();
+		bool GetIsMovingLeft();			//回傳是否在移動
 		bool GetIsMovingRight();
 		bool GetIsMovingUp();
 		bool GetIsMovingDown();
-		int GetStepSize();
-		ELEMENT_ATTRIBUTE getCurrentAttribute();
-		vector<Item *> * getItemsOfPlayer();
-
+		int GetStepSize();				//回傳每次移動的距離
+		ELEMENT_ATTRIBUTE getCurrentAttribute();		//回傳現在的屬性
+		vector<Item *> * getItemsOfPlayer();			//回傳道具欄的VECTOR
 		void Initialize();
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Hero的座標的函式們													   //
@@ -99,26 +94,18 @@ namespace game_framework {
 		void showHeroStatus();			//顯示hp 技能冷卻時間
 		void gettingAttackedShow();
 		/////////////////////////////////////////////////////////////////////////////
-		void skillQ();
+		void skillQ(); 
 		void skillQMove(Maps *m);
 		void skillQShow(Maps *m);
 		void useItem(int n);
-
-		//void skillW();
 		void setShadePosition();
 		void skillWMove(Maps *m);
 		void skillWShow(Maps *m);
-
-		/*void skillE();*/
 		void skillEMove();
 		void skillEShow();
-
-		//void skillR();
 		void skillRMove();
 		void skillRShow();
 		/////////////////////////////////////////////////////////////////////////////
-		
-
 	private:
 		CMovingBitmap heroL, heroR;
 		CMovingBitmap shadeL, shadeR;
@@ -131,17 +118,15 @@ namespace game_framework {
 		CAnimation normalAttackR; // 向右普功動畫
 		CAnimation get_attacked;
 		CAnimation protective_cover;
-		
 		BloodBar blood_bar;
 		CRect RectHero;
 		int x, y;
 		int hp;
-		int attack_fire;
+		int attack_fire;			//三種屬性的攻擊力
 		int attack_ice;
 		int attack_plant;
-		ELEMENT_ATTRIBUTE _attribute;
-		vector<Item *> items;
-		
+		ELEMENT_ATTRIBUTE _attribute; //英雄現在的屬性
+		vector<Item *> items; //存放道具欄裡面道具的vector
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;
@@ -163,7 +148,6 @@ namespace game_framework {
 		int skill_w_cool_down;
 		int skill_e_cool_down;
 		int skill_r_cool_down;
-
 		//滑起來
 		int slide_right, slide_left, slide_up, slide_down;
 		bool isSlide;
@@ -172,10 +156,9 @@ namespace game_framework {
 		bool isSpeedingUp;
 		bool cantBeDamaged;
 		int item_protective_cover_clock;
-		int skillW_shadeX;
-		int skillW_shadeY;
+		int skillW_shadeX;						//閃現前原本的X座標
+		int skillW_shadeY;						//閃現前原本的Y座標
 		unsigned int skillW_shadeShowCount;
 	};
 }
-
 #endif // !HERO_H

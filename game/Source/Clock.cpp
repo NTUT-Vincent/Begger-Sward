@@ -8,50 +8,38 @@
 #include "Maps.h"
 #include "Item.h"
 #include "Clock.h"
-
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
-	/////////////////////////////////////////////////////////////////////////////
-
-	
 	Clock::Clock()
 	{
 	}
-
 	void Clock::load()
 	{
 		clock_pic.LoadBitmap(IDB_ITEMCLOCK);
 		item_on_status_bar.LoadBitmapA(IDB_ITEMCLOCK);
 	}
-
 	void Clock::OnMove(Maps *m, Hero *h)
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 40 && getNumOfBox() % 100 <= 50) {
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 40 && getNumOfBox() % 100 <= 50) { //狦num_ofBox%100 = 40-50 絚穦奔硂笵ㄣ
 			Clock * p = new Clock();
 			p->load();
-			h->addItem(p);
+			h->addItem(p);				//狦璣动具穦砆崩秈笵ㄣ逆
 			setExist(false);
 		}
 	}
-
 	void Clock::OnShow(Maps *m)
 	{
 		if (isExist() && getNumOfBox() % 100 > 40 && getNumOfBox() % 100 <= 50) {
 			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			clock_pic.ShowBitmap();
 		}
-		
 	}
-
 	void Clock::effect(Hero *h)
 	{
-		h->SetAllCoolDownToZero();
+		h->SetAllCoolDownToZero();			//盢璣动м玱丁场籹
 		setIsUsed(false);
 	}
-
 	bool Clock::intercect(Hero * h)
 	{
 		if (isExist()) {
@@ -64,6 +52,4 @@ namespace game_framework {
 		}
 		return false;
 	}
-
-
 }

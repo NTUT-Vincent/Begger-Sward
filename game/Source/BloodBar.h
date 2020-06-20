@@ -17,15 +17,11 @@ namespace game_framework {
 		void showBloodBar(Maps *m, int hp);
 		void setFullHP(int n);					//設定滿血的血量
 		void setXY(int x, int y);				//設定血條的x y 座標
-
 		int getFullHP();						//回傳滿血的血量
-
 	private:
 		CMovingBitmap blood_bar[12];			//不同長度的血條
 		double full_hp;
 		int _x, _y;
-
 	};
 }
-
 #endif // !BloodBar_H
