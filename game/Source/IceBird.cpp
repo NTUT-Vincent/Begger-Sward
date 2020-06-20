@@ -105,11 +105,8 @@ namespace game_framework {
 		}
 		iceWallMove(m);
 		if (!isAlive()) {
-<<<<<<< HEAD
 			isUsingIceWall = false;
 			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE);
-=======
->>>>>>> 8e150236cd0bea2d3d75a21a6e6f127211f554ae
 			itemsOnMove(m);
 		}
 	}
@@ -180,7 +177,7 @@ namespace game_framework {
 		_x = ini_x;
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = isUsingIceWall = isUsingStorm = false;
-		hp = 1200;
+		hp = 70000;
 		arrorClock = 0;
 		arrowAttackCD = 180;
 		ice_wall_clock = 0;
