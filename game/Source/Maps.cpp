@@ -9,14 +9,13 @@
 #include "Enemy.h"
 #include "Map1_4.h"
 #include <vector>
-
-namespace game_framework {
+namespace game_framework 
+{
 	Maps::Maps(int x, int y)
 	{
 		_sx = x;
 		_sy = y;
 	}
-
 	void Maps::addSX(int n)			//sx+=n 就是地圖向左移動n
 	{
 		_sx += n;

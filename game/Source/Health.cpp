@@ -8,7 +8,8 @@
 #include "Maps.h"
 #include "Item.h"
 #include "Health.h"
-namespace game_framework {
+namespace game_framework
+{
 	Health::Health(int n)											
 	{
 		to_heal = n;
@@ -19,19 +20,21 @@ namespace game_framework {
 	}
 	void Health::OnMove(Maps *m, Hero *h)
 	{
-		if (isExist() && intercect(h)) {										//狦璣动具ネ㏑ 具碞ぃ瓜
+		if (isExist() && intercect(h)) 
+		{										//狦璣动具ネ㏑ 具碞ぃ瓜
 			h->addHp(to_heal);
 			setExist(false);
 		}
 	}
 	void Health::OnShow(Maps *m)
 	{
-		if (isExist()) {
+		if (isExist())
+		{
 			health_pic.SetTopLeft(m->screenX(getX()), m->screenY(getY()));
 			health_pic.ShowBitmap();
 		}
 	}
-	void Health::effect(Hero *h)												//ぃ琌笆ㄏノ笵ㄣ ┮ぃノeffect
+	void Health::effect(Hero *h)				//ぃ琌笆ㄏノ笵ㄣ ┮ぃノeffect
 	{
 	}
 }

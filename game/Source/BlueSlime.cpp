@@ -14,8 +14,8 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
-
-namespace game_framework {
+namespace game_framework 
+{
 	/////////////////////////////////////////////////////////////////////////////
 	// BlueGoblin: Enemy class												   //
 	/////////////////////////////////////////////////////////////////////////////
@@ -227,7 +227,7 @@ namespace game_framework {
 	void BlueSlime::attackShow(Maps * m)
 	{
 		if (isAttacking) 
-		{			//如果正在攻擊，顯示攻擊的動畫
+		{//如果正在攻擊，顯示攻擊的動畫
 			normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			normalAttackR.OnShow();
 			if (normalAttackR.IsFinalBitmap())

@@ -7,17 +7,19 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Item.h"
-
-namespace game_framework {
+namespace game_framework
+{
 	Item::Item()
 	{
 	}
 	void Item::showOnStatusBar(int n)
 	{
-		if (n < 3) {												//前三個道具顯示在道具欄的上面三個
+		if (n < 3) 
+		{												//前三個道具顯示在道具欄的上面三個
 			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 0);
 		}
-		if (n >= 3) {												//4-6顯示在下面三個
+		if (n >= 3)
+		{												//4-6顯示在下面三個
 			item_on_status_bar.SetTopLeft(540 + (n % 3) * 30, 30);
 		}
 		item_on_status_bar.ShowBitmap();
@@ -67,11 +69,14 @@ namespace game_framework {
 	}
 	bool Item::intercect(Hero * h)
 	{
-		if (isExist()) {
-			if (h->GetX2() >= _x+10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20) {
+		if (isExist())
+		{
+			if (h->GetX2() >= _x+10 && h->GetX1() <= _x + 20 && h->GetY2() >= _y + 10 && h->GetY1() <= _y + 20)
+			{
 				return true;
 			}
-			else {
+			else
+			{
 				return false;
 			}
 		}

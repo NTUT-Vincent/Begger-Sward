@@ -8,16 +8,23 @@
 #include "Map1_1.h"
 #include "Enemy.h"
 #include <vector>
-
-namespace game_framework {
-	Map1_1::Map1_1():Maps(-200, -200) {		//0為空 1為障礙物 3為可以前往下一關的區域 5為滑滑的地方
+namespace game_framework
+{
+	/////////////////////////////////////////////////////////////////////////////
+	// Map1_1: Maps class													   //
+	/////////////////////////////////////////////////////////////////////////////
+	Map1_1::Map1_1():Maps(-200, -200) 
+	{//0為空 1為障礙物 3為可以前往下一關的區域 5為滑滑的地方
 		all_enemy_clear = 0;
-		for (int i = 0; i < 12; i++) {
+		for (int i = 0; i < 12; i++)
+		{
 			for (int j = 0; j < 12; j++) {
-				if ((i > 0 && i < 11) && ((j >= 0 && j <= 3) || j == 11)) {
+				if ((i > 0 && i < 11) && ((j >= 0 && j <= 3) || j == 11)) 
+				{
 					map[i][j] = 1;
 				}
-				else if ((i == 0 || i == 11) && (j > 0 && j < 12)) {
+				else if ((i == 0 || i == 11) && (j > 0 && j < 12))
+				{
 					map[i][j] = 1;
 				}
 				else
@@ -52,7 +59,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] != 1) {
+		if (map[gx][gy] != 1)
+		{
 			return true;
 		}
 		return false;
@@ -61,7 +69,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 3) {
+		if (map[gx][gy] == 3)
+		{
 			return true;
 		}
 		return false;
@@ -70,7 +79,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 5) {
+		if (map[gx][gy] == 5)
+		{
 			return true;
 		}
 		return false;
@@ -78,10 +88,11 @@ namespace game_framework {
 	void Map1_1::OnMove() 
 	{
 	}
-	void Map1_1::LoadBitmap() {
+	void Map1_1::LoadBitmap()
+	{
 		firstmap.LoadBitmap(IDB_MAP1_1);
 		char *filename1_1[4] = { ".\\bitmaps\\gate1.bmp",".\\bitmaps\\gate2.bmp",".\\bitmaps\\gate3.bmp",".\\bitmaps\\gate4.bmp" };
-		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 4; i++)
 			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		gate.SetDelayCount(3);
 	}

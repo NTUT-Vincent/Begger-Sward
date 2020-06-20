@@ -9,19 +9,23 @@
 #include "Enemy.h"
 #include "Map1_3.h"
 #include <vector>
-
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 地圖的class都很相似 註解都可以參考Map1_1
+	// 請參考Map1_1.cpp														   //
 	/////////////////////////////////////////////////////////////////////////////
-	Map1_3::Map1_3():Maps(-200, -200) {
+	Map1_3::Map1_3():Maps(-200, -200)
+	{
 		all_enemy_clear = 0;
-		for (int i = 0; i < 18; i++) {
+		for (int i = 0; i < 18; i++)
+		{
 			for (int j = 0; j < 15; j++) {
-				if (i > 1 && i < 16 && j > 2 && j < 13) {
+				if (i > 1 && i < 16 && j > 2 && j < 13) 
+				{
 					map[i][j] = 0;
 				}
-				else {
+				else 
+				{
 					map[i][j] = 1;
 				}
 			}
@@ -51,7 +55,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] != 1) {
+		if (map[gx][gy] != 1)
+		{
 			return true;
 		}
 		return false;
@@ -60,7 +65,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 3) {
+		if (map[gx][gy] == 3) 
+		{
 			return true;
 		}
 		return false;
@@ -69,7 +75,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 5) {
+		if (map[gx][gy] == 5)
+		{
 			return true;
 		}
 		return false;
@@ -77,14 +84,16 @@ namespace game_framework {
 	void Map1_3::OnMove()
 	{
 	}
-	void Map1_3::LoadBitmap() {
+	void Map1_3::LoadBitmap()
+	{
 		firstmap.LoadBitmap(IDB_MAP1_3);
 		char *filename1_1[4] = { ".\\bitmaps\\gate1.bmp",".\\bitmaps\\gate2.bmp",".\\bitmaps\\gate3.bmp",".\\bitmaps\\gate4.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		gate.SetDelayCount(3);
 	}
-	void Map1_3::OnShow() {
+	void Map1_3::OnShow()
+	{
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
 		if (all_enemy_clear == 1)

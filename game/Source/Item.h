@@ -1,12 +1,10 @@
 #ifndef __ITEM_H
 #define __ITEM_H
-
-
 #include "Maps.h"
 #include "Hero.h"
 #include "Character.h"
-
-namespace game_framework {
+namespace game_framework 
+{
 	class Hero;
 	class Item
 	{
@@ -30,17 +28,14 @@ namespace game_framework {
 		bool intercect(Hero *h);						//偵測是否跟別的物件座標位置相交
 		bool getIsUsed();								//return _isUsed
 		void setIsUsed(bool b);							//設定_isUsed
-	
 	private:
 		int _x, _y;										// XY座標
 		bool _isExist;									//是否存在
 		int random_num;									//一個隨機數
 		bool _isUsed;									//是否被使用了
 		int num_of_box;									//一個隨機數，用來判定道具箱會掉哪個道具
-	
 	protected:
 		CMovingBitmap item_on_status_bar;
 	};
 }
-
-#endif // !Item_H
+#endif

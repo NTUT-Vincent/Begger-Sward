@@ -9,19 +9,24 @@
 #include "Enemy.h"
 #include "Map2_3.h"
 #include <vector>
-
-namespace game_framework {
+namespace game_framework 
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 地圖的class都很相似 註解都可以參考Map1_1
+	// 請參考Map1_1.cpp														   //
 	/////////////////////////////////////////////////////////////////////////////
-	Map2_3::Map2_3():Maps(-200, -200) {
+	Map2_3::Map2_3():Maps(-200, -200) 
+	{
 		all_enemy_clear = 0;
-		for (int i = 0; i < 24; i++) {
-			for (int j = 0; j < 19; j++) {
-				if (i > 1 && i < 22 && j > 2 && j < 17) {
+		for (int i = 0; i < 24; i++) 
+		{
+			for (int j = 0; j < 19; j++) 
+			{
+				if (i > 1 && i < 22 && j > 2 && j < 17)
+				{
 					map[i][j] = 0;
 				}
-				else {
+				else 
+				{
 					map[i][j] = 1;
 				}
 			}
@@ -29,8 +34,10 @@ namespace game_framework {
 		map[11][2] = map[12][2] = 3;
 		map[2][3] = map[2][16] = map[21][3] = map[21][16] = 1;
 		map[7][5] = map[7][6] = map[4][9] = map[4][10] = map[7][13] = map[7][14] = map[16][5] = map[16][6] = map[16][14] = map[16][13] = map[19][9] = map[19][10] = 1;
-		for (int i = 9; i < 15; i++) {
-			for (int j = 8; j < 14; j++) {
+		for (int i = 9; i < 15; i++) 
+		{
+			for (int j = 8; j < 14; j++)
+			{
 				map[i][j] = 5;
 			}
 		}
@@ -58,7 +65,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] != 1 && map[gx][gy] != 2) {
+		if (map[gx][gy] != 1 && map[gx][gy] != 2) 
+		{
 			return true;
 		}
 		return false;
@@ -67,7 +75,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 3) {
+		if (map[gx][gy] == 3)
+		{
 			return true;
 		}
 		return false;
@@ -76,7 +85,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 5) {
+		if (map[gx][gy] == 5)
+		{
 			return true;
 		}
 		return false;
@@ -84,14 +94,16 @@ namespace game_framework {
 	void Map2_3::OnMove() 
 	{
 	}
-	void Map2_3::LoadBitmap() {
+	void Map2_3::LoadBitmap()
+	{
 		firstmap.LoadBitmap(IDB_MAP2_3);
 		char *filename1_1[4] = { ".\\bitmaps\\gate5.bmp",".\\bitmaps\\gate6.bmp",".\\bitmaps\\gate7.bmp",".\\bitmaps\\gate8.bmp" };
 		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
 			gate.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		gate.SetDelayCount(3);
 	}
-	void Map2_3::OnShow() {
+	void Map2_3::OnShow() 
+	{
 		firstmap.SetTopLeft(getSX(), getSY());
 		firstmap.ShowBitmap();
 		if (all_enemy_clear == 1)

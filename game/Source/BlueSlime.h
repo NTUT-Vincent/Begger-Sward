@@ -1,13 +1,13 @@
 #ifndef BLUESLIME_H
 #define BLUESLIME_H
-
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"
 #include "Enemy.h"
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供一個敵人												   //
+	// 這個class提供一個敵人													   //
 	//一個藍色的史萊姆	 													   //
 	/////////////////////////////////////////////////////////////////////////////
 	class BlueSlime :public Enemy
