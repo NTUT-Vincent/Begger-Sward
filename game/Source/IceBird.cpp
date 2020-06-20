@@ -106,6 +106,7 @@ namespace game_framework {
 		iceWallMove(m);
 		if (!isAlive()) {
 			isUsingIceWall = false;
+			//如果冰鳥死掉，過門時回頭主角對冰鳥開噴
 			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE);
 			itemsOnMove(m);
 		}

@@ -411,6 +411,18 @@ namespace game_framework {
 
 	void CGameStateRun::stage_process_move(Maps & stage_map, Hero & player, vector<Enemy*> & enemy_array, STAGE next_stage)
 	{
+		//王關會有不一樣的音樂
+		if ((current_stage == STAGE_1_4 || current_stage == STAGE_2_4) && change_song) {
+			CAudio::Instance()->Stop(AUDIO_GOLDENWIND);			// 撥放 MIDI
+			CAudio::Instance()->Play(AUDIO_AWAKEN, true);			// 撥放 MIDI
+			change_song = 0;
+		}
+		if (!(current_stage == STAGE_1_4 || current_stage == STAGE_2_4) && change_song ) {
+			CAudio::Instance()->Stop(AUDIO_AWAKEN);			// 撥放 MIDI
+			CAudio::Instance()->Play(AUDIO_GOLDENWIND);			// 撥放 MIDI
+			change_song = 0;
+		}
+
 		player.OnMove(&stage_map, &enemy_array);
 		for (unsigned i = 0; i < enemy_array.size(); i++) {
 			enemy_array[i]->OnMove(&stage_map);
@@ -435,25 +447,25 @@ namespace game_framework {
 			break;
 		}
 		stage_map.setClear(allEnemyDie(enemy_array));
-		//如果冰鳥死掉播放音效
-		if (current_stage == STAGE_2_4 && allEnemyDie(enemy_array))
-			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE, false);
 
+		int random_scold = rand() % 100;
+		//如果打所有怪物打死且主角進入下一關的區域
 		if (allEnemyDie(enemy_array) && player.isInFinishArea(&stage_map))
 		{
-			if (next_stage == STAGE_1_4 || STAGE_2_4) {
-				CAudio::Instance()->Stop(AUDIO_GOLDENWIND);			// 撥放 MIDI
-				CAudio::Instance()->Play(AUDIO_AWAKEN, true);			// 撥放 MIDI
-			}
-			if (next_stage == STAGE_2_1) {
-				CAudio::Instance()->Play(AUDIO_GOLDENWIND);			// 撥放 MIDI
-				CAudio::Instance()->Stop(AUDIO_AWAKEN);			// 撥放 MIDI
-			}
+			//怪物被主角消滅，主角覺得怪物太爛了於是大罵一聲，爛!
+			if (random_scold <= 40)
+				CAudio::Instance()->Play(AUDIO_SCOLD, false);
+
+			//若通關播放通關畫面6秒
 			if (next_stage == CONGRATULATION)
 			{
 				all_level_pass_count = 180;
 				isAllLevelPass = 1;
 			}
+
+			if (current_stage == STAGE_1_3 || current_stage == STAGE_2_3 || current_stage == STAGE_1_4)
+				change_song = 1;
+
 			current_stage = next_stage;
 			player.SetXY(next_x, next_y);
 		}
@@ -488,7 +500,7 @@ namespace game_framework {
 				break;
 		}
 
-
+		//如果主角死了
 		if (!player1.isAlive()) {
 			GotoGameState(GAME_STATE_OVER);
 			for (int i = 0; i < 6; i++) {
@@ -506,13 +518,7 @@ namespace game_framework {
 		{
 			GotoGameState(GAME_STATE_INIT);
 		}
-		//
-		// 如果希望修改cursor的樣式，則將下面程式的commment取消即可
-		//
-		// SetCursor(AfxGetApp()->LoadCursor(IDC_GAMECURSOR));
-		//
-		// 移動背景圖的座標
-		//
+		
 		if (background.Top() > SIZE_Y)
 			background.SetTopLeft(60, -background.Height());
 		background.SetTopLeft(background.Left(), background.Top() + 1);
@@ -530,12 +536,13 @@ namespace game_framework {
 		//
 		player1.LoadBitmap();
 		player_status.loadPlayerStatus();
-		//第一關怪物
+		change_song = 0;
+		//1-1怪物
 		for (unsigned i = 0; i < enemys1_1.size(); i++) {
 			enemys1_1[i]->LoadBitmap();
 		}
 
-		//第二關怪物
+		//1-2怪物
 		for (unsigned i = 0; i < enemys1_2.size(); i++) {
 			enemys1_2[i]->LoadBitmap();
 		}
@@ -543,7 +550,7 @@ namespace game_framework {
 		for (unsigned i = 0; i < enemys1_3.size(); i++) {
 			enemys1_3[i]->LoadBitmap();
 		}
-		//第六關怪物
+		//1-4怪物
 		for (unsigned i = 0; i < enemys1_4.size(); i++) {
 			enemys1_4[i]->LoadBitmap();
 		}
@@ -564,10 +571,10 @@ namespace game_framework {
 			enemys2_4[i]->LoadBitmap();
 		}
 
+		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 		map_stg1_1.LoadBitmap();
 		map_stg1_2.LoadBitmap();
 		map_stg1_3.LoadBitmap();
-		background.LoadBitmap(IDB_BACKGROUND);					// 載入背景的圖形
 		map_stg1_4.LoadBitmap();
 		map_stg2_1.LoadBitmap();
 		map_stg2_2.LoadBitmap();
@@ -577,7 +584,6 @@ namespace game_framework {
 		// 完成部分Loading動作，提高進度
 		//
 		ShowInitProgress(50);
-		Sleep(300); // 放慢，以便看清楚進度，實際遊戲請刪除此Sleep
 		//
 		// 繼續載入其他資料
 		//
@@ -590,6 +596,8 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_SWORD, "sounds\\swing2.mp3");
 		CAudio::Instance()->Load(AUDIO_FIRE, "sounds\\fireball.mp3");
 		CAudio::Instance()->Load(AUDIO_SKILLE, "sounds\\swing4.mp3");
+		CAudio::Instance()->Load(AUDIO_SKILLR_1, "sounds\\skillR_1.mp3");
+		CAudio::Instance()->Load(AUDIO_SKILLR_2, "sounds\\skillR_2.mp3");
 		CAudio::Instance()->Load(Audio_KNIFE,  "sounds\\knife2.mp3");
 		CAudio::Instance()->Load(AUDIO_ICE, "sounds\\iceball.mp3");
 		CAudio::Instance()->Load(AUDIO_HITTING, "sounds\\hitting4.mp3");
@@ -602,6 +610,10 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_GOODFLASH, "sounds\\goodflash.mp3");
 		CAudio::Instance()->Load(AUDIO_BADFLASH, "sounds\\badflash.mp3");
 		CAudio::Instance()->Load(AUDIO_ICEBIRD_DIE, "sounds\\icebirddie.mp3");
+		CAudio::Instance()->Load(AUDIO_BEING_ATTACKED, "sounds\\being_attacked.mp3");
+		CAudio::Instance()->Load(AUDIO_SCOLD, "sounds\\scold.mp3");
+		CAudio::Instance()->Load(AUDIO_SHOE, "sounds\\shoe.mp3");
+		CAudio::Instance()->Load(AUDIO_SING, "sounds\\sing.mp3");
 
 		//
 		// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
@@ -625,8 +637,8 @@ namespace game_framework {
 			if (n == 2)
 				player1.SetElementAttribute(PLANT);
 			break;
-		case NUM_1: player1.useItem(1); /*current_stage = STAGE_1_1;*/ break;
-		case NUM_2: player1.useItem(2);/* current_stage = STAGE_1_2;*/ break;
+		case NUM_1: player1.useItem(1); break;
+		case NUM_2: player1.useItem(2); break;
 		case NUM_3: player1.useItem(3); break;
 		case NUM_4: player1.useItem(4); break;
 		case NUM_5: player1.useItem(5); break;
@@ -644,21 +656,17 @@ namespace game_framework {
 			player1.SetUsingW(true); break;
 		case KEY_E: player1.SetUsingE(true); break;
 		case KEY_R: player1.SetUsingR(true); break;
-		case J_STG1_1: current_stage = STAGE_1_1; player1.SetXY(480, 480); map_stg1_1.Initialize(); break;
-		case J_STG1_2: current_stage = STAGE_1_2; player1.SetXY(480, 480); map_stg1_2.Initialize(); break;
-		case J_STG1_4: current_stage = STAGE_1_3; player1.SetXY(480, 480); map_stg1_3.Initialize(); break;
-		case J_STG1_6: current_stage = STAGE_1_4; player1.SetXY(780, 1470); map_stg1_4.Initialize(); break;
-		case J_STG2_1: current_stage = STAGE_2_1; player1.SetXY(480, 480); map_stg2_1.Initialize(); break;
-		case J_STG2_2: current_stage = STAGE_2_2; player1.SetXY(480, 480); map_stg2_2.Initialize(); break;
-		case J_STG2_3: current_stage = STAGE_2_3; player1.SetXY(480, 480); map_stg2_3.Initialize(); break;
-		case J_STG2_4: current_stage = STAGE_2_4; player1.SetXY(480, 480); map_stg2_4.Initialize(); break;
+		case J_STG1_1: current_stage = STAGE_1_1; player1.SetXY(480, 480); map_stg1_1.Initialize(); change_song = 1; break;	//z
+		case J_STG1_2: current_stage = STAGE_1_2; player1.SetXY(480, 480); map_stg1_2.Initialize(); change_song = 1; break;	//x
+		case J_STG1_4: current_stage = STAGE_1_3; player1.SetXY(480, 480); map_stg1_3.Initialize(); change_song = 1; break;	//c
+		case J_STG1_6: current_stage = STAGE_1_4; player1.SetXY(780, 1470); map_stg1_4.Initialize(); change_song = 1; break;	//v
+		case J_STG2_1: current_stage = STAGE_2_1; player1.SetXY(480, 480); map_stg2_1.Initialize(); change_song = 1; break;	//b
+		case J_STG2_2: current_stage = STAGE_2_2; player1.SetXY(480, 480); map_stg2_2.Initialize(); change_song = 1; break;	//n
+		case J_STG2_3: current_stage = STAGE_2_3; player1.SetXY(480, 480); map_stg2_3.Initialize(); change_song = 1; break;	//m
+		case J_STG2_4: current_stage = STAGE_2_4; player1.SetXY(480, 480); map_stg2_4.Initialize(); change_song = 1; break;	//j
 
 		default: return;
 		}
-		if(nRepCnt==CTRL)
-			if (nChar == NUM_1) {
-				current_stage = STAGE_1_1;
-			}
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -675,27 +683,22 @@ namespace game_framework {
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		//eraser.SetMovingLeft(true);
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		//eraser.SetMovingLeft(false);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		// 沒事。如果需要處理滑鼠移動的話，寫code在這裡
 	}
 
 	void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-
 	}
 
 	void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-
 	}
 
 	bool CGameStateRun::allEnemyDie(vector<Enemy*> enemys)
@@ -708,48 +711,17 @@ namespace game_framework {
 		return true;
 	}
 
-	//void CGameStateRun::stage_process_show(Maps & stage_map, Hero & player, vector<Enemy*>& enemy_array, STAGE next_stage)
-	//{
-	//	switch (current_stage)
-	//	{
-	//	case STAGE_1_1: Maps current_map = first_stage_map;
-	//	}
-	//	stage_map.OnShow();
-	//	int hero_position = -1;									//如果Hero的座標比最上面的敵人更上面 position = -1					
-	//	for (unsigned i = 0; i < enemys1_1.size(); i++) {
-	//		if (player1.GetY2() > enemys1_1[i]->GetY2()) {		//逐一比較Y座標，找到Hero的位置在哪兩個怪物中間
-	//			hero_position = i;
-	//		}
-	//	}
-	//	if (hero_position == -1) {
-	//		player1.OnShow(&first_stage_map);
-	//	}
-	//	for (unsigned i = 0; i < enemys1_1.size(); i++) {
-	//		enemys1_1[i]->OnShow(&first_stage_map);
-	//		if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-	//			player1.OnShow(&first_stage_map);
-	//		}
-	//	}
-	//}
-
 	void CGameStateRun::OnShow()
 	{
 		//
 		//  注意：Show裡面千萬不要移動任何物件的座標，移動座標的工作應由Move做才對，
 		//        否則當視窗重新繪圖時(OnDraw)，物件就會移動，看起來會很怪。換個術語
 		//        說，Move負責MVC中的Model，Show負責View，而View不應更動Model。
+		
 		corner.SetTopLeft(0, 0);
 		corner.SetTopLeft(SIZE_X - corner.Width(), SIZE_Y - corner.Height());
-		/////////////////////////////第一關
-
-		/*switch (current_stage) {
-		case STAGE_1_1:
-			stage_process_show(first_stage_map, player1, enemys1_1, STAGE_1_2);
-			break;
-		case STAGE_1_2:
-			stage_process_show(second_stage_map, player1, enemys1_2, STAGE_1_3);
-			break;
-		}*/
+		
+		/////////////////////////////////////////////1-1
 
 		if (current_stage == STAGE_1_1) {
 			map_stg1_1.OnShow();
@@ -771,7 +743,7 @@ namespace game_framework {
 		}
 		
 
-		/////////////////////////////////////////////第二關
+		/////////////////////////////////////////////1-2
 
 		if (current_stage == STAGE_1_2) {
 			map_stg1_2.OnShow();
@@ -793,7 +765,7 @@ namespace game_framework {
 			}
 		}
 
-		/////////////////////////////////////////////1_3
+		/////////////////////////////////////////////1-3
 
 		if (current_stage == STAGE_1_3) {
 			map_stg1_3.OnShow();
@@ -815,7 +787,7 @@ namespace game_framework {
 			}
 		}
 
-		////////////////////////////////////////////第六關
+		/////////////////////////////////////////////1-4
 
 		if (current_stage == STAGE_1_4) {
 			map_stg1_4.OnShow();
@@ -837,7 +809,7 @@ namespace game_framework {
 			}
 		}
 
-		/////////////////////////////// 2_1
+		/////////////////////////////////////////////2-1
 
 		if (current_stage == STAGE_2_1) {
 			map_stg2_1.OnShow();
@@ -859,7 +831,7 @@ namespace game_framework {
 			}
 		}
 
-		//////////////////// 2_2
+		/////////////////////////////////////////////2_2
 
 		if (current_stage == STAGE_2_2) {
 			map_stg2_2.OnShow();
@@ -881,7 +853,7 @@ namespace game_framework {
 			}
 		}
 
-		//////////////////////// 2_3
+		/////////////////////////////////////////////2_3
 
 		if (current_stage == STAGE_2_3) {
 			map_stg2_3.OnShow();
@@ -902,7 +874,7 @@ namespace game_framework {
 			}
 		}
 
-		//////////////////// 2_4
+		/////////////////////////////////////////////2_4
 
 		if (current_stage == STAGE_2_4) {
 			map_stg2_4.OnShow();
@@ -917,10 +889,6 @@ namespace game_framework {
 			}
 			for (unsigned i = 0; i < enemys2_4.size(); i++) {
 				enemys2_4[i]->OnShow(&map_stg2_4);
-				//if (i == hero_position) {							//如果show到剛剛比較到的位置，show hero
-				//	player1.OnShow(&map_stg2_4);
-				//}
-
 			}
 			player1.OnShow(&map_stg2_4);
 		}
@@ -931,9 +899,7 @@ namespace game_framework {
 			you_win.ShowBitmap();
 		}
 		player_status.showPlayerStatus();
-		
 	}
-
 };
 
 

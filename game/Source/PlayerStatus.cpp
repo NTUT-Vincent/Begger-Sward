@@ -8,23 +8,19 @@
 #include "Maps.h"
 #include "PlayerStatus.h"
 #include "Util.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// CBall: Ball class
+	// CBall: An status/cooldown showing panel								   //
 	/////////////////////////////////////////////////////////////////////////////
-
 	PlayerStatus::PlayerStatus()
 	{
 		_x = 0;
 		_y = 0;
 	}
-
 	void PlayerStatus::Initialize(Hero * h)
 	{
 		_h = h;
 	}
-
 	void PlayerStatus::loadPlayerStatus() {
 		status_bar.LoadBitmap(IDB_STATUSBAR, RGB(255, 255, 255));
 		skill_q_fire_pic.LoadBitmap(IDB_SKILLQFIREPIC);
@@ -35,37 +31,29 @@ namespace game_framework {
 		skill_r_pic.LoadBitmap(".\\bitmaps\\DariusExecute.bmp");
 		loadDigitsBitmap(Q_cooldown_first);
 		loadDigitsBitmap(Q_cooldown_ten);
-		
 		loadDigitsBitmap(W_cooldown_first);
 		loadDigitsBitmap(W_cooldown_ten);
-		
 		loadDigitsBitmap(E_cooldown_first);
 		loadDigitsBitmap(E_cooldown_ten);
-
 		loadDigitsBitmap(R_cooldown_first);
 		loadDigitsBitmap(R_cooldown_ten);
-		
 		loadDigitsBitmap(HP_first);
 		loadDigitsBitmap(HP_ten);
 		loadDigitsBitmap(HP_hundred);
 		loadDigitsBitmap(HP_thousand);
-		
 		loadDigitsBitmap(attack_fire_first);
 		loadDigitsBitmap(attack_fire_ten);
 		loadDigitsBitmap(attack_fire_hundred);
 		loadDigitsBitmap(attack_fire_thousand);
-
 		loadDigitsBitmap(attack_ice_first);
 		loadDigitsBitmap(attack_ice_ten);
 		loadDigitsBitmap(attack_ice_hundred);
 		loadDigitsBitmap(attack_ice_thousand);
-
 		loadDigitsBitmap(attack_plant_first);
 		loadDigitsBitmap(attack_plant_ten);
 		loadDigitsBitmap(attack_plant_hundred);
 		loadDigitsBitmap(attack_plant_thousand);
 	}
-
 	void PlayerStatus::showPlayerStatus() {
 		status_bar.SetTopLeft(0, 0);
 		status_bar.ShowBitmap();
@@ -79,12 +67,10 @@ namespace game_framework {
 		showAttackPlant();
 		showItemsOfPlayer();
 	}
-
 	void PlayerStatus::setXY(int x, int y) {
 		_x = x;
 		_y = y;
 	}
-
 	void PlayerStatus::loadDigitsBitmap(CMovingBitmap a[])
 	{
 		a[0].LoadBitmap(IDB_0 , RGB(0, 0, 0));
@@ -98,7 +84,6 @@ namespace game_framework {
 		a[8].LoadBitmap(IDB_8, RGB(0, 0, 0));
 		a[9].LoadBitmap(IDB_9, RGB(0, 0, 0));
 	}
-
 	void PlayerStatus::showQ()
 	{
 		if (_h->getCurrentAttribute() == FIRE) {
@@ -124,9 +109,7 @@ namespace game_framework {
 			Q_cooldown_ten[second].SetTopLeft(40, 20);
 			Q_cooldown_ten[second].ShowBitmap();
 		}
-
 	}
-
 	void PlayerStatus::showE()
 	{
 		int e_cd = _h->GetECoolDown()/30;
@@ -144,7 +127,6 @@ namespace game_framework {
 			E_cooldown_ten[second].ShowBitmap();
 		}
 	}
-	
 	void PlayerStatus::showW()
 	{
 		int w_cd = _h->GetWCoolDown()/30;
@@ -162,7 +144,6 @@ namespace game_framework {
 			W_cooldown_ten[second].ShowBitmap();
 		}
 	}
-
 	void PlayerStatus::showR()
 	{
 		int r_cd = _h->GetRCoolDown() / 30;
@@ -180,7 +161,6 @@ namespace game_framework {
 			R_cooldown_ten[second].ShowBitmap();
 		}
 	}
-
 	void PlayerStatus::showHP()
 	{
 		int hp = _h->getHP();
@@ -192,7 +172,6 @@ namespace game_framework {
 			int third = hp % 10;
 			hp /= 10;
 			int forth = hp % 10;
-
 			HP_first[first].SetTopLeft(500, 0);
 			HP_first[first].ShowBitmap();
 			HP_ten[second].SetTopLeft(490, 0);
@@ -203,7 +182,6 @@ namespace game_framework {
 			HP_thousand[forth].ShowBitmap();
 		}
 	}
-
 	void PlayerStatus::showAttackFire()
 	{
 		int att_fire = _h->get_attack_fire();
@@ -215,7 +193,6 @@ namespace game_framework {
 			int third = att_fire % 10;
 			att_fire /= 10;
 			int forth = att_fire % 10;
-
 			attack_fire_first[first].SetTopLeft(500, 20);
 			attack_fire_first[first].ShowBitmap();
 			attack_fire_ten[second].SetTopLeft(490, 20);
@@ -226,7 +203,6 @@ namespace game_framework {
 			attack_fire_thousand[forth].ShowBitmap();
 		}
 	}
-
 	void PlayerStatus::showAttackIce()
 	{
 		int att_ice = _h->get_attack_ice();
@@ -238,7 +214,6 @@ namespace game_framework {
 			int third = att_ice % 10;
 			att_ice /= 10;
 			int forth = att_ice % 10;
-
 			attack_ice_first[first].SetTopLeft(500, 40);
 			attack_ice_first[first].ShowBitmap();
 			attack_ice_ten[second].SetTopLeft(490, 40);
@@ -249,7 +224,6 @@ namespace game_framework {
 			attack_ice_thousand[forth].ShowBitmap();
 		}
 	}
-
 	void PlayerStatus::showAttackPlant()
 	{
 		int att_plant = _h->get_attack_plant();
@@ -261,7 +235,6 @@ namespace game_framework {
 			int third = att_plant % 10;
 			att_plant /= 10;
 			int forth = att_plant % 10;
-
 			attack_plant_first[first].SetTopLeft(500, 60);
 			attack_plant_first[first].ShowBitmap();
 			attack_plant_ten[second].SetTopLeft(490, 60);
@@ -272,7 +245,6 @@ namespace game_framework {
 			attack_plant_thousand[forth].ShowBitmap();
 		}
 	}
-
 	void PlayerStatus::showItemsOfPlayer()
 	{
 		for (int i = 0; i < 6; i++) {
@@ -281,6 +253,4 @@ namespace game_framework {
 			}
 		}
 	}
-
-	
 }
