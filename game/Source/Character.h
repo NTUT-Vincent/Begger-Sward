@@ -1,7 +1,6 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 #include "Maps.h"
-
 namespace game_framework {
 	class Character
 	{
@@ -18,5 +17,4 @@ namespace game_framework {
 		string _name;
 	};
 }
-
-#endif // !CHARACTER_H
+#endif

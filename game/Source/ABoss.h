@@ -1,14 +1,13 @@
 #ifndef ABOSS_H
 #define ABOSS_H
-
 #include "Maps.h"
 #include "Character.h"
 #include "BossBloodBar.h"
 #include "Enemy.h"
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供一個敵人 他是boss													   //
-	//		 																	//
+	// 這個class提供一個敵人 												   //
+	// 他是boss	 															   //
 	/////////////////////////////////////////////////////////////////////////////
 	class ABoss :public Enemy
 	{
@@ -34,7 +33,6 @@ namespace game_framework {
 		void SetMovingRight(bool b);	//
 		void SetXY(int x, int y);		//
 		void movement(Maps *m);			//決定角色移動的方式
-		CRect * GetRect();					//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
 		//用來攻擊的
 		void attack();					//用來判定是否要攻擊//
 		void iceAttack();				//判定是否要用冰的技能攻擊

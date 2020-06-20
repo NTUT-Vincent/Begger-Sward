@@ -1,12 +1,11 @@
 #ifndef __BOSSBLOODBAR_H
 #define __BOSSBLOODBAR_H
-
 #include "Maps.h"
 #include "Character.h"
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供boss的血條
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供boss的血條												   //
 	/////////////////////////////////////////////////////////////////////////////
 	class BossBloodBar
 	{

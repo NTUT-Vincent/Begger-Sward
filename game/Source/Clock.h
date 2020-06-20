@@ -1,14 +1,12 @@
 #ifndef __CLOCK_H
 #define __CLOCK_H
-
-
 #include "Maps.h"
 #include "Character.h"
-
-namespace game_framework {
+namespace game_framework 
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供道具，可以重製所有招式的冷卻時間
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供道具，可以重製所有招式的冷卻時間						   //
+	// 道具可由箱子或擊殺怪物獲得											   //
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
 	class Clock: public Item
@@ -25,5 +23,4 @@ namespace game_framework {
 		CMovingBitmap clock_pic;
 	};
 }
-
-#endif // !Health_H
+#endif

@@ -15,9 +15,11 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
-
-namespace game_framework {
-	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
+namespace game_framework 
+{
+	/////////////////////////////////////////////////////////////////////////////
+	// BlueGoblin: Enemy class												   //
+	/////////////////////////////////////////////////////////////////////////////
 	BlueGoblin::BlueGoblin()
 	{
 		_x = 384;
@@ -37,15 +39,16 @@ namespace game_framework {
 	{
 		blood_bar.loadBloodBar();
 		/////掉落道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++) 
+		{
 			items.at(i)->load();
 		}
 		/////怪物的動畫
 		char *filename1_1[4] = { ".\\bitmaps\\bluegoblinL1.bmp",".\\bitmaps\\bluegoblinL2.bmp",".\\bitmaps\\bluegoblinL3.bmp", ".\\bitmaps\\bluegoblinL4.bmp" };
-		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 4; i++)	// 載入動畫
 			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		char *filename1_2[4] = { ".\\bitmaps\\bluegoblinR1.bmp",".\\bitmaps\\bluegoblinR2.bmp",".\\bitmaps\\bluegoblinR3.bmp", ".\\bitmaps\\bluegoblinR4.bmp" };
-		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 4; i++)	// 載入動畫
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		/////攻擊的動畫
 		arrowAttackL.LoadBitmap(".\\bitmaps\\blue_arrow_attackL.bmp", RGB(0, 0, 0));
@@ -55,35 +58,39 @@ namespace game_framework {
 	void BlueGoblin::OnMove(Maps * m) 
 	{
 		const int STEP_SIZE = 4;
-		if (isAlive()) {
-			//attack();
+		if (isAlive()) 
+		{
 			attack_cool_down -= 1;
-			//arrowAttackCD -= 1;
 			walkingLeft.OnMove();
 			walkingRight.OnMove();
 			movement(m);
 			arrowAttack();
 			arr.OnMove(m);
 			arrowAttackMove(m);
-			if (arrowAttackCD != 0) {
+			if (arrowAttackCD != 0)
+			{
 				arrowAttackCD--;
 			}
 		}
-		if (!isAlive()) {
+		if (!isAlive()) 
+		{
 			itemsOnMove(m);
 		}
 	}
 	void BlueGoblin::OnShow(Maps *m)
 	{
-		if (isAlive()) {									
+		if (isAlive())
+		{									
 			if (_direction == 0)					//向左的onShow
 			{
-				if (isAttacking) {
+				if (isAttacking)
+				{
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp - 16);
 					arrowAttackShow(m);
 				}
-				else {								
+				else
+				{								
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
 					blood_bar.setXY(GetX1(), GetY1()-16);
@@ -93,12 +100,14 @@ namespace game_framework {
 			}
 			else
 			{										//向右
-				if (isAttacking) {
+				if (isAttacking) 
+				{
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
 					arrowAttackShow(m);
 				}
-				else {
+				else
+				{
 					
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
@@ -107,7 +116,8 @@ namespace game_framework {
 				}
 			}
 		}
-		if (!isAlive()) {
+		if (!isAlive())
+		{
 			itemsOnShow(m);
 		}
 	}
@@ -127,7 +137,8 @@ namespace game_framework {
 	{
 		return _y + walkingRight.Height();
 	}
-	void BlueGoblin::Initialize() {
+	void BlueGoblin::Initialize() 
+	{
 		_x = ini_x;
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = false;
@@ -138,33 +149,40 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		///道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++)
+		{
 			items.at(i)->Initialize();
 		}
 	}
 	bool BlueGoblin::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，Bitmap本身比身體大太多。
-		if (isAlive()) {
+		if (isAlive()) 
+		{
 			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) {
 				return true;
 			}
-			else {
+			else 
+			{
 				return false;
 			}
 		}
 		return false;
 	}
-	void BlueGoblin::SetMovingDown(bool b) {
+	void BlueGoblin::SetMovingDown(bool b) 
+	{
 		isMovingDown = b;
 	}
-	void BlueGoblin::SetMovingUp(bool b) {
+	void BlueGoblin::SetMovingUp(bool b) 
+	{
 		isMovingUp = b;
 	}
-	void BlueGoblin::SetMovingLeft(bool b) {
+	void BlueGoblin::SetMovingLeft(bool b)
+	{
 		isMovingLeft = b;
 	}
-	void BlueGoblin::SetMovingRight(bool b) {
+	void BlueGoblin::SetMovingRight(bool b)
+	{
 		isMovingRight = b;
 	}
 	void BlueGoblin::SetXY(int x, int y)
@@ -176,14 +194,17 @@ namespace game_framework {
 	{
 		int x = GetX1();
 		int y1 = GetY1() ;
-		if (_x > hero_on_map->GetX1()) {
+		if (_x > hero_on_map->GetX1())
+		{
 			_direction = 0;
 		}
-		else {
+		else
+		{
 			_direction = 1;
 		}
 		int step_size = rand() % 3;
-		if (_x != hero_on_map->GetX1() && _y != hero_on_map->GetY1()) {
+		if (_x != hero_on_map->GetX1() && _y != hero_on_map->GetY1()) 
+		{
 			if (abs(_x - hero_on_map->GetX1()) > abs(_y - hero_on_map->GetY1()))
 			{
 				if (_y > hero_on_map->GetY1())
@@ -199,10 +220,6 @@ namespace game_framework {
 					_x += step_size;
 			}
 		}
-	}
-	CRect * BlueGoblin::GetRect()
-	{
-		return &EnemyRect;
 	}
 	void BlueGoblin::attack()
 	{
@@ -254,12 +271,14 @@ namespace game_framework {
 	}
 	void BlueGoblin::arrowAttackMove(Maps * m)
 	{
-		if (isAttacking) {
+		if (isAttacking)
+		{
 			if (hero_on_map->intercect(arr.getX1(), arr.getX2(), arr.getY1(), arr.getY2())) {
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		if (isAttacking && arrorClock != 0) {		//arrorClock每次onMove--
+		if (isAttacking && arrorClock != 0) 
+		{		//arrorClock每次onMove--
 			arrorClock--;
 			if (arrorClock == 0) {
 				isAttacking = false;				//如果=0 isAttacking = false 離開攻擊狀態
@@ -268,7 +287,8 @@ namespace game_framework {
 	}
 	void BlueGoblin::arrowAttackShow(Maps * m)
 	{
-		if (isAttacking) {
+		if (isAttacking)
+		{
 			if (_direction == 0)					//向左的時候
 			{
 				arrowAttackL.SetTopLeft(m->screenX(_x), m->screenY(_y));

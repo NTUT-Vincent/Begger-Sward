@@ -10,7 +10,8 @@
 #include "Maps.h"
 #include "Potion.h"
 #include "Clock.h"
-namespace game_framework {
+namespace game_framework 
+{
 	Enemy::Enemy() : Character("scarecrow")
 	{
 		_x = 384;
@@ -30,34 +31,40 @@ namespace game_framework {
 		isAttacking = false;
 		hero_on_map = h;
 		_attribute = a;
-		if (GetName() != "Box") {
+		if (GetName() != "Box")
+		{
 			items.push_back(new Health(monsterHp/40));
 		}
 	}
 	Enemy::~Enemy()
 	{
-		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i) {
+		for (vector<Item*>::iterator it_i = items.begin(); it_i != items.end(); ++it_i)
+		{
 			delete *it_i;
 		}
 	}
 	int Enemy::distanceToHero()
 	{
-		if (getName() == "scarecrow") {
+		if (getName() == "scarecrow") 
+		{
 			int x_distance = (_x + 32) - (hero_on_map->GetX1() + 30);
 			int y_distance = (_y + 96) - (hero_on_map->GetY1() + 35);
 			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
 		}
-		else if (getName() == "IceBird") {
+		else if (getName() == "IceBird") 
+		{
 			int x_distance = (_x + 128) - (hero_on_map->GetX1() + 30);
 			int y_distance = (_y + 128) - (hero_on_map->GetY1() + 35);
 			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
 		}
-		else if (getName() == "ABoss") {
+		else if (getName() == "ABoss") 
+		{
 			int x_distance = (_x + 96) - (hero_on_map->GetX1() + 30);
 			int y_distance = (_y + 96) - (hero_on_map->GetY1() + 35);
 			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
 		}
-		else {
+		else 
+		{
 			int x_distance = (_x + 32) - (hero_on_map->GetX1() + 30);
 			int y_distance = (_y + 32) - (hero_on_map->GetY1() + 35);
 			return (int)(sqrt(pow(x_distance, 2) + pow(y_distance, 2)));
@@ -67,16 +74,20 @@ namespace game_framework {
 	{
 		return (double)(hp) / full_hp;
 	}
-	void Enemy::SetMovingDown(bool b) {
+	void Enemy::SetMovingDown(bool b)
+	{
 		isMovingDown = b;
 	}
-	void Enemy::SetMovingUp(bool b) {
+	void Enemy::SetMovingUp(bool b) 
+	{
 		isMovingUp = b;
 	}
-	void Enemy::SetMovingLeft(bool b) {
+	void Enemy::SetMovingLeft(bool b)
+	{
 		isMovingLeft = b;
 	}
-	void Enemy::SetMovingRight(bool b) {
+	void Enemy::SetMovingRight(bool b)
+	{
 		isMovingRight = b;
 	}
 	void Enemy::SetXY(int x, int y)
@@ -86,18 +97,23 @@ namespace game_framework {
 	}
 	void Enemy::offsetHP(int offset, ELEMENT_ATTRIBUTE attribute)
 	{
-		if (GetName() == "Box") {
+		if (GetName() == "Box")
+		{
 			hp -= 1;
 		}
-		else {
-			if (isCounterAttribute(_attribute, attribute)) {
+		else 
+		{
+			if (isCounterAttribute(_attribute, attribute))
+			{
 				hp += (offset * 2);
 
 			}
-			else if (isCounterAttribute(attribute, _attribute)) {
+			else if (isCounterAttribute(attribute, _attribute)) 
+			{
 				hp += (offset / 2);
 			}
-			else {
+			else 
+			{
 				hp += offset;
 			}
 			knockBack();
@@ -105,27 +121,26 @@ namespace game_framework {
 	}
 	void Enemy::itemsOnMove(Maps * m)
 	{
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++) 
+		{
 			items.at(i)->OnMove(m, hero_on_map);
 		}
 	}
 	void Enemy::itemsOnShow(Maps *m)
 	{
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++) 
+		{
 			items.at(i)->setXY(_x + 32, _y + 32);
 			items.at(i)->OnShow(m);
 		}
 	}
 	bool Enemy::isAlive()
 	{
-		if (hp <= 0) {
+		if (hp <= 0)
+		{
 			return false;
 		}
 		return true;
-	}
-	CRect * Enemy::GetRect()
-	{
-		return &EnemyRect;
 	}
 	bool Enemy::isAttack()
 	{
@@ -133,18 +148,24 @@ namespace game_framework {
 	}
 	bool Enemy::isCounterAttribute(ELEMENT_ATTRIBUTE a, ELEMENT_ATTRIBUTE b)
 	{
-		if (a == FIRE) {
-			if (b == ICE) {
+		if (a == FIRE) 
+		{
+			if (b == ICE) 
+			{
 				return true;
 			}
 		}
-		if (a == ICE) {
-			if (b == PLANT) {
+		if (a == ICE)
+		{
+			if (b == PLANT)
+			{
 				return true;
 			}
 		}
-		if (a == PLANT) {
-			if (b == FIRE) {
+		if (a == PLANT)
+		{
+			if (b == FIRE) 
+			{
 				return true;
 			}
 		}
@@ -152,10 +173,12 @@ namespace game_framework {
 	}
 	void Enemy::knockBack()
 	{
-		if (_direction == 0) {
+		if (_direction == 0) 
+		{
 			_x += 1;
 		}
-		if (_direction == 1) {
+		if (_direction == 1)
+		{
 			_x -= 1;
 		}
 	}

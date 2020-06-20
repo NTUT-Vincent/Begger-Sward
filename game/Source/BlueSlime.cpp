@@ -16,7 +16,9 @@
 #include "ItemAttribute.h"
 
 namespace game_framework {
-	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
+	/////////////////////////////////////////////////////////////////////////////
+	// BlueGoblin: Enemy class												   //
+	/////////////////////////////////////////////////////////////////////////////
 	BlueSlime::BlueSlime()
 	{
 		_x = 384;
@@ -36,50 +38,57 @@ namespace game_framework {
 	{
 		blood_bar.loadBloodBar();
 		/////掉落道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++) 
+		{
 			items.at(i)->load();
 		}
 		/////怪物的動畫
 		char *filename1_1[3] = { ".\\bitmaps\\blueslimeL1.bmp",".\\bitmaps\\blueslimeL2.bmp",".\\bitmaps\\blueslimeL3.bmp" };
-		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
+		for (int i = 0; i < 3; i++)	// 載入動畫
 			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		char *filename1_2[3] = { ".\\bitmaps\\blueslimeR1.bmp",".\\bitmaps\\blueslimeR2.bmp",".\\bitmaps\\blueslimeR3.bmp"};
-		for (int i = 0; i < 3; i++)	// 載入動畫(由3張圖形構成)
+		for (int i = 0; i < 3; i++)	// 載入動畫
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		/////攻擊的動畫
 		char *filename2_1[5] = { ".\\bitmaps\\blueslime_attackL1.bmp",".\\bitmaps\\blueslime_attackL2.bmp",".\\bitmaps\\blueslime_attackL3.bmp", ".\\bitmaps\\blueslime_attackL4.bmp", ".\\bitmaps\\blueslime_attackL5.bmp" };
-		for (int i = 0; i < 5; i++)	// 載入動畫(由5張圖形構成)
+		for (int i = 0; i < 5; i++)	// 載入動畫
 			normalAttackL.AddBitmap(filename2_1[i], RGB(0, 0, 0));
 		normalAttackL.SetDelayCount(3);
 		char *filename2_2[5] = { ".\\bitmaps\\blueslime_attackR1.bmp",".\\bitmaps\\blueslime_attackR2.bmp",".\\bitmaps\\blueslime_attackR3.bmp", ".\\bitmaps\\blueslime_attackR4.bmp", ".\\bitmaps\\blueslime_attackR5.bmp" };
-		for (int i = 0; i < 5; i++)	// 載入動畫(由5張圖形構成)
+		for (int i = 0; i < 5; i++)	// 載入動畫
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(3);
 	}
-	void BlueSlime::OnMove(Maps * m) {
+	void BlueSlime::OnMove(Maps * m)
+	{
 		const int STEP_SIZE = 4;
-		if (isAlive()) {						//如果活著
+		if (isAlive())
+		{						//如果活著
 			attack();							//看是否要攻擊
 			attack_cool_down -= 1;				//每次onMove減少攻擊的冷卻時間
 			walkingLeft.OnMove();
 			walkingRight.OnMove();
 			movement(m);						//角色移動方式
 		}
-		if (!isAlive()) {
+		if (!isAlive()) 
+		{
 			itemsOnMove(m);						//如果死掉 掉落道具
 		}
 	}
 	void BlueSlime::OnShow(Maps *m)
 	{
-		if (isAlive()) {						//如果活著
+		if (isAlive()) 
+		{						//如果活著
 			if (_direction == 0)				//如果向左
 			{
-				if (isAttacking) {				//如果在攻擊 會顯示攻擊的動畫
+				if (isAttacking) 
+				{				//如果在攻擊 會顯示攻擊的動畫
 					attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
 				}
-				else {							//如果不是在攻擊，顯示一般時候的動畫
+				else
+				{							//如果不是在攻擊，顯示一般時候的動畫
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
 					blood_bar.setXY(GetX1(), GetY1());
@@ -88,12 +97,14 @@ namespace game_framework {
 			}
 			else
 			{									//如果向右
-				if (isAttacking) {
+				if (isAttacking)
+				{
 					attackShow(m);
 					blood_bar.setXY(GetX1(), GetY1());
 					blood_bar.showBloodBar(m, hp);
 				}
-				else {
+				else 
+				{
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingRight.OnShow();
 					blood_bar.setXY(GetX1(), GetY1());
@@ -102,7 +113,8 @@ namespace game_framework {
 			}
 			
 		}
-		if (!isAlive()) {						//如果死掉 顯示掉落道具
+		if (!isAlive())
+		{						//如果死掉 顯示掉落道具
 			itemsOnShow(m);
 		}
 	}
@@ -132,18 +144,22 @@ namespace game_framework {
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
 		///道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++)
+		{
 			items.at(i)->Initialize();
 		}
 	}
 	bool BlueSlime::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，Bitmap本身比身體大太多。
-		if (isAlive()) {
-			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) {
+		if (isAlive())
+		{
+			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) 
+			{
 				return true;
 			}
-			else {
+			else 
+			{
 				return false;
 			}
 		}
@@ -176,7 +192,8 @@ namespace game_framework {
 		int x = GetX1();
 		int y1 = GetY1() ;	
 		int step_size = rand() % 3;				//每次移動 1-3步
-		if (distanceToHero() < 500) {			//如果跟hero的距離<500才會開始動
+		if (distanceToHero() < 500) 
+		{	//如果跟hero的距離<500才會開始動
 			if (hero_on_map->GetX1() > x && m->isEmpty(GetX2() + step_size, y1) && m->isEmpty(GetX2() + step_size, GetY2())) {
 				_direction = 1;					//如果英雄在右邊 向右走
 				_x += step_size;
@@ -193,28 +210,28 @@ namespace game_framework {
 			}
 		}
 	}
-	CRect * BlueSlime::GetRect()
-	{
-		return &EnemyRect;
-	}
 	void BlueSlime::attack()		//如果英雄在攻擊範圍內，且攻擊冷卻時間已經到了，會攻擊
 	{
-		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking) {
+		if (intersect(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2()) && attack_cool_down <= 0 && !isAttacking)
+		{
 			CAudio::Instance()->Play(AUDIO_HITTING);
 			isAttacking = true;
 			hero_on_map->offsetHp(attack_damage);			//英雄扣血
 		}
 		normalAttackR.OnMove();
-		if (!isAttacking) {
+		if (!isAttacking)
+		{
 			normalAttackR.Reset();
 		}
 	}
 	void BlueSlime::attackShow(Maps * m)
 	{
-		if (isAttacking) {			//如果正在攻擊，顯示攻擊的動畫
+		if (isAttacking) 
+		{			//如果正在攻擊，顯示攻擊的動畫
 			normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			normalAttackR.OnShow();
-			if (normalAttackR.IsFinalBitmap()) {
+			if (normalAttackR.IsFinalBitmap())
+			{
 				isAttacking = false;
 				attack_cool_down = 90; //每次攻擊間隔3秒
 			}

@@ -1,18 +1,15 @@
 #ifndef __ATTACK_H
-
 #define __ATTACK_H
-
-
 #include "Maps.h"
 #include "Character.h"
 #include "Util.h"
-
-namespace game_framework {
+namespace game_framework 
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供各種攻擊招式
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供各種攻擊招式											   //
 	/////////////////////////////////////////////////////////////////////////////
-	class Attack {
+	class Attack 
+	{
 	public:
 		Attack(int x, int y);
 		Attack();
@@ -52,5 +49,4 @@ namespace game_framework {
 		bool _attackIsFlying;							//攻擊是否正在飛
 	};
 }
-
 #endif 
