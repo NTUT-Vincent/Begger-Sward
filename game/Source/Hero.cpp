@@ -321,7 +321,7 @@ namespace game_framework
 	/////////////////////////////////////////////////////////////////////////////
 	void Hero::SetUsingA(bool b)
 	{
-		int random_fx = rand() % 100;
+		int random_fx = rand() % 1000;
 		if (!isUsingSkill())
 		{//偵測到按下A，如果沒有正在使用其他技能
 			if (b) 
