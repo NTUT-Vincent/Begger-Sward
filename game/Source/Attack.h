@@ -1,12 +1,8 @@
 #ifndef __ATTACK_H
-
 #define __ATTACK_H
-
-
 #include "Maps.h"
 #include "Character.h"
 #include "Util.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供各種攻擊招式
@@ -52,5 +48,4 @@ namespace game_framework {
 		bool _attackIsFlying;							//攻擊是否正在飛
 	};
 }
-
 #endif 

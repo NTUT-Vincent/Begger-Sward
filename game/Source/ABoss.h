@@ -1,6 +1,5 @@
 #ifndef ABOSS_H
 #define ABOSS_H
-
 #include "Maps.h"
 #include "Character.h"
 #include "BossBloodBar.h"
