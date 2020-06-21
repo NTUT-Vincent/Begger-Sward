@@ -16,7 +16,9 @@
 #include "Item.h"
 #include "ItemAttribute.h"
 namespace game_framework {
-	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
+	/////////////////////////////////////////////////////////////////////////////
+	//註解請參照BlueGoblin.cpp 												   //
+	/////////////////////////////////////////////////////////////////////////////
 	GreenGoblin::GreenGoblin()
 	{
 		_x = 384;
@@ -35,23 +37,22 @@ namespace game_framework {
 	void GreenGoblin::LoadBitmap()
 	{
 		blood_bar.loadBloodBar();
-		/////掉落道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++)
+		{
 			items.at(i)->load();
 		}
-		/////怪物的動畫
 		char *filename1_1[4] = { ".\\bitmaps\\greengoblinL1.bmp",".\\bitmaps\\greengoblinL2.bmp",".\\bitmaps\\greengoblinL3.bmp", ".\\bitmaps\\greengoblinL4.bmp" };
-		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 4; i++)
 			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		char *filename1_2[4] = { ".\\bitmaps\\greengoblinR1.bmp",".\\bitmaps\\greengoblinR2.bmp",".\\bitmaps\\greengoblinR3.bmp", ".\\bitmaps\\greengoblinR4.bmp" };
-		for (int i = 0; i < 4; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 4; i++)
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
-		/////攻擊的動畫
 		arrowAttackL.LoadBitmap(".\\bitmaps\\green_arrow_attackL.bmp", RGB(0, 0, 0));
 		arrowAttackR.LoadBitmap(".\\bitmaps\\green_arrow_attackR.bmp", RGB(0, 0, 0));
 		arr.loadBitmap();
 	}
-	void GreenGoblin::OnMove(Maps * m) {
+	void GreenGoblin::OnMove(Maps * m)
+	{
 		const int STEP_SIZE = 4;
 		if (isAlive()) {
 			//attack();
@@ -63,25 +64,30 @@ namespace game_framework {
 			arrowAttack();
 			arr.OnMove(m);
 			arrowAttackMove(m);
-			if (arrowAttackCD != 0) {
+			if (arrowAttackCD != 0)
+			{
 				arrowAttackCD--;
 			}
 		}
-		if (!isAlive()) {
+		if (!isAlive()) 
+		{
 			itemsOnMove(m);
 		}
 	}
 	void GreenGoblin::OnShow(Maps *m)
 	{
-		if (isAlive()) {
+		if (isAlive()) 
+		{
 			if (_direction == 0)
 			{
-				if (isAttacking) {
+				if (isAttacking)
+				{
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp - 16);
 					arrowAttackShow(m);
 				}
-				else {
+				else 
+				{
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
 					blood_bar.setXY(GetX1(), GetY1()-16);
@@ -90,12 +96,14 @@ namespace game_framework {
 			}
 			else
 			{
-				if (isAttacking) {
+				if (isAttacking)
+				{
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
 					arrowAttackShow(m);
 				}
-				else {
+				else 
+				{
 					
 					blood_bar.setXY(GetX1(), GetY1()-16);
 					blood_bar.showBloodBar(m, hp);
@@ -104,7 +112,8 @@ namespace game_framework {
 				}
 			}
 		}
-		if (!isAlive()) {
+		if (!isAlive()) 
+		{
 			itemsOnShow(m);
 		}
 	}
@@ -124,7 +133,8 @@ namespace game_framework {
 	{
 		return _y + walkingRight.Height();
 	}
-	void GreenGoblin::Initialize() {
+	void GreenGoblin::Initialize() 
+	{
 		_x = ini_x;
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = false;
@@ -134,34 +144,39 @@ namespace game_framework {
 		blood_bar.setFullHP(hp);
 		walkingLeft.SetDelayCount(5);
 		walkingRight.SetDelayCount(5);
-		///道具
 		for (unsigned i = 0; i < items.size(); i++) {
 			items.at(i)->Initialize();
 		}
 	}
 	bool GreenGoblin::intersect(int x1, int x2, int y1, int y2)
 	{
-		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
-		if (isAlive()) {
-			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) {
+		if (isAlive()) 
+		{
+			if (x2 >= _x + 20 && x1 <= _x + walkingRight.Width() - 20 && y2 >= _y + 30 && y1 <= _y + walkingRight.Height() - 15) 
+			{
 				return true;
 			}
-			else {
+			else
+			{
 				return false;
 			}
 		}
 		return false;
 	}
-	void GreenGoblin::SetMovingDown(bool b) {
+	void GreenGoblin::SetMovingDown(bool b)
+	{
 		isMovingDown = b;
 	}
-	void GreenGoblin::SetMovingUp(bool b) {
+	void GreenGoblin::SetMovingUp(bool b) 
+	{
 		isMovingUp = b;
 	}
-	void GreenGoblin::SetMovingLeft(bool b) {
+	void GreenGoblin::SetMovingLeft(bool b)
+	{
 		isMovingLeft = b;
 	}
-	void GreenGoblin::SetMovingRight(bool b) {
+	void GreenGoblin::SetMovingRight(bool b)
+	{
 		isMovingRight = b;
 	}
 	void GreenGoblin::SetXY(int x, int y)
@@ -173,14 +188,17 @@ namespace game_framework {
 	{
 		int x = GetX1();
 		int y1 = GetY1() ;
-		if (_x > hero_on_map->GetX1()) {
+		if (_x > hero_on_map->GetX1()) 
+		{
 			_direction = 0;
 		}
-		else {
+		else 
+		{
 			_direction = 1;
 		}
 		int step_size = rand() % 3;
-		if (_x != hero_on_map->GetX1() && _y != hero_on_map->GetY1()) {
+		if (_x != hero_on_map->GetX1() && _y != hero_on_map->GetY1())
+		{
 			if (abs(_x - hero_on_map->GetX1()) > abs(_y - hero_on_map->GetY1()))
 			{
 				if (_y > hero_on_map->GetY1())
@@ -196,10 +214,6 @@ namespace game_framework {
 					_x += step_size;
 			}
 		}
-	}
-	CRect * GreenGoblin::GetRect()
-	{
-		return &EnemyRect;
 	}
 	void GreenGoblin::attack()
 	{
@@ -256,7 +270,8 @@ namespace game_framework {
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		if (isAttacking && arrorClock != 0) {
+		if (isAttacking && arrorClock != 0) 
+		{
 			arrorClock--;
 			if (arrorClock == 0) {
 				isAttacking = false;

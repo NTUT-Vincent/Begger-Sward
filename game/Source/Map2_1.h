@@ -1,9 +1,11 @@
 #include "Enemy.h"
-
-namespace game_framework {
-
+namespace game_framework
+{
 	class Map2_1 : public Maps
 	{
+	/////////////////////////////////////////////////////////////////////////////
+	// ½Ð°Ñ¦ÒMap1_1.h														   //
+	/////////////////////////////////////////////////////////////////////////////
 	public:
 		Map2_1();
 		~Map2_1();
@@ -21,7 +23,6 @@ namespace game_framework {
 		int screenX(int x) override;
 		int screenY(int y) override;
 		void setIceWallPos(int x, int y, int n);
-
 	private:
 		CMovingBitmap firstmap;
 		CAnimation gate;

@@ -7,10 +7,10 @@
 #include "Enemy.h"
 #include "Attack.h"
 #include "Item.h"
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供玩家操控的hero
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供玩家操控的hero											   //
 	/////////////////////////////////////////////////////////////////////////////
 	class Enemy;
 	class Item;
@@ -64,9 +64,9 @@ namespace game_framework {
 		void SetElementAttribute(ELEMENT_ATTRIBUTE e);
 		void SetAllCoolDownToZero();
 		/////////////////////////////////////////////////////////////////////////////
-		// 前身是cantPass，應該是本程式最重要的函式之一
-		// 1. 角色碰到敵人會扣血
-		// 2. 如果敵人在攻擊範圍內，且在攻擊狀態下，敵人會被扣血
+		// 前身是cantPass，應該是本程式最重要的函式之一								   //
+		// 1. 角色碰到敵人會扣血													   //
+		// 2. 如果敵人在攻擊範圍內，且在攻擊狀態下，敵人會被扣血						   //
 		/////////////////////////////////////////////////////////////////////////////
 		bool gonnaBleeding(vector<Enemy*> * enemys, int x1, int x2, int y1, int y2);
 		void offsetHp(int n);
@@ -122,11 +122,11 @@ namespace game_framework {
 		CRect RectHero;
 		int x, y;
 		int hp;
-		int attack_fire;			//三種屬性的攻擊力
+		int attack_fire;				//三種屬性的攻擊力
 		int attack_ice;
 		int attack_plant;
-		ELEMENT_ATTRIBUTE _attribute; //英雄現在的屬性
-		vector<Item *> items; //存放道具欄裡面道具的vector
+		ELEMENT_ATTRIBUTE _attribute;	//英雄現在的屬性
+		vector<Item *> items;			//存放道具欄裡面道具的vector
 		bool isMovingRight;
 		bool isMovingLeft;
 		bool isMovingUp;
@@ -139,15 +139,15 @@ namespace game_framework {
 		bool isUsingR;
 		bool is_getting_attacked;
 		int status;
-		bool directionLR; // 0為左 1為右
-		bool directionUD; // 0為上 1為下
-		int skillTimes;   // 用來數跑了幾次CAnimation。
+		bool directionLR;				// 0為左 1為右
+		bool directionUD;				// 0為上 1為下
+		int skillTimes;					// 用來數跑了幾次CAnimation。
 		Attack q_attack;
 		///冷卻時間
-		int skill_q_cool_down; //cool down在每個skill的move function裡每秒-30
+		int skill_q_cool_down;			//cool down在每個skill的move function裡每秒-30
 		int skill_w_cool_down;
 		int skill_e_cool_down;
-		int skill_r_cool_down;
+		int skill_r_cool_down;			
 		//滑起來
 		int slide_right, slide_left, slide_up, slide_down;
 		bool isSlide;
@@ -161,4 +161,4 @@ namespace game_framework {
 		unsigned int skillW_shadeShowCount;
 	};
 }
-#endif // !HERO_H
+#endif

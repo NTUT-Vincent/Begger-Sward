@@ -1,17 +1,14 @@
 #ifndef ARROW_H
 #define ARROW_H
-
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"
 #include "Enemy.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供一個敵人													   //
-	//		 																	//
+	// 這個class提供一個敵人												   //
+	// 他是哥布林的專屬武器     											   //
 	/////////////////////////////////////////////////////////////////////////////
-	
 	class Arrow{
 	public:
 		Arrow(int x, int y);

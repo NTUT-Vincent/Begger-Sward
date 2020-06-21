@@ -1,14 +1,14 @@
 #ifndef BLUESLIME_H
 #define BLUESLIME_H
-
 #include "Maps.h"
 #include "Character.h"
 #include "BloodBar.h"
 #include "Enemy.h"
-namespace game_framework {
+namespace game_framework
+{
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供一個敵人													   //
-	//		 																	//
+	//一個藍色的史萊姆	 													   //
 	/////////////////////////////////////////////////////////////////////////////
 	class BlueSlime :public Enemy
 	{
@@ -29,14 +29,12 @@ namespace game_framework {
 		/////////////////////////////////////////////////////////////////////////////
 		// 設定Enemy的座標的函式們												   //
 		/////////////////////////////////////////////////////////////////////////////
-		void SetMovingDown(bool b);		//
-		void SetMovingUp(bool b);		//
-		void SetMovingLeft(bool b);		//
-		void SetMovingRight(bool b);	//
-		void SetXY(int x, int y);		//
+		void SetMovingDown(bool b);					//下
+		void SetMovingUp(bool b);					//上
+		void SetMovingLeft(bool b);					//左
+		void SetMovingRight(bool b);				//右
+		void SetXY(int x, int y);					//x, y座標
 		void movement(Maps *m);
-		CRect * GetRect();					//目前還沒用到的垃圾(可能要同時在mygame.cpp同等地位呼叫時用，Hero也有一組)
-		//用來攻擊的
 		void attack();
 		void attackShow(Maps *m);
 	private:
@@ -55,5 +53,4 @@ namespace game_framework {
 		int time_bump_into_sth;
 	};
 }
-
 #endif 

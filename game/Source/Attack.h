@@ -3,12 +3,17 @@
 #include "Maps.h"
 #include "Character.h"
 #include "Util.h"
+<<<<<<< HEAD
 namespace game_framework {
+=======
+namespace game_framework 
+{
+>>>>>>> b21484bf4faa30161cb87177111bbcf0ee7ce529
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供各種攻擊招式
-	// 看懂就可以改寫成自己的程式了
+	// 這個class提供各種攻擊招式											   //
 	/////////////////////////////////////////////////////////////////////////////
-	class Attack {
+	class Attack 
+	{
 	public:
 		Attack(int x, int y);
 		Attack();

@@ -9,19 +9,23 @@
 #include "Enemy.h"
 #include "Map2_2.h"
 #include <vector>
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 瓜class常 爹秆常把σMap1_1
+	// 叫把σMap1_1.cpp														   //
 	/////////////////////////////////////////////////////////////////////////////
-	Map2_2::Map2_2():Maps(-200, -200) {
+	Map2_2::Map2_2():Maps(-200, -200) 
+	{
 		all_enemy_clear = 0;
-		for (int i = 0; i < 18; i++) {
-			for (int j = 0; j < 16; j++) {
-				if (i > 1 && i < 16 && j > 1 && j < 14) {
+		for (int i = 0; i < 18; i++)
+		{
+			for (int j = 0; j < 16; j++) 
+			{
+				if (i > 1 && i < 16 && j > 1 && j < 14)
+				{
 					map[i][j] = 0;
 				}
-				else {
+				else
+				{
 					map[i][j] = 1;
 				}
 			}
@@ -29,8 +33,10 @@ namespace game_framework {
 		map[2][2] = map[2][3] = map[3][2] =  map[2][13] = map[15][13] = map[14][2] =  map[15][2] = map[15][3] = 1;
 		map[8][1] = map[9][1] = 3;
 		//砞﹚
-		for (int i = 6; i < 12; i++) {
-			for (int j = 5; j < 11; j++) {
+		for (int i = 6; i < 12; i++) 
+		{
+			for (int j = 5; j < 11; j++)
+			{
 				map[i][j] = 5;
 			}
 		}
@@ -56,7 +62,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] != 1) {
+		if (map[gx][gy] != 1) 
+		{
 			return true;
 		}
 		return false;
@@ -65,7 +72,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 3) {
+		if (map[gx][gy] == 3) 
+		{
 			return true;
 		}
 		return false;
@@ -74,7 +82,8 @@ namespace game_framework {
 	{
 		int gx = x / 64;
 		int gy = y / 64;
-		if (map[gx][gy] == 5) {
+		if (map[gx][gy] == 5) 
+		{
 			return true;
 		}
 		return false;

@@ -15,7 +15,8 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
-namespace game_framework {
+namespace game_framework
+{
 	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
 	IceBird::IceBird()
 	{
@@ -38,50 +39,49 @@ namespace game_framework {
 		icewallRight.LoadBitmap(".\\bitmaps\\icewallR1.bmp", RGB(255, 255, 255));
 		boss_blood_bar.loadBloodBar();
 		/////掉落道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++)
+		{
 			items.at(i)->load();
 		}
 		/////怪物的動畫
 		char *filename1_1[10] = { ".\\bitmaps\\icebirdL1.bmp",".\\bitmaps\\icebirdL2.bmp",".\\bitmaps\\icebirdL3.bmp", ".\\bitmaps\\icebirdL4.bmp",  ".\\bitmaps\\icebirdL5.bmp",  ".\\bitmaps\\icebirdL6.bmp",  ".\\bitmaps\\icebirdL7.bmp",  ".\\bitmaps\\icebirdL8.bmp",  ".\\bitmaps\\icebirdL9.bmp",  ".\\bitmaps\\icebirdL10.bmp" };
-		for (int i = 0; i < 10; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 10; i++)	// 載入動畫
 			walkingLeft.AddBitmap(filename1_1[i], RGB(0, 0, 0));
 		walkingLeft.SetDelayCount(3);
 		char *filename1_2[10] = { ".\\bitmaps\\icebirdR1.bmp",".\\bitmaps\\icebirdR2.bmp",".\\bitmaps\\icebirdR3.bmp", ".\\bitmaps\\icebirdR4.bmp",  ".\\bitmaps\\icebirdR5.bmp",  ".\\bitmaps\\icebirdR6.bmp",  ".\\bitmaps\\icebirdR7.bmp",  ".\\bitmaps\\icebirdR8.bmp",  ".\\bitmaps\\icebirdR9.bmp",  ".\\bitmaps\\icebirdR10.bmp" };
-		for (int i = 0; i < 10; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 10; i++)	// 載入動畫
 			walkingRight.AddBitmap(filename1_2[i], RGB(0, 0, 0));
 		walkingRight.SetDelayCount(3);
 		/////攻擊的動畫
 		char *filename2_1[10] = { ".\\bitmaps\\icebirdL1.bmp",".\\bitmaps\\icebirdL2.bmp",".\\bitmaps\\icebirdL3.bmp", ".\\bitmaps\\icebirdL4.bmp",  ".\\bitmaps\\icebirdL5.bmp",  ".\\bitmaps\\icebirdL6.bmp",  ".\\bitmaps\\icebirdL7.bmp",  ".\\bitmaps\\icebirdL8.bmp",  ".\\bitmaps\\icebirdL9.bmp",  ".\\bitmaps\\icebirdL10.bmp" };
-		for (int i = 0; i < 10; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 10; i++)	// 載入動畫
 			normalAttackL.AddBitmap(filename2_1[i], RGB(0, 0, 0));
 		normalAttackL.SetDelayCount(1);
 		char *filename2_2[10] = { ".\\bitmaps\\icebirdR1.bmp",".\\bitmaps\\icebirdR2.bmp",".\\bitmaps\\icebirdR3.bmp", ".\\bitmaps\\icebirdR4.bmp",  ".\\bitmaps\\icebirdR5.bmp",  ".\\bitmaps\\icebirdR6.bmp",  ".\\bitmaps\\icebirdR7.bmp",  ".\\bitmaps\\icebirdR8.bmp",  ".\\bitmaps\\icebirdR9.bmp",  ".\\bitmaps\\icebirdR10.bmp" };
-		for (int i = 0; i < 10; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 10; i++)	// 載入動畫
 			normalAttackR.AddBitmap(filename2_2[i], RGB(0, 0, 0));
 		normalAttackR.SetDelayCount(1);
 		/////冰牆的動畫
 		char *filename_wallL[8] = { ".\\bitmaps\\icewallL1.bmp",".\\bitmaps\\icewallL2.bmp",".\\bitmaps\\icewallL3.bmp",".\\bitmaps\\icewallL4.bmp",".\\bitmaps\\icewallL5.bmp",".\\bitmaps\\icewallL6.bmp",".\\bitmaps\\icewallL7.bmp",".\\bitmaps\\icewallL8.bmp", };
-		for (int i = 0; i < 8; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 8; i++)	// 載入動畫
 			icewallL.AddBitmap(filename_wallL[i], RGB(255, 255, 255));
 		icewallL.SetDelayCount(5);
 		char *filename_wallR[8] = { ".\\bitmaps\\icewallR1.bmp",".\\bitmaps\\icewallR2.bmp",".\\bitmaps\\icewallR3.bmp",".\\bitmaps\\icewallR4.bmp",".\\bitmaps\\icewallR5.bmp",".\\bitmaps\\icewallR6.bmp",".\\bitmaps\\icewallR7.bmp",".\\bitmaps\\icewallR8.bmp",};
-		for (int i = 0; i < 8; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 8; i++)	// 載入動畫
 			icewallR.AddBitmap(filename_wallR[i], RGB(255, 255, 255));
 		icewallR.SetDelayCount(5);
 		ice_attack.loadBitmap();
 		////暴風雪的動畫
 		char *filename_storm[6] = { ".\\bitmaps\\storm1.bmp",".\\bitmaps\\storm2.bmp",".\\bitmaps\\storm3.bmp",".\\bitmaps\\storm4.bmp",".\\bitmaps\\storm5.bmp",".\\bitmaps\\storm6.bmp"};
-		for (int i = 0; i < 6; i++)	// 載入動畫(由6張圖形構成)
+		for (int i = 0; i < 6; i++)	// 載入動畫
 			storm.AddBitmap(filename_storm[i], RGB(255, 255, 255));
 	}
 	void IceBird::OnMove(Maps * m) 
 	{
-		//TRACE("---%d", distanceToHero());
 		const int STEP_SIZE = 4;
-		if (isAlive()) {
-			//attack();
+		if (isAlive())
+		{
 			attack_cool_down -= 1;
-			//arrowAttackCD -= 1;
 			walkingLeft.OnMove();
 			walkingRight.OnMove();
 			normalAttackL.OnMove();
@@ -90,15 +90,16 @@ namespace game_framework {
 			iceAttack();
 			iceAttackMove(m);
 			iceWall(m);
-			/*iceWallMove(m);*/
 			iceStorm(m);
 			iceStormMove(m);
-			if (arrowAttackCD != 0) {
+			if (arrowAttackCD != 0)
+			{
 				arrowAttackCD--;
 			}
 		}
 		iceWallMove(m);
-		if (!isAlive()) {
+		if (!isAlive())
+		{
 			isUsingIceWall = false;
 			//如果冰鳥死掉，過門時回頭主角對冰鳥開噴
 			CAudio::Instance()->Play(AUDIO_ICEBIRD_DIE);
@@ -107,17 +108,20 @@ namespace game_framework {
 	}
 	void IceBird::OnShow(Maps *m)
 	{
-		if (isAlive()) {
+		if (isAlive()) 
+		{
 			iceStormShow(m);
 			if (_direction == 0)
 			{
 				iceWallShow(m);
-				if (isAttacking) {
+				if (isAttacking)
+				{
 					boss_blood_bar.setXY(GetX1(), GetY1()-16);
 					boss_blood_bar.showBloodBar(m, hp - 16);
 					iceAttackShow(m);
 				}
-				else {
+				else
+				{
 					walkingLeft.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 					walkingLeft.OnShow();
 					boss_blood_bar.setXY(GetX1(), GetY1()-16);
@@ -127,12 +131,14 @@ namespace game_framework {
 			else
 			{
 				iceWallShow(m);
-				if (isAttacking) {
+				if (isAttacking) 
+				{
 					boss_blood_bar.setXY(GetX1(), GetY1()-16);
 					boss_blood_bar.showBloodBar(m, hp);
 					iceAttackShow(m);
 				}
-				else {
+				else 
+				{
 					boss_blood_bar.setXY(GetX1(), GetY1()-16);
 					boss_blood_bar.showBloodBar(m, hp);
 					walkingRight.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
@@ -140,7 +146,8 @@ namespace game_framework {
 				}
 			}
 		}
-		if (!isAlive()) {
+		if (!isAlive()) 
+		{
 			itemsOnShow(m);
 		}
 	}
@@ -160,7 +167,8 @@ namespace game_framework {
 	{
 		return _y + walkingRight.Height();
 	}
-	void IceBird::Initialize() {
+	void IceBird::Initialize() 
+	{
 		_x = ini_x;
 		_y = ini_y;
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = isAttacking = attackIsFlying = isUsingIceWall = isUsingStorm = false;
@@ -173,19 +181,22 @@ namespace game_framework {
 		storm_cd = 240;
 		 boss_blood_bar.setFullHP(hp);
 		///道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++) 
+		{
 			items.at(i)->Initialize();
 		}
 		ice_attack.setAttackName(ICE_BALL);
 	}
 	bool IceBird::intersect(int x1, int x2, int y1, int y2)
 	{
-		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
-		if (isAlive()) {
+		//下面有一些加減運算是因為，Bitmap本身比身體大太多。
+		if (isAlive()) 
+		{
 			if (x2 >= _x + 80  && x1 <= _x + walkingRight.Width() - 80 && y2 >= _y  && y1 <= _y + walkingRight.Height() ) {
 				return true;
 			}
-			else {
+			else 
+			{
 				return false;
 			}
 		}
@@ -224,41 +235,46 @@ namespace game_framework {
 	{
 		int x = (GetX1() + GetX2())/2;
 		int y = (GetY1() + GetY2())/2;
-		if (x > hero_on_map->GetX1()) {
+		if (x > hero_on_map->GetX1())
+		{
 			_direction = 0;
 		}
-		else if(x - 4 < hero_on_map->GetX1()){
+		else if(x - 4 < hero_on_map->GetX1())
+		{
 			_direction = 1;
 		}
 		int step_size = 3;
-		if (distanceToHero() < 500 && distanceToHero() > 180) {
-			if (hero_on_map->GetX1() > x ) {
+		if (distanceToHero() < 500 && distanceToHero() > 180)
+		{
+			if (hero_on_map->GetX1() > x )
+			{
 				_x += step_size;
 			}
-			if (hero_on_map->GetX1() < x ) {
+			if (hero_on_map->GetX1() < x )
+			{
 				_x -= step_size;
 			}
-			if (hero_on_map->GetY1() > y ) {
+			if (hero_on_map->GetY1() > y )
+			{
 				_y += step_size;
 			}
-			if (hero_on_map->GetY1() < y ) {
+			if (hero_on_map->GetY1() < y )
+			{
 				_y -= step_size;
 			}
 		}
-	}
-	CRect * IceBird::GetRect()
-	{
-		return &EnemyRect;
 	}
 	void IceBird::attack()
 	{
 	}
 	void IceBird::attackShow(Maps * m)
 	{
-		if (isAttacking) {
+		if (isAttacking) 
+		{
 			normalAttackR.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			normalAttackR.OnShow();
-			if (normalAttackR.IsFinalBitmap()) {
+			if (normalAttackR.IsFinalBitmap()) 
+			{
 				isAttacking = false;
 				attack_cool_down = 90; //每次攻擊間隔3秒
 			}
@@ -271,8 +287,8 @@ namespace game_framework {
 			int x = (GetX1() + GetX2()) / 2;
 			int y = (GetY1() + GetY2()) / 2;
 			ice_attack.setXY(x, y);
-
-			if (distanceToHero() <= 180) {
+			if (distanceToHero() <= 180) 
+			{
 				int x = (GetX1() + GetX2()) / 2;
 				int y = (GetY1() + GetY2()) / 2;
 				double x_distance =  hero_on_map->GetX1() - x;
@@ -289,14 +305,18 @@ namespace game_framework {
 	}
 	void IceBird::iceAttackMove(Maps * m)
 	{
-		if (isAttacking) {
-			if (hero_on_map->intercect(ice_attack.getX1(), ice_attack.getX2(), ice_attack.getY1(), ice_attack.getY2())) {
+		if (isAttacking) 
+		{
+			if (hero_on_map->intercect(ice_attack.getX1(), ice_attack.getX2(), ice_attack.getY1(), ice_attack.getY2())) 
+			{
 				hero_on_map->offsetHp(attack_damage);
 			}
 		}
-		if (isAttacking && arrorClock != 0) {
+		if (isAttacking && arrorClock != 0) 
+		{
 			arrorClock--;
-			if (arrorClock == 0) {
+			if (arrorClock == 0)
+			{
 				isAttacking = false;
 				ice_attack.setAttackIsFlying(false);
 			}
@@ -305,7 +325,8 @@ namespace game_framework {
 	}
 	void IceBird::iceAttackShow(Maps * m)
 	{
-		if (isAttacking) {
+		if (isAttacking)
+		{
 			if (_direction == 0)
 			{
 				normalAttackL.SetTopLeft(m->screenX(_x), m->screenY(_y));
@@ -322,23 +343,28 @@ namespace game_framework {
 	}
 	void IceBird::iceWall(Maps *m)
 	{
-		if (!isUsingIceWall &&ice_wall_cd == 0) {
+		if (!isUsingIceWall &&ice_wall_cd == 0) 
+		{
 			icewall_direction = _direction;
-			if (icewall_direction == 0) {
+			if (icewall_direction == 0)
+			{
 				ice_wall_x = ((hero_on_map->GetX1() - 36) / 64) * 64;
 				ice_wall_y = ((_y-100) / 64) * 64;
 				isUsingIceWall = true;
 				ice_wall_clock = 180;
-				for (int i = 0; i < 7; i++) {
+				for (int i = 0; i < 7; i++)
+				{
 					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), 1);
 				}
 			}
-			if (icewall_direction == 1) {
+			if (icewall_direction == 1) 
+			{
 				ice_wall_x = ((hero_on_map->GetX1() + 100) / 64) * 64;
 				ice_wall_y = ((_y - 100) / 64) * 64;
 				isUsingIceWall = true;
 				ice_wall_clock = 180;
-				for (int i = 0; i < 7; i++) {
+				for (int i = 0; i < 7; i++)
+				{
 					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), 1);
 				}
 			}
@@ -347,7 +373,8 @@ namespace game_framework {
 	void IceBird::iceWallMove(Maps * m)
 	{
 		
-		if (ice_wall_clock > 0 && isUsingIceWall) {
+		if (ice_wall_clock > 0 && isUsingIceWall) 
+		{
 			ice_wall_clock--;
 			if (ice_wall_clock <= 40 && ice_wall_clock >=0 )
 			{
@@ -360,28 +387,34 @@ namespace game_framework {
 					icewallR.OnMove();
 				}
 			}
-			if (ice_wall_clock == 0) {
+			if (ice_wall_clock == 0)
+			{
 				isUsingIceWall = false;
 				icewallL.Reset();
 				icewallR.Reset();
 				ice_wall_cd = 180;
 			}
-			if (!isAlive()) {
+			if (!isAlive())
+			{
 				isUsingIceWall = false;
 			}
-			if (!isUsingIceWall) {
-				for (int i = 0; i < 7; i++) {
+			if (!isUsingIceWall)
+			{
+				for (int i = 0; i < 7; i++)
+				{
 					m->setIceWallPos(ice_wall_x, ice_wall_y + (64 * i), -1);
 				}
 			}
 		}
-		if (ice_wall_cd > 0) {
+		if (ice_wall_cd > 0) 
+		{
 			ice_wall_cd--;
 		}
 	}
 	void IceBird::iceWallShow(Maps * m)
 	{
-		if (isUsingIceWall) {
+		if (isUsingIceWall)
+		{
 			if (ice_wall_clock > 40 && ice_wall_clock <= 180)
 			{
 				if (icewall_direction == 0)
@@ -412,7 +445,8 @@ namespace game_framework {
 	}
 	void IceBird::iceStorm(Maps * m)
 	{
-		if (!isUsingStorm && storm_cd == 0) {	
+		if (!isUsingStorm && storm_cd == 0)
+		{	
 			storm_x = hero_on_map->GetX1();
 			storm_y = hero_on_map->GetY2();
 			storm_x -= 120;
@@ -423,35 +457,42 @@ namespace game_framework {
 	}
 	void IceBird::iceStormMove(Maps * m)
 	{
-		if (storm_clock > 0) {
+		if (storm_clock > 0)
+		{
 			storm_clock--;
 			storm.OnMove();
-			if (storm_clock == 0) {
+			if (storm_clock == 0)
+			{
 				isUsingStorm = false;
-				/*icewallL.Reset();
-				icewallR.Reset();*/
 				storm.Reset();
 				storm_cd = 240;
 			}
 		}
-		if (storm_cd > 0) {
+		if (storm_cd > 0) 
+		{
 			storm_cd--;
 		}
-		if (isUsingStorm) {
+		if (isUsingStorm) 
+		{
 			if (intersectStorm(hero_on_map->GetX1(), hero_on_map->GetX2(), hero_on_map->GetY1(), hero_on_map->GetY2())) {
-				if (hero_on_map->GetIsMovingLeft()) {
+				if (hero_on_map->GetIsMovingLeft())
+				{
 					hero_on_map->addSX(2, m);
 				}
-				if (hero_on_map->GetIsMovingRight()) {
+				if (hero_on_map->GetIsMovingRight())
+				{
 					hero_on_map->addSX(-2, m);
 				}
-				if (hero_on_map->GetIsMovingUp()) {
+				if (hero_on_map->GetIsMovingUp())
+				{
 					hero_on_map->addSY(2, m);
 				}
-				if (hero_on_map->GetIsMovingDown()) {
+				if (hero_on_map->GetIsMovingDown())
+				{
 					hero_on_map->addSY(-2, m);
 				}
-				if (storm_clock % 5 == 1) {
+				if (storm_clock % 5 == 1) 
+				{
 					hero_on_map->offsetHp(5);
 				}
 			}
@@ -459,18 +500,21 @@ namespace game_framework {
 	}
 	void IceBird::iceStormShow(Maps * m)
 	{
-		if (isUsingStorm) {
+		if (isUsingStorm) 
+		{
 			storm.SetTopLeft(m->screenX(storm_x), m->screenY(storm_y));
 			storm.OnShow();
 		}
 	}
 	bool IceBird::intersectStorm(int x1, int x2, int y1, int y2)
 	{
-		if (isUsingStorm) {
+		if (isUsingStorm) 
+		{
 			if (x2 >= storm_x + 50 && x1 <= storm_x + storm.Width() - 50 && y2 >= storm_y + 100 && y1 <= storm_y + storm.Height() - 100) {
 				return true;
 			}
-			else {
+			else 
+			{
 				return false;
 			}
 		}

@@ -17,9 +17,11 @@
 #include "RandomAttribute.h"
 #include "Shoe.h"
 #include "ProtectiveCover.h"
-
-namespace game_framework {
-	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
+namespace game_framework 
+{
+	/////////////////////////////////////////////////////////////////////////////
+	// Box: Enemy class														   //
+	/////////////////////////////////////////////////////////////////////////////
 	Box::Box()
 	{
 		_x = 384;
@@ -45,34 +47,42 @@ namespace game_framework {
 		box.LoadBitmap(IDB_BOX, RGB(0, 0, 0));
 		damaged_box.LoadBitmap(IDB_BOXDAMAGED, RGB(0, 0, 0));
 		////道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++)
+		{
 			items.at(i)->load();
 		}
 		blood_bar.loadBloodBar();
 		EnemyRect = box.ReturnCRect();
 	}
-	void Box::OnMove(Maps * m) {
-		if (isAlive()) {
+	void Box::OnMove(Maps * m) 
+	{
+		if (isAlive())
+		{
 			m->setPos(_x + 20, _y + 20, 1);
 		}
-		if (!isAlive()) {
+		if (!isAlive()) 
+		{
 			m->setPos(_x + 20, _y + 20, 0);
 			itemsOnMove(m);
 		}
 	}
 	void Box::OnShow(Maps *m)
 	{
-		if (isAlive()) {
-			if (hp > 10) {
+		if (isAlive())
+		{
+			if (hp > 10) 
+			{
 				box.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 				box.ShowBitmap();
 			}
-			if (hp <= 10) {
+			if (hp <= 10)
+			{
 				damaged_box.SetTopLeft(m->screenX(GetX1()), m->screenY(GetY1()));
 				damaged_box.ShowBitmap();
 			}
 		}
-		if (!isAlive()) {
+		if (!isAlive())
+		{
 			itemsOnShow(m);
 		}
 	}
@@ -92,13 +102,15 @@ namespace game_framework {
 	{
 		return _y + box.Height();
 	}
-	void Box::Initialize() {
+	void Box::Initialize() 
+	{
 		hp = 20;
 		rand_num = rand();
 		isMovingDown = isMovingUp = isMovingLeft = isMovingRight = false;
 		blood_bar.setFullHP(hp);
 		////道具
-		for (unsigned i = 0; i < items.size(); i++) {
+		for (unsigned i = 0; i < items.size(); i++) 
+		{
 			items.at(i)->Initialize();
 			items.at(i)->setNumOfBox(rand_num);
 		}
@@ -106,11 +118,13 @@ namespace game_framework {
 	bool Box::intersect(int x1, int x2, int y1, int y2)
 	{
 		//下面有一些加減運算是因為，稻草人的Bitmap本身比稻草人的身體大太多。
-		if (isAlive()) {
+		if (isAlive()) 
+		{
 			if (x2 >= _x + 20 && x1 <= _x + box.Width() - 20 && y2 >= _y && y1 <= _y + box.Height() - 15) {
 				return true;
 			}
-			else {
+			else
+			{
 				return false;
 			}
 		}
@@ -136,10 +150,6 @@ namespace game_framework {
 	{
 		_x = x;
 		_y = y;
-	}
-	CRect * Box::GetRect()
-	{
-		return &EnemyRect;
 	}
 	void Box::attack()
 	{

@@ -1,14 +1,11 @@
 #ifndef __HEALTH_H
 #define __HEALTH_H
-
-
 #include "Maps.h"
 #include "Character.h"
-
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
-	// 這個class提供一個掉落物檢調會永久增加生命值
-	// 
+	// 這個class提供道具 : 永久增加生命值										   //
+	// 道具可由箱子或擊殺怪物獲得												   //
 	/////////////////////////////////////////////////////////////////////////////
 	class Hero;
 	class Health: public Item
@@ -24,4 +21,4 @@ namespace game_framework {
 		int to_heal;						//要回復多少生命
 	};
 }
-#endif // !Health_H
+#endif

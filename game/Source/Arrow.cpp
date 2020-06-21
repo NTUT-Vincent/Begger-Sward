@@ -14,9 +14,11 @@
 #include "Util.h"
 #include "Item.h"
 #include "ItemAttribute.h"
-
-namespace game_framework {
-	//若在Character和Enemy中都有一個hp，選擇直接用Character中的那個
+namespace game_framework 
+{
+	/////////////////////////////////////////////////////////////////////////////
+	// Arrow: Item class													   //
+	/////////////////////////////////////////////////////////////////////////////
 	Arrow::Arrow(int x, int y)
 	{
 		_arrowX = x;
@@ -40,7 +42,8 @@ namespace game_framework {
 	}
 	void Arrow::OnMove(Maps * m)
 	{
-		if (m->isEmpty(_arrowX, _arrowY)) {								//如果下個位置是empty就可以繼續飛
+		if (m->isEmpty(_arrowX, _arrowY)) 
+		{	//如果下個位置是empty就可以繼續飛
 			if (fly_direction == 0 && m->isEmpty(_arrowX, _arrowY))
 				_arrowX -= 8;
 			if (fly_direction == 1 && m->isEmpty(_arrowX + arrowRight.Width(), _arrowY))
@@ -53,19 +56,23 @@ namespace game_framework {
 	}
 	void Arrow::OnShow(Maps * m)
 	{
-		if (fly_direction == 0) {
+		if (fly_direction == 0) 
+		{
 			arrowLeft.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowLeft.ShowBitmap();
 		}
-		if (fly_direction == 1){
+		if (fly_direction == 1)
+		{
 			arrowRight.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowRight.ShowBitmap();
 		}
-		if (fly_direction == 2) {
+		if (fly_direction == 2) 
+		{
 			arrowUp.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowUp.ShowBitmap();
 		}
-		if (fly_direction == 3) {
+		if (fly_direction == 3) 
+		{
 			arrowDown.SetTopLeft(m->screenX(_arrowX), m->screenY(_arrowY));
 			arrowDown.ShowBitmap();
 		}
@@ -89,7 +96,7 @@ namespace game_framework {
 	}
 	int Arrow::getX2()
 	{
-		if (fly_direction == 0)						//傳回X2的值
+		if (fly_direction == 0)						
 		{
 			return arrowLeft.Width() + _arrowX;
 		}

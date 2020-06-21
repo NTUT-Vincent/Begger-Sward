@@ -7,7 +7,6 @@
 #include "Hero.h"
 #include "Maps.h"
 #include "Attack.h"
-
 namespace game_framework {
 	Attack::Attack(int x, int y)
 	{
@@ -103,27 +102,33 @@ namespace game_framework {
 		}
 		else
 		{
-			if (m->isEmpty(_x, _y)) {
+			if (m->isEmpty(_x, _y)) 
+			{
 				_x += step_size_x;
 				_y += step_size_y;
 			}
 		}
-		if (_attack_name == ICE_BALL) {
+		if (_attack_name == ICE_BALL) 
+		{
 			ice_ball.OnMove();
 		}
-		if (_attack_name == FIRE_BALL) {
+		if (_attack_name == FIRE_BALL)
+		{
 			fire_ball.OnMove();
 		}
-		if (_attack_name == GRASS_BALL) {
+		if (_attack_name == GRASS_BALL)
+		{
 			grass_ball.OnMove();
 		}
 		if (_attack_name == GRASS_TORNADO) {
 			tornado.OnMove();
+
 		}
 	}
 	void Attack::OnShow(Maps * m)
 	{																				//看attack_name決定onShow執行哪裡
-		if (_attack_name == FIRE_FLAME) {
+		if (_attack_name == FIRE_FLAME)
+		{
 			if (_direction == 0 && m->isEmpty(_x, _y))
 			{
 				if (flame_status == 0)
@@ -152,34 +157,34 @@ namespace game_framework {
 				}
 			}
 		}
-		if (_attack_name == FIRE_BALL) {
-			if (m->isEmpty(_x, _y)) {
-				/*fire_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				fire_attack.ShowBitmap();*/
+		if (_attack_name == FIRE_BALL)
+		{
+			if (m->isEmpty(_x, _y)) 
+			{
 				fire_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				fire_ball.OnShow();
 			}
 		}
-		if (_attack_name == ICE_BALL) {
-			if (m->isEmpty(_x, _y)) {
-				/*ice_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				ice_attack.ShowBitmap();*/
+		if (_attack_name == ICE_BALL)
+		{
+			if (m->isEmpty(_x, _y))
+			{
 				ice_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				ice_ball.OnShow();
 			}
 		}
-		if (_attack_name == GRASS_BALL) {
-			if (m->isEmpty(_x, _y)) {
-				/*plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				plant_attack.ShowBitmap();*/
+		if (_attack_name == GRASS_BALL) 
+		{
+			if (m->isEmpty(_x, _y))
+			{
 				grass_ball.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				grass_ball.OnShow();
 			}
 		}
-		if (_attack_name == GRASS_TORNADO) {
-			if (m->isEmpty(_x, _y)) {
-				/*plant_attack.SetTopLeft(m->screenX(_x), m->screenY(_y));
-				plant_attack.ShowBitmap();*/
+		if (_attack_name == GRASS_TORNADO) 
+		{
+			if (m->isEmpty(_x, _y)) 
+			{
 				tornado.SetTopLeft(m->screenX(_x), m->screenY(_y));
 				tornado.OnShow();
 			}
@@ -195,12 +200,14 @@ namespace game_framework {
 	}
 	void Attack::setXY(int x, int y)							//設定xy座標
 	{
-		if (_attack_name == FIRE_FLAME) {
+		if (_attack_name == FIRE_FLAME)
+		{
 			_x = x;
 			_y = y;
 		}
 		else {
-			if (!_attackIsFlying) {
+			if (!_attackIsFlying)
+			{
 				_x = x;
 				_y = y;
 			}
@@ -229,22 +236,27 @@ namespace game_framework {
 			flame_R1.Reset();
 			flame_status = 0;
 		}
-		if (atk == FIRE_BALL) {
+		if (atk == FIRE_BALL) 
+		{
 			fire_ball.Reset();
 		}
-		if (atk == GRASS_BALL) {
+		if (atk == GRASS_BALL)
+		{
 			grass_ball.Reset();
 		}
-		if (atk == ICE_BALL) {
+		if (atk == ICE_BALL) 
+		{
 			ice_ball.Reset();
 		}
-		if (atk == GRASS_TORNADO) {
+		if (atk == GRASS_TORNADO)
+		{
 			tornado.Reset();
 		}
 	}
 	int Attack::getX1()
 	{
-		if (_attack_name == FIRE_FLAME) {
+		if (_attack_name == FIRE_FLAME)
+		{
 			if (_direction == 0)
 			{
 				return _x - 192;
@@ -258,16 +270,20 @@ namespace game_framework {
 	}
 	int Attack::getX2()						// x2 = x1 + 圖片寬度
 	{
-		if (_attack_name == FIRE_BALL) {
+		if (_attack_name == FIRE_BALL) 
+		{
 			return _x + fire_ball.Width();
 		}
-		if (_attack_name == ICE_BALL) {
+		if (_attack_name == ICE_BALL)
+		{
 			return _x + ice_ball.Width();
 		}
-		if (_attack_name == GRASS_BALL) {
+		if (_attack_name == GRASS_BALL)
+		{
 			return _x + grass_ball.Width();
 		}
-		if (_attack_name == FIRE_FLAME) {
+		if (_attack_name == FIRE_FLAME) 
+		{
 			if (_direction == 0)
 			{
 				return getX1() + flame_L2.Width();
@@ -277,7 +293,8 @@ namespace game_framework {
 				return getX1() + flame_R2.Width();
 			}
 		}
-		if (_attack_name == GRASS_TORNADO) {
+		if (_attack_name == GRASS_TORNADO) 
+		{
 			return _x + tornado.Width();
 		}
 		return _x;
@@ -288,16 +305,20 @@ namespace game_framework {
 	}
 	int Attack::getY2()							//y2 = y1 + 圖片高度
 	{
-		if (_attack_name == FIRE_BALL) {
+		if (_attack_name == FIRE_BALL) 
+		{
 			return _y + fire_ball.Height();
 		}
-		if (_attack_name == ICE_BALL) {
+		if (_attack_name == ICE_BALL) 
+		{
 			return _y + ice_ball.Height();
 		}
-		if (_attack_name == GRASS_BALL) {
+		if (_attack_name == GRASS_BALL)
+		{
 			return _y + grass_ball.Height();
 		}
-		if (_attack_name == FIRE_FLAME) {
+		if (_attack_name == FIRE_FLAME) 
+		{
 			if (_direction == 0)
 			{
 				return getY1() + flame_L2.Height();
@@ -307,7 +328,8 @@ namespace game_framework {
 				return getY1() + flame_R2.Height();
 			}
 		}
-		if (_attack_name == GRASS_TORNADO) {
+		if (_attack_name == GRASS_TORNADO)
+		{
 			return getY1() + tornado.Height();
 		}
 		return _y;
