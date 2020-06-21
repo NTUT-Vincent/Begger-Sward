@@ -576,7 +576,11 @@ namespace game_framework {
 		case KEY_RIGHT: player1.SetMovingRight(false); break;
 		case KEY_UP: player1.SetMovingUp(false); break;
 		case KEY_DOWN: player1.SetMovingDown(false); break;
-		case 27:GotoGameState(GAME_STATE_INIT); break;
+		case 27:GotoGameState(GAME_STATE_INIT); for (int i = 0; i < 6; i++)
+		{
+			player1.useItem(i + 1);
+		}
+				GotoGameState(GAME_STATE_INIT); break;
 		default: return;
 		}
 	}
