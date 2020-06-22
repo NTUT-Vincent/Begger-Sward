@@ -25,7 +25,7 @@ namespace game_framework {
 		_y = 384;
 		attack_damage = 0;
 	}
-	GreenGoblin::GreenGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenGoblin", h, FIRE)
+	GreenGoblin::GreenGoblin(int x, int y, Hero *h) : Enemy(x, y, 1200, "GreenGoblin", h, PLANT)
 	{
 		attack_damage = 20;
 		attack_cool_down = 0;

@@ -104,7 +104,7 @@ namespace game_framework
 		firstmap.ShowBitmap();
 		if (all_enemy_clear == 1)
 		{
-			gate.SetTopLeft(getSX() + 512, getSY() + 64);
+			gate.SetTopLeft(getSX() + 768, getSY() - 64);
 			gate.OnMove();
 			gate.OnShow();
 		}

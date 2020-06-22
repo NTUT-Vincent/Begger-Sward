@@ -3,12 +3,8 @@
 #include "Maps.h"
 #include "Character.h"
 #include "Util.h"
-<<<<<<< HEAD
-namespace game_framework {
-=======
 namespace game_framework 
 {
->>>>>>> b21484bf4faa30161cb87177111bbcf0ee7ce529
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class提供各種攻擊招式											   //
 	/////////////////////////////////////////////////////////////////////////////

@@ -34,10 +34,6 @@ namespace game_framework
 		int random_num;									//一個隨機數
 		bool _isUsed;									//是否被使用了
 		int num_of_box;									//一個隨機數，用來判定道具箱會掉哪個道具
-<<<<<<< HEAD
-
-=======
->>>>>>> b21484bf4faa30161cb87177111bbcf0ee7ce529
 	protected:
 		CMovingBitmap item_on_status_bar;
 	};
