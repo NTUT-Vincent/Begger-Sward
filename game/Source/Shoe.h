@@ -1,5 +1,5 @@
-#ifndef __SHOE_H
-#define __SHOE_H
+#ifndef SHOE_H
+#define SHOE_H
 #include "Maps.h"
 #include "Character.h"
 namespace game_framework 

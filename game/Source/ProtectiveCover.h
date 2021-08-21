@@ -1,5 +1,5 @@
-#ifndef __PRETECTEDCOVER_H
-#define __PROTECTEDCOVER_H
+#ifndef PRETECTEDCOVER_H
+#define PROTECTEDCOVER_H
 #include "Maps.h"
 #include "Character.h"
 namespace game_framework {

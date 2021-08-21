@@ -8,6 +8,7 @@
 #include "Maps.h"
 #include "Item.h"
 #include "ProtectiveCover.h"
+
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	//ProtectiveCover: Item class
@@ -24,7 +25,7 @@ namespace game_framework {
 	{
 		_x = getX();
 		_y = getY();
-		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 100)  //如果num_ofBox%100 = 0-20 箱子會掉這個道具
+		if (isExist() && intercect(h) && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20)  //如果num_ofBox%100 = 0-20 箱子會掉這個道具
 		{	
 			//用num_of_box決定這個道具會不會掉落
 			ProtectiveCover * p = new ProtectiveCover();
@@ -35,7 +36,7 @@ namespace game_framework {
 	}
 	void ProtectiveCover::OnShow(Maps *m)
 	{
-		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 100)
+		if (isExist() && getNumOfBox() % 100 > 0 && getNumOfBox() % 100 <= 20)
 		{
 			clock_pic.SetTopLeft(m->screenX(_x), m->screenY(_y));
 			clock_pic.ShowBitmap();
